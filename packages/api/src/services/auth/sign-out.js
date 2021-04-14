@@ -8,10 +8,10 @@
  * req.signOut = null
  */
 function signOut(req = {}) {
-  req.user = null;
-  req.signOut = function noop() {};
+    req.user = null
+    req.signOut = function noop() {}
 }
 
 module.exports = {
-  signOut: signOut,
-};
+    signOut: signOut,
+}

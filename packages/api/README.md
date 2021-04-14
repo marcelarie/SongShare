@@ -4,7 +4,7 @@ Server App for the Apollofy music project.
 
 ## Repo
 
-- [apollofy-music-project](https://github.com/assembler-school/apollofy-music-project.git)
+-   [apollofy-music-project](https://github.com/assembler-school/apollofy-music-project.git)
 
 ## Getting Started
 
@@ -18,15 +18,17 @@ The `api` package will be run by default in the following url:
 
 ### Folder structure
 
-- `packages/api/src/config`: the config needed by the app
-- `packages/api/src/controllers`: the controllers used in the Routes of the app
-- `packages/api/src/db`: the logic to connect to the database
-- `packages/api/src/models`: the mongoose models used in the app
-- `packages/api/src/repositories`: the repositories that perform the DB
-  operations
-- `packages/api/src/routes`: the routers used in the app
-- `packages/api/src/services`: the services used in the app, auth, logging, etc
-- `packages/api/src/utils`: helper functions
+-   `packages/api/src/config`: the config needed by the app
+-   `packages/api/src/controllers`: the controllers used in the Routes of the
+    app
+-   `packages/api/src/db`: the logic to connect to the database
+-   `packages/api/src/models`: the mongoose models used in the app
+-   `packages/api/src/repositories`: the repositories that perform the DB
+    operations
+-   `packages/api/src/routes`: the routers used in the app
+-   `packages/api/src/services`: the services used in the app, auth, logging,
+    etc
+-   `packages/api/src/utils`: helper functions
 
 ### Firebase
 
