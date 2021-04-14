@@ -6,11 +6,15 @@ const UserSchema = Schema(
   {
     // we use the uid from firebase as the _id
     _id: String,
-    firstName: {
+    name: {
       type: String,
       trim: true,
     },
-    lastName: {
+    username: {
+      type: String,
+      trim: true,
+    },
+    lastname: {
       type: String,
       trim: true,
     },

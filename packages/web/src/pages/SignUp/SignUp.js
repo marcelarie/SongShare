@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-
 import "./SignUp.scss";
-
 import Header from "../../components/Header";
 import * as ROUTES from "../../routes";
-
 import {
   resetAuthState,
   signUpWithEmailRequest,
   signUpWithGoogleRequest,
 } from "../../redux/auth/auth-actions";
-
 import { authSelector } from "../../redux/auth/auth-selectors";
 
 function SignUp() {
@@ -20,9 +16,11 @@ function SignUp() {
   const { isSigningUp, signUpError, isAuthenticated } = useSelector(
     authSelector,
   );
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     dispatch(resetAuthState());
@@ -35,19 +33,21 @@ function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    dispatch(signUpWithEmailRequest(email, password));
+    dispatch(
+      signUpWithEmailRequest({
+        name,
+        lastname,
+        email,
+        username,
+        password,
+      }),
+    );
 
     setEmail("");
     setPassword("");
-  }
-
-  function handleSetEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleSetPassword(e) {
-    setPassword(e.target.value);
+    setName("");
+    setLastname("");
+    setUsername("");
   }
 
   if (isAuthenticated) {
@@ -71,6 +71,26 @@ function SignUp() {
           </button>
           <hr className="mt-1 mb-4" />
           <form onSubmit={handleSubmit}>
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <label htmlFor="lastname" className="form-label">
+              Last name
+            </label>
+            <input
+              type="text"
+              id="lastname"
+              className="form-input"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
             <label htmlFor="email" className="form-label">
               Email
             </label>
@@ -79,7 +99,17 @@ function SignUp() {
               id="email"
               className="form-input"
               value={email}
-              onChange={handleSetEmail}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="username" className="form-label">
+              User name
+            </label>
+            <input
+              type="text"
+              id="username"
+              className="form-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <label htmlFor="password" className="form-label">
               Password
@@ -89,7 +119,7 @@ function SignUp() {
               id="password"
               className="form-input"
               value={password}
-              onChange={handleSetPassword}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button
               className="btn btn-primary w-full"
@@ -114,5 +144,4 @@ function SignUp() {
     </>
   );
 }
-
 export default SignUp;

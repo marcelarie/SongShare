@@ -1,6 +1,7 @@
 import * as AuthTypes from "./auth-types";
 import api from "../../api";
 import * as auth from "../../services/auth";
+import makeApi from "../../api";
 
 export const resetStoreAndLogOut = () => ({
   type: AuthTypes.RESET_STORE_AND_LOG_OUT,
@@ -26,11 +27,18 @@ export function signUpWithGoogleRequest() {
   };
 }
 
-export function signUpWithEmailRequest(email, password) {
+export function signUpWithEmailRequest(userInfo) {
   return async function signUpThunk(dispatch) {
     dispatch(signUpRequest());
     try {
-      await auth.singUpWithEmailAndPassword(email, password);
+      const { email, password, ...rest } = userInfo;
+      const token = await auth.singUpWithEmailAndPassword(email, password);
+      makeApi.signUp(
+        {
+          Authorization: `Bearer ${token.user.za}`,
+        },
+        { rest },
+      );
     } catch (error) {
       dispatch(signUpError(error.message));
     }
@@ -55,6 +63,8 @@ export function syncSignIn() {
     if (!token) {
       return dispatch(signOutSuccess());
     }
+
+    const userInfo = "body";
 
     const response = await api.signUp({
       Authorization: `Bearer ${token}`,
