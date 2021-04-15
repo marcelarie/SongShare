@@ -14,21 +14,16 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(json());
 app.use(
-  cors({
-    origin: config.client.url,
-  }),
+    cors({
+        origin: config.client.url,
+    }),
 );
 
-app.use(userRouter);
+app.use('/user', userRouter);
 
-app.get("/", (req, res) => {
-  res.status(200).send({
-    data: "hello-world",
-  });
-});
 
 app.use(errorMiddleware);
 
 module.exports = {
-  app: app,
+    app: app,
 };

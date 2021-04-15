@@ -1,50 +1,72 @@
 const { UserRepo } = require("../repositories");
 
-async function signUp(req, res, next) {
-  const { uid, email } = req.user;
-
-  try {
-    const response = await UserRepo.findOne({ email: email });
-
+function checkResponseStatus(response, res) {
     if (response.error) {
-      return res.status(400).send({
-        data: null,
-        error: response.error,
-      });
+        return res.status(400).send({
+            data: null,
+            error: response.error,
+        });
     }
 
     if (response.data) {
-      return res.status(200).send({
-        data: "OK",
-        error: null,
-      });
+        return res.status(200).send({
+            data: "OK",
+            error: null,
+        });
     }
+}
 
-    await UserRepo.create({
-      _id: uid,
-      email: email,
-      ...req.body.rest,
-    });
+async function signUp(req, res, next) {
+    const { uid, email } = req.user;
 
-    res.status(201).send({
-      data: "OK",
-      error: null,
-    });
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const response = await UserRepo.findOne({ email: email });
+
+        checkResponseStatus(response, res);
+
+        await UserRepo.create({
+            _id: uid,
+            email: email,
+            ...req.body.rest,
+        });
+
+        res.status(201).send({
+            data: "OK",
+            error: null,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getUserInfoById(req, res, next) {
+    const { id } = req.params
+    console.log(id)
+    try {
+        const data = await UserRepo.findById(id);
+        checkResponseStatus(data, res)
+
+        res.status(200).json({
+            data,
+            error: null
+        })
+
+    } catch (error) {
+        next(error)
+    }
 }
 
 async function signOut(req, res) {
-  req.signOut();
+    req.signOut();
 
-  res.status(200).send({
-    data: "OK",
-    error: null,
-  });
+    res.status(200).send({
+        data: "OK",
+        error: null,
+    });
 }
 
 module.exports = {
-  signUp: signUp,
-  signOut: signOut,
+    signUp: signUp,
+    signOut: signOut,
+    getUserInfoById
 };
