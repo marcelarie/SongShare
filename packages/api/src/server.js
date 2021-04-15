@@ -19,7 +19,7 @@ app.use(
     }),
 )
 
-app.use("/user", userRouter)
+app.use(userRouter)
 
 app.use(errorMiddleware)
 
