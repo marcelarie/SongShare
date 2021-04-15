@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, Redirect } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 
-import "./Login.scss"
+import './Login.scss';
 
-import Header from "../../components/Header"
-import * as ROUTES from "../../routes"
+import Header from '../../components/Header';
+import * as ROUTES from '../../routes';
 
 import {
     resetAuthState,
     signInWithEmailRequest,
     signUpWithGoogleRequest,
-} from "../../redux/auth/auth-actions"
+} from '../../redux/auth/auth-actions';
 
-import { authSelector } from "../../redux/auth/auth-selectors"
+import { authSelector } from '../../redux/auth/auth-selectors';
 
 function Login() {
-    const dispatch = useDispatch()
-    const { isSigningUp, signUpError, isAuthenticated } = useSelector(
+    const dispatch = useDispatch();
+    const { isLogingIn, loginError, isAuthenticated } = useSelector(
         authSelector,
-    )
+    );
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
-        dispatch(resetAuthState())
-    }, [dispatch])
+        dispatch(resetAuthState());
+    }, [dispatch]);
 
     function handleLoginWithGoogle(e) {
-        e.preventDefault()
-        dispatch(signUpWithGoogleRequest())
+        e.preventDefault();
+        dispatch(signUpWithGoogleRequest());
     }
 
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        dispatch(signInWithEmailRequest(email, password))
+        dispatch(signInWithEmailRequest(email, password));
 
-        setEmail("")
-        setPassword("")
+        setEmail('');
+        setPassword('');
     }
 
     function handleSetEmail(e) {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
     }
 
     function handleSetPassword(e) {
-        setPassword(e.target.value)
+        setPassword(e.target.value);
     }
 
     if (isAuthenticated) {
-        return <Redirect to={ROUTES.HOME} />
+        return <Redirect to={ROUTES.HOME} />;
     }
 
     return (
@@ -65,7 +65,7 @@ function Login() {
                         className="btn btn-primary w-full"
                         type="button"
                         onClick={handleLoginWithGoogle}
-                        disabled={isSigningUp}
+                        disabled={isLogingIn}
                     >
                         Login with Google
                     </button>
@@ -94,13 +94,13 @@ function Login() {
                         <button
                             className="btn btn-primary w-full"
                             type="submit"
-                            disabled={isSigningUp}
+                            disabled={isLogingIn}
                         >
                             Login
                         </button>
                     </form>
-                    {signUpError && (
-                        <section className="mt-4">{signUpError}</section>
+                    {loginError && (
+                        <section className="mt-4">{loginError}</section>
                     )}
                     <section className="mt-4">
                         <hr className="mt-1 mb-4" />
@@ -114,7 +114,7 @@ function Login() {
                 </section>
             </main>
         </>
-    )
+    );
 }
 
-export default Login
+export default Login;
