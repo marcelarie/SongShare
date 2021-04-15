@@ -1,29 +1,28 @@
-const express = require("express");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const { json } = require("body-parser");
-const cors = require("cors");
+const express = require("express")
+const helmet = require("helmet")
+const morgan = require("morgan")
+const { json } = require("body-parser")
+const cors = require("cors")
 
-const { config } = require("./config");
-const { errorMiddleware } = require("./middlewares");
-const { userRouter } = require("./routes");
+const { config } = require("./config")
+const { errorMiddleware } = require("./middlewares")
+const { userRouter } = require("./routes")
 
-const app = express();
+const app = express()
 
-app.use(morgan("dev"));
-app.use(helmet());
-app.use(json());
+app.use(morgan("dev"))
+app.use(helmet())
+app.use(json())
 app.use(
     cors({
         origin: config.client.url,
     }),
-);
+)
 
-app.use('/user', userRouter);
+app.use("/user", userRouter)
 
-
-app.use(errorMiddleware);
+app.use(errorMiddleware)
 
 module.exports = {
     app: app,
-};
+}

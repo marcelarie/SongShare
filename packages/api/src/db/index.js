@@ -1,5 +1,5 @@
-const { connect } = require("./connect");
+const { connect } = require("./connect")
 
 module.exports = {
-  connect: connect,
-};
+    connect: connect,
+}

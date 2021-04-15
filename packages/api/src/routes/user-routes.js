@@ -1,16 +1,16 @@
-const Router = require("express").Router;
+const Router = require("express").Router
 
-const { userController } = require("../controllers");
-const { authMiddleware } = require("../middlewares");
+const { authMiddleware } = require("../middlewares")
+const { userController } = require("../controllers")
 
-const userRouter = Router();
+const userRouter = Router()
 
-userRouter.get("/:id", userController.getUserInfoById);
+userRouter.get("/:id", userController.getUserInfoById)
 
 userRouter.use(authMiddleware)
-userRouter.post("/sign-up", userController.signUp);
-userRouter.post("/sign-out", userController.signOut);
+userRouter.post("/sign-up", userController.signUp)
+userRouter.post("/sign-out", userController.signOut)
 
 module.exports = {
     userRouter: userRouter,
-};
+}
