@@ -1,4 +1,4 @@
-const { config } = require("../config")
+import config from "../config/index.js"
 
 function errorMiddleware(err, req, res, next) {
     config.logger.debug("Error Handler Middleware: ")
@@ -17,6 +17,4 @@ function errorMiddleware(err, req, res, next) {
     })
 }
 
-module.exports = {
-    errorMiddleware: errorMiddleware,
-}
+export default errorMiddleware

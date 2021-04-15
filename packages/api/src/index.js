@@ -1,6 +1,10 @@
-const { app } = require("./server")
-const { config } = require("./config")
-const { connect } = require("./db/connect")
+// const { app } = require("./server")
+// const { config } = require("./config")
+// const { connect } = require("./db/connect")
+
+import app from "./server.js"
+import config from "./config/index.js"
+import connect from "./db/connect.js"
 
 if (!config.app.port) {
     throw new Error("App config is invalid")

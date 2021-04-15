@@ -1,5 +1,5 @@
-const UserModel = require("./user-model")
+import User from "./user-model.js"
 
-module.exports = {
-    User: UserModel,
+export default {
+    User,
 }

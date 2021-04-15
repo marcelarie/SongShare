@@ -1,5 +1,3 @@
-const { connect } = require("./connect")
+import connect from "./connect"
 
-module.exports = {
-    connect: connect,
-}
+export default connect

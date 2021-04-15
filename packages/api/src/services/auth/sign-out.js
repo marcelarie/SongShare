@@ -12,6 +12,10 @@ function signOut(req = {}) {
     req.signOut = function noop() {}
 }
 
-module.exports = {
-    signOut: signOut,
-}
+export default singOut
+
+//
+// module.exports = {
+//     signOut: signOut,
+// }
+//

@@ -1,5 +1,7 @@
-const db = require("../models")
-const normalizeDBQuery = require("../utils/normalizeDBQuery")
+// const db = require("../models")
+// const normalizeDBQuery = require("../utils/normalizeDBQuery")
+import db from "../models/index.js"
+import normalizeDBQuery from "../utils/normalizeDBQuery.js"
 
 class UserRepository {
     create(options) {
@@ -15,4 +17,5 @@ class UserRepository {
     }
 }
 
-module.exports = new UserRepository()
+// module.exports = new UserRepository()
+export default UserRepository
