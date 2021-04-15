@@ -6,12 +6,12 @@ class UserRepository {
         return normalizeDBQuery(db.User.create(options))
     }
 
-    findOne(query) {
-        return normalizeDBQuery(db.User.findOne(query, "-__v"))
+    findOne(filter) {
+        return normalizeDBQuery(db.User.findOne(filter, "-__v"))
     }
 
-    findById(query) {
-        return normalizeDBQuery(db.User.findById(query))
+    findByUsernameAndUpdate(filter, body) {
+        return normalizeDBQuery(db.User.findOneAndUpdate(filter, body))
     }
 }
 

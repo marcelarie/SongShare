@@ -1,28 +1,28 @@
 const { UserRepo } = require("../repositories")
 
-function checkResponseStatus(response, res) {
-    if (response.error) {
-        return res.status(400).send({
-            data: null,
-            error: response.error,
-        })
-    }
-
-    if (response.data) {
-        return res.status(200).send({
-            data: "OK",
-            error: null,
-        })
-    }
-}
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user
 
     try {
-        const response = await UserRepo.findOne({ email: email })
+        const response = await UserRepo.findOne(
+            {
+                email: email
+            })
 
-        checkResponseStatus(response, res)
+        if (response.error) {
+            return res.status(400).send({
+                data: null,
+                error: response.error,
+            })
+        }
+
+        if (response.data) {
+            return res.status(200).send({
+                data: "OK",
+                error: null,
+            })
+        }
 
         await UserRepo.create({
             _id: uid,
@@ -48,24 +48,63 @@ async function signOut(req, res) {
     })
 }
 
-async function getUserInfoById(req, res, next) {
-    const { id } = req.params
-    console.log(id)
-    try {
-        const data = await UserRepo.findById(id)
-        checkResponseStatus(data, res)
+async function getUserInfoByUsername(req, res, next) {
+    const username = req.params.username.toLowerCase()
 
-        res.status(200).json({
-            data,
+    try {
+        const response = await UserRepo.findOne({ username: username })
+
+        if (response.error) {
+            return res.status(400).send({
+                data: null,
+                error: response.error,
+            })
+        }
+
+        res.status(200).send({
+            data: response.data,
             error: null,
         })
+
     } catch (error) {
         next(error)
     }
 }
 
+async function patchUserInfoByUsername(req, res, next) {
+
+    try {
+        const username = req.params.username
+        const { body } = req
+
+        const response = await UserRepo.
+            findByUsernameAndUpdate(
+                username,
+                { ...body }
+            )
+
+        if (response.error) {
+            return res.status(400).send({
+                data: null,
+                error: response.error,
+            })
+        }
+
+        res.status(200).send({
+            data: 'OK',
+            error: null,
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
 module.exports = {
-    signUp: signUp,
-    signOut: signOut,
-    getUserInfoById,
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername
 }

@@ -5,12 +5,17 @@ const { userController } = require("../controllers")
 
 const userRouter = Router()
 
-userRouter.get("/:id", userController.getUserInfoById)
 
 userRouter.use(authMiddleware)
+
+userRouter.get("/user/:username", userController.getUserInfoByUsername)
+userRouter.patch("/user/edit/:username", userController.patchUserInfoByUsername)
 userRouter.post("/sign-up", userController.signUp)
 userRouter.post("/sign-out", userController.signOut)
 
 module.exports = {
     userRouter: userRouter,
 }
+
+
+

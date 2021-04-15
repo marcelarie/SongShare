@@ -5,7 +5,7 @@ function makeApi(request = makeRequest()) {
         return request({
             url: "/sign-up",
             requestMethod: "POST",
-            headers: headers,
+            headers,
             body,
         })
     }
