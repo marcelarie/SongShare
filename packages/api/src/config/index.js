@@ -1,1 +1,3 @@
-export { default } from "./app-config.js"
+import config from "./app-config.js"
+
+export default config

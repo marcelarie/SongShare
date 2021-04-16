@@ -12,9 +12,7 @@ function getAuthToken(headers = {}) {
     })
 }
 
-export default {
-    getAuthToken,
-}
+export default getAuthToken
 // module.exports = {
 //     getAuthToken: getAuthToken,
 // }

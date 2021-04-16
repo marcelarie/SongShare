@@ -29,6 +29,4 @@ function login(req = {}, userClaims = {}) {
 //     login: login,
 // }
 
-export default {
-    login,
-}
+export default login

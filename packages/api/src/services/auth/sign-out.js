@@ -12,7 +12,7 @@ function signOut(req = {}) {
     req.signOut = function noop() {}
 }
 
-export default singOut
+export default signOut
 
 //
 // module.exports = {

@@ -5,9 +5,7 @@ function verifyAuthToken(token) {
     return verifyIdToken(token)
 }
 
-export default {
-    verifyAuthToken,
-}
+export default verifyAuthToken
 //
 // module.exports = {
 //     verifyAuthToken: verifyAuthToken,
