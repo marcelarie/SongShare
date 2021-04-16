@@ -6,6 +6,7 @@ import "./styles/App.scss"
 
 import * as ROUTES from "./routes"
 import Home from "./pages/Home"
+import Welcome from "./components/Welcome"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import ResetPassword from "./pages/ResetPassword"
@@ -40,7 +41,7 @@ function App() {
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Home} exact />
+                <Route path={ROUTES.HOME} component={Welcome} exact />
             </Switch>
         </div>
     )

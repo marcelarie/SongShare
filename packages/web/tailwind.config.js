@@ -4,7 +4,11 @@ const colors = require("tailwindcss/colors")
 module.exports = {
     purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: theme => ({
+                "bg-texture": "url('/src/styles/img/background-img.jpg')",
+            }),
+        },
         colors: {
             ...colors,
             gray: colors.trueGray,
