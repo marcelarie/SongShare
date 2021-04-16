@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
-import config from "../config/index.js"
+import config from '../config/index.js';
 
 function connect() {
     return mongoose.connect(config.db.url, {
@@ -8,7 +8,7 @@ function connect() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
-    })
+    });
 }
 
-export default connect
+export default connect;

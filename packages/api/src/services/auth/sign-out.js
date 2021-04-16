@@ -8,11 +8,11 @@
  * req.signOut = null
  */
 function signOut(req = {}) {
-    req.user = null
-    req.signOut = function noop() {}
+    req.user = null;
+    req.signOut = function noop() {};
 }
 
-export default signOut
+export default signOut;
 
 //
 // module.exports = {

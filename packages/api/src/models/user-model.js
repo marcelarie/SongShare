@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
-import validator from "validator"
+import mongoose from 'mongoose';
+import validator from 'validator';
 
 const UserSchema = mongoose.Schema(
     {
@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema(
         },
         email: {
             type: String,
-            required: [true, "The email is required"],
+            required: [true, 'The email is required'],
             trim: true,
             unique: true,
             validate: {
@@ -31,8 +31,8 @@ const UserSchema = mongoose.Schema(
     {
         timestamps: true,
     },
-)
+);
 
-const User = mongoose.model("user", UserSchema)
+const User = mongoose.model('user', UserSchema);
 
-export default User
+export default User;

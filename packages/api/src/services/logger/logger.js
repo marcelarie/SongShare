@@ -1,7 +1,7 @@
 // const logger = require("loglevel")
-import logger from "loglevel"
+import logger from 'loglevel';
 
-logger.enableAll()
+logger.enableAll();
 
 export default {
     warn: logger.warn,
@@ -9,7 +9,7 @@ export default {
     error: logger.error,
     trace: logger.trace,
     debug: logger.debug,
-}
+};
 // module.exports = {
 //     warn: logger.warn,
 //     info: logger.info,

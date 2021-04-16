@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import "./ResetPassword.scss"
+import './ResetPassword.scss';
 
-import Header from "../../components/Header"
+import Header from '../../components/Header';
 
 import {
     sendPasswordResetEmail,
     resetAuthState,
-} from "../../redux/auth/auth-actions"
-import { authSelector } from "../../redux/auth/auth-selectors"
+} from '../../redux/auth/auth-actions';
+import { authSelector } from '../../redux/auth/auth-selectors';
 
 function buttonText(loading, sent) {
     if (loading) {
-        return "Sending..."
+        return 'Sending...';
     }
 
     if (sent) {
-        return "Email Sent!"
+        return 'Email Sent!';
     }
 
-    return "Send password reset email"
+    return 'Send password reset email';
 }
 
 function ResetPassword() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const {
         isSendingPasswordReset,
         passwordResetError,
         passwordResetSent,
-    } = useSelector(authSelector)
+    } = useSelector(authSelector);
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState('');
 
     useEffect(() => {
-        dispatch(resetAuthState())
-    }, [dispatch])
+        dispatch(resetAuthState());
+    }, [dispatch]);
 
     function handleSubmit(e) {
-        e.preventDefault()
-        dispatch(sendPasswordResetEmail(email))
-        setEmail("")
+        e.preventDefault();
+        dispatch(sendPasswordResetEmail(email));
+        setEmail('');
     }
 
     function handleSetEmail(e) {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
     }
 
     return (
@@ -84,7 +84,7 @@ function ResetPassword() {
                 </section>
             </main>
         </>
-    )
+    );
 }
 
-export default ResetPassword
+export default ResetPassword;
