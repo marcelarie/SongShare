@@ -1,4 +1,5 @@
-const { signOut } = require("./sign-out")
+// const { signOut } = require("./sign-out")
+import signOut from "./sign-out.js"
 
 /**
  * Adds the user claims to the request object
@@ -24,6 +25,8 @@ function login(req = {}, userClaims = {}) {
     req.signOut = signOut
 }
 
-module.exports = {
-    login: login,
-}
+// module.exports = {
+//     login: login,
+// }
+
+export default login

@@ -1,4 +1,7 @@
-const admin = require("firebase-admin")
+// const admin = require("firebase-admin")
+import admin from "firebase-admin"
+import dotenv from "dotenv"
+dotenv.config()
 
 const firebaseCertConfig = {
     type: process.env.FB_CERT_TYPE,
@@ -24,6 +27,7 @@ function verifyIdToken(token) {
     return auth.verifyIdToken(token)
 }
 
-module.exports = {
-    verifyIdToken: verifyIdToken,
-}
+export { verifyIdToken }
+// module.exports = {
+//     verifyIdToken: verifyIdToken,
+// }

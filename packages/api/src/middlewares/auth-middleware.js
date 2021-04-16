@@ -1,4 +1,4 @@
-const { auth, logger } = require("../services")
+import { auth, logger } from "../services/index.js"
 
 async function authMiddleware(req, res, next) {
     try {
@@ -18,6 +18,4 @@ async function authMiddleware(req, res, next) {
     }
 }
 
-module.exports = {
-    authMiddleware: authMiddleware,
-}
+export default authMiddleware

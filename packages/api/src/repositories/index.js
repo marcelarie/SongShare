@@ -1,5 +1,5 @@
-const UserRepository = require("./user-repository")
+// import UserRepository from "./user-repository.js"
 
-module.exports = {
-    UserRepo: UserRepository,
-}
+export { default } from "./user-repository.js"
+
+// export default UserRepository

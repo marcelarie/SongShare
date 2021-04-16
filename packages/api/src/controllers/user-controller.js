@@ -1,4 +1,4 @@
-const { UserRepo } = require("../repositories")
+import UserRepo from "../repositories/index.js"
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user
@@ -93,7 +93,7 @@ async function patchUserInfoByUsername(req, res, next) {
     }
 }
 
-module.exports = {
+export default {
     signUp,
     signOut,
     getUserInfoByUsername,

@@ -1,8 +1,7 @@
-const mongoose = require("mongoose")
-const { Schema } = require("mongoose")
-const { isEmail } = require("validator")
+import mongoose from "mongoose"
+import validator from "validator"
 
-const UserSchema = Schema(
+const UserSchema = mongoose.Schema(
     {
         // we use the uid from firebase as the _id
         _id: String,
@@ -24,7 +23,7 @@ const UserSchema = Schema(
             trim: true,
             unique: true,
             validate: {
-                validator: value => isEmail(value),
+                validator: value => validator.isEmail(value),
                 message: props => `The email ${props.value} is not valid`,
             },
         },
@@ -36,4 +35,4 @@ const UserSchema = Schema(
 
 const User = mongoose.model("user", UserSchema)
 
-module.exports = User
+export default User

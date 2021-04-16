@@ -1,8 +1,9 @@
-require("dotenv").config()
+import dotenv from "dotenv"
+dotenv.config()
 
-const { logger } = require("../services")
+import { logger } from "../services/index.js"
 
-const {
+export const {
     NODE_ENV = "development",
     MONGO_DB_URL_PRODUCTION,
     MONGO_DB_URL_DEVELOPMENT,
@@ -10,7 +11,7 @@ const {
     PORT = 4000,
 } = process.env
 
-const baseConfig = {
+export const baseConfig = {
     app: {
         port: PORT || 4000,
     },
@@ -26,7 +27,7 @@ const baseConfig = {
     },
 }
 
-const config = {
+export const config = {
     development: {
         ...baseConfig,
         db: {
@@ -47,6 +48,4 @@ const config = {
     },
 }
 
-module.exports = {
-    config: config[NODE_ENV],
-}
+export default config[NODE_ENV]

@@ -1,5 +1,3 @@
-const { config } = require("./app-config")
+import config from "./app-config.js"
 
-module.exports = {
-    config: config,
-}
+export default config

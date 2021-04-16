@@ -1,7 +1,4 @@
-const { authMiddleware } = require("./auth-middleware")
-const { errorMiddleware } = require("./error-middleware")
+import authMiddleware from "./auth-middleware.js"
+import errorMiddleware from "./error-middleware.js"
 
-module.exports = {
-    authMiddleware: authMiddleware,
-    errorMiddleware: errorMiddleware,
-}
+export { authMiddleware, errorMiddleware }

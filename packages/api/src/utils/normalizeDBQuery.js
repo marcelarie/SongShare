@@ -20,4 +20,5 @@ async function normalizeDBQuery(promise) {
     return result
 }
 
-module.exports = normalizeDBQuery
+export default normalizeDBQuery
+// module.exports = normalizeDBQuery
