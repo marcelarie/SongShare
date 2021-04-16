@@ -23,6 +23,10 @@ module.exports = {
         "jest/globals": true,
     },
     rules: {
+        "node/no-unsupported-features/es-syntax": [
+            "error",
+            { ignores: ["modules"] },
+        ],
         "prefer-destructuring": "off",
         "object-shorthand": "off",
         "arrow-body-style": "off",
