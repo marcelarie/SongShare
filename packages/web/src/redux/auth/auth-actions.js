@@ -31,10 +31,12 @@ export function signUpWithEmailRequest(userInfo) {
         dispatch(signUpRequest());
         try {
             const { email, password, ...rest } = userInfo;
+
             const token = await auth.singUpWithEmailAndPassword(
                 email,
                 password,
             );
+
             api.signUp(
                 {
                     Authorization: `Bearer ${token.user.za}`,

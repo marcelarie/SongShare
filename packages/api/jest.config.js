@@ -1,8 +1,8 @@
-module.exports = {
-    testEnvironment: "node",
+export default {
+    testEnvironment: 'node',
     /**
      * for: mongodb-memory-server
      * May require additional time for downloading MongoDB binaries
      */
     testTimeout: 600000,
-}
+};

@@ -32,7 +32,7 @@
         "type": "git",
         "url": "https://github.com/assembler-school/apollofy-music-project.git"
     },
-    "type": "commonjs",
+    "type": "module",
     "keywords": [
         "node.js"
     ],

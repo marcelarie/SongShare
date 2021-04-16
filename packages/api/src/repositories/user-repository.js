@@ -1,14 +1,22 @@
-const db = require("../models")
-const normalizeDBQuery = require("../utils/normalizeDBQuery")
+// const db = require("../models")
+// const normalizeDBQuery = require("../utils/normalizeDBQuery")
+import db from '../models/index.js';
+import normalizeDBQuery from '../utils/normalizeDBQuery.js';
 
-class UserRepository {
-    create(options) {
-        return normalizeDBQuery(db.User.create(options))
-    }
+const UserRepository = {
+    create: options => {
+        return normalizeDBQuery(db.User.create(options));
+    },
 
-    findOne(query) {
-        return normalizeDBQuery(db.User.findOne(query, "-__v"))
-    }
-}
+    findOne: filter => {
+        return normalizeDBQuery(db.User.findOne(filter, '-__v'));
+    },
 
-module.exports = new UserRepository()
+    findByUsernameAndUpdate: (filter, body) => {
+        return normalizeDBQuery(db.User.findOneAndUpdate(filter, body));
+    },
+};
+
+export default UserRepository;
+
+// module.exports = new UserRepository()

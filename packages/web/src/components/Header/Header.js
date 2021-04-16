@@ -35,7 +35,9 @@ function Header() {
 
                     {authStore.isAuthenticated && (
                         <li className="mr-4 px-3 py-2 bg-gray-600">
-                            <NavLink to={`/${authStore.currentUser.username}`}>User info</NavLink>
+                            <NavLink to={`/${authStore.currentUser.username}`}>
+                                User info
+                            </NavLink>
                         </li>
                     )}
 
