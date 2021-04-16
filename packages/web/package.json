@@ -55,6 +55,8 @@
     "dependencies": {
         "@craco/craco": "^6.1.0",
         "@fullhuman/postcss-purgecss": "^4.0.0",
+        "@headlessui/react": "^1.0.0",
+        "@heroicons/react": "^1.0.1",
         "@reach/menu-button": "^0.13.2",
         "@tailwindcss/forms": "^0.2.1",
         "@tailwindcss/postcss7-compat": "^2.0.2",
@@ -90,6 +92,9 @@
         "web-vitals": "^0.2.4"
     },
     "devDependencies": {
+        "@heroicons/react": "^1.0.1",
+        "@iconify-icons/heroicons-outline": "^1.1.2",
+        "@iconify/react": "^1.1.4",
         "@svgr/webpack": "^5.5.0",
         "babel-eslint": "^10.1.0",
         "cross-env": "^7.0.3",
