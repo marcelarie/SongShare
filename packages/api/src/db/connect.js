@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
-const { config } = require("../config")
+import config from '../config/index.js';
 
 function connect() {
     return mongoose.connect(config.db.url, {
@@ -8,9 +8,7 @@ function connect() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
-    })
+    });
 }
 
-module.exports = {
-    connect: connect,
-}
+export default connect;

@@ -1,5 +1,6 @@
-const { userRouter } = require("./user-routes")
+// const { userRouter } = require("./user-routes")
 
-module.exports = {
-    userRouter: userRouter,
-}
+export { default } from './user-routes.js';
+// module.exports = {
+//     userRouter: userRouter,
+// }

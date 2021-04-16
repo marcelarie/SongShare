@@ -8,16 +8,17 @@ async function normalizeDBQuery(promise) {
     let result = {
         data: null,
         error: null,
-    }
+    };
 
     try {
-        const data = await promise
-        result.data = data
+        const data = await promise;
+        result.data = data;
     } catch (error) {
-        result.error = error.message
+        result.error = error.message;
     }
 
-    return result
+    return result;
 }
 
-module.exports = normalizeDBQuery
+export default normalizeDBQuery;
+// module.exports = normalizeDBQuery

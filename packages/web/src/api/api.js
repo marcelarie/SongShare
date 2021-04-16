@@ -5,7 +5,7 @@ function makeApi(request = makeRequest()) {
         return request({
             url: '/sign-up',
             requestMethod: 'POST',
-            headers: headers,
+            headers,
             body,
         });
     }
@@ -26,13 +26,12 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function useApi(username,headers,body){
-        
+    function useApi(username, headers, body) {
         return request({
             url: `/user/edit/${username}`,
             requestMethod: 'PATCH',
             headers,
-            body
+            body,
         });
     }
 
@@ -40,7 +39,7 @@ function makeApi(request = makeRequest()) {
         signUp: signUp,
         signOut: signOut,
         login: login,
-        useApi : useApi
+        useApi: useApi,
     };
 }
 

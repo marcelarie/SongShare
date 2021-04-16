@@ -1,4 +1,4 @@
-const { UserRepo } = require('../repositories');
+import UserRepo from '../repositories/index.js';
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user;
@@ -44,7 +44,56 @@ async function signOut(req, res) {
     });
 }
 
-module.exports = {
-    signUp: signUp,
-    signOut: signOut,
+async function getUserInfoByUsername(req, res, next) {
+    const username = req.params.username.toLowerCase();
+
+    try {
+        const response = await UserRepo.findOne({ username: username });
+
+        if (response.error) {
+            return res.status(400).send({
+                data: null,
+                error: response.error,
+            });
+        }
+
+        res.status(200).send({
+            data: response.data,
+            error: null,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function patchUserInfoByUsername(req, res, next) {
+    try {
+        const username = req.params.username;
+        const { body } = req;
+
+        const response = await UserRepo.findByUsernameAndUpdate(username, {
+            ...body,
+        });
+
+        if (response.error) {
+            return res.status(400).send({
+                data: null,
+                error: response.error,
+            });
+        }
+
+        res.status(200).send({
+            data: 'OK',
+            error: null,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default {
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername,
 };

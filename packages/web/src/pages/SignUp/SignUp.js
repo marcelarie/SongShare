@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, Redirect } from "react-router-dom"
-import "./SignUp.scss"
-import Header from "../../components/Header"
-import * as ROUTES from "../../routes"
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import './SignUp.scss';
+import Header from '../../components/Header';
+import * as ROUTES from '../../routes';
 import {
     resetAuthState,
     signUpWithEmailRequest,
     signUpWithGoogleRequest,
-} from "../../redux/auth/auth-actions"
-import { authSelector } from "../../redux/auth/auth-selectors"
+} from '../../redux/auth/auth-actions';
+import { authSelector } from '../../redux/auth/auth-selectors';
 
 function SignUp() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { isSigningUp, signUpError, isAuthenticated } = useSelector(
         authSelector,
-    )
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [name, setName] = useState("")
-    const [lastname, setLastname] = useState("")
-    const [username, setUsername] = useState("")
+    );
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
-        dispatch(resetAuthState())
-    }, [dispatch])
+        dispatch(resetAuthState());
+    }, [dispatch]);
 
     function handleLoginWithGoogle(e) {
-        e.preventDefault()
-        dispatch(signUpWithGoogleRequest())
+        e.preventDefault();
+        dispatch(signUpWithGoogleRequest());
     }
 
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         dispatch(
             signUpWithEmailRequest({
                 name,
@@ -41,17 +41,17 @@ function SignUp() {
                 username,
                 password,
             }),
-        )
+        );
 
-        setEmail("")
-        setPassword("")
-        setName("")
-        setLastname("")
-        setUsername("")
+        setEmail('');
+        setPassword('');
+        setName('');
+        setLastname('');
+        setUsername('');
     }
 
     if (isAuthenticated) {
-        return <Redirect to={ROUTES.HOME} />
+        return <Redirect to={ROUTES.HOME} />;
     }
 
     return (
@@ -144,6 +144,6 @@ function SignUp() {
                 </section>
             </main>
         </>
-    )
+    );
 }
-export default SignUp
+export default SignUp;
