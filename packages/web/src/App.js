@@ -15,8 +15,10 @@ import ResetPassword from './pages/ResetPassword';
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
 import UserInfo from './pages/UserInfo/UserInfo';
+import templates from './pages/UserInfo/UserProfileTemplates';
 
 function App() {
+    
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -38,6 +40,7 @@ function App() {
 
     return (
         <div className="App__container">
+        
             <Switch>
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
@@ -48,6 +51,12 @@ function App() {
                     component={UserInfo}
                     exact
                 />
+                <ProtectedRoute
+                    path={ROUTES.HOME_USER_EDIT}
+                    component={templates.CurrentUserProfileEdit}
+                    exact
+                />
+
             </Switch>
         </div>
     );

@@ -26,10 +26,21 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function useApi(username,headers,body){
+        
+        return request({
+            url: `/user/edit/${username}`,
+            requestMethod: 'PATCH',
+            headers,
+            body
+        });
+    }
+
     return {
         signUp: signUp,
         signOut: signOut,
         login: login,
+        useApi : useApi
     };
 }
 

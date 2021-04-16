@@ -19,8 +19,8 @@ const userInitialState = {
     login: '',
     playlists: 0,
     tracks: 0,
-    isRequestingInfo: false,
-    requestInfoError: null,
+    loading:false,
+    error: false
 };
 
 const userReducer = (state = userInitialState, action) => {
@@ -28,14 +28,14 @@ const userReducer = (state = userInitialState, action) => {
         case UserTypes.USER_INFO_REQUEST:
             return {
                 ...state,
-                isRequestingInfo: true,
-                requestInfoError: null,
+                loading: true,
+                error: false,
             };
         case UserTypes.USER_INFO_SUCCES:
             return {
                 ...state,
-                isRequestingInfo: false,
-                requestInfoError: null,
+                loading: false,
+                error: false,
                 email: action.payload.userInfo.email,
                 firstName: action.payload.userInfo.firstName,
                 lastName: action.payload.userInfo.lastName,
@@ -45,9 +45,33 @@ const userReducer = (state = userInitialState, action) => {
         case UserTypes.USER_INFO_ERROR:
             return {
                 ...state,
-                isRequestingInfo: false,
-                requestInfoError: true,
+                loading: false,
+                error: true,
             };
+        case UserTypes.UPDATE_USER_INFO_REQUEST:
+            return {
+                ...state,
+                login:true,
+                error:false
+                
+            };
+        case UserTypes.UPDATE_USER_INFO_SUCCES:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                firstName: action.payload.userInfo.firstName,
+                lastName: action.payload.userInfo.lastName,
+               
+            };
+        case UserTypes.UPDATE_USER_INFO_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                loading:false,
+                
+            };
+            
 
         default:
             return state;

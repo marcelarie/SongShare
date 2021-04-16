@@ -8,7 +8,8 @@ import { authSelector } from '../../redux/auth/auth-selectors';
 
 function Header() {
     const dispatch = useDispatch();
-    const { isAuthenticated } = useSelector(authSelector);
+    // const { isAuthenticated } = useSelector(authSelector);
+    const authStore = useSelector(store => store.auth);
 
     function handleSignOut() {
         dispatch(signOut());
@@ -21,7 +22,7 @@ function Header() {
                     <li className="mr-4 px-3 py-2 bg-gray-600">
                         <NavLink to={ROUTES.HOME}>Home</NavLink>
                     </li>
-                    {!isAuthenticated && (
+                    {!authStore.isAuthenticated && (
                         <>
                             <li className="mr-4 px-3 py-2 bg-gray-600">
                                 <NavLink to={ROUTES.LOGIN}>Login</NavLink>
@@ -32,9 +33,9 @@ function Header() {
                         </>
                     )}
 
-                    {isAuthenticated && (
+                    {authStore.isAuthenticated && (
                         <li className="mr-4 px-3 py-2 bg-gray-600">
-                            <NavLink to="/cirne">User info</NavLink>
+                            <NavLink to={`/${authStore.currentUser.username}`}>User info</NavLink>
                         </li>
                     )}
 
@@ -45,7 +46,7 @@ function Header() {
                     </li>
                 </ul>
 
-                {isAuthenticated && (
+                {authStore.isAuthenticated && (
                     <button
                         className="btn btn-primary m-0"
                         type="button"
