@@ -1,5 +1,7 @@
 import UserRepo from '../repositories/index.js';
 
+
+
 async function signUp(req, res, next) {
     const { uid, email } = req.user;
 
@@ -7,29 +9,22 @@ async function signUp(req, res, next) {
         const response = await UserRepo.findOne({ email: email });
 
         if (response.error) {
-            return res.status(400).send({
-                data: null,
-                error: response.error,
-            });
+            return res.status(400).send(response);
         }
 
         if (response.data) {
-            return res.status(200).send({
-                data: response,
-                error: null,
-            });
+            return res.status(200).send(response);
         }
 
-        await UserRepo.create({
+        const user = await UserRepo.create({
             _id: uid,
             email: email,
             ...req.body.rest,
         });
 
-        res.status(201).send({
-            data: 'OK',
-            error: null,
-        });
+        if (user.error) return res.status(401).send(user);
+
+        if (user.data) return res.status(202).send(user);
     } catch (error) {
         next(error);
     }

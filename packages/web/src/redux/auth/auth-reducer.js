@@ -10,7 +10,7 @@ export const AuthInitialState = {
     isSendingPasswordReset: false,
     passwordResetError: null,
     passwordResetSent: false,
-    currentUser: {},
+    currentUser: {  },
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {

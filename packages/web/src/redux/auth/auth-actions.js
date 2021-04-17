@@ -83,6 +83,7 @@ export function syncSignIn() {
         if (response.errorMessage) {
             return dispatch(signUpError(response.errorMessage));
         }
+        console.log(response.data.data);
         return dispatch(signUpSuccess(response.data));
     };
 }

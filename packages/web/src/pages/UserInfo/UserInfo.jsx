@@ -9,7 +9,7 @@ function UserInfo() {
     const userInfo = useSelector(store => store.auth.currentUser);
     const { username } = useParams();
 
-    console.log(userInfo, username);
+    // console.log(userInfo, username);
 
     useEffect(() => {}, []);
 

@@ -19,7 +19,7 @@ export function updateUserInfo(username, name, lastname) {
                 },
             );
 
-            console.log(response);
+            // console.log(response);
 
             dispatch(updateUserInfoSucces(response.data));
         } catch (error) {
