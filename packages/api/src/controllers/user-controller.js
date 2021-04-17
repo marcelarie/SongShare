@@ -12,12 +12,14 @@ async function signUp(req, res, next) {
 
         const { body } = req;
 
+        // WIP please leave it for now 👷
+        singUpValidation(body);
+
         const user = await UserRepo.create({
             _id: uid,
             email: email,
             ...body,
         });
-        console.log(user);
 
         if (user.data) return res.status(202).send(user);
     } catch (error) {
@@ -76,10 +78,10 @@ async function getUserInfoByUsername(req, res, next) {
 
 async function patchUserInfoByUsername(req, res, next) {
     try {
-        const username = req.params.username;
+        const { uid } = req.user;
         const { body } = req;
 
-        const response = await UserRepo.findByUsernameAndUpdate(username, {
+        const response = await UserRepo.findByIdAndUpdate(uid, {
             ...body,
         });
 

@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import { authSelector } from '../../redux/auth/auth-selectors';
 
 function Home() {
-    const { isAuthenticated, currentUser } = useSelector(authSelector);
+    const { isAuthenticated } = useSelector(authSelector);
 
     return (
         <main className="p-4">

@@ -42,7 +42,6 @@ export function signUpWithEmailRequest(userInfo) {
             };
 
             const { data } = await api.signUp(authorization, body);
-            console.log('result of api sing up >> ', data.data);
             dispatch(signUpSuccess(data.data));
         } catch (error) {
             dispatch(signUpError(error.message));
@@ -84,7 +83,6 @@ export function syncSignIn() {
         if (errorMessage) {
             return dispatch(signUpError(errorMessage));
         }
-        console.log(data.data);
         return dispatch(signUpSuccess(data.data));
     };
 }

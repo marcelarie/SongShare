@@ -12,8 +12,8 @@ const UserRepository = {
         return normalizeDBQuery(db.User.findOne(filter, '-__v'));
     },
 
-    findByUsernameAndUpdate: (filter, body) => {
-        return normalizeDBQuery(db.User.findOneAndUpdate(filter, body));
+    findByIdAndUpdate: (filter, body) => {
+        return normalizeDBQuery(db.User.findByIdAndUpdate(filter, body));
     },
 };
 

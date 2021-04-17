@@ -35,12 +35,7 @@ function Header() {
 
                     {authStore.isAuthenticated && authStore.currentUser && (
                         <li className="mr-4 px-3 py-2 bg-gray-600">
-                            <NavLink
-                                to={`/${
-                                    authStore.currentUser.username ||
-                                    'fake user'
-                                }`}
-                            >
+                            <NavLink to={`/${authStore.currentUser.username}`}>
                                 User info
                             </NavLink>
                         </li>
