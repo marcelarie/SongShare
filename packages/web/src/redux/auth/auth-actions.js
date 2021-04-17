@@ -30,19 +30,20 @@ export function signUpWithEmailRequest(userInfo) {
     return async function signUpThunk(dispatch) {
         dispatch(signUpRequest());
         try {
-            const { email, password, ...rest } = userInfo;
+            const { email, password, ...body } = userInfo;
 
-            const token = await auth.singUpWithEmailAndPassword(
+            const { user } = await auth.singUpWithEmailAndPassword(
                 email,
                 password,
             );
 
-            api.signUp(
-                {
-                    Authorization: `Bearer ${token.user.za}`,
-                },
-                { rest },
-            );
+            const authorization = {
+                Authorization: `Bearer ${user.za}`,
+            };
+
+            const { data } = await api.signUp(authorization, body);
+            console.log('result of api sing up >> ', data.data);
+            dispatch(signUpSuccess(data.data));
         } catch (error) {
             dispatch(signUpError(error.message));
         }
@@ -77,14 +78,14 @@ export function syncSignIn() {
             return dispatch(signOutSuccess());
         }
 
-        const response = await api.signUp({
+        const { data, errorMessage } = await api.signUp({
             Authorization: `Bearer ${token}`,
         });
-        if (response.errorMessage) {
-            return dispatch(signUpError(response.errorMessage));
+        if (errorMessage) {
+            return dispatch(signUpError(errorMessage));
         }
-        console.log(response.data.data);
-        return dispatch(signUpSuccess(response.data));
+        console.log(data.data);
+        return dispatch(signUpSuccess(data.data));
     };
 }
 
@@ -126,8 +127,9 @@ export const signOutError = message => ({
     payload: message,
 });
 
-export const signOutSuccess = () => ({
+export const signOutSuccess = payload => ({
     type: AuthTypes.SIGN_OUT_SUCCESS,
+    payload,
 });
 
 export function sendPasswordResetEmail(email) {

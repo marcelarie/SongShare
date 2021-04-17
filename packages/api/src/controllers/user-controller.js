@@ -5,20 +5,20 @@ async function signUp(req, res, next) {
     const { uid, email } = req.user;
 
     try {
-        const response = await UserRepo.findOne({ email: email });
+        const response = await UserRepo.findOne({ _id: uid });
 
-        if (response.error) return res.status(401).send(response);
+        if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(202).send(response);
 
-        const body = {
+        const { body } = req;
+
+        const user = await UserRepo.create({
             _id: uid,
             email: email,
-            ...req.body.rest,
-        };
+            ...body,
+        });
+        console.log(user);
 
-        const user = await UserRepo.create(body);
-
-        if (user.error) return res.status(401).send(user);
         if (user.data) return res.status(202).send(user);
     } catch (error) {
         next(error);
@@ -86,7 +86,7 @@ async function patchUserInfoByUsername(req, res, next) {
         if (response.error) return res.status(400).send(response);
 
         res.status(200).send({
-            data: response,
+            data: response.data,
             error: null,
         });
     } catch (error) {
@@ -94,9 +94,4 @@ async function patchUserInfoByUsername(req, res, next) {
     }
 }
 
-export default {
-    signUp,
-    signOut,
-    getUserInfoByUsername,
-    patchUserInfoByUsername,
-};
+export { signUp, signOut, getUserInfoByUsername, patchUserInfoByUsername };

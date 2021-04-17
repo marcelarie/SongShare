@@ -14,7 +14,8 @@ export const AuthInitialState = {
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case AuthTypes.SIGN_UP_REQUEST: {
             return {
                 ...state,
@@ -26,16 +27,18 @@ const AuthReducer = (state = AuthInitialState, action) => {
             return {
                 ...state,
                 isSigningUp: false,
-                signUpError: action.payload,
+                signUpError: payload,
             };
         }
         case AuthTypes.SIGN_UP_SUCCESS: {
+            console.log(payload);
+
             return {
                 ...state,
                 isAuthenticated: true,
                 isSigningUp: false,
                 signUpError: null,
-                currentUser: action.payload.data.data,
+                currentUser: payload,
             };
         }
         case AuthTypes.LOGIN_REQUEST: {
@@ -49,7 +52,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
             return {
                 ...state,
                 isLogingIn: false,
-                loginError: action.payload,
+                loginError: payload,
             };
         }
         case AuthTypes.LOGIN_SUCCESS: {
@@ -59,7 +62,8 @@ const AuthReducer = (state = AuthInitialState, action) => {
                 isLogingIn: false,
                 loginError: null,
                 currentUser: {
-                    email: action.payload.email,
+                    email: payload.email,
+                    ...state.currentUser,
                 },
             };
         }
@@ -74,7 +78,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
             return {
                 ...state,
                 isSigningOut: false,
-                signOutError: action.payload,
+                signOutError: payload,
             };
         }
         case AuthTypes.SIGN_OUT_SUCCESS: {
@@ -85,6 +89,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
                 isAuthenticated: false,
                 currentUser: {
                     email: null,
+                    ...state.currentUser,
                 },
             };
         }
@@ -100,7 +105,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
             return {
                 ...state,
                 isSendingPasswordReset: false,
-                passwordResetError: action.payload,
+                passwordResetError: payload,
                 passwordResetSent: false,
             };
         }
