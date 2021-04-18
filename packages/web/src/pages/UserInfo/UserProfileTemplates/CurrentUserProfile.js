@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserInfo } from '../../../redux/user/user-actions';
 
@@ -16,12 +16,13 @@ function CurrentUserProfile() {
 
 const handleSubmit = (e) =>{
     e.preventDefault()
+    setEditMode(false)
     dispatch(updateUserInfo(username, firstname, lastname))
 }
 
     return (
       <>
-        <div className="mt-10 sm:mt-5 px-8 py-4">
+        <div className="sm:mt-5 px-8 py-4">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
@@ -30,7 +31,7 @@ const handleSubmit = (e) =>{
               </div>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="#" method="POST">
+              <form action="" method="" type="submit">
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -210,16 +211,21 @@ const handleSubmit = (e) =>{
           </div>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
+          {editMode ? (<button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      onClick = {()=> {
-                        setEditMode(!editMode)
-                        handleSubmit()
-                      }}
+                      onClick = {()=>handleSubmit ()}
                     >
-                      {editMode ? "Save" : "Edit"}
-                    </button>
+                      Save
+                    </button>) :
+                    (<button
+                      type="submit"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick = {()=>setEditMode(true)}
+                    >
+                      Edit
+                    </button>)
+                    }
                   </div>
               </form>
             </div>
