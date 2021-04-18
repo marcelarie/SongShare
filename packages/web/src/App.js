@@ -44,7 +44,7 @@ function App() {
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={UserInfo} exact />
+                <Route path={ROUTES.HOME} component={Welcome} exact />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}

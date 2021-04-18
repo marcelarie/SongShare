@@ -22,7 +22,7 @@ function Welcome() {
     }
 
     return (
-        <main className="bg-texture">
+        <main className="bg-texture bg-gray-900">
             <div className="mx-auto w-full flex-colum items-center justify-center py-8 px-8 sm:px-8 sm:py-12 md:py-10 lg:py-4 lg:px-8 lg:flex-column lg:items-center lg:justify-between">
                 <h2 className="max-w-lg mx-auto text-3xl font-extrabold tracking-tight text-gray-50 sm:text-4xl md:text-center lg:text-center lg:py-16 lg:px-8">
                     {/* <FontAwesomeIcon

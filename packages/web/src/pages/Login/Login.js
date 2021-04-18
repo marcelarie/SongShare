@@ -54,7 +54,7 @@ function Login() {
     }
 
     if (isAuthenticated) {
-        return <Redirect to={ROUTES.HOME} />;
+        return <Redirect to={ROUTES.HOME_USER} />;
     }
 
     return (

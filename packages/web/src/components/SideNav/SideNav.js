@@ -26,7 +26,6 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-    const [openMainMenu, setOpenMainMenu] = useState(false)
     const [navigationItems, setNavigationItems] = useState([
         { name: "Dashboard", href: "#", current: true },
         { name: "Search", href: "#", current: false },

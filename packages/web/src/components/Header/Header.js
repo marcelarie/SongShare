@@ -11,6 +11,7 @@ import "../../styles/Header.css"
 import * as ROUTES from "../../routes"
 import { signOut } from "../../redux/auth/auth-actions"
 import { authSelector } from "../../redux/auth/auth-selectors"
+import { HOME_USER } from "../../routes"
 
 /* This example requires Tailwind CSS v2.0+ */
 
@@ -26,6 +27,12 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+    const dispatch = useDispatch();
+    const userInfo = useSelector(store => store.auth.currentUser);
+
+    function handleSignOut() {
+        dispatch(signOut());
+    }
     const [openMainMenu, setOpenMainMenu] = useState(false)
     const [navigationItems, setNavigationItems] = useState([
         { name: "Dashboard", href: "#", current: true },
@@ -125,7 +132,7 @@ export default function Header() {
                                                         alt=""
                                                     />
                                                     <span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
-                                                        User name
+                                                        {userInfo.username}
                                                     </span>
                                                 </div>
                                             </Menu.Button>
@@ -146,8 +153,8 @@ export default function Header() {
                                             >
                                                 <Menu.Item>
                                                     {({ active }) => (
-                                                        <a
-                                                            href="#"
+                                                        <NavLink
+                                                            to={ROUTES.HOME_USER}
                                                             className={classNames(
                                                                 active
                                                                     ? "bg-gray-100"
@@ -156,7 +163,7 @@ export default function Header() {
                                                             )}
                                                         >
                                                             Your Profile
-                                                        </a>
+                                                        </NavLink>
                                                     )}
                                                 </Menu.Item>
                                                 <Menu.Item>
@@ -184,6 +191,7 @@ export default function Header() {
                                                                     : "",
                                                                 "block px-4 py-2 text-sm text-gray-700",
                                                             )}
+                                                            onClick={handleSignOut}
                                                         >
                                                             Sign out
                                                         </a>
