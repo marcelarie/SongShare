@@ -8,18 +8,20 @@ export function updateUserInfo(username, name, lastname) {
         try {
             const token = await auth.getCurrentUserToken();
 
+            // aqui no haria falta en realidad poner el username ya que el token
+            // ya tiene el email y el id
             const response = await api.useApi(
                 username,
                 {
                     Authorization: `Bearer ${token}`,
                 },
+                // esto se podria pasar siempre como un objeto para no tener que
+                // repetir cada propiedad
                 {
                     name,
                     lastname,
                 },
             );
-
-            console.log(response);
 
             dispatch(updateUserInfoSucces(response.data));
         } catch (error) {

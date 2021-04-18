@@ -1,18 +1,20 @@
 import { Router } from 'express';
 
 import { authMiddleware } from '../middlewares/index.js';
-import userController from '../controllers/index.js';
+import {
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername,
+} from '../controllers/index.js';
 
 const userRouter = Router();
 
 userRouter.use(authMiddleware);
+userRouter.post('/sign-up', signUp);
+userRouter.post('/sign-out', signOut);
 
-userRouter.get('/user/:username', userController.getUserInfoByUsername);
-userRouter.patch(
-    '/user/edit/:username',
-    userController.patchUserInfoByUsername,
-);
-userRouter.post('/sign-up', userController.signUp);
-userRouter.post('/sign-out', userController.signOut);
+userRouter.get('/user/:username', getUserInfoByUsername);
+userRouter.patch('/user/edit/:username', patchUserInfoByUsername);
 
 export default userRouter;

@@ -6,10 +6,10 @@ import Header from '../../components/Header';
 import templates from './UserProfileTemplates';
 
 function UserInfo() {
-    const currentUser = useSelector(store => store.auth.currentUser);
+    const { currentUser } = useSelector(store => store.auth);
     const { username } = useParams();
 
-    console.log(currentUser, username);
+    // console.log(userInfo, username);
 
     useEffect(() => {}, []);
 

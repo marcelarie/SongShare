@@ -14,7 +14,7 @@ function makeApi(request = makeRequest()) {
         return request({
             url: '/sign-out',
             requestMethod: 'POST',
-            headers: headers,
+            headers,
         });
     }
 
@@ -22,7 +22,7 @@ function makeApi(request = makeRequest()) {
         return request({
             url: '/login',
             requestMethod: 'GET',
-            headers: headers,
+            headers,
         });
     }
 
@@ -36,10 +36,10 @@ function makeApi(request = makeRequest()) {
     }
 
     return {
-        signUp: signUp,
-        signOut: signOut,
-        login: login,
-        useApi: useApi,
+        signUp,
+        signOut,
+        login,
+        useApi,
     };
 }
 
