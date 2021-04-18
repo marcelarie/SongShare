@@ -31,8 +31,9 @@ function SignUp() {
         dispatch(signUpWithGoogleRequest());
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+
         dispatch(
             signUpWithEmailRequest({
                 name,

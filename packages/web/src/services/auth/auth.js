@@ -61,3 +61,11 @@ export function getCurrentUserEmail() {
 
     return auth.currentUser.email;
 }
+
+export function getCurrentUser() {
+    if (!auth.currentUser) {
+        return null;
+    }
+
+    return auth.currentUser;
+}

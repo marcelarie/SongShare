@@ -23,13 +23,13 @@ module.exports = {
         'jest/globals': true,
     },
     rules: {
-        'prefer-destructuring': 'off',
-        'object-shorthand': 'off',
-        'arrow-body-style': 'off',
-        'no-underscore-dangle': 'off',
         'node/no-unsupported-features/es-syntax': [
             'error',
             { ignores: ['modules'] },
         ],
+        'prefer-destructuring': 'off',
+        'object-shorthand': 'off',
+        'arrow-body-style': 'off',
+        'no-underscore-dangle': 'off',
     },
 };
