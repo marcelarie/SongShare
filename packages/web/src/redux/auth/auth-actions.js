@@ -49,13 +49,9 @@ export function signUpWithEmailRequest(userInfo) {
     };
 }
 
-export const loginRequest = () => ({
-    type: AuthTypes.LOGIN_REQUEST,
-});
-
 export function signInWithEmailRequest(email, password) {
     return async function loginThunk(dispatch) {
-        dispatch(loginRequest());
+        dispatch(signUpRequest());
         try {
             await auth.singInWithEmailAndPassword(email, password);
         } catch (error) {
@@ -63,11 +59,6 @@ export function signInWithEmailRequest(email, password) {
         }
     };
 }
-
-export const loginSuccess = userInfo => ({
-    type: AuthTypes.LOGIN_REQUEST,
-    payload: userInfo,
-});
 
 export function syncSignIn() {
     return async function syncSignInThunk(dispatch) {
@@ -83,6 +74,7 @@ export function syncSignIn() {
         if (response.errorMessage) {
             return dispatch(signUpError(response.errorMessage));
         }
+        console.log(response.data);
         return dispatch(signUpSuccess(response.data));
     };
 }

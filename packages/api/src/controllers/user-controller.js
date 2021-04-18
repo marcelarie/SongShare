@@ -20,16 +20,13 @@ async function signUp(req, res, next) {
             });
         }
 
-        await UserRepo.create({
+        const createResponse = await UserRepo.create({
             _id: uid,
             email: email,
             ...req.body.rest,
         });
 
-        res.status(201).send({
-            data: 'OK',
-            error: null,
-        });
+        res.status(201).send(createResponse);
     } catch (error) {
         next(error);
     }

@@ -36,7 +36,6 @@ function CurrentUserProfileEdit() {
                     className="form-input"
                     type="text"
                     placeholder={userInfo.lastname}
-                    value={userInfo.lastname}
                     onChange={e => setLastname(e.target.value)}
                 />
                 <button

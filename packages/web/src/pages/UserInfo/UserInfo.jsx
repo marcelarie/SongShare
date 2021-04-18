@@ -6,10 +6,10 @@ import Header from '../../components/Header';
 import templates from './UserProfileTemplates';
 
 function UserInfo() {
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const currentUser = useSelector(store => store.auth.currentUser);
     const { username } = useParams();
 
-    console.log(userInfo, username);
+    console.log(currentUser, username);
 
     useEffect(() => {}, []);
 
@@ -20,7 +20,7 @@ function UserInfo() {
                 <section className="UserInfo__wrapper">
                     <h1 className="text-2xl font-bold mb-6">User info</h1>
                     <hr className="my-4" />
-                    {userInfo.username === username ? (
+                    {currentUser.username === username ? (
                         <templates.CurrentUserProfile />
                     ) : (
                         <templates.OtherUserProfile />
