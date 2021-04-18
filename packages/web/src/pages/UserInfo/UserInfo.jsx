@@ -25,11 +25,12 @@ function UserInfo() {
                 <section className="UserInfo__wrapper">
                     <h1 className="text-2xl font-bold mb-6">User info</h1>
                     <hr className="my-4" />
-                    {
+                    <templates.CurrentUserProfile />
+                    {/* {
                         userInfo.username === username 
                         ?<templates.CurrentUserProfile /> 
                         :<templates.OtherUserProfile />
-                    }
+                    } */}
                 </section>
             </main>
         </>

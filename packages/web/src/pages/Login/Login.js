@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
 import "../../styles/Login.css"
 import "../../styles/utils.css"
 
@@ -61,10 +61,10 @@ function Login() {
         <div className="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
                 <h2 className="flex-column items-center justify-between text-3xl font-extrabold tracking-tight sm:text-4xl">
-                    <FontAwesomeIcon
+                    {/* <FontAwesomeIcon
                         icon={faDrawPolygon}
                         className="mx-auto block text-indigo-600"
-                    />
+                    /> */}
                     <span className="mx-auto text-center block text-gray-50">
                         Sign in to your account
                     </span>

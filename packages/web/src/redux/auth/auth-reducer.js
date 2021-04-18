@@ -5,7 +5,7 @@ export const AuthInitialState = {
     signUpError: null,
     isSigningOut: false,
     signOutError: null,
-    isAuthenticated: false,
+    isAuthenticated: true,
     isLogingIn: false,
     isSendingPasswordReset: false,
     passwordResetError: null,

@@ -2,8 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
 import Icon from "@material-ui/core/Icon"
 // import { faGoogle } from '@material-ui/icons';
 import "../../styles/Welcome.css"
@@ -25,10 +25,10 @@ function Welcome() {
         <main className="bg-texture">
             <div className="mx-auto w-full flex-colum items-center justify-center py-8 px-8 sm:px-8 sm:py-12 md:py-10 lg:py-4 lg:px-8 lg:flex-column lg:items-center lg:justify-between">
                 <h2 className="max-w-lg mx-auto text-3xl font-extrabold tracking-tight text-gray-50 sm:text-4xl md:text-center lg:text-center lg:py-16 lg:px-8">
-                    <FontAwesomeIcon
+                    {/* <FontAwesomeIcon
                         icon={faDrawPolygon}
                         className="mx-auto block text-indigo-600"
-                    />
+                    /> */}
                     <span className="block">Ready to share in?</span>
                     <span className="block text-indigo-600">
                         Start your sharing today.

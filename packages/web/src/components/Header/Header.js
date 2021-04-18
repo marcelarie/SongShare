@@ -25,7 +25,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ")
 }
 
-function Header() {
+export default function Header() {
     const [openMainMenu, setOpenMainMenu] = useState(false)
     const [navigationItems, setNavigationItems] = useState([
         { name: "Dashboard", href: "#", current: true },
@@ -226,4 +226,3 @@ function Header() {
     )
 }
 
-export default Header
