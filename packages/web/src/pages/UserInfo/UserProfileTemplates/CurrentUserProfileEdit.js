@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUserInfo } from '../../../redux/user/user-actions';
@@ -15,9 +15,9 @@ function CurrentUserProfileEdit() {
 
     const history = useHistory();
 
-    const handleSubmit = async e => {
+    const handleSubmit =  e => {
         e.preventDefault();
-        await dispatch(updateUserInfo({ username, name, lastName }));
+        dispatch(updateUserInfo({ username, name, lastName }));
         history.push(`/${username}`);
     };
 

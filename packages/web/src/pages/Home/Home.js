@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import './Home.scss';
 import Welcome from '../../components/Welcome';
-import { authSelector } from '../../redux/auth/auth-selectors';
+
 import CurrentUserProfile from '../UserInfo/UserProfileTemplates/CurrentUserProfile';
 
 function Home() {

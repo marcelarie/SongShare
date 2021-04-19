@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 import '../../styles/Header.css';
 
-import * as ROUTES from '../../routes';
 import { signOut } from '../../redux/auth/auth-actions';
-import { authSelector } from '../../redux/auth/auth-selectors';
-import { HOME_USER } from '../../routes';
+
 
 /* This example requires Tailwind CSS v2.0+ */
 
 const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'Dashboard', href: '/', current: true },
+    { name: 'Team', href: '/', current: false },
+    { name: 'Projects', href: '/', current: false },
+    { name: 'Calendar', href: '/', current: false },
 ];
 
 function classNames(...classes) {
@@ -35,14 +32,14 @@ export default function Header() {
     }
     const [openMainMenu, setOpenMainMenu] = useState(false);
     const [navigationItems, setNavigationItems] = useState([
-        { name: 'Dashboard', href: '#', current: true },
-        { name: 'Search', href: '#', current: false },
-        { name: 'My music', href: '#', current: false },
+        { name: 'Dashboard', href: '/', current: true },
+        { name: 'Search', href: '/', current: false },
+        { name: 'My music', href: '/', current: false },
     ]);
     function handleNavigationItemSelected(itemName) {
         const myNavItems = [...navigationItems];
         const selectedItem = myNavItems.findIndex(
-            element => element.name == itemName,
+            element => element.name === itemName,
         );
         /* myNavItems.map((element) => {
               element.current = false
@@ -56,6 +53,9 @@ export default function Header() {
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <>
+            <button type="button" onClick={handleSignOut}>
+            singout mdf
+            </button>
                 <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -133,9 +133,13 @@ export default function Header() {
                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                         alt=""
                                                     />
-                                                    <span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
+                                                    {
+                                                        userInfo
+                                                        ?<span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
                                                         {userInfo.username}
-                                                    </span>
+                                                        </span>
+                                                        :<p>loading</p>
+                                                    }
                                                 </div>
                                             </Menu.Button>
                                         </div>
@@ -171,7 +175,7 @@ export default function Header() {
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <a
-                                                            href="#"
+                                                            href="/"
                                                             className={classNames(
                                                                 active
                                                                     ? 'bg-gray-100'
@@ -185,8 +189,8 @@ export default function Header() {
                                                 </Menu.Item>
                                                 <Menu.Item>
                                                     {({ active }) => (
-                                                        <a
-                                                            href="#"
+                                                        <button
+                                                           type="button"
                                                             className={classNames(
                                                                 active
                                                                     ? 'bg-gray-100'
@@ -198,7 +202,7 @@ export default function Header() {
                                                             }
                                                         >
                                                             Sign out
-                                                        </a>
+                                                        </button>
                                                     )}
                                                 </Menu.Item>
                                             </Menu.Items>

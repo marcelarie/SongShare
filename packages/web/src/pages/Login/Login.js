@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
 import '../../styles/Login.css';
 import '../../styles/utils.css';
-
-import Header from '../../components/Header';
 import * as ROUTES from '../../routes';
 
 import {
@@ -20,10 +16,10 @@ import { authSelector } from '../../redux/auth/auth-selectors';
 
 function Login() {
     const dispatch = useDispatch();
-    const { isLogingIn, loginError, isAuthenticated } = useSelector(
+    const {isAuthenticated } = useSelector(
         authSelector,
     );
-    const userInfo = useSelector(store => store.auth.currentUser);
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -54,9 +50,9 @@ function Login() {
     }
 
     if (isAuthenticated) {
-        console.log('redirect');
-        return <Redirect to={`/${userInfo.username}`} />;
+       return <Redirect to="/"/>
     }
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
@@ -163,64 +159,7 @@ function Login() {
             </div>
         </div>
     );
-    {
-        /* <main classNameName="Login">
-                <section classNameName="Login__wrapper">
-                    <h1 classNameName="text-2xl font-bold mb-6">Login</h1>
-                    <hr classNameName="my-4" />
-                    <button
-                        classNameName="btn btn-primary w-full"
-                        type="button"
-                        onClick={handleLoginWithGoogle}
-                        disabled={isLogingIn}
-                    >
-                        Login with Google
-                    </button>
-                    <hr classNameName="mt-1 mb-4" />
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="email" classNameName="form-label">
-                            Email
-                        </label>
-                        <input
-                            type="text"
-                            id="email"
-                            classNameName="form-input"
-                            value={email}
-                            onChange={handleSetEmail}
-                        />
-                        <label htmlFor="password" classNameName="form-label">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            classNameName="form-input"
-                            value={password}
-                            onChange={handleSetPassword}
-                        />
-                        <button
-                            classNameName="btn btn-primary w-full"
-                            type="submit"
-                            disabled={isLogingIn}
-                        >
-                            Login
-                        </button>
-                    </form>
-                    {signUpError && (
-                        <section classNameName="mt-4">{signUpError}</section>
-                    )}
-                    <section classNameName="mt-4">
-                        <hr classNameName="mt-1 mb-4" />
-                        <Link
-                            to={ROUTES.RESET_PASSWORD}
-                            classNameName="underline text-blue-gray-200 w-full text-center block"
-                        >
-                            Reset password
-                        </Link>
-                    </section>
-                </section>
-            </main> */
-    }
+   
 }
 
 export default Login;
