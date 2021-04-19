@@ -9,7 +9,6 @@ import '../../styles/Header.css';
 
 import { signOut } from '../../redux/auth/auth-actions';
 
-
 /* This example requires Tailwind CSS v2.0+ */
 
 const navigation = [
@@ -53,9 +52,9 @@ export default function Header() {
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <>
-            <button type="button" onClick={handleSignOut}>
-            singout mdf
-            </button>
+                <button type="button" onClick={handleSignOut}>
+                    singout mdf
+                </button>
                 <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -133,13 +132,13 @@ export default function Header() {
                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                         alt=""
                                                     />
-                                                    {
-                                                        userInfo
-                                                        ?<span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
-                                                        {userInfo.username}
+                                                    {userInfo ? (
+                                                        <span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
+                                                            {userInfo.username}
                                                         </span>
-                                                        :<p>loading</p>
-                                                    }
+                                                    ) : (
+                                                        <p>loading</p>
+                                                    )}
                                                 </div>
                                             </Menu.Button>
                                         </div>
@@ -190,7 +189,7 @@ export default function Header() {
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <button
-                                                           type="button"
+                                                            type="button"
                                                             className={classNames(
                                                                 active
                                                                     ? 'bg-gray-100'

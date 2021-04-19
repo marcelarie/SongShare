@@ -16,10 +16,8 @@ import { authSelector } from '../../redux/auth/auth-selectors';
 
 function Login() {
     const dispatch = useDispatch();
-    const {isAuthenticated } = useSelector(
-        authSelector,
-    );
-    
+    const { isAuthenticated } = useSelector(authSelector);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -50,9 +48,8 @@ function Login() {
     }
 
     if (isAuthenticated) {
-       return <Redirect to="/"/>
+        return <Redirect to="/" />;
     }
-    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
@@ -159,7 +156,6 @@ function Login() {
             </div>
         </div>
     );
-   
 }
 
 export default Login;

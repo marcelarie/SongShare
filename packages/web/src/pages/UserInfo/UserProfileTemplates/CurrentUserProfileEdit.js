@@ -15,7 +15,7 @@ function CurrentUserProfileEdit() {
 
     const history = useHistory();
 
-    const handleSubmit =  e => {
+    const handleSubmit = e => {
         e.preventDefault();
         dispatch(updateUserInfo({ username, name, lastName }));
         history.push(`/${username}`);

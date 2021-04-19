@@ -3,7 +3,6 @@ import api from '../../api';
 import * as auth from '../../services/auth';
 
 export function updateUserInfo(userInfo) {
-    
     return async function updateUserInfoThunk(dispatch) {
         dispatch(updateUserInfoRequest());
         try {
@@ -13,11 +12,10 @@ export function updateUserInfo(userInfo) {
                 {
                     Authorization: `Bearer ${token}`,
                 },
-              
+
                 userInfo,
             );
-           
-            
+
             dispatch(updateUserInfoSucces(response.data.data));
         } catch (error) {
             dispatch(updateUserInfoError(error));
