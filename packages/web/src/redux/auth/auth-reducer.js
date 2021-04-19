@@ -31,6 +31,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
             };
         }
         case AuthTypes.SIGN_UP_SUCCESS: {
+            console.log(payload);
             return {
                 ...state,
                 isAuthenticated: true,

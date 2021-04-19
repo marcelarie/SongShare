@@ -6,10 +6,10 @@ import ProtectedRoute from './routes/protectedRoutes';
 
 import * as ROUTES from './routes';
 import Home from './pages/Home';
-import Welcome from './components/Welcome';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
+import Header from './components/Header';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
@@ -42,7 +42,7 @@ function App() {
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Welcome} exact />
+                <Route path={ROUTES.HOME} component={Home} exact />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}

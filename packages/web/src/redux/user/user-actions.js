@@ -20,6 +20,7 @@ export function updateUserInfo(userInfo) {
                 userInfo,
             );
             console.log(response);
+            window.location.href = `/${userInfo.username}`;
             dispatch(updateUserInfoSucces(response.data.data));
         } catch (error) {
             dispatch(updateUserInfoError(error));
