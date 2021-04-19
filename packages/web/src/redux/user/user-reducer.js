@@ -19,8 +19,8 @@ const userInitialState = {
     login: '',
     playlists: 0,
     tracks: 0,
-    loading:false,
-    error: false
+    loading: false,
+    error: false,
 };
 
 const userReducer = (state = userInitialState, action) => {
@@ -51,9 +51,8 @@ const userReducer = (state = userInitialState, action) => {
         case UserTypes.UPDATE_USER_INFO_REQUEST:
             return {
                 ...state,
-                login:true,
-                error:false
-                
+                login: true,
+                error: false,
             };
         case UserTypes.UPDATE_USER_INFO_SUCCES:
             return {
@@ -62,16 +61,13 @@ const userReducer = (state = userInitialState, action) => {
                 error: false,
                 firstName: action.payload.userInfo.firstName,
                 lastName: action.payload.userInfo.lastName,
-               
             };
         case UserTypes.UPDATE_USER_INFO_ERROR:
             return {
                 ...state,
                 error: action.payload,
-                loading:false,
-                
+                loading: false,
             };
-            
 
         default:
             return state;

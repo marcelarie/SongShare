@@ -1,17 +1,7 @@
-import React, { useEffect } from 'react';
-
-
+import React from 'react';
 
 function OtherUserProfile() {
-   
-  
-
-  
-    return (
-        <>
-          other user
-        </>
-    );
+    return <>other user</>;
 }
 
 export default OtherUserProfile;

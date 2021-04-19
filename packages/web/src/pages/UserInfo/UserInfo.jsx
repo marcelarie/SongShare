@@ -6,19 +6,14 @@ import Header from '../../components/Header';
 import SideNav from '../../components/SideNav';
 import templates from './UserProfileTemplates';
 
-
 function UserInfo() {
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const { currentUser } = useSelector(store => store.auth);
     const { username } = useParams();
 
+    // console.log(userInfo, username);
 
-    console.log(userInfo, username);
+    useEffect(() => {}, []);
 
-
-    useEffect(() => {
-
-    }, []);
-    
     return (
         <>
             <main className="userInfo w-full h-full">

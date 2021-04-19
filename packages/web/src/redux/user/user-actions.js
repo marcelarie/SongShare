@@ -1,25 +1,29 @@
 import * as UserTypes from './user-types';
 import api from '../../api';
-import * as auth from '../../services/auth'
+import * as auth from '../../services/auth';
 
-export function updateUserInfo(username,name,lastname) {
+export function updateUserInfo(username, name, lastname) {
     return async function updateUserInfoThunk(dispatch) {
         dispatch(updateUserInfoRequest());
         try {
-            
             const token = await auth.getCurrentUserToken();
 
-            const response = await api.useApi(username,{
-                Authorization : `Bearer ${token}`
-            },{
-                name,lastname
-            });
+            // aqui no haria falta en realidad poner el username ya que el token
+            // ya tiene el email y el id
+            const response = await api.useApi(
+                username,
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                // esto se podria pasar siempre como un objeto para no tener que
+                // repetir cada propiedad
+                {
+                    name,
+                    lastname,
+                },
+            );
 
-            console.log(response);
-
-            dispatch(updateUserInfoSucces(response.data))
-
-
+            dispatch(updateUserInfoSucces(response.data));
         } catch (error) {
             dispatch(updateUserInfoError(error));
         }
@@ -30,12 +34,12 @@ export const updateUserInfoRequest = () => ({
     type: UserTypes.UPDATE_USER_INFO_REQUEST,
 });
 
-export const updateUserInfoSucces = (payload) => ({
+export const updateUserInfoSucces = payload => ({
     type: UserTypes.UPDATE_USER_INFO_SUCCES,
-    payload 
+    payload,
 });
 
-export const updateUserInfoError = (error) => ({
+export const updateUserInfoError = error => ({
     type: UserTypes.UPDATE_USER_INFO_ERROR,
-    payload: error
+    payload: error,
 });

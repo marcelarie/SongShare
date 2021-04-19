@@ -154,7 +154,7 @@ export default function Header() {
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <NavLink
-                                                            to={ROUTES.HOME_USER}
+                                                            to={`/${userInfo.username}`}
                                                             className={classNames(
                                                                 active
                                                                     ? "bg-gray-100"

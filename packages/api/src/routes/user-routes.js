@@ -1,13 +1,20 @@
-const Router = require("express").Router
+import { Router } from 'express';
 
-const { authMiddleware } = require("../middlewares")
-const { userController } = require("../controllers")
+import { authMiddleware } from '../middlewares/index.js';
+import {
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername,
+} from '../controllers/index.js';
 
-const userRouter = Router()
+const userRouter = Router();
 
-userRouter.post("/sign-up", authMiddleware, userController.signUp)
-userRouter.post("/sign-out", authMiddleware, userController.signOut)
+userRouter.use(authMiddleware);
+userRouter.post('/sign-up', signUp);
+userRouter.post('/sign-out', signOut);
 
-module.exports = {
-    userRouter: userRouter,
-}
+userRouter.get('/user/:username', getUserInfoByUsername);
+userRouter.patch('/user/edit/:username', patchUserInfoByUsername);
+
+export default userRouter;
