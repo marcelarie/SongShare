@@ -21,7 +21,7 @@ async function signUp(req, res, next) {
             ...body,
         });
 
-        if (user.data) return res.status(202).send(user);
+        if (user.data) return res.status(202).send(user.data);
     } catch (error) {
         next(error);
     }
@@ -78,7 +78,7 @@ async function getUserInfoByUsername(req, res, next) {
 
 async function patchUserInfoByUsername(req, res, next) {
     try {
-        const { uid } = req.user;
+        const { uid, email } = req.user;
         const { body } = req;
 
         const response = await UserRepo.findByIdAndUpdate(uid, {
@@ -88,7 +88,7 @@ async function patchUserInfoByUsername(req, res, next) {
         if (response.error) return res.status(400).send(response);
 
         res.status(200).send({
-            data: response.data,
+            data: { uid, email, ...body },
             error: null,
         });
     } catch (error) {

@@ -1,52 +1,55 @@
-import React, { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Fragment } from "react"
-import { Disclosure, Menu, Transition } from "@headlessui/react"
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline"
+import { Fragment } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
-import "../../styles/Header.css"
+import '../../styles/Header.css';
 
-import * as ROUTES from "../../routes"
-import { signOut } from "../../redux/auth/auth-actions"
-import { authSelector } from "../../redux/auth/auth-selectors"
+import * as ROUTES from '../../routes';
+import { signOut } from '../../redux/auth/auth-actions';
+import { authSelector } from '../../redux/auth/auth-selectors';
 
 /* This example requires Tailwind CSS v2.0+ */
 
 const navigation = [
-    { name: "Dashboard", href: "#", current: true },
-    { name: "Team", href: "#", current: false },
-    { name: "Projects", href: "#", current: false },
-    { name: "Calendar", href: "#", current: false },
-]
+    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Team', href: '#', current: false },
+    { name: 'Projects', href: '#', current: false },
+    { name: 'Calendar', href: '#', current: false },
+];
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(" ")
+    return classes.filter(Boolean).join(' ');
 }
 
 export default function NavBar() {
     const [navigationItems, setNavigationItems] = useState([
-        { name: "Dashboard", href: "#", current: true },
-        { name: "Search", href: "#", current: false },
-        { name: "My music", href: "#", current: false },
-    ])
+        { name: 'Dashboard', href: '#', current: true },
+        { name: 'Search', href: '#', current: false },
+        { name: 'My music', href: '#', current: false },
+    ]);
     function handleNavigationItemSelected(itemName) {
-        const myNavItems = [...navigationItems]
+        const myNavItems = [...navigationItems];
         const selectedItem = myNavItems.findIndex(
             element => element.name == itemName,
-        )
+        );
         /* myNavItems.map((element) => {
               element.current = false
           }); */
-        myNavItems[0].current = false
-        myNavItems[1].current = false
-        myNavItems[2].current = false
-        myNavItems[selectedItem].current = true
-        setNavigationItems(myNavItems)
+        myNavItems[0].current = false;
+        myNavItems[1].current = false;
+        myNavItems[2].current = false;
+        myNavItems[selectedItem].current = true;
+        setNavigationItems(myNavItems);
     }
     return (
-        <Disclosure as="nav" className="bg-gray-800 flex-column w-1/4 h-max px-6 py-6 hidden lg:inline-block">
+        <Disclosure
+            as="nav"
+            className="bg-gray-800 flex-column w-1/4 h-max px-6 py-6 hidden lg:inline-block"
+        >
             <>
                 <div className="max-w-min">
                     <div className="relative flex-column items-center justify-between">
@@ -59,13 +62,13 @@ export default function NavBar() {
                                             href={item.href}
                                             className={classNames(
                                                 item.current
-                                                    ? "bg-gray-900 text-white"
-                                                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                                "px-3 py-2 rounded-md text-sm font-medium block",
+                                                    ? 'bg-gray-900 text-white'
+                                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                'px-3 py-2 rounded-md text-sm font-medium block',
                                             )}
                                             aria-current={
                                                 item.current
-                                                    ? "page"
+                                                    ? 'page'
                                                     : undefined
                                             }
                                             onClick={() =>
@@ -91,11 +94,11 @@ export default function NavBar() {
                                 href={item.href}
                                 className={classNames(
                                     item.current
-                                        ? "bg-gray-900 text-white"
-                                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                    "block px-3 py-2 rounded-md text-base font-medium",
+                                        ? 'bg-gray-900 text-white'
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                    'block px-3 py-2 rounded-md text-base font-medium',
                                 )}
-                                aria-current={item.current ? "page" : undefined}
+                                aria-current={item.current ? 'page' : undefined}
                             >
                                 {item.name}
                             </a>
@@ -104,6 +107,5 @@ export default function NavBar() {
                 </Disclosure.Panel>
             </>
         </Disclosure>
-    )
+    );
 }
-

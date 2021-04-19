@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: theme => ({
-                "bg-texture": "url('/src/styles/img/background-img.jpg')",
+                'bg-texture': "url('/src/styles/img/background-img.jpg')",
             }),
         },
         colors: {

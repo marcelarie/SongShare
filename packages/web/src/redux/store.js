@@ -17,9 +17,9 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleware = [thunk];
 
-if (process.env.NODE_ENV === 'development') {
+/* if (process.env.NODE_ENV === 'development') {
     middleware.push(logger);
-}
+} */
 
 const store = createStore(
     persistedReducer,

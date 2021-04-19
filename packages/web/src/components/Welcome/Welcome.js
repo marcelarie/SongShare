@@ -1,24 +1,24 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
-import Icon from "@material-ui/core/Icon"
+import Icon from '@material-ui/core/Icon';
 // import { faGoogle } from '@material-ui/icons';
-import "../../styles/Welcome.css"
-import { authSelector } from "../../redux/auth/auth-selectors"
+import '../../styles/Welcome.css';
+import { authSelector } from '../../redux/auth/auth-selectors';
 
-import { signUpWithGoogleRequest } from "../../redux/auth/auth-actions"
+import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 
-import * as ROUTES from "../../routes"
+import * as ROUTES from '../../routes';
 
 function Welcome() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     function handleLoginWithGoogle(e) {
-        e.preventDefault()
-        dispatch(signUpWithGoogleRequest())
+        e.preventDefault();
+        dispatch(signUpWithGoogleRequest());
     }
 
     return (
@@ -66,7 +66,7 @@ function Welcome() {
                 </div>
             </div>
         </main>
-    )
+    );
 }
 
-export default Welcome
+export default Welcome;

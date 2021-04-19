@@ -3,6 +3,7 @@ import api from '../../api';
 import * as auth from '../../services/auth';
 
 export function updateUserInfo(userInfo) {
+    console.log(userInfo);
     return async function updateUserInfoThunk(dispatch) {
         dispatch(updateUserInfoRequest());
         try {
@@ -18,8 +19,8 @@ export function updateUserInfo(userInfo) {
                 // repetir cada propiedad
                 userInfo,
             );
-
-            dispatch(updateUserInfoSucces(response.data));
+            console.log(response);
+            dispatch(updateUserInfoSucces(response.data.data));
         } catch (error) {
             dispatch(updateUserInfoError(error));
         }

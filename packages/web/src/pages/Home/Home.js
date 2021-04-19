@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import "./Home.scss"
-import Header from "../../components/Header"
-import Welcome from "../../components/Welcome"
-import { authSelector } from "../../redux/auth/auth-selectors"
+import './Home.scss';
+import Header from '../../components/Header';
+import Welcome from '../../components/Welcome';
+import { authSelector } from '../../redux/auth/auth-selectors';
 import CurrentUserProfile from '../UserInfo/UserProfileTemplates/CurrentUserProfile';
 
 function Home() {
@@ -12,11 +12,7 @@ function Home() {
     return (
         <main className="p-4">
             <section className="p-4">
-                {auth.isAuthenticated ? (
-                    <CurrentUserProfile />
-                ) : (
-                    <Welcome />
-                )}
+                {auth.isAuthenticated ? <CurrentUserProfile /> : <Welcome />}
             </section>
         </main>
     );

@@ -4,8 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
-import "../../styles/Login.css"
-import "../../styles/utils.css"
+import '../../styles/Login.css';
+import '../../styles/utils.css';
 
 import Header from '../../components/Header';
 import * as ROUTES from '../../routes';
@@ -54,7 +54,7 @@ function Login() {
     }
 
     if (isAuthenticated) {
-        console.log("redirect")
+        console.log('redirect');
         return <Redirect to={`/${userInfo.username}`} />;
     }
 
@@ -162,7 +162,7 @@ function Login() {
                 </form>
             </div>
         </div>
-    )
+    );
     {
         /* <main classNameName="Login">
                 <section classNameName="Login__wrapper">

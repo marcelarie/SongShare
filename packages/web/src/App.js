@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 
 import ProtectedRoute from './routes/protectedRoutes';
 
-import * as ROUTES from "./routes"
-import Home from "./pages/Home"
-import Welcome from "./components/Welcome"
-import SignUp from "./pages/SignUp"
-import Login from "./pages/Login"
-import ResetPassword from "./pages/ResetPassword"
+import * as ROUTES from './routes';
+import Home from './pages/Home';
+import Welcome from './components/Welcome';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import ResetPassword from './pages/ResetPassword';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
