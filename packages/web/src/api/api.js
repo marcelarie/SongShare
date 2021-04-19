@@ -26,9 +26,9 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function useApi(username, headers, body) {
+    function useApi(headers, body) {
         return request({
-            url: `/user/edit/${username}`,
+            url: `/user/edit/test`,
             requestMethod: 'PATCH',
             headers,
             body,

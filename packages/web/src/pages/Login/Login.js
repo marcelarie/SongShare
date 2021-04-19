@@ -23,7 +23,7 @@ function Login() {
     const { isLogingIn, loginError, isAuthenticated } = useSelector(
         authSelector,
     );
-
+    const userInfo = useSelector(store => store.auth.currentUser);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -54,7 +54,8 @@ function Login() {
     }
 
     if (isAuthenticated) {
-        return <Redirect to={ROUTES.HOME_USER} />;
+        console.log("redirect")
+        return <Redirect to={`/${userInfo.username}`} />;
     }
 
     return (

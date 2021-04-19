@@ -8,16 +8,15 @@ function CurrentUserProfile() {
 
 //   const [username,setUsername] = useState(userInfo.username)
   const [username, setUsername] = useState(userInfo.username)
-  const [firstname, setFirstname] = useState(userInfo.firstname)
-  const [lastname, setLastname] = useState(userInfo.lastname)
+  const [firstName, setFirstName] = useState(userInfo.firstname)
+  const [lastName, setLastName] = useState(userInfo.lastname)
   const [email, setEmail] = useState(userInfo.email)
   const [editMode, setEditMode] = useState(false);
 
 
 const handleSubmit = (e) =>{
     e.preventDefault()
-    setEditMode(false)
-    dispatch(updateUserInfo(username, firstname, lastname))
+    dispatch(updateUserInfo({username, firstName, lastName}))
 }
 
     return (
@@ -31,7 +30,7 @@ const handleSubmit = (e) =>{
               </div>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
-              <form action="" method="" type="submit">
+              <form action="" method="" onSubmit={handleSubmit}>
                 <div className="shadow overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -45,24 +44,39 @@ const handleSubmit = (e) =>{
                           id="user_name"
                           autoComplete="given-name"
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder={userInfo.username}
+                          value = {username}
                           disabled = {!editMode}
                           onChange={(e)=>setUsername(e.target.value)}
                         />
                       </div>
                       <div className="col-span-6 sm:col-span-6">
-                        <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                          First name
+                        </label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          id="first_name"
+                          autoComplete="family-name"
+                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          value = {firstName}
+                          disabled = {!editMode}
+                          onChange={(e)=>setFirstName(e.target.value)}
+                        />
+                      </div>
+                      <div className="col-span-6 sm:col-span-6">
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                           Last name
                         </label>
                         <input
                           type="text"
-                          name="last_name"
+                          name="lastName"
                           id="last_name"
                           autoComplete="family-name"
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder = {userInfo.lastname}
+                          value = {lastName}
                           disabled = {!editMode}
-                          onChange={(e)=>setLastname(e.target.value)}
+                          onChange={(e)=>setLastName(e.target.value)}
                         />
                       </div>
   
@@ -76,7 +90,7 @@ const handleSubmit = (e) =>{
                           id="email_address"
                           autoComplete="email"
                           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          placeholder= {userInfo.email}
+                          value= {email}
                           disabled = {!editMode}
                           onChange={(e)=>setEmail(e.target.value)}
                         />
@@ -214,12 +228,12 @@ const handleSubmit = (e) =>{
           {editMode ? (<button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      onClick = {()=>handleSubmit ()}
+                      onClick = {() => setEditMode(false)}
                     >
                       Save
                     </button>) :
                     (<button
-                      type="submit"
+                      type="button"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onClick = {()=>setEditMode(true)}
                     >

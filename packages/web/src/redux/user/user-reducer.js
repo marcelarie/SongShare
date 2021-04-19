@@ -59,8 +59,7 @@ const userReducer = (state = userInitialState, action) => {
                 ...state,
                 loading: false,
                 error: false,
-                firstName: action.payload.userInfo.firstName,
-                lastName: action.payload.userInfo.lastName,
+                ...action.payload,
             };
         case UserTypes.UPDATE_USER_INFO_ERROR:
             return {

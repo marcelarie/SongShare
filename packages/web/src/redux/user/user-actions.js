@@ -2,7 +2,7 @@ import * as UserTypes from './user-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
 
-export function updateUserInfo(username, name, lastname) {
+export function updateUserInfo(userInfo) {
     return async function updateUserInfoThunk(dispatch) {
         dispatch(updateUserInfoRequest());
         try {
@@ -11,16 +11,12 @@ export function updateUserInfo(username, name, lastname) {
             // aqui no haria falta en realidad poner el username ya que el token
             // ya tiene el email y el id
             const response = await api.useApi(
-                username,
                 {
                     Authorization: `Bearer ${token}`,
                 },
                 // esto se podria pasar siempre como un objeto para no tener que
                 // repetir cada propiedad
-                {
-                    name,
-                    lastname,
-                },
+                userInfo,
             );
 
             dispatch(updateUserInfoSucces(response.data));
