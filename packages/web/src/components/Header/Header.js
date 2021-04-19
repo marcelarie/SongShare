@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -25,36 +25,27 @@ function classNames(...classes) {
 export default function Header() {
     const dispatch = useDispatch();
     const userInfo = useSelector(store => store.auth.currentUser);
+    const currentLocation = useLocation().pathname
 
     function handleSignOut() {
         dispatch(signOut());
     }
+
+    const paths = [
+        { name: 'Home',path:"/"},
+        { name: 'Search',path:"/search"},
+        { name: 'My music', path:"/music"}
+    ]
+
     const [openMainMenu, setOpenMainMenu] = useState(false);
-    const [navigationItems, setNavigationItems] = useState([
-        { name: 'Dashboard', href: '/', current: true },
-        { name: 'Search', href: '/', current: false },
-        { name: 'My music', href: '/', current: false },
-    ]);
-    function handleNavigationItemSelected(itemName) {
-        const myNavItems = [...navigationItems];
-        const selectedItem = myNavItems.findIndex(
-            element => element.name === itemName,
-        );
-        /* myNavItems.map((element) => {
-              element.current = false
-          }); */
-        myNavItems[0].current = false;
-        myNavItems[1].current = false;
-        myNavItems[2].current = false;
-        myNavItems[selectedItem].current = true;
-        setNavigationItems(myNavItems);
-    }
+   
+    useEffect(()=>{
+
+    },[currentLocation])
+
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <>
-                <button type="button" onClick={handleSignOut}>
-                    singout mdf
-                </button>
                 <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -89,29 +80,20 @@ export default function Header() {
                             </div>
                             <div className="hidden sm:block w-full ">
                                 <div className="flex justify-center items-center ml-8">
-                                    {navigationItems.map(item => (
-                                        <a
+                                    {paths.map(item => (
+                                        <Link
+                                            to={item.path}
                                             key={item.name}
-                                            href={item.href}
-                                            className={classNames(
-                                                item.current
-                                                    ? 'bg-gray-900 text-white'
-                                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                'px-3 py-2 rounded-md text-sm font-medium large:text-xl',
-                                            )}
-                                            aria-current={
-                                                item.current
-                                                    ? 'page'
-                                                    : undefined
+                                            className={
+                                                item.path === currentLocation
+                                                ?"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl"
+                                                :'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl'
                                             }
-                                            onClick={() =>
-                                                handleNavigationItemSelected(
-                                                    item.name,
-                                                )
-                                            }
+                                          
                                         >
                                             {item.name}
-                                        </a>
+                                        </Link>
+                                        
                                     ))}
                                 </div>
                             </div>
