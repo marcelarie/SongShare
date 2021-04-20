@@ -3,17 +3,16 @@ import { useSelector } from 'react-redux';
 
 import './Home.scss';
 import Welcome from '../../components/Welcome';
+import LandingPage from '../LandingPage';
 
-import CurrentUserProfile from '../UserInfo/UserProfileTemplates/CurrentUserProfile';
+
 
 function Home() {
     const auth = useSelector(store => store.auth);
     return (
-        <main className="p-4">
-            <section className="p-4">
-                {auth.isAuthenticated ? <CurrentUserProfile /> : <Welcome />}
-            </section>
-        </main>
+        auth.isAuthenticated
+        ?<LandingPage/>
+        :<Welcome/>
     );
 }
 

@@ -32,8 +32,8 @@ export default function Header() {
     }
 
     const paths = [
-        { name: 'Home',path:"/"},
-        { name: 'Search',path:"/search"},
+        { name: 'Home', path:"/"},
+        { name: 'Search', path:"/search"},
         { name: 'My music', path:"/music"}
     ]
 
@@ -144,7 +144,7 @@ export default function Header() {
                                                             to={`/${userInfo.username}`}
                                                             className={classNames(
                                                                 active
-                                                                    ? 'bg-gray-100'
+                                                                    ? 'bg-gray-100 '
                                                                     : '',
                                                                 'block px-4 py-2 text-sm text-gray-700',
                                                             )}

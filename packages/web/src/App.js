@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import Header from './components/Header';
+import SideNav from './components/SideNav';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
@@ -42,13 +43,14 @@ function App() {
     return (
         <div className="App__container">
             {
-                auth.isAuthenticated && <Header/>
+                auth.isAuthenticated && <><Header/> <SideNav/></>
+                
             }
             <Switch>
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Home} exact />
+                <Route path={ROUTES.HOME} component={Home} exact/>
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}
