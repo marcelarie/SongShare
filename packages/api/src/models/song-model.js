@@ -12,10 +12,12 @@ const SongSchema = mongoose.Schema({
         required: true,
         // (?) ref album artist/username
     },
-    genre: {
-        type: String,
-        required: true,
-    },
+    genre: [
+        {
+            type: String,
+            // required: true,
+        },
+    ],
     album: {
         type: String,
         // (?) ref album
@@ -25,6 +27,10 @@ const SongSchema = mongoose.Schema({
     },
     lyrics: {
         type: String,
+    },
+    url: {
+        type: String,
+        require: true,
     },
     // video: { (?)
     //     type: String,

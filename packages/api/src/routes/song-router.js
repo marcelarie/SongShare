@@ -16,8 +16,8 @@ songRouter.use(authMiddleware); // (?)
 
 //                      (?) by id
 songRouter.get('/song/:name', getSongByName);
-songRouter.post('/song/all', getAllSongs);
-songRouter.post('/song/all-with', getSongsByParams);
+songRouter.get('/songs/all', getAllSongs);
+songRouter.post('/songs/all-with', getSongsByParams);
 songRouter.post('/song', postSong);
 songRouter.patch('/song/:name', patchSongByName);
 
