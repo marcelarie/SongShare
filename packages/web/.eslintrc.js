@@ -58,5 +58,6 @@ module.exports = {
                 assert: 'htmlFor',
             },
         ],
+        camelcase: 'off',
     },
 };
