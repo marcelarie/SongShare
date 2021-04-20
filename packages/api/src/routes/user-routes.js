@@ -15,6 +15,6 @@ userRouter.post('/sign-up', signUp);
 userRouter.post('/sign-out', signOut);
 
 userRouter.get('/user/:username', getUserInfoByUsername);
-userRouter.patch('/user/edit/:username', patchUserInfoByUsername);
+userRouter.patch('/user/edit', patchUserInfoByUsername);
 
 export default userRouter;

@@ -28,7 +28,7 @@ function makeApi(request = makeRequest()) {
 
     function useApi(headers, body) {
         return request({
-            url: `/user/edit/test`,
+            url: `/user/edit`,
             requestMethod: 'PATCH',
             headers,
             body,
