@@ -10,7 +10,6 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import Header from './components/Header';
-import SideNav from './components/SideNav';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
@@ -43,7 +42,7 @@ function App() {
         <div className="App__container">
             {auth.isAuthenticated && (
                 <>
-                    <Header /> <SideNav />
+                    <Header /> <sideNav />
                 </>
             )}
             <Switch>
