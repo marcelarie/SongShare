@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-function Carousel (){
-    return(
-        <p>this is a carousel</p>
-    )
+function Carousel() {
+    return <p>this is a carousel</p>;
 }
 
-export default Carousel
+export default Carousel;

@@ -25,23 +25,21 @@ function classNames(...classes) {
 export default function Header() {
     const dispatch = useDispatch();
     const userInfo = useSelector(store => store.auth.currentUser);
-    const currentLocation = useLocation().pathname
+    const currentLocation = useLocation().pathname;
 
     function handleSignOut() {
         dispatch(signOut());
     }
 
     const paths = [
-        { name: 'Home', path:"/"},
-        { name: 'Search', path:"/search"},
-        { name: 'My music', path:"/music"}
-    ]
+        { name: 'Home', path: '/' },
+        { name: 'Search', path: '/search' },
+        { name: 'My music', path: '/music' },
+    ];
 
     const [openMainMenu, setOpenMainMenu] = useState(false);
-   
-    useEffect(()=>{
 
-    },[currentLocation])
+    useEffect(() => {}, [currentLocation]);
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -86,14 +84,12 @@ export default function Header() {
                                             key={item.name}
                                             className={
                                                 item.path === currentLocation
-                                                ?"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl"
-                                                :'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl'
+                                                    ? 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl'
+                                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium large:text-xl'
                                             }
-                                          
                                         >
                                             {item.name}
                                         </Link>
-                                        
                                     ))}
                                 </div>
                             </div>

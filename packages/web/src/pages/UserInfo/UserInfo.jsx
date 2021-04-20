@@ -7,8 +7,6 @@ function UserInfo() {
     const { currentUser } = useSelector(store => store.auth);
     const { username } = useParams();
 
- 
-
     useEffect(() => {}, []);
 
     return (
@@ -16,11 +14,11 @@ function UserInfo() {
             <main className="userInfo w-full h-full">
                 <section className="UserInfo__wrapper w-full h-max flex">
                     <div className="flex-column">
-                        {
-                            currentUser.username === username 
-                            ?<templates.CurrentUserProfile /> 
-                            :<templates.OtherUserProfile />
-                        } 
+                        {currentUser.username === username ? (
+                            <templates.CurrentUserProfile />
+                        ) : (
+                            <templates.OtherUserProfile />
+                        )}
                     </div>
                 </section>
             </main>

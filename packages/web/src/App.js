@@ -21,7 +21,6 @@ function App() {
     const dispatch = useDispatch();
 
     const auth = useSelector(store => store.auth);
-    
 
     useEffect(() => {
         let unsubscribeFromAuth = null;
@@ -42,15 +41,16 @@ function App() {
 
     return (
         <div className="App__container">
-            {
-                auth.isAuthenticated && <><Header/> <SideNav/></>
-                
-            }
+            {auth.isAuthenticated && (
+                <>
+                    <Header /> <SideNav />
+                </>
+            )}
             <Switch>
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Home} exact/>
+                <Route path={ROUTES.HOME} component={Home} exact />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}
