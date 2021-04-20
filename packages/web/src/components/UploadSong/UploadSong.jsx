@@ -55,7 +55,6 @@ function UploadSong() {
                         <Dropzone
                             fileType={fileTypes.AUDIO}
                             onFileSelected={files => {
-                                // eslint-disable-next-line no-console
                                 handleSetFile(files[0]);
                             }}
                         />
@@ -65,7 +64,7 @@ function UploadSong() {
                             type="submit"
                             disabled={isUploadingSong}
                         >
-                            Login
+                            Upload
                         </button>
                     </form>
 

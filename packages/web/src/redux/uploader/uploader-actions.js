@@ -97,6 +97,7 @@ export function uploadSong({ track, title }) {
             });
 
             if (urlRes.status >= 400) {
+                console.log('entro?');
                 return dispatch(uploadSongError(urlRes.statusText));
             }
 
