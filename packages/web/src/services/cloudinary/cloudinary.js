@@ -12,7 +12,6 @@ export const getFileUrl = ({ file, fileType, onUploadProgress }) => {
     const unsignedCloudName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 
     const url = `https://api.cloudinary.com/v1_1/${unsignedCloudName}/upload`;
-    console.log(songUploadPreset);
 
     const formData = new FormData();
     fileType === fileTypes.AUDIO

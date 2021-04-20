@@ -1,52 +1,3 @@
-// import api from "../../api";
-// import { getCurrentUserToken } from "../../services/auth";
-
-// export const getFileUrl = ({ file, fileType, onloadProgress }) => {
-//     const songUpload;
-// };
-
-// export function uploadSonRequest() {}
-
-// export function uploadSongAux({ track, title }) {
-//     return async function uploadThunk(dispatch) {
-//         dispatch(uploadSonRequest());
-
-//         try {
-// const userToken = await getCurrentUserToken()
-
-//             const urlRes = await getFileUrl({
-//                 file: track,
-//                 fileType: fileType.AUDIO,
-//             });
-//             console.log(urlRes);
-
-//             if (urlRes.status >= 400) {
-//                 return dispatch(uploadSongError(urlRes.statusText));
-//             }
-
-//             const { url, durantion } = urlRes.data;
-
-//             const songRes = await api.createTrack({
-//                 body: {
-//                     title,
-//                     url,
-//                     duration,
-//                 },
-//                 headers: {
-//                     Authorization: `Bearer ${userToken}`
-//                 }
-//             })
-
-//             if (songRes.errorMessage) {
-//                 return dispatch(uploadSongError(urlRes.statusText))
-//             }
-//             return dispatch(uploadSongSuccess(url))
-//         } catch (error) {
-//             return dispatch(uploadSongError(error.message));
-//         }
-//     };
-// }
-
 import * as UploaderTypes from './uploader-types';
 import { getFileUrl, fileTypes } from '../../services/cloudinary';
 import api from '../../api';
@@ -97,17 +48,19 @@ export function uploadSong({ track, title }) {
             });
 
             if (urlRes.status >= 400) {
-                console.log('entro?');
                 return dispatch(uploadSongError(urlRes.statusText));
             }
 
-            const { url, duration } = urlRes.data;
+            const { url, duration, bytes, format, asset_id } = urlRes.data;
 
             const songRes = await api.createTrack({
                 body: {
-                    title: title,
-                    url: url,
-                    duration: duration,
+                    title,
+                    url,
+                    duration,
+                    bytes,
+                    format,
+                    asset_id,
                 },
                 headers: {
                     Authorization: `Bearer ${userToken}`,

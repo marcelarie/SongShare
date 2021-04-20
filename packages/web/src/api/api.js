@@ -37,10 +37,10 @@ function makeApi(request = makeRequest()) {
 
     function createTrack({ body, headers = {} }) {
         return request({
-            url: '/tracks',
+            url: '/song',
             requestMethod: 'POST',
-            body: body,
-            headers: headers,
+            body,
+            headers,
         });
     }
 
