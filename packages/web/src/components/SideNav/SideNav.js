@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { Disclosure } from '@headlessui/react';
 
 import '../../styles/Header.css';
-
-import * as ROUTES from '../../routes';
-import { signOut } from '../../redux/auth/auth-actions';
-import { authSelector } from '../../redux/auth/auth-selectors';
 
 /* This example requires Tailwind CSS v2.0+ */
 
@@ -34,7 +26,7 @@ export default function NavBar() {
     function handleNavigationItemSelected(itemName) {
         const myNavItems = [...navigationItems];
         const selectedItem = myNavItems.findIndex(
-            element => element.name == itemName,
+            element => element.name === itemName,
         );
         /* myNavItems.map((element) => {
               element.current = false
