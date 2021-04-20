@@ -1,15 +1,16 @@
-import React from 'react';
-import Carousel from '../../components/Carousel';
+import React from 'react'
+import Carousel from '../../components/Carousel'
 
-function LandingPage() {
+function LandingPage(){
+
     // requests to fullfill Carousels
 
-    return (
+    return(
         <>
-            <Carousel />
-            <Carousel />
+            <Carousel/>
+            <Carousel/>
         </>
-    );
+    )
 }
 
-export default LandingPage;
+export default LandingPage
