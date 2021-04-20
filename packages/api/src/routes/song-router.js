@@ -2,17 +2,24 @@ import { Router } from 'express';
 
 import { authMiddleware } from '../middlewares/index.js';
 
-import {getSongByName, getSongsByParams, postSong, patchSongByName} from '../controllers/song-controller.js';
+import {
+    getAllSongs,
+    getSongByName,
+    getSongsByParams,
+    postSong,
+    patchSongByName,
+} from '../controllers/song-controller/index.js';
 
 const songRouter = Router();
 
-songRouter.use(authMiddleware);
+songRouter.use(authMiddleware); // (?)
 
 //                      (?) by id
-songRouter.get('/song/:songName', getSongByName);
+songRouter.get('/song/:name', getSongByName);
+songRouter.post('/song/all', getAllSongs);
 songRouter.post('/song/all-with', getSongsByParams);
 songRouter.post('/song', postSong);
-songRouter.patch('/song/:songName', patchSongByName);
+songRouter.patch('/song/:name', patchSongByName);
 
 // (?) get song with given param and a optional value to be more specific
 // songRouter.post('/song/all-with/:param/:value?', getSongsByParams);

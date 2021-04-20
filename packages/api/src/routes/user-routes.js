@@ -6,7 +6,7 @@ import {
     signOut,
     getUserInfoByUsername,
     patchUserInfoByUsername,
-} from '../controllers/index.js';
+} from '../controllers/user-controller/index.js';
 
 const userRouter = Router();
 

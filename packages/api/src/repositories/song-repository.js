@@ -6,12 +6,16 @@ const SongRepository = {
         return normalizeDBQuery(Song.create(options));
     },
 
+    find: body => {
+        return normalizeDBQuery(Song.find(body));
+    },
+
     findOne: filter => {
         return normalizeDBQuery(Song.findOne(filter, '-__v'));
     },
 
-    findByIdAndUpdate: (filter, body) => {
-        return normalizeDBQuery(Song.findByIdAndUpdate(filter, body));
+    findOneAndUpdate: (filter, body) => {
+        return normalizeDBQuery(Song.findOneAndUpdate(filter, body));
     },
 };
 

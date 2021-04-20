@@ -12,9 +12,6 @@ import * as ROUTES from './routes';
 import ProtectedRoute from './routes/protectedRoutes';
 import { onAuthStateChanged } from './services/auth';
 
-
-
-
 function App() {
     const dispatch = useDispatch();
 
