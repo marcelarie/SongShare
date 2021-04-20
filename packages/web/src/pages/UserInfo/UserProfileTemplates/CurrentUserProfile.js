@@ -2,14 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Header from '../../../components/Header';
-
 function CurrentUserProfile() {
     const userInfo = useSelector(store => store.auth.currentUser);
 
     return (
         <>
-            <Header />
             {userInfo ? (
                 <>
                     <div className="sm:mt-5 px-8 py-4">

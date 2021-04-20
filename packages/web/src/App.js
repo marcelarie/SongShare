@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ProtectedRoute from './routes/protectedRoutes';
 
@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import Header from './components/Header';
+import SideNav from './components/SideNav';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
@@ -18,6 +19,8 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 
 function App() {
     const dispatch = useDispatch();
+
+    const auth = useSelector(store => store.auth);
 
     useEffect(() => {
         let unsubscribeFromAuth = null;
@@ -38,6 +41,11 @@ function App() {
 
     return (
         <div className="App__container">
+            {auth.isAuthenticated && (
+                <>
+                    <Header /> <SideNav />
+                </>
+            )}
             <Switch>
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
