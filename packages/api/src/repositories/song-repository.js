@@ -14,8 +14,9 @@ const SongRepository = {
         return normalizeDBQuery(Song.findOne(filter, '-__v'));
     },
 
-    findOneAndUpdate: (filter, body) => {
-        return normalizeDBQuery(Song.findOneAndUpdate(filter, body));
+    //                      return the updated document ↴
+    findOneAndUpdate: (filter, body, option = { new: true }) => {
+        return normalizeDBQuery(Song.findOneAndUpdate(filter, body, option));
     },
 };
 

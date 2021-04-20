@@ -10,8 +10,9 @@ const UserRepository = {
         return normalizeDBQuery(User.findOne(filter, '-__v'));
     },
 
-    findByIdAndUpdate: (filter, body) => {
-        return normalizeDBQuery(User.findByIdAndUpdate(filter, body));
+    //                      return the updated document ↴
+    findByIdAndUpdate: (filter, body, option = { new: true }) => {
+        return normalizeDBQuery(User.findByIdAndUpdate(filter, body, option));
     },
 };
 

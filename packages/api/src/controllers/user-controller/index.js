@@ -51,17 +51,18 @@ async function getUserInfoByUsername(req, res, next) {
 
 async function patchUserInfoByUsername(req, res, next) {
     try {
-        const { uid, email } = req.user;
+        const { uid } = req.user;
         const { body } = req;
 
         const response = await UserRepo.findByIdAndUpdate(uid, {
             ...body,
         });
+        const { data } = response;
 
         if (response.error) return res.status(400).send(response);
 
         res.status(200).send({
-            data: { uid, email, ...body },
+            data,
             error: null,
         });
     } catch (error) {

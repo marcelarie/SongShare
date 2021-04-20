@@ -2,10 +2,9 @@ import { SongRepository as SongRepo } from '../../repositories/index.js';
 
 async function getAllSongs(req, res, next) {
     try {
-        console.log('song');
         const response = await SongRepo.find({});
         if (response.error) return res.status(400).send(response);
-        if (response.data) return res.status(202).send(response);
+        if (response.data) return res.status(200).send(response);
     } catch (error) {
         next(error);
     }
@@ -19,11 +18,15 @@ async function getSongByName(req, res, next) {
         const response = await SongRepo.findOne({ name });
 
         if (response.error) return res.status(400).send(response);
-        if (response.data) return res.status(202).send(response);
+        if (response.data)
+            return res.status(409).send({
+                data: response.data,
+                error: 'This song name is already in use.',
+            });
 
         const song = await SongRepo.create(body);
 
-        if (song.data) return res.status(202).send(song);
+        if (song.data) return res.status(200).send(song);
     } catch (error) {
         next(error);
     }
@@ -35,7 +38,7 @@ async function getSongsByParams(req, res, next) {
         const response = await SongRepo.find(body);
 
         if (response.error) return res.status(400).send(response);
-        if (response.data) return res.status(202).send(response);
+        if (response.data) return res.status(200).send(response);
     } catch (error) {
         next(error);
     }
@@ -45,8 +48,13 @@ async function postSong(req, res, next) {
     try {
         const response = await SongRepo.findOne({ name: body.name });
 
+        console.log(response);
         if (response.error) return res.status(400).send(response);
-        if (response.data) return res.status(202).send(response);
+        if (response.data)
+            return res.status(409).send({
+                data: response.data,
+                error: 'This song name is already in use.',
+            });
 
         //joi validation
 
@@ -65,17 +73,13 @@ async function patchSongByName(req, res, next) {
         const { body } = req;
         const { name } = req.params;
 
-        const response = await SongRepo.findOneAndUpdate(
-            { name },
-            {
-                ...body,
-            },
-        );
+        const response = await SongRepo.findOneAndUpdate({ name }, body);
+        const { data } = response;
 
-        if (response.error) return res.status(400).send(response);
+        if (response.error) return res.status(404).send(response);
 
         res.status(200).send({
-            data: { ...response.data, ...body },
+            data,
             error: null,
         });
     } catch (error) {
