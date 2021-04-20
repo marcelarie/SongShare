@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-import ProtectedRoute from './routes/protectedRoutes';
-
-import * as ROUTES from './routes';
+import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
-import Header from './components/Header';
-
-import { onAuthStateChanged } from './services/auth';
-import { syncSignIn, signOut } from './redux/auth/auth-actions';
+import SignUp from './pages/SignUp';
 import UserInfo from './pages/UserInfo/UserInfo';
 import templates from './pages/UserInfo/UserProfileTemplates';
+import { signOut, syncSignIn } from './redux/auth/auth-actions';
+import * as ROUTES from './routes';
+import ProtectedRoute from './routes/protectedRoutes';
+import { onAuthStateChanged } from './services/auth';
+
+
+
 
 function App() {
     const dispatch = useDispatch();

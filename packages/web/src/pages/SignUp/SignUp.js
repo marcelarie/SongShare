@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import './SignUp.scss';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
-import Header from '../../components/Header';
-import * as ROUTES from '../../routes';
 import {
     resetAuthState,
     signUpWithEmailRequest,
     signUpWithGoogleRequest,
 } from '../../redux/auth/auth-actions';
 import { authSelector } from '../../redux/auth/auth-selectors';
+import * as ROUTES from '../../routes';
+import './SignUp.scss';
 
 function SignUp() {
     const dispatch = useDispatch();

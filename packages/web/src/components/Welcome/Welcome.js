@@ -1,17 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faDrawPolygon } from "@fortawesome/free-solid-svg-icons"
-import Icon from '@material-ui/core/Icon';
+import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
+import * as ROUTES from '../../routes';
 // import { faGoogle } from '@material-ui/icons';
 import '../../styles/Welcome.css';
-import { authSelector } from '../../redux/auth/auth-selectors';
 
-import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 
-import * as ROUTES from '../../routes';
 
 function Welcome() {
     const dispatch = useDispatch();

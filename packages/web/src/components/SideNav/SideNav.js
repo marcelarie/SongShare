@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-
+import { Disclosure } from '@headlessui/react';
+import React, { useState } from 'react';
 import '../../styles/Header.css';
-
-import * as ROUTES from '../../routes';
-import { signOut } from '../../redux/auth/auth-actions';
-import { authSelector } from '../../redux/auth/auth-selectors';
 
 /* This example requires Tailwind CSS v2.0+ */
 
