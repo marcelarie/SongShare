@@ -1,5 +1,5 @@
-// import UserRepository from "./user-repository.js"
+import UserRepository from './user-repository.js';
+import SongRepository from './song-repository.js';
+import PlaylistRepository from './playlist-repository.js';
 
-export { default } from './user-repository.js';
-
-// export default UserRepository
+export { UserRepository, SongRepository, PlaylistRepository };

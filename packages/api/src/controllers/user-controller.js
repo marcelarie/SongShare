@@ -1,4 +1,4 @@
-import UserRepo from '../repositories/index.js';
+import { UserRepository as UserRepo } from '../repositories/index.js';
 import joi from 'joi';
 
 async function signUp(req, res, next) {
