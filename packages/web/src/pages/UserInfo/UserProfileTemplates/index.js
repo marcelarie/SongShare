@@ -4,8 +4,8 @@ import OtherUserProfile from './OtherUserProfile';
 
 const templates = {
     CurrentUserProfile,
-    OtherUserProfile,
     CurrentUserProfileEdit,
+    OtherUserProfile,
 };
 
 export default templates;

@@ -9,7 +9,7 @@ const SongSchema = mongoose.Schema({
     },
     artist: {
         type: String,
-        required: true,
+        // required: true,
         // (?) ref album artist/username
     },
     genre: [
@@ -32,6 +32,11 @@ const SongSchema = mongoose.Schema({
         type: String,
         require: true,
     },
+    bytes: {
+        type: String,
+        require: true,
+    }
+
     // video: { (?)
     //     type: String,
     // }

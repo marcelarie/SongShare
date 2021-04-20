@@ -9,6 +9,7 @@ import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
+import UploadSong from './components/UploadSong';
 
 import UserInfo from './pages/UserInfo/UserInfo';
 import templates from './pages/UserInfo/UserProfileTemplates';
@@ -50,6 +51,11 @@ function App() {
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
                 <Route path={ROUTES.HOME} component={Home} exact />
+                <ProtectedRoute
+                    path={ROUTES.MY_MUSIC}
+                    component={UploadSong}
+                    exact
+                />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}

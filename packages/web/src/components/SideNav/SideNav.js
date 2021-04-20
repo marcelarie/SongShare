@@ -1,5 +1,7 @@
-import { Disclosure } from '@headlessui/react';
 import React, { useState } from 'react';
+
+import { Disclosure } from '@headlessui/react';
+
 import '../../styles/Header.css';
 
 /* This example requires Tailwind CSS v2.0+ */
@@ -24,7 +26,7 @@ export default function NavBar() {
     function handleNavigationItemSelected(itemName) {
         const myNavItems = [...navigationItems];
         const selectedItem = myNavItems.findIndex(
-            element => element.name == itemName,
+            element => element.name === itemName,
         );
         /* myNavItems.map((element) => {
               element.current = false
