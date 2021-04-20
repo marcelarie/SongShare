@@ -35,6 +35,8 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function createTrack(headers, body) {}
+
     return {
         signUp,
         signOut,

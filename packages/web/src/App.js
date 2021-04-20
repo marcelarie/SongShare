@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
+import UploadSong from './components/UploadSong';
 
 import { onAuthStateChanged } from './services/auth';
 import { syncSignIn, signOut } from './redux/auth/auth-actions';
@@ -51,6 +52,11 @@ function App() {
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
                 <Route path={ROUTES.HOME} component={Home} exact />
+                <ProtectedRoute
+                    path={ROUTES.MY_MUSIC}
+                    component={UploadSong}
+                    exact
+                />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}
