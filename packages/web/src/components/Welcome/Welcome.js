@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import '../../styles/Welcome.css';
+
 import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 import * as ROUTES from '../../routes';
 // import { faGoogle } from '@material-ui/icons';
@@ -18,10 +20,6 @@ function Welcome() {
         <main className="bg-texture bg-gray-900">
             <div className="mx-auto w-full flex-colum items-center justify-center py-8 px-8 sm:px-8 sm:py-12 md:py-10 lg:py-4 lg:px-8 lg:flex-column lg:items-center lg:justify-between">
                 <h2 className="max-w-lg mx-auto text-3xl font-extrabold tracking-tight text-gray-50 sm:text-4xl md:text-center lg:text-center lg:py-16 lg:px-8">
-                    {/* <FontAwesomeIcon
-                        icon={faDrawPolygon}
-                        className="mx-auto block text-indigo-600"
-                    /> */}
                     <span className="block">Ready to share in?</span>
                     <span className="block text-indigo-600">
                         Start your sharing today.
@@ -33,10 +31,7 @@ function Welcome() {
                             className="btn btn-secundary w-full"
                             type="button"
                             onClick={handleLoginWithGoogle}
-                            /* disabled={isSigningUp} */
                         >
-                            {/* <FontAwesomeIcon icon={faGoogle} className="mx-auto block bg-gray-50" /> */}
-                            {/* <Icon className="fab fa-google" /> */}
                             Login with Google
                         </button>
                     </div>

@@ -12,10 +12,8 @@ import './SignUp.scss';
 
 function SignUp() {
     const dispatch = useDispatch();
-    const { isSigningUp, signUpError, isAuthenticated } = useSelector(
-        authSelector,
-    );
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const { isAuthenticated } = useSelector(authSelector);
+    // const userInfo = useSelector(store => store.auth.currentUser);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
