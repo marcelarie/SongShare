@@ -1,7 +1,8 @@
 import React from 'react';
+import SongsCard from '../SongsCard';
 
 function Carousel() {
-    return <p>this is a carousel</p>;
+    return <SongsCard />;
 }
 
 export default Carousel;
