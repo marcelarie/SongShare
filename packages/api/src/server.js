@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import config from './config/index.js';
 import { errorMiddleware } from './middlewares/index.js';
-import userRouter from './routes/index.js';
+import { userRouter, songRouter } from './routes/index.js';
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(
 );
 
 app.use(userRouter);
+app.use(songRouter);
 
 app.use(errorMiddleware);
 

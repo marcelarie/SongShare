@@ -3,7 +3,6 @@ import validator from 'validator';
 
 const UserSchema = mongoose.Schema(
     {
-        // we use the uid from firebase as the _id
         _id: String,
         name: {
             type: String,
