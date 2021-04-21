@@ -7,7 +7,7 @@ function ChangePassword() {
     const userInfo = useSelector(store => store.auth.currentUser);
 
     const email = userInfo.email;
-    console.log(auth);
+
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -52,6 +52,16 @@ function ChangePassword() {
             }
         }
     };
+
+    let msgColor = null;
+    let msg = null;
+    if (successMsg) {
+        msg = successMsg;
+        msgColor = 'block text-sm font-medium text-green-700';
+    } else if (errorMsg) {
+        msg = errorMsg;
+        msgColor = 'block text-sm font-medium text-red-700';
+    }
 
     return (
         <>
@@ -130,26 +140,20 @@ function ChangePassword() {
                                                 }
                                             />
                                         </div>
-                                        {errorMsg ? (
-                                            <div className="col-span-6 sm:col-span-6">
-                                                <p
-                                                    htmlFor="confirmNewPassword"
-                                                    className="block text-sm font-medium text-red-700"
-                                                >
-                                                    {errorMsg}
-                                                </p>
-                                            </div>
-                                        ) : null}
-                                        {successMsg ? (
-                                            <div className="col-span-6 sm:col-span-6">
-                                                <p
-                                                    htmlFor="confirmNewPassword"
-                                                    className="block text-sm font-medium text-green-700"
-                                                >
-                                                    {successMsg}
-                                                </p>
-                                            </div>
-                                        ) : null}
+                                        <div
+                                            className={
+                                                msg
+                                                    ? 'col-span-6 sm:col-span-6'
+                                                    : 'col-span-6 sm:col-span-6 hidden'
+                                            }
+                                        >
+                                            <p
+                                                htmlFor="confirmNewPassword"
+                                                className={msgColor}
+                                            >
+                                                {msg}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
