@@ -18,10 +18,13 @@ const OptionsModal = () => {
             style={{
                 position: 'absolute',
                 top: positionY,
-                bottom: !positionY,
+                bottom: 'auto',
                 left: positionX,
-                right: !positionX,
+                right: 'auto',
                 backgroundColor: 'gray',
+                width: '100px',
+                fontSize: '0.8em',
+                zIndex: '99999',
             }}
         >
             <button type="button" onClick={handleClick}>
@@ -35,16 +38,16 @@ const OptionsModal = () => {
                 </li>
                 {true && (
                     <li>
-                    <button type="button" onClick={handleClick}>
-                    Edit
-                    </button>
+                        <button type="button" onClick={handleClick}>
+                            Edit
+                        </button>
                     </li>
                 )}
                 {true && (
                     <li>
-                    <button type="button" onClick={handleClick}>
-                    Delete
-                    </button>
+                        <button type="button" onClick={handleClick}>
+                            Delete
+                        </button>
                     </li>
                 )}
             </ul>

@@ -3,7 +3,7 @@ import Types from './optionsModal-types';
 export const InitialState = {
     positionX: 0,
     positionY: 0,
-    open: true,
+    open: false,
     id: 0,
 };
 

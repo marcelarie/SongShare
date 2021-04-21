@@ -16,8 +16,15 @@ function SongsCard() {
     const { open, id } = useSelector(({ optionsModal }) => optionsModal);
     const [cardId, setCardId] = useState(uuid());
     const openModalOnClick = event => {
-        const x = `${event.clientX}px`;
-        const y = `${event.clientY}px`;
+        const x =
+            window.innerWidth > event.clientX + 100
+                ? `${event.clientX}px`
+                : `${event.clientX - 100}px`;
+                // still WIP
+        const y =
+            window.innerHeight > event.clientY + 100
+                ? `${event.clientY}px`
+                : `${event.clientY}px`;
         dispatch(changeX(x));
         dispatch(changeY(y));
         if (cardId !== id) {
