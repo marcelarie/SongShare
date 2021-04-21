@@ -42,6 +42,7 @@ async function getUserInfoByUsername(req, res, next) {
         const response = await UserRepo.findOne({ username: username });
 
         if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
 
         res.status(200).send(response);
     } catch (error) {
@@ -57,9 +58,10 @@ async function patchUserInfoByUsername(req, res, next) {
         const response = await UserRepo.findByIdAndUpdate(uid, {
             ...body,
         });
-        const { data } = response;
+        const { data, error } = response;
 
-        if (response.error) return res.status(400).send(response);
+        if (error) return res.status(400).send(response);
+        if (!data) return res.status(404).send(response);
 
         res.status(200).send({
             data,

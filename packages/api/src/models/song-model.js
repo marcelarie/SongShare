@@ -35,7 +35,7 @@ const SongSchema = mongoose.Schema({
     bytes: {
         type: String,
         require: true,
-    }
+    },
 
     // video: { (?)
     //     type: String,
