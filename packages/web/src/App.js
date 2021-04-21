@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import ProtectedRoute from './routes/protectedRoutes';
 
 import * as ROUTES from './routes';
 import Home from './pages/Home';
-import SignUp from './pages/SignUp';
+import ChangePassword from './pages/ChangePassword';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
+import SignUp from './pages/SignUp';
 import Header from './components/Header';
+import SideNav from './components/SideNav';
+import UploadSong from './components/UploadSong';
 
-import { onAuthStateChanged } from './services/auth';
-import { syncSignIn, signOut } from './redux/auth/auth-actions';
 import UserInfo from './pages/UserInfo/UserInfo';
 import templates from './pages/UserInfo/UserProfileTemplates';
+import { signOut, syncSignIn } from './redux/auth/auth-actions';
+import { onAuthStateChanged } from './services/auth';
+import ProtectedRoute from './routes/protectedRoutes';
 
 function App() {
     const dispatch = useDispatch();
@@ -42,7 +44,7 @@ function App() {
         <div className="App__container">
             {auth.isAuthenticated && (
                 <>
-                    <Header /> <sideNav />
+                    <Header /> <SideNav />
                 </>
             )}
             <Switch>
@@ -51,6 +53,11 @@ function App() {
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
                 <Route path={ROUTES.HOME} component={Home} exact />
                 <ProtectedRoute
+                    path={ROUTES.MY_MUSIC}
+                    component={UploadSong}
+                    exact
+                />
+                <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}
                     exact
@@ -58,6 +65,11 @@ function App() {
                 <ProtectedRoute
                     path={ROUTES.HOME_USER_EDIT}
                     component={templates.CurrentUserProfileEdit}
+                    exact
+                />
+                <ProtectedRoute
+                    path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
+                    component={ChangePassword}
                     exact
                 />
             </Switch>

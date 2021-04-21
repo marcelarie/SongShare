@@ -13,6 +13,3 @@ function getAuthToken(headers = {}) {
 }
 
 export default getAuthToken;
-// module.exports = {
-//     getAuthToken: getAuthToken,
-// }

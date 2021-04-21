@@ -46,6 +46,14 @@ export function signOut() {
     return auth.signOut();
 }
 
+export function updatePassword(newPassword) {
+    if (!auth.currentUser) {
+        return null;
+    }
+
+    return auth.currentUser.updatePassword(newPassword);
+}
+
 export function getCurrentUserToken() {
     if (!auth.currentUser) {
         return null;
@@ -68,4 +76,12 @@ export function getCurrentUser() {
     }
 
     return auth.currentUser;
+}
+
+export function reauthenticateWithCredential() {
+    if (!auth.currentUser) {
+        return null;
+    }
+    let credential;
+    return auth.currentUser.reauthenticateWithCredential(credential);
 }

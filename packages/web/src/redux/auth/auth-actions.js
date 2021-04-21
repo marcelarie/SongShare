@@ -42,7 +42,6 @@ export function signUpWithEmailRequest(userInfo) {
             };
 
             const { data } = await api.signUp(authorization, body);
-            console.log(data);
             dispatch(signUpSuccess(data.data));
         } catch (error) {
             dispatch(signUpError(error.message));

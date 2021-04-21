@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { updateUserInfo } from '../../../redux/user/user-actions';
 
 function CurrentUserProfileEdit() {
@@ -117,6 +117,28 @@ function CurrentUserProfileEdit() {
                                                     setEmail(e.target.value)
                                                 }
                                             />
+                                        </div>
+                                        <div className="col-span-6 sm:col-span-6">
+                                            <label
+                                                htmlFor="password"
+                                                className="block text-sm font-medium text-gray-700"
+                                            >
+                                                Password
+                                            </label>
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md text-gray-300"
+                                                value="xxxxxx"
+                                                disabled
+                                            />
+                                            <Link
+                                                to={`/${userInfo.username}/edit/changePassword`}
+                                                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            >
+                                                Change password
+                                            </Link>
                                         </div>
 
                                         <div className="col-span-6 sm:col-span-3">
