@@ -1,16 +1,15 @@
-import UserRepo from '../repositories/index.js';
-import joi from 'joi';
+import { UserRepository as UserRepo } from '../../repositories/index.js';
+import { singUpValidation } from './validation.js';
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user;
+    const { body } = req;
 
     try {
         const response = await UserRepo.findOne({ _id: uid });
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(202).send(response);
-
-        const { body } = req;
 
         // WIP please leave it for now 👷
         singUpValidation(body);
@@ -21,36 +20,10 @@ async function signUp(req, res, next) {
             ...body,
         });
 
-        if (user.data) return res.status(202).send(user.data);
+        if (user.data) return res.status(202).send(user);
     } catch (error) {
         next(error);
     }
-}
-
-function singUpValidation(data) {
-    const schema = joi
-        .object({
-            _id: joi.string().alphanum().max(28),
-            username: joi.string().alphanum().min(3).max(30).required(),
-
-            email: joi
-                .string()
-                .email({
-                    minDomainSegments: 2,
-                    tlds: {
-                        allow: ['com', 'es', 'net'],
-                    },
-                })
-                .required(),
-
-            name: joi.string().required(),
-
-            lastname: joi.string().required(),
-        })
-        .unknown();
-
-    const result = schema.validate(data);
-    console.log(result);
 }
 
 async function signOut(req, res) {
@@ -69,6 +42,7 @@ async function getUserInfoByUsername(req, res, next) {
         const response = await UserRepo.findOne({ username: username });
 
         if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
 
         res.status(200).send(response);
     } catch (error) {
@@ -78,17 +52,19 @@ async function getUserInfoByUsername(req, res, next) {
 
 async function patchUserInfoByUsername(req, res, next) {
     try {
-        const { uid, email } = req.user;
+        const { uid } = req.user;
         const { body } = req;
 
         const response = await UserRepo.findByIdAndUpdate(uid, {
             ...body,
         });
+        const { data, error } = response;
 
-        if (response.error) return res.status(400).send(response);
+        if (error) return res.status(400).send(response);
+        if (!data) return res.status(404).send(response);
 
         res.status(200).send({
-            data: { uid, email, ...body },
+            data,
             error: null,
         });
     } catch (error) {
