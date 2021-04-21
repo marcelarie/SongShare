@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as ROUTES from './routes';
 import Home from './pages/Home';
+import ChangePassword from './pages/ChangePassword';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
@@ -64,6 +65,11 @@ function App() {
                 <ProtectedRoute
                     path={ROUTES.HOME_USER_EDIT}
                     component={templates.CurrentUserProfileEdit}
+                    exact
+                />
+                <ProtectedRoute
+                    path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
+                    component={ChangePassword}
                     exact
                 />
             </Switch>
