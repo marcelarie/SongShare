@@ -3,13 +3,19 @@ import Carousel from '../../components/Carousel';
 
 function LandingPage() {
     // requests to fullfill Carousels
-    // comment
 
     return (
-        <>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             <Carousel />
             <Carousel />
-        </>
+            <Carousel />
+            <Carousel />
+            <Carousel />
+            <Carousel />
+            <Carousel />
+            <Carousel />
+            <Carousel />
+        </div>
     );
 }
 

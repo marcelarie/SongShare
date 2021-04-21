@@ -59,5 +59,8 @@ module.exports = {
             },
         ],
         camelcase: 'off',
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+
+
     },
 };

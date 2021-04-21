@@ -6,6 +6,7 @@ import '../../styles/Welcome.css';
 import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 import * as ROUTES from '../../routes';
 // import { faGoogle } from '@material-ui/icons';
+import '../../styles/Welcome.css';
 
 function Welcome() {
     const dispatch = useDispatch();
