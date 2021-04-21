@@ -9,7 +9,6 @@ import * as ROUTES from '../../routes';
 import {
     resetAuthState,
     signInWithEmailRequest,
-    /* signUpWithGoogleRequest, */
 } from '../../redux/auth/auth-actions';
 
 import { authSelector } from '../../redux/auth/auth-selectors';
@@ -24,11 +23,6 @@ function Login() {
     useEffect(() => {
         dispatch(resetAuthState());
     }, [dispatch]);
-
-    /* function handleLoginWithGoogle(e) {
-        e.preventDefault();
-        dispatch(signUpWithGoogleRequest());
-    } */
 
     function handleSubmit(e) {
         e.preventDefault();

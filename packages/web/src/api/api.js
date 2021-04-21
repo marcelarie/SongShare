@@ -35,11 +35,21 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function createTrack({ body, headers = {} }) {
+        return request({
+            url: '/song',
+            requestMethod: 'POST',
+            body,
+            headers,
+        });
+    }
+
     return {
         signUp,
         signOut,
         login,
         useApi,
+        createTrack,
     };
 }
 

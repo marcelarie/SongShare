@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import '../../styles/Welcome.css';
 
 import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
-
 import * as ROUTES from '../../routes';
+// import { faGoogle } from '@material-ui/icons';
 
 function Welcome() {
     const dispatch = useDispatch();

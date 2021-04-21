@@ -1,6 +1,6 @@
 // const { userRouter } = require("./user-routes")
 
-export { default } from './user-routes.js';
-// module.exports = {
-//     userRouter: userRouter,
-// }
+import userRouter from './user-routes.js';
+import songRouter from './song-router.js';
+
+export { userRouter, songRouter };

@@ -8,6 +8,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import '../../styles/Header.css';
 
 import { signOut } from '../../redux/auth/auth-actions';
+import { MY_MUSIC } from '../../routes';
 
 /* This example requires Tailwind CSS v2.0+ */
 
@@ -34,7 +35,7 @@ export default function Header() {
     const paths = [
         { name: 'Home', path: '/' },
         { name: 'Search', path: '/search' },
-        { name: 'My music', path: '/music' },
+        { name: 'My music', path: MY_MUSIC },
     ];
 
     const [openMainMenu, setOpenMainMenu] = useState(false);
