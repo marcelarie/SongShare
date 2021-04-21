@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 
 const SongSchema = mongoose.Schema({
-    // _id: String,
+    asset_id: {
+        type: String,
+        require: true,
+    },
     name: {
         type: String,
         required: true,
@@ -33,6 +36,10 @@ const SongSchema = mongoose.Schema({
         require: true,
     },
     bytes: {
+        type: String,
+        require: true,
+    },
+    format: {
         type: String,
         require: true,
     },

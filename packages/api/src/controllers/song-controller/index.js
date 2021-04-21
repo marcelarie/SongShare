@@ -41,7 +41,6 @@ async function postSong(req, res, next) {
     const { body } = req;
     try {
         const response = await SongRepo.findOne({ name: body.name });
-
         if (response.error) return res.status(400).send(response);
         if (response.data)
             return res.status(409).send({
@@ -52,6 +51,8 @@ async function postSong(req, res, next) {
         //joi validation
 
         const song = await SongRepo.create(body);
+
+        if (song.error) return res.status(400).send(song);
 
         if (song.data) return res.status(202).send(song);
     } catch (error) {

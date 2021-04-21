@@ -32,6 +32,7 @@ export const uploadImageSuccess = imageUrl => ({
 });
 
 export function uploadSong({ track, title }) {
+    const name = title;
     return async function uploadThunk(dispatch) {
         dispatch(uploadSongRequest());
 
@@ -55,7 +56,7 @@ export function uploadSong({ track, title }) {
 
             const songRes = await api.createTrack({
                 body: {
-                    title,
+                    name,
                     url,
                     duration,
                     bytes,
