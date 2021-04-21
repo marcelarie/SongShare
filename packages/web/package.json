@@ -98,6 +98,7 @@
         "web-vitals": "^0.2.4"
     },
     "devDependencies": {
+        "@headlessui/react": "^1.0.0",
         "@heroicons/react": "^1.0.1",
         "@iconify-icons/heroicons-outline": "^1.1.2",
         "@iconify/react": "^1.1.4",

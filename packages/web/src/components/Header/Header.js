@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 
 import '../../styles/Header.css';
 

@@ -8,4 +8,5 @@ export {
     getCurrentUserToken,
     getCurrentUserEmail,
     getCurrentUser,
+    updatePassword,
 } from './auth';

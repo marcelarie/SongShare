@@ -6,6 +6,7 @@ import ProtectedRoute from './routes/protectedRoutes';
 
 import * as ROUTES from './routes';
 import Home from './pages/Home';
+import ChangePassword from './pages/ChangePassword';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
@@ -58,6 +59,11 @@ function App() {
                 <ProtectedRoute
                     path={ROUTES.HOME_USER_EDIT}
                     component={templates.CurrentUserProfileEdit}
+                    exact
+                />
+                <ProtectedRoute
+                    path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
+                    component={ChangePassword}
                     exact
                 />
             </Switch>
