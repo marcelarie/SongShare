@@ -69,7 +69,7 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function editSong (headers, body) {
+    function editSong(headers, body) {
         return request({
             url: `/song/edit`,
             requestMethod: 'PATCH',
@@ -87,7 +87,7 @@ function makeApi(request = makeRequest()) {
         getAllSongs,
         getSongByID,
         editSong,
-        addLike
+        addLike,
     };
 }
 
