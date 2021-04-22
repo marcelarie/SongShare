@@ -1,4 +1,4 @@
-import { SongRepository as SongRepo } from '../../repositories/index.js';
+import { SongRepository as SongRepo } from '../repositories/index.js';
 
 async function getAllSongs(req, res, next) {
     try {

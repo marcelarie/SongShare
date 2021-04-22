@@ -20,7 +20,7 @@ const SongRepository = {
     },
 
     findOneAndDelete: filter => {
-        return normalizeDBQuery(Song.findOneAndDelete(filter))
+        return normalizeDBQuery(Song.findOneAndDelete(filter));
     },
 };
 

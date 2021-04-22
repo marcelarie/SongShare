@@ -1,5 +1,4 @@
-import { UserRepository as UserRepo } from '../../repositories/index.js';
-import { singUpValidation } from './validation.js';
+import { UserRepository as UserRepo } from '../repositories/index.js';
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user;
@@ -10,9 +9,6 @@ async function signUp(req, res, next) {
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(202).send(response);
-
-        // WIP please leave it for now 👷
-        singUpValidation(body);
 
         const user = await UserRepo.create({
             _id: uid,
@@ -86,4 +82,10 @@ async function deleteUser(req, res, next) {
     }
 }
 
-export { signUp, signOut, getUserInfoByUsername, patchUserInfoByUsername, deleteUser };
+export {
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername,
+    deleteUser,
+};

@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
-import { authMiddleware } from '../middlewares/index.js';
+import { authMiddleware } from '../../middlewares/index.js';
+// import joi from '../../middlewares/joi-middleware.js';
+// import schema from './schemas.js';
 
 import {
     getAllSongs,
@@ -8,8 +10,8 @@ import {
     getSongsByParams,
     postSong,
     patchSongByName,
-    deleteSong
-} from '../controllers/song-controller/index.js';
+    deleteSong,
+} from '../../controllers/song-controller.js';
 
 const songRouter = Router();
 
