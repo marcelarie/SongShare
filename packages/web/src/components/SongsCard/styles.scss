@@ -1,0 +1,14 @@
+.songsCard {
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    text-align: center;
+    &__picture {
+        width: 90%;
+        margin: auto;
+        border-radius: 8px;
+        img {
+            width: 100%;
+        }
+    }
+}

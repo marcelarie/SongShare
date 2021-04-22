@@ -59,5 +59,10 @@ module.exports = {
             },
         ],
         camelcase: 'off',
+        'react/prop-types': 0,
+        'import/no-extraneous-dependencies': [
+            'error',
+            { devDependencies: true },
+        ],
     },
 };
