@@ -5,15 +5,7 @@ function LandingPage() {
     // requests to fullfill Carousels
 
     return (
-        <div style={{ display: 'flex' }}>
-            <Carousel />
-            <Carousel />
-            <Carousel />
-            <Carousel />
-            <Carousel />
-            <Carousel />
-            <Carousel />
-            <Carousel />
+        <div>
             <Carousel />
         </div>
     );

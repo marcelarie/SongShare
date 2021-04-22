@@ -1,4 +1,4 @@
-import Types from './optionsModal-types';
+import Types from './quickMenu-types';
 
 export const changeX = payload => ({
     type: Types.CHANGE_X,

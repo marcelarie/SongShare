@@ -1,32 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../../redux/optionsModal/optionsModal-actions';
-// import './styles.scss';
+import { openModal } from '../../../redux/quickMenu/quickMenu-actions';
+import QuickMenuStyle from './styles';
 
-const OptionsModal = () => {
+const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY } = useSelector(
-        ({ optionsModal }) => optionsModal,
-    );
+    const { positionX, positionY } = useSelector(({ quickMenu }) => quickMenu);
 
+    //    closeModal(?)
     const handleClick = () => {
         dispatch(openModal(false));
     };
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                top: positionY,
-                bottom: 'auto',
-                left: positionX,
-                right: 'auto',
-                backgroundColor: 'gray',
-                width: '100px',
-                fontSize: '0.8em',
-                zIndex: '99999',
-            }}
-        >
+        <QuickMenuStyle x={positionX} y={positionY}>
             <button type="button" onClick={handleClick}>
                 Close
             </button>
@@ -34,6 +21,11 @@ const OptionsModal = () => {
                 <li>
                     <button type="button" onClick={handleClick}>
                         Add to playlist
+                    </button>
+                </li>
+                <li>
+                    <button type="button" onClick={handleClick}>
+                        Add to queue
                     </button>
                 </li>
                 {true && (
@@ -51,8 +43,8 @@ const OptionsModal = () => {
                     </li>
                 )}
             </ul>
-        </div>
+        </QuickMenuStyle>
     );
 };
 
-export default OptionsModal;
+export default QuickMenu;

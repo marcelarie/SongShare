@@ -1,4 +1,4 @@
-import Types from './optionsModal-types';
+import Types from './quickMenu-types';
 
 export const InitialState = {
     positionX: 0,
