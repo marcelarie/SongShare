@@ -59,5 +59,6 @@ module.exports = {
             },
         ],
         camelcase: 'off',
+        'react/prop-types': 0,
     },
 };

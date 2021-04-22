@@ -2,23 +2,6 @@ import * as SongsTypes from './songs-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
 
-export function getAllSongs() {
-    return async function getAllSongsThunk(dispatch) {
-        dispatch(getAllSongsRequest());
-        try {
-            const token = await auth.getCurrentUserToken();
-
-            const response = api.getSongs({
-                Authorization: `Bearer ${token}`,
-            });
-
-            dispatch(getAllSongsSucces(response));
-        } catch (error) {
-            dispatch(getAllSongsError(error));
-        }
-    };
-}
-
 export const getAllSongsRequest = () => ({
     type: SongsTypes.SONGS_REQUEST,
 });
@@ -32,3 +15,20 @@ export const getAllSongsError = error => ({
     type: SongsTypes.SONGS_ERROR,
     payload: error,
 });
+
+export function getAllSongs() {
+    return async function getAllSongsThunk(dispatch) {
+        dispatch(getAllSongsRequest());
+        try {
+            const token = await auth.getCurrentUserToken();
+
+            const response = await api.getSongs({
+                Authorization: `Bearer ${token}`,
+            });
+
+            dispatch(getAllSongsSucces(response.data.data));
+        } catch (error) {
+            dispatch(getAllSongsError(error));
+        }
+    };
+}

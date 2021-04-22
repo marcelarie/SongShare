@@ -106,7 +106,7 @@ export function signOut() {
         }
 
         auth.signOut();
-
+        // aqui deberiamos borrar todo el store
         return dispatch(signOutSuccess());
     };
 }

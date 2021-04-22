@@ -2,15 +2,15 @@ import * as SongsTypes from './songs-types';
 
 export const SongsIntialState = {
     getSongsLoading: false,
-    getSongsSucces: false,
     getSongsError: false,
 
-    allSongs: [],
+    allSongs: {},
     popularSongs: [],
     genderSongs: [],
+    likedSongs: [],
 };
 
-const SongsReducer = (state = SongsIntialState, action) => {
+const songsReducer = (state = SongsIntialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
@@ -39,4 +39,4 @@ const SongsReducer = (state = SongsIntialState, action) => {
     }
 };
 
-export default SongsReducer;
+export default songsReducer;

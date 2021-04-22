@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel';
+import { getAllSongs } from '../../redux/songs/songs-actions';
 
 function LandingPage() {
-    // requests to fullfill Carousels
-    // comment
+    const dispatch = useDispatch();
 
+    const allSongs = useSelector(store => store.songs.allSongs);
+    useEffect(() => {
+        dispatch(getAllSongs());
+    }, [dispatch]);
     return (
         <>
-            <Carousel />
-            <Carousel />
+            {allSongs ? (
+                <Carousel key="eyyy" songsList={allSongs} />
+            ) : (
+                <p>loading...</p>
+            )}
         </>
     );
 }
