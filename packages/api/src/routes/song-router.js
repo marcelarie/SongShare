@@ -8,6 +8,7 @@ import {
     getSongsByParams,
     postSong,
     patchSongByName,
+    deleteSong
 } from '../controllers/song-controller/index.js';
 
 const songRouter = Router();
@@ -20,6 +21,7 @@ songRouter.get('/songs/all', getAllSongs);
 songRouter.post('/songs/all-with', getSongsByParams);
 songRouter.post('/song', postSong);
 songRouter.patch('/song/:name', patchSongByName);
+songRouter.delete('/song/:name', deleteSong);
 
 // (?) get song with given param and a optional value to be more specific
 // songRouter.post('/song/all-with/:param/:value?', getSongsByParams);

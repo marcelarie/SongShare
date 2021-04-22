@@ -81,10 +81,25 @@ async function patchSongByName(req, res, next) {
     }
 }
 
+async function deleteSong(req, res, next) {
+    try {
+        const { name } = req.params;
+
+        const response = await SongRepo.findOneAndDelete({ name });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     getAllSongs,
     getSongByName,
     getSongsByParams,
     postSong,
     patchSongByName,
+    deleteSong,
 };

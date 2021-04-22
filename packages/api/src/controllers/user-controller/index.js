@@ -72,4 +72,18 @@ async function patchUserInfoByUsername(req, res, next) {
     }
 }
 
-export { signUp, signOut, getUserInfoByUsername, patchUserInfoByUsername };
+async function deleteUser(req, res, next) {
+    try {
+        const { uid } = req.user;
+
+        const response = await UserRepo.findByIdAndDelete({ _id: uid });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export { signUp, signOut, getUserInfoByUsername, patchUserInfoByUsername, deleteUser };

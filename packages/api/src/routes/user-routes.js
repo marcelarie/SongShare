@@ -6,6 +6,7 @@ import {
     signOut,
     getUserInfoByUsername,
     patchUserInfoByUsername,
+    deleteUser,
 } from '../controllers/user-controller/index.js';
 
 const userRouter = Router();
@@ -16,5 +17,6 @@ userRouter.post('/sign-out', signOut);
 
 userRouter.get('/user/:username', getUserInfoByUsername);
 userRouter.patch('/user/edit', patchUserInfoByUsername);
+userRouter.delete('/user/delete', deleteUser);
 
 export default userRouter;

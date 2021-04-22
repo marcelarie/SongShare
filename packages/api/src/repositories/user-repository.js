@@ -14,6 +14,10 @@ const UserRepository = {
     findByIdAndUpdate: (filter, body, option = { new: true }) => {
         return normalizeDBQuery(User.findByIdAndUpdate(filter, body, option));
     },
+
+    findByIdAndDelete: filter => {
+        return normalizeDBQuery(User.findByIdAndDelete(filter));
+    },
 };
 
 export default UserRepository;
