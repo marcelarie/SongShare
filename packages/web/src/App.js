@@ -74,7 +74,11 @@ function App() {
                     exact
                 />
             </Switch>
-            <SongsPlayer />
+            {auth.isAuthenticated && (
+                <>
+                    <SongsPlayer />
+                </>
+            )}
         </div>
     );
 }

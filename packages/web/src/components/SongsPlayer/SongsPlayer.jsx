@@ -1,15 +1,17 @@
 import React from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import { useSelector } from 'react-redux';
 
 const SongsPlayer = () => {
+    const listPlay = useSelector(store => store.listPlay);
     return (
         <>
             <AudioPlayer
                 autoPlay
                 showSkipControls
-                src="https://res.cloudinary.com/apollofymusicproject/video/upload/v1619007676/uploadedSongs/KOAN%20Sound%20-%20Chronos.mp3.mp3"
-                onPlay={e => console.log('onPlay')}
+                src={listPlay.currentlyPlaying.url}
+                // onPlay={e => console.log('onPlay')}
                 // onPause={action('onPause')}
                 // onPlay={action('onPlay')}
                 // onClickPrevious={action('onClickPrevious')}

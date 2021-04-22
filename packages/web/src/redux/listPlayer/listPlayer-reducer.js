@@ -2,12 +2,18 @@ import * as listPlayerTypes from './listPlayer-types';
 
 export const listPlayerIntialState = {
     playlist: [],
+    currentlyPlaying: '',
 };
 
 const listPlayerReducer = (state = listPlayerIntialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+        case listPlayerTypes.PLAY:
+            return {
+                ...state,
+                currentlyPlaying: payload,
+            };
         case listPlayerTypes.ADD_SONG_TO_QUEUE:
             return {
                 ...state,
