@@ -44,12 +44,50 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getAllSongs({ headers = {} }) {
+        return request({
+            url: '/songs/all',
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getSongByID({ headers = {} }, songID) {
+        return request({
+            url: `/songs/${songID}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function addLike(headers, body) {
+        return request({
+            url: `/song/likes`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
+    function editSong (headers, body) {
+        return request({
+            url: `/song/edit`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     return {
         signUp,
         signOut,
         login,
         useApi,
         createTrack,
+        getAllSongs,
+        getSongByID,
+        editSong,
+        addLike
     };
 }
 
