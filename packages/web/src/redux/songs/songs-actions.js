@@ -82,12 +82,12 @@ export function getAllSongs() {
             const res = await api.getSongs({
                 Authorization: `Bearer ${token}`,
             });
-            /* console.log(res);
-            if (!res.isSuccessful) {
+             console.log(res);
+            /* if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
-            const normalizedSongs = normalizeSongs(res.data);
+            const normalizedSongs = normalizeSongs(res.data.data);
             console.log(normalizedSongs);
             dispatch(
                 getAllSongsSuccess({
@@ -118,10 +118,10 @@ export function getSongByID(songID) {
                 return dispatch(getSongError(res.errorMessage));
             }
 
-            dispatch(getSongSuccess(res.data));
-            dispatch(openInfoModal(res.data));
+            // dispatch(openInfoModal(res.data));
+            return dispatch(getSongSuccess(res.data));
         } catch (error) {
-            dispatch(getSongError(error));
+            return dispatch(getSongError(error));
         }
     };
 }
@@ -145,9 +145,9 @@ export function addLikeToSong(songID) {
                 return dispatch(songUpdatingError(res.errorMessage));
             }
 
-            dispatch(addLikeToSongSuccess(songID, userID));
+            return dispatch(addLikeToSongSuccess(songID, userID));
         } catch (error) {
-            dispatch(songUpdatingError(error.message));
+            return dispatch(songUpdatingError(error.message));
         }
     }
 }

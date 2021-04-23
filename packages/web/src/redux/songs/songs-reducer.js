@@ -187,13 +187,13 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.OPEN_INFO_MODAL: {
             const songID = action.payload.songID;
-            const song = state.byID[songID];
+            // const song = state.byID[songID];
 
             return {
                 ...state,
                 modal: {
                     modal: true,
-                    song: song,
+                    song: songID,
                 },
             };
         }

@@ -9,20 +9,18 @@ import {
 
 import SongsCard from '../SongsCard';
 
-import { getAllSongs, openInfoModal } from '../../redux/songs/songs-actions';
+import { getAllSongs } from '../../redux/songs/songs-actions';
 
 function Carousel({ songsList }) {
-    const songs = useSelector(songsSelector);
+    const songsIDs = useSelector(songsSelector);
     const { songsLoading, songsLoadingError } = useSelector(songsStateSelector);
+    console.log(songsIDs)
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
 
-    const openSongInfo = () => {
-        dispatch(openInfoModal(1));
-    };
     return (
         
         <section className="container">
@@ -33,7 +31,7 @@ function Carousel({ songsList }) {
             >
                 {songsLoading && (
                     <div className="col col-lg-6 mt-4 mb-4 mt-sm-5 mb-sm-5">
-                        <p>Cargando recetas...</p>
+                        <p>Cargando canciones...</p>
                     </div>
                 )}
                 {songsLoadingError && (
@@ -44,32 +42,17 @@ function Carousel({ songsList }) {
                 )}
                 {!songsLoading && !songsLoadingError && (
                     <div className="col col-lg-10">
-                        {songs.length > 0 ? (
+                        {songsIDs.length > 0 ? (
                             <div className="row row-cols-1">
-            {songsList.map(song => {
-                return <SongsCard newsong={song} key={song.id} />;
+            {songsIDs.map(songID => {
+                return <SongsCard newsong={songsList[songID]} key={songID} />;
             })}
             {/* return <p>illo</p>; */}
                             </div>
                         ) : null}
                     </div>
                 )}
-                <button type="button" onClick={() => openSongInfo()}>
-                    <div className="col col-lg-10">
-                        <div className="RecipeCard__ImgWrapper">
-                            <img src="" alt="" className="RecipeCard__Img" />
-                        </div>
-                        <div className="RecipeCard__Content">
-                            <h3 className="RecipeCard__Title">name</h3>
-                            <div className="RecipeCard__Info">
-                                <p>gender</p>
-                                <p> author</p>
-                                <p>likes</p>
-                                <p>uploadBy</p>
-                            </div>
-                        </div>
-                    </div>
-                </button>
+                
             </div>
         </section>
     );

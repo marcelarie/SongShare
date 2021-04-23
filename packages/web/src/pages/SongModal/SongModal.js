@@ -14,7 +14,8 @@ function SongModal() {
     const dispatch = useDispatch();
     console.log(infoModal);
     return (
-        <Transition.Root show={infoModal.modal} as={Fragment}>
+infoModal ?
+        (<Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
                 as="div"
                 static
@@ -157,7 +158,7 @@ function SongModal() {
                     </Transition.Child>
                 </div>
             </Dialog>
-        </Transition.Root>
+        </Transition.Root>) : null
     );
     {
         /* <div>

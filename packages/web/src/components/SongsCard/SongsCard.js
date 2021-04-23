@@ -5,16 +5,22 @@ import useQuickMenu from '../../custom-hooks/useQuickMenu';
 
 import QuickMenu from './QuickMenu';
 import { play } from '../../redux/listPlayer/listPlayer-actions';
+import { openInfoModal } from '../../redux/songs/songs-actions';
 
 function SongsCard({ newsong }) {
+    console.log(newsong)
     const [open, id, cardId, openMenu] = useQuickMenu();
     const dispatch = useDispatch();
 
     function reproduceSong() {
         dispatch(play(newsong));
     }
-
+    const openSongInfo = (songID) => {
+        console.log(songID)
+        dispatch(openInfoModal(songID));
+    };
     return (
+        <button type="button" onClick={() => openSongInfo(newsong._id)}>
         <div className="songsCard">
             <input
                 className="songsCard__3pointButton"
@@ -40,6 +46,7 @@ function SongsCard({ newsong }) {
                 play
             </button>
         </div>
+        </button>
     );
 }
 
