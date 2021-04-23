@@ -53,7 +53,7 @@ function App() {
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
                 {/* <Route path={ROUTES.SONG_INFO_MODAL} render={() => { <><Home  /> < SongModal /></>}} />  */}
-                <Route path={ROUTES.HOME} component={Home}  />
+                <Route path={ROUTES.HOME} component={Home} />
                 <ProtectedRoute
                     path={ROUTES.MY_MUSIC}
                     component={UploadSong}
