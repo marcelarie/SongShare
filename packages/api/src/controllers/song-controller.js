@@ -26,7 +26,7 @@ async function getSongByName(req, res, next) {
     }
 }
 
-async function getSongById(req, res, next) {
+async function getSong(req, res, next) {
     const { id } = req.params;
 
     try {
@@ -40,7 +40,7 @@ async function getSongById(req, res, next) {
     }
 }
 
-async function getSongByIdWithLikes(req, res, next) {
+async function getSongWithLikes(req, res, next) {
     const { id } = req.params;
     const likes = 'likes';
 
@@ -115,6 +115,26 @@ async function postSong(req, res, next) {
     }
 }
 
+async function patchSong(req, res, next) {
+    try {
+        const { body } = req;
+        const { id } = req.params;
+
+        const response = await SongRepo.findByIdAndUpdate({ _id: id }, body);
+        const { data } = response;
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+
+        res.status(200).send({
+            data,
+            error: null,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function patchSongByName(req, res, next) {
     try {
         // const { uid, email } = req.user;
@@ -138,6 +158,20 @@ async function patchSongByName(req, res, next) {
 
 async function deleteSong(req, res, next) {
     try {
+        const { id } = req.params;
+
+        const response = await SongRepo.findByIdAndDelete({ _id: id });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteSongByName(req, res, next) {
+    try {
         const { name } = req.params;
 
         const response = await SongRepo.findOneAndDelete({ name });
@@ -153,11 +187,13 @@ async function deleteSong(req, res, next) {
 export {
     getAllSongs,
     getSongByName,
-    getSongById,
-    getSongByIdWithLikes,
+    getSong,
+    getSongWithLikes,
     getSongsByParams,
     postSong,
+    patchSong,
     patchSongByName,
     deleteSong,
+    deleteSongByName,
     likeSong,
 };
