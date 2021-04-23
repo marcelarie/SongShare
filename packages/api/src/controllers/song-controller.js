@@ -12,20 +12,6 @@ async function getAllSongs(req, res, next) {
     }
 }
 
-async function getSongByName(req, res, next) {
-    const { name } = req.params;
-
-    try {
-        const response = await SongRepo.findOne({ name });
-
-        if (response.error) return res.status(400).send(response);
-        if (!response.data) return res.status(404).send(response);
-        if (response.data) return res.status(200).send(response);
-    } catch (error) {
-        next(error);
-    }
-}
-
 async function getSong(req, res, next) {
     const { id } = req.params;
 
@@ -40,12 +26,41 @@ async function getSong(req, res, next) {
     }
 }
 
+async function getSongByName(req, res, next) {
+    const { name } = req.params;
+
+    try {
+        const response = await SongRepo.findOne({ name });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function getSongWithLikes(req, res, next) {
     const { id } = req.params;
-    const likes = 'likes';
+    const likes = 'userLikes';
 
     try {
         const response = await SongRepo.findOneAndPouplate({ _id: id }, likes);
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getSongByNameWithLikes(req, res, next) {
+    const { name } = req.params;
+    const likes = 'userLikes';
+
+    try {
+        const response = await SongRepo.findOneAndPouplate({ name }, likes);
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -189,6 +204,7 @@ export {
     getSongByName,
     getSong,
     getSongWithLikes,
+getSongByNameWithLikes,
     getSongsByParams,
     postSong,
     patchSong,

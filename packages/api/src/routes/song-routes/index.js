@@ -1,6 +1,5 @@
 import { Router } from 'express';
 
-import { authMiddleware } from '../../middlewares/index.js';
 // import joi from '../../middlewares/joi-middleware.js';
 // import schema from './schemas.js';
 
@@ -9,6 +8,7 @@ import {
     getSongByName,
     getSong,
     getSongWithLikes,
+    getSongByNameWithLikes,
     getSongsByParams,
     postSong,
     patchSongByName,
@@ -19,8 +19,6 @@ import {
 } from '../../controllers/song-controller.js';
 
 const songRouter = Router();
-
-songRouter.use(authMiddleware);
 
 // By Id:
 songRouter.get('/songs/all', getAllSongs);
@@ -36,10 +34,11 @@ songRouter.patch('/song/:id', patchSong);
 
 // By Name:
 songRouter.get('/song/name/:name', getSongByName);
+songRouter.get('/song/:name/likes', getSongByNameWithLikes);
+
 songRouter.patch('/song/name/:name', patchSongByName);
 songRouter.delete('/song/name/:name', deleteSongByName);
 // songRouter.post('/song/:name/like', likeSongByName); 👷
-// songRouter.get('/song/:name/likes', getSongByNameWithLikes); 👷
 
 // (?) get song with given param and a optional value to be more specific
 // songRouter.post('/song/all-with/:param/:value?', getSongsByParams);
