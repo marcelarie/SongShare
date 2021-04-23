@@ -12,6 +12,7 @@ function UseQuickMenu() {
     const [cardId] = useState(uuid());
     const dispatch = useDispatch();
     // will be the song card id ↴
+
     const { id, open } = useSelector(({ quickMenu }) => quickMenu);
 
     const openMenu = event => {
