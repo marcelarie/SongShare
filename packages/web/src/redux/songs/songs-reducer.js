@@ -34,6 +34,11 @@ const SongsInitialState = {
     byID: {},
     ids: [],
 
+    infoModal: {
+        modal: false,
+        songID: null,
+    },
+
     // allGender: [], // array con todos los generos de las canciones,
 };
 
@@ -141,7 +146,27 @@ function SongsReducer(state = SongsInitialState, action) {
                 },
             };
         }
+        case SongsTypes.OPEN_INFO_MODAL: {
+            const songID = action.payload.songID;
+            const song = state.byID[songID];
 
+            return {
+                ...state,
+                modal: {
+                    modal: true,
+                    song: song,
+                },
+            };
+        }
+        case SongsTypes.CLOSE_INFO_MODAL: {
+            return {
+                ...state,
+                modal: {
+                    modal: false,
+                    song: null,
+                },
+            };
+        }
         case SongsTypes.EDIT_SONG: {
             const songID = action.payload.songID;
             const song = state.byID[songID];

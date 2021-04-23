@@ -52,6 +52,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'react/forbid-prop-types': 'off',
         'import/no-named-as-default': 0,
+        'react/prop-types': 'off',
         'jsx-a11y/label-has-associated-control': [
             'error',
             {

@@ -8,3 +8,5 @@ export const ADD_LIKE_TO_SONG = '.ADD_LIKE_TO_SONG';
 export const SONG_UPDATING = 'SONG_UPDATING';
 export const SONG_UPDATING_ERROR = 'SONG_UPDATING_ERROR';
 export const EDIT_SONG = 'EDIT_SONG';
+export const OPEN_INFO_MODAL = 'OPEN_INFO_MODAL';
+export const CLOSE_INFO_MODAL = 'CLOSE_INFO_MODAL';

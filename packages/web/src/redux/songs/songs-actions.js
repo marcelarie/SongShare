@@ -58,17 +58,33 @@ export const addLikeToSongSuccess = (songID, userID) => ({
     },
 });
 
+export const openInfoModal = (songID) => ({
+    type: SongsTypes.OPEN_INFO_MODAL,
+    payload: {
+        songID: songID,
+        modal: true,
+    },
+});
+
+export const closeInfoModal = () => ({
+    type: SongsTypes.CLOSE_INFO_MODAL,
+    payload: {
+        songID: null,
+        modal: false,
+    },
+});
+
 export function getSongs() {
     return async function getSongsThunk(dispatch) {
         dispatch(getSongsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
-
+            console.log(token)
             const res = await api.getAllSongs({
                 Authorization: `Bearer ${token}`,
             });
-
+            console.log(res)
             if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             }
@@ -104,6 +120,7 @@ export function getSongByID(songID) {
             }
 
             dispatch(getSongSuccess(res.data));
+            dispatch(openInfoModal(res.data));
         } catch (error) {
             dispatch(getSongError(error));
         }

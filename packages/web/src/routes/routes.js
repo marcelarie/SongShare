@@ -6,3 +6,4 @@ export const SIGN_UP = '/sign-up';
 export const LOGIN = '/login';
 export const RESET_PASSWORD = '/reset-password';
 export const MY_MUSIC = '/my-music';
+export const SONG_INFO_MODAL = '/songInfo';
