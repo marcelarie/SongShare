@@ -1,18 +1,49 @@
 import * as AuthTypes from './auth-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
-
-export const resetStoreAndLogOut = () => ({
-    type: AuthTypes.RESET_STORE_AND_LOG_OUT,
-});
+import { resetStoreAndLogOut } from '../root-reducer';
 
 export const signUpRequest = () => ({
     type: AuthTypes.SIGN_UP_REQUEST,
 });
 
+export const signUpSuccess = user => ({
+    type: AuthTypes.SIGN_UP_SUCCESS,
+    payload: user,
+});
+
 export const signUpError = message => ({
     type: AuthTypes.SIGN_UP_ERROR,
     payload: message,
+});
+
+export const signOutRequest = () => ({
+    type: AuthTypes.SIGN_OUT_REQUEST,
+});
+
+export const signOutSuccess = () => ({
+    type: AuthTypes.SIGN_OUT_SUCCESS,
+});
+
+export const signOutError = message => ({
+    type: AuthTypes.SIGN_OUT_ERROR,
+    payload: message,
+});
+
+export const sendPasswordResetEmailRequest = () => ({
+    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
+});
+
+export const sendPasswordResetEmailSuccess = () => ({
+    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_SUCCESS,
+});
+
+export const sendPasswordResetEmailError = () => ({
+    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_ERROR,
+});
+
+export const resetAuthState = () => ({
+    type: AuthTypes.RESET_AUTH_STATE,
 });
 
 export function signUpWithGoogleRequest() {
@@ -78,15 +109,6 @@ export function syncSignIn() {
     };
 }
 
-export const signUpSuccess = user => ({
-    type: AuthTypes.SIGN_UP_SUCCESS,
-    payload: user,
-});
-
-export const signOutRequest = () => ({
-    type: AuthTypes.SIGN_OUT_REQUEST,
-});
-
 export function signOut() {
     return async function signOutThunk(dispatch) {
         dispatch(signOutRequest());
@@ -106,19 +128,10 @@ export function signOut() {
         }
 
         auth.signOut();
-        // aqui deberiamos borrar todo el store
+        dispatch(resetStoreAndLogOut());
         return dispatch(signOutSuccess());
     };
 }
-
-export const signOutError = message => ({
-    type: AuthTypes.SIGN_OUT_ERROR,
-    payload: message,
-});
-
-export const signOutSuccess = () => ({
-    type: AuthTypes.SIGN_OUT_SUCCESS,
-});
 
 export function sendPasswordResetEmail(email) {
     return async function sendPasswordResetEmailRequestThunk(dispatch) {
@@ -132,19 +145,3 @@ export function sendPasswordResetEmail(email) {
         return dispatch(sendPasswordResetEmailSuccess());
     };
 }
-
-export const sendPasswordResetEmailRequest = () => ({
-    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
-});
-
-export const sendPasswordResetEmailError = () => ({
-    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_ERROR,
-});
-
-export const sendPasswordResetEmailSuccess = () => ({
-    type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_SUCCESS,
-});
-
-export const resetAuthState = () => ({
-    type: AuthTypes.RESET_AUTH_STATE,
-});
