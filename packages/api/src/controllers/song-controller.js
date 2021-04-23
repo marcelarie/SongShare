@@ -41,11 +41,15 @@ async function getSongByName(req, res, next) {
 }
 
 async function getSongWithLikes(req, res, next) {
+    // const { uid } = req.user;
     const { id } = req.params;
-    const likes = 'userLikes';
+    const likes = 'likes';
 
     try {
         const response = await SongRepo.findOneAndPouplate({ _id: id }, likes);
+        const length = Object.keys(response.data.likes).length; // ✅
+        response.data.likes.likesCounter = length;
+        // const myLike = response.data.likes.uid; // ❌
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -56,11 +60,15 @@ async function getSongWithLikes(req, res, next) {
 }
 
 async function getSongByNameWithLikes(req, res, next) {
+    // const { uid } = req.user;
     const { name } = req.params;
-    const likes = 'userLikes';
+    const likes = 'likes';
 
     try {
         const response = await SongRepo.findOneAndPouplate({ name }, likes);
+        const length = Object.keys(response.data.likes).length; // ✅
+        response.data.likes.likesCounter = length;
+        // const myLike = response.data.likes.uid; // ❌
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -96,7 +104,7 @@ async function likeSong(req, res, next) {
 
         const songResponse = await SongRepo.findByIdAndUpdate(
             { _id: id },
-            { $push: { userLikes: uid } },
+            { $push: { likes: uid } },
         );
         if (songResponse.error) return res.status(400).send(songResponse);
         if (!userResponse.data) return res.status(404).send(userResponse);
@@ -204,7 +212,7 @@ export {
     getSongByName,
     getSong,
     getSongWithLikes,
-getSongByNameWithLikes,
+    getSongByNameWithLikes,
     getSongsByParams,
     postSong,
     patchSong,
