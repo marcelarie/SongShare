@@ -1,21 +1,19 @@
-/* eslint-disable consistent-return */
-
 import * as SongsTypes from './songs-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
 
 import { normalizeSongs } from '../../schema/songs-schema';
 
-export const getSongsRequest = () => ({
+export const getAllSongsRequest = () => ({
     type: SongsTypes.GET_SONGS_REQUEST,
 });
 
-export const getSongsError = errorMessage => ({
+export const getAllSongsError = errorMessage => ({
     type: SongsTypes.GET_SONGS_ERROR,
     payload: errorMessage,
 });
 
-export const getSongsSuccess = ({ byID, ids }) => ({
+export const getAllSongsSuccess = ({ byID, ids }) => ({
     type: SongsTypes.GET_SONGS_SUCCESS,
     payload: {
         byID: byID,
@@ -74,40 +72,41 @@ export const closeInfoModal = () => ({
     },
 });
 
-export function getSongs() {
-    return async function getSongsThunk(dispatch) {
-        dispatch(getSongsRequest());
+export function getAllSongs() {
+    return async function getAllSongsThunk(dispatch) {
+        dispatch(getAllSongsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
             console.log(token);
-            const res = await api.getAllSongs({
+            const res = await api.getSongs({
                 Authorization: `Bearer ${token}`,
             });
-            console.log(res);
+            /* console.log(res);
             if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
-            }
+            } */
 
             const normalizedSongs = normalizeSongs(res.data);
             console.log(normalizedSongs);
             dispatch(
-                getSongsSuccess({
+                getAllSongsSuccess({
                     byID: normalizedSongs.entities.songs,
                     ids: normalizedSongs.result,
                 }),
             );
         } catch (error) {
-            dispatch(getSongsError(error.message));
+            dispatch(getAllSongsError(error.message));
         }
     };
 }
 
 export function getSongByID(songID) {
-    return async function getSongThunk(dispatch) {
+    return async function getSongByIDThunk(dispatch) {
         dispatch(getSongRequest());
-        const token = await auth.getCurrentUserToken();
+
         try {
+            const token = await auth.getCurrentUserToken();
             const res = await api.getSongByID(
                 {
                     Authorization: `Bearer ${token}`,
@@ -150,5 +149,7 @@ export function addLikeToSong(songID) {
         } catch (error) {
             dispatch(songUpdatingError(error.message));
         }
-    };
+    }
 }
+
+

@@ -7,23 +7,24 @@ import {
     songInfo,
 } from '../../redux/songs/songs-selector';
 
-import Card from '../Card';
+import SongsCard from '../SongsCard';
 
-import { getSongs, openInfoModal } from '../../redux/songs/songs-actions';
+import { getAllSongs, openInfoModal } from '../../redux/songs/songs-actions';
 
-function Carousel() {
+function Carousel({ songsList }) {
     const songs = useSelector(songsSelector);
     const { songsLoading, songsLoadingError } = useSelector(songsStateSelector);
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getSongs());
+        dispatch(getAllSongs());
     }, [dispatch]);
 
     const openSongInfo = () => {
         dispatch(openInfoModal(1));
     };
     return (
+        
         <section className="container">
             <h2>Carrusel name</h2>
             <div
@@ -45,9 +46,10 @@ function Carousel() {
                     <div className="col col-lg-10">
                         {songs.length > 0 ? (
                             <div className="row row-cols-1">
-                                {songs.map(song => (
-                                    <Card key={song} songID={song} />
-                                ))}
+            {songsList.map(song => {
+                return <SongsCard newsong={song} key={song.id} />;
+            })}
+            {/* return <p>illo</p>; */}
                             </div>
                         ) : null}
                     </div>
@@ -71,6 +73,6 @@ function Carousel() {
             </div>
         </section>
     );
-}
+                                }
 
 export default Carousel;

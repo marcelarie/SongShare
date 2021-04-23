@@ -5,10 +5,10 @@ const SongsInitialState = {
         // First petition to back
         SongsLoading: false,
         SongsLoadingError: null,
-        SongsFetched: false,
+        SongsGetted: false,
         SongLoading: false,
         SongLoadingError: null,
-        SongFetched: false,
+        SongGetted: false,
         SongUpdating: false,
         SongUpdatingError: null,
     }, // ¿ Si el carrusel se hace con los arrays del estado no haria falta poner los estados del carrusel en funcion de la peticion
@@ -43,44 +43,56 @@ const SongsInitialState = {
 };
 
 function SongsReducer(state = SongsInitialState, action) {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case SongsTypes.GET_SONGS_REQUEST: {
             return {
                 ...state,
-                recipesLoading: true,
-                recipesLoadingError: null,
+                SongsState: {
+                    SongsLoading: true,
+                    SongsLoadingError: null,
+                }
             };
         }
         case SongsTypes.GET_SONGS_ERROR: {
             return {
                 ...state,
-                recipesLoading: false,
-                recipesLoadingError: action.payload,
+                SongsState: {
+                    SongsLoading: false,
+                    SongsLoadingError: true,
+                }
             };
         }
         case SongsTypes.GET_SONGS_SUCCESS: {
             return {
                 ...state,
-                recipesLoading: false,
-                recipesFetched: true,
-                recipesLoadingError: null,
-                byID: action.payload.byID,
-                ids: action.payload.ids,
+                SongsState: {
+                    SongsLoading: false,
+                    SongsLoadingError: false,
+                    SongsGetted: true,
+                },
+                byID: payload.byID,
+                ids: payload.ids,
             };
         }
         case SongsTypes.GET_SONG_REQUEST: {
             return {
                 ...state,
-                recipeLoading: true,
-                recipeLoadingError: null,
-                recipeUpdatingError: null,
+                SongsState: {
+                    SongLoading: true,
+                    SongLoadingError: false,
+                    SongGetted: false,
+                },
             };
         }
         case SongsTypes.GET_SONG_ERROR: {
             return {
                 ...state,
-                recipeLoading: false,
-                recipeLoadingError: action.payload,
+                SongsState: {
+                    songsLoading: false,
+                    songsLoadingError: action.payload,
+                    SongsGetted: false,
+                },
             };
         }
         case SongsTypes.GET_SONG_SUCCESS: {
@@ -88,9 +100,11 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
-                recipeLoading: false,
-                recipeFetched: true,
-                recipeLoadingError: null,
+                SongsState: {
+                    SongsLoading: false,
+                    SongsLoadingError: false,
+                    SongsGetted: true,
+                },
                 byID: {
                     ...state.byID,
                     [songID]: {
@@ -114,14 +128,39 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.SONG_UPDATING: {
             return {
                 ...state,
-                recipeUpdating: true,
-                recipeUpdatingError: null,
+                SongsState: {
+                    SongUpdating: true,
+                    SongUpdatingError: false,
+                },
             };
         }
         case SongsTypes.SONG_UPDATING_ERROR: {
             return {
                 ...state,
-                recipeUpdatingError: action.payload,
+                SongsState: {
+                    SongUpdating: false,
+                    SongUpdatingError: true,
+                },
+            };
+        }
+
+        case SongsTypes.EDIT_SONG: {
+            const songID = action.payload.songID;
+            const song = state.byID[songID];
+
+            return {
+                ...state,
+                byID: {
+                    ...state.byID,
+                    [songID]: {
+                        ...state.byID[songID],
+                        songName: song.songName,
+                        songAuthor: song.songAuthor,
+                        songGenger: song.songGender,
+                        likes: song.likes,
+                        uploadBy: song.uploadBy,
+                    },
+                },
             };
         }
 
@@ -167,25 +206,7 @@ function SongsReducer(state = SongsInitialState, action) {
                 },
             };
         }
-        case SongsTypes.EDIT_SONG: {
-            const songID = action.payload.songID;
-            const song = state.byID[songID];
-
-            return {
-                ...state,
-                byID: {
-                    ...state.byID,
-                    [songID]: {
-                        ...state.byID[songID],
-                        songName: song.songName,
-                        songAuthor: song.songAuthor,
-                        songGenger: song.songGender,
-                        likes: song.likes,
-                        uploadBy: song.uploadBy,
-                    },
-                },
-            };
-        }
+        
 
         default: {
             return state;
@@ -194,3 +215,43 @@ function SongsReducer(state = SongsInitialState, action) {
 }
 
 export default SongsReducer;
+/* export const SongsIntialState = {
+    getSongsLoading: false,
+    getSongsError: false,
+
+    allSongs: null,
+    popularSongs: [],
+    genderSongs: [],
+    likedSongs: [],
+};
+
+const songsReducer = (state = SongsIntialState, action) => {
+    const { type, payload } = action;
+
+    switch (type) {
+        case SongsTypes.SONGS_REQUEST:
+            return {
+                ...state,
+                getSongsLoading: true,
+                getSongsError: false,
+            };
+
+        case SongsTypes.SONGS_SUCCES:
+            return {
+                ...state,
+                getSongsLoading: false,
+                getSongsError: false,
+                allSongs: payload,
+            };
+        case SongsTypes.SONGS_ERROR:
+            return {
+                ...state,
+                getSongsError: true,
+            };
+
+        default:
+            return state;
+    }
+};
+
+export default songsReducer; */

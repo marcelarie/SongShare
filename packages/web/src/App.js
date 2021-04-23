@@ -18,6 +18,7 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 import { signOut, syncSignIn } from './redux/auth/auth-actions';
 import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
+import SongsPlayer from './components/SongsPlayer';
 
 function App() {
     const dispatch = useDispatch();
@@ -52,13 +53,8 @@ function App() {
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                {/* <Route path={ROUTES.SONG_INFO_MODAL} render={() => { <><Home  /> < SongModal /></>}} />  */}
-                <Route path={ROUTES.HOME} component={Home} />
-                <ProtectedRoute
-                    path={ROUTES.MY_MUSIC}
-                    component={UploadSong}
-                    exact
-                />
+                <Route path={ROUTES.HOME} component={Home} exact />
+                <ProtectedRoute path={ROUTES.MY_MUSIC} component={UploadSong} />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}
@@ -75,6 +71,11 @@ function App() {
                     exact
                 />
             </Switch>
+            {/* {auth.isAuthenticated && (
+                <>
+                    <SongsPlayer />
+                </>
+            )} */}
         </div>
     );
 }

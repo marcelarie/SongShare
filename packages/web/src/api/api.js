@@ -44,7 +44,7 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function getAllSongs({ headers = {} }) {
+    function getSongs(headers) {
         return request({
             url: '/songs/all',
             requestMethod: 'GET',
@@ -84,10 +84,10 @@ function makeApi(request = makeRequest()) {
         login,
         useApi,
         createTrack,
-        getAllSongs,
         getSongByID,
         editSong,
         addLike,
+        getSongs,
     };
 }
 
