@@ -12,15 +12,14 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
         case listPlayerTypes.PLAY:
             return {
                 ...state,
+                playlist: [payload],
                 currentlyPlaying: payload,
             };
         case listPlayerTypes.ADD_SONG_TO_QUEUE:
+            console.log([...state.playlist, payload]);
             return {
                 ...state,
-            };
-        case listPlayerTypes.ADD_PLAYLIST:
-            return {
-                ...state,
+                playlist: [...state.playlist, payload],
             };
         case listPlayerTypes.PLAY_NEXT:
             return {

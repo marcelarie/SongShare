@@ -6,3 +6,10 @@ export const play = song => {
         payload: song,
     };
 };
+
+export const addToQueue = song => {
+    return {
+        type: listPlayerTypes.ADD_SONG_TO_QUEUE,
+        payload: song,
+    };
+};

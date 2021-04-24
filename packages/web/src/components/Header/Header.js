@@ -29,6 +29,8 @@ export default function Header() {
     const currentLocation = useLocation().pathname;
 
     function handleSignOut() {
+        console.log('x2');
+
         dispatch(signOut());
     }
 
