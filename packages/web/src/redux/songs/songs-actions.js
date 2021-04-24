@@ -26,9 +26,9 @@ export function getAllSongs() {
                 Authorization: `Bearer ${token}`,
             });
 
-            dispatch(getAllSongsSucces(response.data.data));
+            return dispatch(getAllSongsSucces(response.data.data));
         } catch (error) {
-            dispatch(getAllSongsError(error));
+            return dispatch(getAllSongsError(error));
         }
     };
 }
