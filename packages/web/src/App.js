@@ -53,11 +53,7 @@ function App() {
                 <Route path={ROUTES.LOGIN} component={Login} />
                 <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
                 <Route path={ROUTES.HOME} component={Home} exact />
-                <ProtectedRoute
-                    path={ROUTES.MY_MUSIC}
-                    component={UploadSong}
-                    exact
-                />
+                <ProtectedRoute path={ROUTES.MY_MUSIC} component={UploadSong} />
                 <ProtectedRoute
                     path={ROUTES.HOME_USER}
                     component={UserInfo}

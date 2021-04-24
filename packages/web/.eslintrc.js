@@ -64,5 +64,6 @@ module.exports = {
             'error',
             { devDependencies: true },
         ],
+        'no-param-reassign': 0,
     },
 };
