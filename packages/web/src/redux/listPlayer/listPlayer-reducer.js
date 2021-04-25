@@ -11,14 +11,16 @@ export const listPlayerIntialState = {
 const listPlayerReducer = (state = listPlayerIntialState, action) => {
     const { type, payload } = action;
 
+    const index = state.currentlyPlaying.index;
     switch (type) {
         case listPlayerTypes.PLAY:
+            state.playlist.splice(index, 0, payload);
             return {
                 ...state,
-                playlist: [payload],
+                playlist: state.playlist,
                 currentlyPlaying: {
                     song: payload,
-                    index: 0,
+                    index: state.currentlyPlaying.index,
                 },
             };
         case listPlayerTypes.ADD_SONG_TO_QUEUE:
