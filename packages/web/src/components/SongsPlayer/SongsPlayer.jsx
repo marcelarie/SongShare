@@ -1,16 +1,19 @@
 import React from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { nextSong } from '../../redux/listPlayer/listPlayer-actions';
 
 const SongsPlayer = () => {
     const listPlay = useSelector(store => store.listPlay);
+    const dispatch = useDispatch();
     return (
         <>
             <AudioPlayer
                 autoPlay
                 showSkipControls
-                src={listPlay.currentlyPlaying.url}
+                src={listPlay.currentlyPlaying.song.url}
+                onEnded={() => dispatch(nextSong(listPlay))}
                 // onPlay={e => console.log('onPlay')}
                 // onPause={action('onPause')}
                 // onPlay={action('onPlay')}

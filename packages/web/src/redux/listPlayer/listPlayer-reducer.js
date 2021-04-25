@@ -2,7 +2,10 @@ import * as listPlayerTypes from './listPlayer-types';
 
 export const listPlayerIntialState = {
     playlist: [],
-    currentlyPlaying: '',
+    currentlyPlaying: {
+        song: '',
+        index: 0,
+    },
 };
 
 const listPlayerReducer = (state = listPlayerIntialState, action) => {
@@ -13,17 +16,23 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
             return {
                 ...state,
                 playlist: [payload],
-                currentlyPlaying: payload,
+                currentlyPlaying: {
+                    song: payload,
+                    index: 0,
+                },
             };
         case listPlayerTypes.ADD_SONG_TO_QUEUE:
-            console.log([...state.playlist, payload]);
             return {
                 ...state,
                 playlist: [...state.playlist, payload],
             };
-        case listPlayerTypes.PLAY_NEXT:
+        case listPlayerTypes.NEXT_SONG:
             return {
                 ...state,
+                currentlyPlaying: {
+                    song: state.playlist[state.currentlyPlaying.index + 1],
+                    index: state.currentlyPlaying.index + 1,
+                },
             };
         default:
             return state;

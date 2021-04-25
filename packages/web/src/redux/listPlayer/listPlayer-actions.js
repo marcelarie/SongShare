@@ -13,3 +13,18 @@ export const addToQueue = song => {
         payload: song,
     };
 };
+
+export const playNextSong = () => {
+    return {
+        type: listPlayerTypes.NEXT_SONG,
+    };
+};
+
+export function nextSong(listPlay) {
+    return function nextSongThunk(dispatch) {
+        if (listPlay.currentlyPlaying.index < listPlay.playlist.length - 1) {
+            dispatch(playNextSong());
+        }
+        return null;
+    };
+}
