@@ -13,30 +13,30 @@ const QuickMenu = () => {
     };
 
     return (
-        <QuickMenuStyle x={positionX} y={positionY}>
+        <QuickMenuStyle x={positionX} y={positionY} className="quickMenu">
             <button type="button" onClick={handleClick}>
                 Close
             </button>
-            <ul>
-                <li>
+            <ul className="quickMenu">
+                <li className="quickMenu">
                     <button type="button" onClick={handleClick}>
                         Add to playlist
                     </button>
                 </li>
-                <li>
+                <li className="quickMenu">
                     <button type="button" onClick={handleClick}>
                         Add to queue
                     </button>
                 </li>
                 {true && (
-                    <li>
+                    <li className="quickMenu">
                         <button type="button" onClick={handleClick}>
                             Edit
                         </button>
                     </li>
                 )}
                 {true && (
-                    <li>
+                    <li className="quickMenu">
                         <button type="button" onClick={handleClick}>
                             Delete
                         </button>

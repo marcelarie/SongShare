@@ -6,7 +6,7 @@ import {
     changeX,
     changeY,
     openModal,
-} from '../redux/quickMenu/quickMenu-actions';
+} from '../../redux/quickMenu/quickMenu-actions';
 
 function UseQuickMenu() {
     const [cardId] = useState(uuid());
