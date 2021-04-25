@@ -20,10 +20,25 @@ export const playNextSong = () => {
     };
 };
 
+export const playPrevSong = () => {
+    return {
+        type: listPlayerTypes.PREV_SONG,
+    };
+};
+
 export function nextSong(listPlay) {
     return function nextSongThunk(dispatch) {
         if (listPlay.currentlyPlaying.index < listPlay.playlist.length - 1) {
-            dispatch(playNextSong());
+            return dispatch(playNextSong());
+        }
+        return null;
+    };
+}
+
+export function prevSong(listPlay) {
+    return function prevSongThunk(dispatch) {
+        if (listPlay.currentlyPlaying.index > 0) {
+            return dispatch(playPrevSong());
         }
         return null;
     };

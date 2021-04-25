@@ -34,6 +34,14 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
                     index: state.currentlyPlaying.index + 1,
                 },
             };
+        case listPlayerTypes.PREV_SONG:
+            return {
+                ...state,
+                currentlyPlaying: {
+                    song: state.playlist[state.currentlyPlaying.index - 1],
+                    index: state.currentlyPlaying.index - 1,
+                },
+            };
         default:
             return state;
     }
