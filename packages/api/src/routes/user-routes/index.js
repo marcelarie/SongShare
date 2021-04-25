@@ -1,7 +1,5 @@
 import { Router } from 'express';
 
-import { authMiddleware } from '../../middlewares/index.js';
-
 import joi from '../../middlewares/joi-middleware.js';
 import schema from './schemas.js';
 import {
@@ -14,7 +12,6 @@ import {
 
 const userRouter = Router();
 
-userRouter.use(authMiddleware);
 userRouter.post('/sign-up', joi(schema.signUp), signUp);
 userRouter.post('/sign-out', signOut);
 

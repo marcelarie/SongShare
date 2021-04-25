@@ -16,7 +16,7 @@ const SongRepository = {
 
     findOneAndPouplate: (filter, toPopulate) => {
         return normalizeDBQuery(
-            Song.findOne(filter, '-__v').populate(toPopulate),
+            Song.findOne(filter, '-__v').populate(toPopulate).lean(),
         );
     },
 

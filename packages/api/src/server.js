@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import config from './config/index.js';
-import { errorMiddleware } from './middlewares/index.js';
+import { authMiddleware, errorMiddleware } from './middlewares/index.js';
 import { userRouter, songRouter } from './routes/index.js';
 
 const app = express();
@@ -17,6 +17,8 @@ app.use(
         origin: config.client.url,
     }),
 );
+
+app.use(authMiddleware);
 
 app.use(userRouter);
 app.use(songRouter);

@@ -1,38 +1,44 @@
 import { Router } from 'express';
 
-import { authMiddleware } from '../../middlewares/index.js';
 // import joi from '../../middlewares/joi-middleware.js';
 // import schema from './schemas.js';
 
 import {
     getAllSongs,
     getSongByName,
-    getSongById,
-    getSongByIdWithLikes,
+    getSong,
+    getSongWithLikes,
+    getSongByNameWithLikes,
     getSongsByParams,
     postSong,
     patchSongByName,
     deleteSong,
+    deleteSongByName,
     likeSong,
+    patchSong,
 } from '../../controllers/song-controller.js';
 
 const songRouter = Router();
 
-songRouter.use(authMiddleware);
-
-songRouter.get('/song/:name', getSongByName);
-songRouter.get('/song/id/:id', getSongById);
-songRouter.get('/song/id/:id/likes', getSongByIdWithLikes);
+// By Id:
 songRouter.get('/songs/all', getAllSongs);
-songRouter.post('/songs/all-with', getSongsByParams);
-songRouter.post('/song/id/:id/like', likeSong);
+songRouter.get('/song/:id', getSong);
+songRouter.get('/song/likes/:id', getSongWithLikes);
+
 songRouter.post('/song', postSong);
-songRouter.patch('/song/:name', patchSongByName);
-songRouter.delete('/song/:name', deleteSong);
+songRouter.post('/song/like/:id', likeSong);
+songRouter.post('/songs/all-with', getSongsByParams);
+
+songRouter.delete('/song/:id', deleteSong);
+songRouter.patch('/song/:id', patchSong);
+
+// By Name:
+songRouter.get('/song/name/:name', getSongByName);
+songRouter.get('/song/:name/likes', getSongByNameWithLikes);
+
+songRouter.patch('/song/name/:name', patchSongByName);
+songRouter.delete('/song/name/:name', deleteSongByName);
 // songRouter.post('/song/:name/like', likeSongByName); 👷
-// songRouter.get('/song/:name/likes', getSongByNameLikes); 👷
-// songRouter.delete('/song/id/:id', deleteSongById); 👷
-// songRouter.patch('/song/id/:id', patchSongById); 👷
 
 // (?) get song with given param and a optional value to be more specific
 // songRouter.post('/song/all-with/:param/:value?', getSongsByParams);

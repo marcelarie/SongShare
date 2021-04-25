@@ -40,10 +40,13 @@ const SongSchema = mongoose.Schema({
         type: String,
         require: true,
     },
-    userLikes: [
+    likes: [
         {
             type: String,
             ref: 'user',
+        },
+        {
+            timestamps: true,
         },
     ],
 
