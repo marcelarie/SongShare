@@ -28,6 +28,7 @@ const SongsInitialState = {
     likes: {
         among: 0,
         users: [],
+        me: false,
     },
     uploadBy: '', // user who upload the song
 
@@ -186,14 +187,13 @@ function SongsReducer(state = SongsInitialState, action) {
             };
         }
         case SongsTypes.OPEN_INFO_MODAL: {
-            const songID = action.payload.songID;
-            // const song = state.byID[songID];
+            const song = action.payload.song;
 
             return {
                 ...state,
                 modal: {
                     modal: true,
-                    song: songID,
+                    song: song,
                 },
             };
         }

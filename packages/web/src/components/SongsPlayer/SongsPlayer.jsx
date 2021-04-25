@@ -1,14 +1,14 @@
 import React from 'react';
 
 import 'react-h5-audio-player/lib/styles.css';
-import { AudioPlayer } from 'react-h5-audio-player';
+// import { AudioPlayer } from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
 
 const SongsPlayer = () => {
     const listPlay = useSelector(store => store.listPlay);
     return (
         <>
-             <AudioPlayer
+             {/* <AudioPlayer
                 autoPlay
                 showSkipControls
                 src={listPlay.currentlyPlaying.url}
@@ -17,7 +17,7 @@ const SongsPlayer = () => {
                 // onPlay={action('onPlay')}
                 // onClickPrevious={action('onClickPrevious')}
                 // onClickNext={action('onClickNext')}
-            /> 
+            />  */}
             {/* <AudioPlayer
                 onAbort={action('onAbort')}
                 onCanPlay={action('onCanPlay')}

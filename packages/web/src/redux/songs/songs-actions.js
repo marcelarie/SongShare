@@ -56,10 +56,10 @@ export const addLikeToSongSuccess = (songID, userID) => ({
     },
 });
 
-export const openInfoModal = songID => ({
+export const openInfoModal = song => ({
     type: SongsTypes.OPEN_INFO_MODAL,
     payload: {
-        songID: songID,
+        song: song,
         modal: true,
     },
 });
@@ -83,20 +83,20 @@ export function getAllSongs() {
                 Authorization: `Bearer ${token}`,
             });
              console.log(res);
-            /* if (!res.isSuccessful) {
+           /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
             const normalizedSongs = normalizeSongs(res.data.data);
             console.log(normalizedSongs);
-            dispatch(
+            return dispatch(
                 getAllSongsSuccess({
                     byID: normalizedSongs.entities.songs,
                     ids: normalizedSongs.result,
                 }),
             );
         } catch (error) {
-            dispatch(getAllSongsError(error.message));
+            return dispatch(getAllSongsError(error.message));
         }
     };
 }
@@ -107,6 +107,8 @@ export function getSongByID(songID) {
 
         try {
             const token = await auth.getCurrentUserToken();
+            console.log(token)
+            console.log(songID)
             const res = await api.getSongByID(
                 {
                     Authorization: `Bearer ${token}`,
@@ -114,10 +116,10 @@ export function getSongByID(songID) {
                 songID,
             );
 
+            console.log(res)
             if (!res.isSuccessful) {
                 return dispatch(getSongError(res.errorMessage));
             }
-
             // dispatch(openInfoModal(res.data));
             return dispatch(getSongSuccess(res.data));
         } catch (error) {
@@ -129,7 +131,7 @@ export function getSongByID(songID) {
 export function addLikeToSong(songID) {
     return async function addLikeToSongThunk(dispatch, getState) {
         const token = await auth.getCurrentUserToken();
-        const userID = getState().user.currentUser.id;
+        const userID = getState().auth.currentUser._id;
         dispatch(songUpdating());
 
         if (!token) {
@@ -139,7 +141,7 @@ export function addLikeToSong(songID) {
         try {
             const res = await api.addLike({
                 Authorization: `Bearer ${token}`,
-            });
+            }, userID);
 
             if (!res.ok) {
                 return dispatch(songUpdatingError(res.errorMessage));

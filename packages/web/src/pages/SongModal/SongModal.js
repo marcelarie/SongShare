@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dialog, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { closeInfoModal } from '../../redux/songs/songs-actions';
+import { addLikeToSong, closeInfoModal } from '../../redux/songs/songs-actions';
 import { songInfo } from '../../redux/songs/songs-selector';
 
 import '../../styles/utils.css';
@@ -12,9 +12,13 @@ import '../../styles/utils.css';
 function SongModal() {
     const infoModal = useSelector(state => state.songs.modal);
     const dispatch = useDispatch();
+
+    const [newName, setNewName] = useState(infoModal.name);
+    // const [newAuthor, setNewAuthor] = useState(infoModal.author);
+    // const [newGender, setNewGender] = useState(infoModal.gender);
     console.log(infoModal);
     return (
-infoModal ?
+infoModal.modal ?
         (<Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
                 as="div"
@@ -69,7 +73,7 @@ infoModal ?
                                                 as="h3"
                                                 className="text-lg leading-6 font-medium text-gray-900"
                                             >
-                                                Song Name
+                                                {infoModal.song.name ? infoModal.song.name : null}
                                             </Dialog.Title>
                                             <div>
                                                 <div className="flex items-center p-1">
@@ -130,7 +134,8 @@ infoModal ?
                                             <div className="flex justify-end p-2 mr-2">
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
-                                                    className="bg-white"
+                                                    className={infoModal.song.like ? "text-indigo-800" : "text-gray-400" } 
+                                                    onClick= {() => dispatch(addLikeToSong(infoModal.song._id))}
                                                 />
                                             </div>
                                         </div>

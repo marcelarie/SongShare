@@ -44,10 +44,9 @@ function Carousel({ songsList }) {
                     <div className="col col-lg-10">
                         {songsIDs.length > 0 ? (
                             <div className="row row-cols-1">
-            {songsIDs.map(songID => {
-                return <SongsCard newsong={songsList[songID]} key={songID} />;
-            })}
-            {/* return <p>illo</p>; */}
+                                {songsIDs.map(songID => {
+                                    return <SongsCard newsong={songsList[songID]} key={songID} />;
+                                })}
                             </div>
                         ) : null}
                     </div>
