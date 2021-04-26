@@ -7,6 +7,7 @@ import {
 
 import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
+import './styles.scss';
 
 function Carousel({ songsList }) {
     const songsIDs = useSelector(songsSelector);

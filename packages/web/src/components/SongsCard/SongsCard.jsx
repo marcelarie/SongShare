@@ -1,7 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
-import useQuickMenu from '../../custom-hooks/useQuickMenu';
+import {
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
 
 import QuickMenu from './QuickMenu';
 import { play } from '../../redux/listPlayer/listPlayer-actions';
@@ -18,6 +21,7 @@ function SongsCard({ newsong }) {
         dispatch(getSongByID(newsong._id));
         // dispatch(openInfoModal(newsong));
     };
+    useQuickMenuListener();
     return (
         <button type="button" onClick={openSongInfo}>
             <div className="songsCard">
@@ -27,7 +31,7 @@ function SongsCard({ newsong }) {
                     onMouseDown={openMenu}
                     value="OPTIONS"
                 />
-                {open && id === cardId && <QuickMenu />}
+                {open && id === cardId && <QuickMenu song={newsong} />}
                 <div className="songsCard__picture">
                     <img
                         className=""
