@@ -4,7 +4,7 @@ import Carousel from '../../components/Carousel';
 import SideNav from '../../components/SideNav';
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
-import './styles.scss'
+import './styles.scss';
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -28,9 +28,7 @@ function LandingPage() {
                 ) : (
                     <p>loading...</p>
                 )}
-
             </div>
-            
         </div>
     );
 }
