@@ -7,12 +7,18 @@ const UserRepository = {
     },
 
     findOne: filter => {
-        return normalizeDBQuery(User.findOne(filter, '-__v'));
+        return normalizeDBQuery(User.findOne(filter, '-__v').populate('likes'));
     },
 
     //                      return the updated document ↴
     findByIdAndUpdate: (filter, body, option = { new: true }) => {
-        return normalizeDBQuery(User.findByIdAndUpdate(filter, body, option));
+        return normalizeDBQuery(
+            User.findByIdAndUpdate(filter, body, option).populate('likes'),
+        );
+    },
+
+    findByIdAndDelete: filter => {
+        return normalizeDBQuery(User.findByIdAndDelete(filter));
     },
 };
 

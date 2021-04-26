@@ -1,5 +1,4 @@
-import { UserRepository as UserRepo } from '../../repositories/index.js';
-import { singUpValidation } from './validation.js';
+import { UserRepository as UserRepo } from '../repositories/index.js';
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user;
@@ -10,9 +9,6 @@ async function signUp(req, res, next) {
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(202).send(response);
-
-        // WIP please leave it for now 👷
-        singUpValidation(body);
 
         const user = await UserRepo.create({
             _id: uid,
@@ -39,7 +35,9 @@ async function getUserInfoByUsername(req, res, next) {
     const username = req.params.username.toLowerCase();
 
     try {
-        const response = await UserRepo.findOne({ username: username });
+        const response = await UserRepo.findOne({
+            username: username,
+        });
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -72,4 +70,24 @@ async function patchUserInfoByUsername(req, res, next) {
     }
 }
 
-export { signUp, signOut, getUserInfoByUsername, patchUserInfoByUsername };
+async function deleteUser(req, res, next) {
+    try {
+        const { uid } = req.user;
+
+        const response = await UserRepo.findByIdAndDelete({ _id: uid });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export {
+    signUp,
+    signOut,
+    getUserInfoByUsername,
+    patchUserInfoByUsername,
+    deleteUser,
+};
