@@ -31,7 +31,7 @@ export const getSongError = errorMessage => ({
 });
 
 export const getSongSuccess = song => {
-console.log(song)
+    console.log(song);
     return {
         type: SongsTypes.GET_SONG_SUCCESS,
         payload: song,
@@ -61,14 +61,12 @@ export const songDeletedSuccess = songName => ({
     payload: {
         successMessage: `You have deleted the song ${songName} successfully`,
         songName: songName,
-    }
+    },
 });
 
 export const addLikeToSongSuccess = (songID, user) => ({
     type: SongsTypes.ADD_LIKE_TO_SONG,
-    payload: {
-        
-    },
+    payload: {},
 });
 
 export const openInfoModal = song => ({
@@ -159,7 +157,7 @@ export function addLikeToSong(songID) {
                 },
                 songID,
             );
-console.log(res.data);
+            console.log(res.data);
             if (!res.isSuccessful) {
                 return dispatch(songUpdatingError(res.errorMessage));
             }

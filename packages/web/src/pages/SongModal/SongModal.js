@@ -6,7 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { addLikeToSong, closeInfoModal, deleteSongByID } from '../../redux/songs/songs-actions';
+import {
+    addLikeToSong,
+    closeInfoModal,
+    deleteSongByID,
+} from '../../redux/songs/songs-actions';
 
 import '../../styles/utils.css';
 
@@ -146,7 +150,8 @@ function SongModal() {
                                                     onClick={() =>
                                                         dispatch(
                                                             addLikeToSong(
-                                                                infoModal.song._id,
+                                                                infoModal.song
+                                                                    ._id,
                                                             ),
                                                         )
                                                     }
@@ -170,9 +175,7 @@ function SongModal() {
                                     disabled
                                     onClick={() =>
                                         dispatch(
-                                            deleteSongByID(
-                                                infoModal.song._id,
-                                            ),
+                                            deleteSongByID(infoModal.song._id),
                                         )
                                     }
                                 >

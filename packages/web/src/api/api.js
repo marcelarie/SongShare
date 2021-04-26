@@ -62,7 +62,7 @@ function makeApi(request = makeRequest()) {
     }
 
     function addLike(headers, songID) {
-        console.log(songID)
+        console.log(songID);
         return request({
             url: `/song/like/${songID}`,
             requestMethod: 'POST',

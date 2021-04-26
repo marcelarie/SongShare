@@ -189,7 +189,7 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.OPEN_INFO_MODAL: {
             const song = action.payload.song;
-console.log(song)
+            console.log(song);
             return {
                 ...state,
                 modal: {
