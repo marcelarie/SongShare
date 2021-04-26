@@ -27,7 +27,7 @@ function SongsCard({ newsong }) {
                 onMouseDown={openMenu}
                 value="OPTIONS"
             />
-            {open && id === cardId && <QuickMenu />}
+            {open && id === cardId && <QuickMenu song={newsong} />}
             <div className="songsCard__picture">
                 <img
                     className=""
