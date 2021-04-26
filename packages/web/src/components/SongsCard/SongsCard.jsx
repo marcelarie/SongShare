@@ -1,7 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
-import useQuickMenu from '../../custom-hooks/useQuickMenu';
+import {
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
 
 import QuickMenu from './QuickMenu';
 import { play } from '../../redux/listPlayer/listPlayer-actions';
@@ -13,6 +16,8 @@ function SongsCard({ newsong }) {
     function reproduceSong() {
         dispatch(play(newsong));
     }
+
+    useQuickMenuListener();
 
     return (
         <div className="songsCard">
