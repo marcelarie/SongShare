@@ -111,10 +111,19 @@ function SongsReducer(state = SongsInitialState, action) {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
-                        name: action.payload.name,
-                        author: action.payload.author,
-                        likes: action.payload.likes,
-                        genre: action.payload.songGender,
+                        ...action.payload,
+                        // name: {
+                        //     ...action.payload.name,
+                        // },
+                        // author: {
+                        //     ...action.payload.author,
+                        // },
+                        // likes: {
+                        //     ...action.payload.likes,
+                        // },
+                        // genre: {
+                        //     ...action.payload.songGender,
+                        // },
                     },
                 },
             };

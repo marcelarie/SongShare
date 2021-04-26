@@ -24,6 +24,7 @@ function SongModal() {
     // const [newAuthor, setNewAuthor] = useState(infoModal.author);
     // const [newGender, setNewGender] = useState(infoModal.gender);
     // console.log(infoModal);
+    //
     return infoModal.modal ? (
         <Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
@@ -140,6 +141,12 @@ function SongModal() {
                                                 </div>
                                             </div>
                                             <div className="flex justify-end p-2 mr-2">
+                                                <p>
+                                                    {
+                                                        infoModal.song.likes
+                                                            .length
+                                                    }
+                                                </p>
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
                                                     className={

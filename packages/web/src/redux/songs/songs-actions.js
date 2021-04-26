@@ -151,7 +151,8 @@ export function addLikeToSong(songID) {
                 },
                 songID,
             );
-            if (!res.isSuccessful) {
+            console.log(res);
+            if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             }
 
