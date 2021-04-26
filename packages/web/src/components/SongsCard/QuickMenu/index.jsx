@@ -1,14 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addToQueue } from '../../../redux/listPlayer/listPlayer-actions';
 import { openModal } from '../../../redux/quickMenu/quickMenu-actions';
 import QuickMenuStyle from './styles';
 
-const QuickMenu = () => {
+const QuickMenu = ({ song }) => {
     const dispatch = useDispatch();
     const { positionX, positionY } = useSelector(({ quickMenu }) => quickMenu);
 
     //    closeModal(?)
     const handleClick = () => {
+        dispatch(openModal(false));
+    };
+
+    const addSongToQueue = () => {
+        dispatch(addToQueue(song));
         dispatch(openModal(false));
     };
 
@@ -24,7 +30,7 @@ const QuickMenu = () => {
                     </button>
                 </li>
                 <li>
-                    <button type="button" onClick={handleClick}>
+                    <button type="button" onClick={addSongToQueue}>
                         Add to queue
                     </button>
                 </li>
