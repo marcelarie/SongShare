@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel';
+import SideNav from '../../components/SideNav';
 import { getAllSongs } from '../../redux/songs/songs-actions';
+
+import './styles.scss'
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -11,13 +14,24 @@ function LandingPage() {
         dispatch(getAllSongs());
     }, [dispatch]);
     return (
-        <>
-            {allSongs ? (
-                <Carousel key="eyyy" songsList={allSongs} />
-            ) : (
-                <p>loading...</p>
-            )}
-        </>
+        <div className="landingPage">
+            <div className="landingPage__carousel">
+                <h2>All Songs</h2>
+                {allSongs ? (
+                    <Carousel songsList={allSongs} />
+                ) : (
+                    <p>loading...</p>
+                )}
+                <h2>Another Carousel</h2>
+                {allSongs ? (
+                    <Carousel songsList={allSongs} />
+                ) : (
+                    <p>loading...</p>
+                )}
+
+            </div>
+            
+        </div>
     );
 }
 
