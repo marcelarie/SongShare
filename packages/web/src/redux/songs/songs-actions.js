@@ -82,8 +82,8 @@ export function getAllSongs() {
             const res = await api.getSongs({
                 Authorization: `Bearer ${token}`,
             });
-             console.log(res);
-           /*  if (!res.isSuccessful) {
+            console.log(res);
+            /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
@@ -107,8 +107,8 @@ export function getSongByID(songID) {
 
         try {
             const token = await auth.getCurrentUserToken();
-            console.log(token)
-            console.log(songID)
+            console.log(token);
+            console.log(songID);
             const res = await api.getSongByID(
                 {
                     Authorization: `Bearer ${token}`,
@@ -116,7 +116,7 @@ export function getSongByID(songID) {
                 songID,
             );
 
-            console.log(res)
+            console.log(res);
             if (!res.isSuccessful) {
                 return dispatch(getSongError(res.errorMessage));
             }
@@ -139,9 +139,12 @@ export function addLikeToSong(songID) {
         }
 
         try {
-            const res = await api.addLike({
-                Authorization: `Bearer ${token}`,
-            }, userID);
+            const res = await api.addLike(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                userID,
+            );
 
             if (!res.ok) {
                 return dispatch(songUpdatingError(res.errorMessage));
@@ -151,7 +154,5 @@ export function addLikeToSong(songID) {
         } catch (error) {
             return dispatch(songUpdatingError(error.message));
         }
-    }
+    };
 }
-
-

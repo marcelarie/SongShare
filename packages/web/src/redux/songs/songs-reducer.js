@@ -52,7 +52,7 @@ function SongsReducer(state = SongsInitialState, action) {
                 SongsState: {
                     SongsLoading: true,
                     SongsLoadingError: null,
-                }
+                },
             };
         }
         case SongsTypes.GET_SONGS_ERROR: {
@@ -61,7 +61,7 @@ function SongsReducer(state = SongsInitialState, action) {
                 SongsState: {
                     SongsLoading: false,
                     SongsLoadingError: true,
-                }
+                },
             };
         }
         case SongsTypes.GET_SONGS_SUCCESS: {
@@ -206,7 +206,6 @@ function SongsReducer(state = SongsInitialState, action) {
                 },
             };
         }
-        
 
         default: {
             return state;

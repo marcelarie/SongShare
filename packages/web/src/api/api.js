@@ -53,7 +53,7 @@ function makeApi(request = makeRequest()) {
     }
 
     function getSongByID(headers, songID) {
-        console.log(songID)
+        console.log(songID);
         return request({
             url: `/song/${songID}`,
             requestMethod: 'GET',
@@ -96,7 +96,7 @@ function makeApi(request = makeRequest()) {
         getSongByID,
         editSong,
         addLike,
-        deleteSong
+        deleteSong,
     };
 }
 

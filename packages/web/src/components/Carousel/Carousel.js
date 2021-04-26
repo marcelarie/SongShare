@@ -14,7 +14,7 @@ import { getAllSongs } from '../../redux/songs/songs-actions';
 function Carousel({ songsList }) {
     const songsIDs = useSelector(songsSelector);
     const { songsLoading, songsLoadingError } = useSelector(songsStateSelector);
-    console.log(songsIDs)
+    console.log(songsIDs);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -22,7 +22,6 @@ function Carousel({ songsList }) {
     }, [dispatch]);
 
     return (
-        
         <section className="container">
             <h2>Carrusel name</h2>
             <div
@@ -45,16 +44,20 @@ function Carousel({ songsList }) {
                         {songsIDs.length > 0 ? (
                             <div className="row row-cols-1">
                                 {songsIDs.map(songID => {
-                                    return <SongsCard newsong={songsList[songID]} key={songID} />;
+                                    return (
+                                        <SongsCard
+                                            newsong={songsList[songID]}
+                                            key={songID}
+                                        />
+                                    );
                                 })}
                             </div>
                         ) : null}
                     </div>
                 )}
-                
             </div>
         </section>
     );
-                                }
+}
 
 export default Carousel;

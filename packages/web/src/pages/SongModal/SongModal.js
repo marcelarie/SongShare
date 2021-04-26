@@ -17,9 +17,8 @@ function SongModal() {
     // const [newAuthor, setNewAuthor] = useState(infoModal.author);
     // const [newGender, setNewGender] = useState(infoModal.gender);
     console.log(infoModal);
-    return (
-infoModal.modal ?
-        (<Transition.Root show={infoModal.modal} as={Fragment}>
+    return infoModal.modal ? (
+        <Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
                 as="div"
                 static
@@ -73,7 +72,9 @@ infoModal.modal ?
                                                 as="h3"
                                                 className="text-lg leading-6 font-medium text-gray-900"
                                             >
-                                                {infoModal.song.name ? infoModal.song.name : null}
+                                                {infoModal.song.name
+                                                    ? infoModal.song.name
+                                                    : null}
                                             </Dialog.Title>
                                             <div>
                                                 <div className="flex items-center p-1">
@@ -134,8 +135,19 @@ infoModal.modal ?
                                             <div className="flex justify-end p-2 mr-2">
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
-                                                    className={infoModal.song.like ? "text-indigo-800" : "text-gray-400" } 
-                                                    onClick= {() => dispatch(addLikeToSong(infoModal.song._id))}
+                                                    className={
+                                                        infoModal.song.like
+                                                            ? 'text-indigo-800'
+                                                            : 'text-gray-400'
+                                                    }
+                                                    onClick={() =>
+                                                        dispatch(
+                                                            addLikeToSong(
+                                                                infoModal.song
+                                                                    ._id,
+                                                            ),
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -163,8 +175,8 @@ infoModal.modal ?
                     </Transition.Child>
                 </div>
             </Dialog>
-        </Transition.Root>) : null
-    );
+        </Transition.Root>
+    ) : null;
     {
         /* <div>
         {infoModal.modal && (

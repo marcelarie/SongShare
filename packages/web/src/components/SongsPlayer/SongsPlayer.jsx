@@ -8,7 +8,7 @@ const SongsPlayer = () => {
     const listPlay = useSelector(store => store.listPlay);
     return (
         <>
-             {/* <AudioPlayer
+            {/* <AudioPlayer
                 autoPlay
                 showSkipControls
                 src={listPlay.currentlyPlaying.url}
