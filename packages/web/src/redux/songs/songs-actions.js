@@ -31,8 +31,7 @@ export const getSongError = errorMessage => ({
 });
 
 export const getSongSuccess = song => {
-    console.log(song);
-
+console.log(song)
     return {
         type: SongsTypes.GET_SONG_SUCCESS,
         payload: song,
@@ -48,11 +47,27 @@ export const songUpdatingError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const addLikeToSongSuccess = (songID, userID) => ({
+export const songDeleting = () => ({
+    type: SongsTypes.SONG_DELETING,
+});
+
+export const songDeletingError = errorMessage => ({
+    type: SongsTypes.SONG_DELETING_ERROR,
+    payload: errorMessage,
+});
+
+export const songDeletedSuccess = songName => ({
+    type: SongsTypes.SONG_DELETED_SUCCESS,
+    payload: {
+        successMessage: `You have deleted the song ${songName} successfully`,
+        songName: songName,
+    }
+});
+
+export const addLikeToSongSuccess = (songID, user) => ({
     type: SongsTypes.ADD_LIKE_TO_SONG,
     payload: {
-        songID: songID,
-        userID: userID,
+        
     },
 });
 
@@ -117,11 +132,11 @@ export function getSongByID(songID) {
             );
 
             console.log(res);
-            if (!res.isSuccessful) {
+            if (res.errorMessage) {
                 return dispatch(getSongError(res.errorMessage));
             }
-            // dispatch(openInfoModal(res.data));
-            return dispatch(getSongSuccess(res.data));
+            dispatch(openInfoModal(res.data.data));
+            return dispatch(getSongSuccess(res.data.data));
         } catch (error) {
             return dispatch(getSongError(error));
         }
@@ -129,9 +144,8 @@ export function getSongByID(songID) {
 }
 
 export function addLikeToSong(songID) {
-    return async function addLikeToSongThunk(dispatch, getState) {
+    return async function addLikeToSongThunk(dispatch) {
         const token = await auth.getCurrentUserToken();
-        const userID = getState().auth.currentUser._id;
         dispatch(songUpdating());
 
         if (!token) {
@@ -143,16 +157,44 @@ export function addLikeToSong(songID) {
                 {
                     Authorization: `Bearer ${token}`,
                 },
-                userID,
+                songID,
+            );
+console.log(res.data);
+            if (!res.isSuccessful) {
+                return dispatch(songUpdatingError(res.errorMessage));
+            }
+
+            return dispatch(addLikeToSongSuccess(songID));
+        } catch (error) {
+            return dispatch(songUpdatingError(error.message));
+        }
+    };
+}
+
+export function deleteSongByID(songID) {
+    return async function deleteSongThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(songDeleting());
+
+        if (!token) {
+            return dispatch(songDeletingError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.deleteSong(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                songID,
             );
 
             if (!res.ok) {
                 return dispatch(songUpdatingError(res.errorMessage));
             }
 
-            return dispatch(addLikeToSongSuccess(songID, userID));
+            return dispatch(songDeletedSuccess(songID));
         } catch (error) {
-            return dispatch(songUpdatingError(error.message));
+            return dispatch(songDeletingError(error.message));
         }
     };
 }

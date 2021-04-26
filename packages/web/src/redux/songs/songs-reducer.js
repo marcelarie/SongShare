@@ -101,6 +101,7 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
+
                 SongsState: {
                     SongsLoading: false,
                     SongsLoadingError: false,
@@ -110,16 +111,16 @@ function SongsReducer(state = SongsInitialState, action) {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
-                        songName: {
-                            ...action.payload.songName,
+                        name: {
+                            ...action.payload.name,
                         },
-                        songAuthor: {
-                            ...action.payload.songAuthor,
+                        author: {
+                            ...action.payload.author,
                         },
                         likes: {
                             ...action.payload.likes,
                         },
-                        songGender: {
+                        genre: {
                             ...action.payload.songGender,
                         },
                     },
@@ -188,7 +189,7 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.OPEN_INFO_MODAL: {
             const song = action.payload.song;
-
+console.log(song)
             return {
                 ...state,
                 modal: {

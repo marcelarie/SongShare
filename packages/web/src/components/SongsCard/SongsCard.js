@@ -15,13 +15,12 @@ function SongsCard({ newsong }) {
     function reproduceSong() {
         dispatch(play(newsong));
     }
-    const openSongInfo = song => {
-        console.log(song);
-        // dispatch(getSongByID(songID))
-        dispatch(openInfoModal(song));
+    const openSongInfo = () => {
+        dispatch(getSongByID(newsong._id));
+        // dispatch(openInfoModal(newsong));
     };
     return (
-        <button type="button" onClick={() => openSongInfo(newsong)}>
+        <button type="button" onClick={openSongInfo}>
             <div className="songsCard">
                 <input
                     className="songsCard__3pointButton"

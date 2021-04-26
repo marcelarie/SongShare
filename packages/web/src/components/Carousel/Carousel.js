@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     songsSelector,
     songsStateSelector,
-    songInfo,
 } from '../../redux/songs/songs-selector';
 
 import SongsCard from '../SongsCard';

@@ -1,16 +1,19 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Dialog, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 // import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { addLikeToSong, closeInfoModal } from '../../redux/songs/songs-actions';
-import { songInfo } from '../../redux/songs/songs-selector';
+import { addLikeToSong, closeInfoModal, deleteSongByID } from '../../redux/songs/songs-actions';
 
 import '../../styles/utils.css';
 
 function SongModal() {
     const infoModal = useSelector(state => state.songs.modal);
+    const currentUser = useSelector(state => state.auth.currentUser);
+
     const dispatch = useDispatch();
 
     const [newName, setNewName] = useState(infoModal.name);
@@ -143,8 +146,7 @@ function SongModal() {
                                                     onClick={() =>
                                                         dispatch(
                                                             addLikeToSong(
-                                                                infoModal.song
-                                                                    ._id,
+                                                                infoModal.song._id,
                                                             ),
                                                         )
                                                     }
@@ -166,7 +168,13 @@ function SongModal() {
                                     type="button"
                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red text-base font-medium text-white-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     disabled
-                                    onClick={() => dispatch(closeInfoModal())}
+                                    onClick={() =>
+                                        dispatch(
+                                            deleteSongByID(
+                                                infoModal.song._id,
+                                            ),
+                                        )
+                                    }
                                 >
                                     Delete
                                 </button>
