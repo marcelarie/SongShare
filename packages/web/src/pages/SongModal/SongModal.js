@@ -15,15 +15,15 @@ import {
 import '../../styles/utils.css';
 
 function SongModal() {
-    const infoModal = useSelector(state => state.songs.modal);
+    const { infoModal } = useSelector(state => state.songs);
     const currentUser = useSelector(state => state.auth.currentUser);
 
     const dispatch = useDispatch();
 
-    const [newName, setNewName] = useState(infoModal.name);
+    // const [newName, setNewName] = useState(infoModal.name);
     // const [newAuthor, setNewAuthor] = useState(infoModal.author);
     // const [newGender, setNewGender] = useState(infoModal.gender);
-    console.log(infoModal);
+    // console.log(infoModal);
     return infoModal.modal ? (
         <Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog

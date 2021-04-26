@@ -48,6 +48,7 @@ async function getSongWithLikes(req, res, next) {
     try {
         const response = await SongRepo.findOneAndPouplate({ _id: id }, likes);
         const length = Object.keys(response.data.likes).length; // ✅
+        // console.log(response);
         response.data.likes.likesCounter = length;
         // const myLike = response.data.likes.uid; // ❌
 

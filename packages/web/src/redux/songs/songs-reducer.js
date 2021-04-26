@@ -111,18 +111,10 @@ function SongsReducer(state = SongsInitialState, action) {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
-                        name: {
-                            ...action.payload.name,
-                        },
-                        author: {
-                            ...action.payload.author,
-                        },
-                        likes: {
-                            ...action.payload.likes,
-                        },
-                        genre: {
-                            ...action.payload.songGender,
-                        },
+                        name: action.payload.name,
+                        author: action.payload.author,
+                        likes: action.payload.likes,
+                        genre: action.payload.songGender,
                     },
                 },
             };
@@ -192,7 +184,7 @@ function SongsReducer(state = SongsInitialState, action) {
             console.log(song);
             return {
                 ...state,
-                modal: {
+                infoModal: {
                     modal: true,
                     song: song,
                 },
@@ -201,7 +193,7 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.CLOSE_INFO_MODAL: {
             return {
                 ...state,
-                modal: {
+                infoModal: {
                     modal: false,
                     song: null,
                 },

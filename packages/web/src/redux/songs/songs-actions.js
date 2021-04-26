@@ -31,7 +31,6 @@ export const getSongError = errorMessage => ({
 });
 
 export const getSongSuccess = song => {
-    console.log(song);
     return {
         type: SongsTypes.GET_SONG_SUCCESS,
         payload: song,
@@ -91,17 +90,15 @@ export function getAllSongs() {
 
         try {
             const token = await auth.getCurrentUserToken();
-            console.log(token);
             const res = await api.getSongs({
                 Authorization: `Bearer ${token}`,
             });
-            console.log(res);
+            // console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
             const normalizedSongs = normalizeSongs(res.data.data);
-            console.log(normalizedSongs);
             return dispatch(
                 getAllSongsSuccess({
                     byID: normalizedSongs.entities.songs,
@@ -120,8 +117,6 @@ export function getSongByID(songID) {
 
         try {
             const token = await auth.getCurrentUserToken();
-            console.log(token);
-            console.log(songID);
             const res = await api.getSongByID(
                 {
                     Authorization: `Bearer ${token}`,
@@ -129,7 +124,6 @@ export function getSongByID(songID) {
                 songID,
             );
 
-            console.log(res);
             if (res.errorMessage) {
                 return dispatch(getSongError(res.errorMessage));
             }
@@ -157,7 +151,6 @@ export function addLikeToSong(songID) {
                 },
                 songID,
             );
-            console.log(res.data);
             if (!res.isSuccessful) {
                 return dispatch(songUpdatingError(res.errorMessage));
             }

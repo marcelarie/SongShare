@@ -8,7 +8,6 @@ import { play } from '../../redux/listPlayer/listPlayer-actions';
 import { openInfoModal, getSongByID } from '../../redux/songs/songs-actions';
 
 function SongsCard({ newsong }) {
-    console.log(newsong);
     const [open, id, cardId, openMenu] = useQuickMenu();
     const dispatch = useDispatch();
 

@@ -11,7 +11,7 @@ import { getAllSongs } from '../../redux/songs/songs-actions';
 function Carousel({ songsList }) {
     const songsIDs = useSelector(songsSelector);
     const { songsLoading, songsLoadingError } = useSelector(songsStateSelector);
-    console.log(songsIDs);
+    // console.log(songsIDs);
 
     const dispatch = useDispatch();
     useEffect(() => {
