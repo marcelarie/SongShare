@@ -15,7 +15,7 @@ function Carousel() {
 
     return (
         <div className="carousel">
-            {songsList.map(song => {
+            {allSongs.map(song => {
                 return <SongsCard newsong={song} key={song.id} />;
             })}
         </div>

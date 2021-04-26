@@ -3,21 +3,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { updateUserInfo } from '../../../redux/user/user-actions';
 
+import Dropzone from '../../../components/Dropzone';
+
+import { uploadImage } from '../../../redux/uploader/uploader-actions';
+import { fileTypes } from '../../../services/cloudinary';
+
 function CurrentUserProfileEdit() {
     const dispatch = useDispatch();
     const userInfo = useSelector(store => store.auth.currentUser);
+    const profileImageUrl = useSelector(
+        store => store.uploader.profileImageUrl,
+    );
 
     //   const [username,setUsername] = useState(userInfo.username)
     const [username, setUsername] = useState(userInfo.username);
     const [name, setName] = useState(userInfo.name);
     const [lastName, setLastName] = useState(userInfo.lastname);
     const [email, setEmail] = useState(userInfo.email);
+    const [file, setFile] = useState();
 
     const history = useHistory();
 
+    function handleSetFile(uploadFile) {
+        setFile(uploadFile);
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateUserInfo({ username, name, lastName }));
+        dispatch(uploadImage({ file }));
+        dispatch(updateUserInfo({ username, name, lastName, profileImageUrl }));
         history.push(`/${username}`);
     };
 
@@ -261,7 +275,7 @@ function CurrentUserProfileEdit() {
                                                     >
                                                         Cover photo
                                                     </label>
-                                                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                                    {/* <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                         <div className="space-y-1 text-center">
                                                             <svg
                                                                 className="mx-auto h-12 w-12 text-gray-400"
@@ -305,13 +319,24 @@ function CurrentUserProfileEdit() {
                                                                 to 10MB
                                                             </p>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
+                                                    <Dropzone
+                                                        fileType={
+                                                            fileTypes.IMAGE
+                                                        }
+                                                        onFileSelected={files => {
+                                                            handleSetFile(
+                                                                files[0],
+                                                            );
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 <button
                                     type="submit"
