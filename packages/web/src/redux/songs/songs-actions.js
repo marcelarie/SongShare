@@ -179,6 +179,7 @@ export function deleteSongByID(songID) {
                 },
                 songID,
             );
+            console.log(res);
 
             if (!res.ok) {
                 return dispatch(songUpdatingError(res.errorMessage));
