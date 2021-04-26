@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
     songsSelector,
     songsStateSelector,
@@ -8,7 +7,6 @@ import {
 } from '../../redux/songs/songs-selector';
 
 import SongsCard from '../SongsCard';
-
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
 function Carousel({ songsList }) {

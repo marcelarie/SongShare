@@ -218,7 +218,7 @@ export default SongsReducer;
     getSongsLoading: false,
     getSongsError: false,
 
-    allSongs: null,
+    allSongs: [],
     popularSongs: [],
     genderSongs: [],
     likedSongs: [],
