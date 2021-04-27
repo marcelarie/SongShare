@@ -52,6 +52,7 @@ async function patchUserInfoByUsername(req, res, next) {
     try {
         const { uid } = req.user;
         const { body } = req;
+        console.log(body);
 
         const response = await UserRepo.findByIdAndUpdate(uid, {
             ...body,
