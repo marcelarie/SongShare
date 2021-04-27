@@ -63,10 +63,10 @@ export const songDeletedSuccess = songID => ({
     },
 });
 
-export const addLikeToSongSuccess = (song) => ({
+export const addLikeToSongSuccess = song => ({
     type: SongsTypes.ADD_LIKE_TO_SONG,
     payload: {
-        song: song
+        song: song,
     },
 });
 
@@ -128,7 +128,7 @@ export function getSongByID(songID) {
             if (res.errorMessage) {
                 return dispatch(getSongError(res.errorMessage));
             }
-            console.log(res)
+            console.log(res);
             return dispatch(getSongSuccess(res.data.data));
         } catch (error) {
             return dispatch(getSongError(error));
@@ -159,7 +159,7 @@ export function addLikeToSong(songID) {
 
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
-            return dispatch(songUpdatingError("hola"));
+            return dispatch(songUpdatingError('hola'));
         }
     };
 }
@@ -185,7 +185,7 @@ export function deleteSongByID(songID) {
             if (res.errorMessage) {
                 return dispatch(songDeletingError(res.errorMessage));
             }
-            dispatch(getAllSongs())
+            dispatch(getAllSongs());
             return dispatch(songDeletedSuccess(songID));
         } catch (error) {
             return dispatch(songDeletingError(error.message));

@@ -147,10 +147,7 @@ function SongModal() {
                                             </div>
                                             <div className="flex justify-end p-2 mr-2">
                                                 <p>
-                                                    {
-                                                        songs[songID].likes
-                                                            .length
-                                                    }
+                                                    {songs[songID].likes.length}
                                                 </p>
                                                 <FontAwesomeIcon
                                                     icon={faHeart}

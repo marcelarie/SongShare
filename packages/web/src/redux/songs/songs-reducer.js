@@ -203,10 +203,10 @@ function SongsReducer(state = SongsInitialState, action) {
         }
 
         case SongsTypes.ADD_LIKE_TO_SONG: {
-            console.log(action.payload)
+            console.log(action.payload);
             const { song } = action.payload;
             const songID = song._id;
-            console.log(songID)
+            console.log(songID);
 
             return {
                 ...state,
