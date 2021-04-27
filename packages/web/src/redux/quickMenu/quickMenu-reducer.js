@@ -9,16 +9,11 @@ export const InitialState = {
 
 const OptionsModalReducer = (state = InitialState, { type, payload }) => {
     switch (type) {
-        case Types.CHANGE_X: {
+        case Types.CHANGE_X_AND_Y: {
             return {
                 ...state,
-                positionX: payload,
-            };
-        }
-        case Types.CHANGE_Y: {
-            return {
-                ...state,
-                positionY: payload,
+                positionX: payload.x,
+                positionY: payload.y,
             };
         }
         case Types.OPEN_MODAL: {
