@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
-import { useQuickMenu } from '../../custom-hooks/quickMenu';
 import QuickMenu from '../SongsCard/QuickMenu';
 
 import './styles.scss';
 
 function Carousel() {
-
     const dispatch = useDispatch();
 
     const { open } = useSelector(({ quickMenu }) => quickMenu);
