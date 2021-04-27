@@ -5,12 +5,16 @@ import 'react-h5-audio-player/lib/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 // import { nextSong, prevSong } from '../../redux/listPlayer/listPlayer-actions';
 
+import './styles.scss';
+
 const SongsPlayer = () => {
     const listPlay = useSelector(store => store.listPlay);
     const dispatch = useDispatch();
     return (
+        /*
         <>
-            {/* <AudioPlayer
+            <AudioPlayer
+                className="audioPlayer"
                 autoPlay
                 showSkipControls
                 src={listPlay.currentlyPlaying.song.url}
@@ -45,9 +49,9 @@ const SongsPlayer = () => {
                 showSkipControls
                 progressUpdateInterval={100}
                 src={SAMPLE_MP3_URL}
-            /> */}
+            /> 
         </>
     );
-};
+};*/}
 
 export default SongsPlayer;

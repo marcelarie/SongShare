@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    height: 80vh;
+    &__content {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    &__sideNav {
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+}
