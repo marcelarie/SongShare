@@ -48,6 +48,7 @@ function App() {
             {auth.isAuthenticated && (
                 <>
                     <Header />
+                    <SongModal />
                 </>
             )}
             <main className="main">
@@ -87,11 +88,11 @@ function App() {
                     </Switch>
                 </div>
             </main>
-            {auth.isAuthenticated && (
+            {/* {auth.isAuthenticated && (
                 <>
                     <SongsPlayer />
                 </>
-            )}
+            )} */}
         </div>
     );
 }
