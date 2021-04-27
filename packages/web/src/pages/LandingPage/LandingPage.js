@@ -9,21 +9,18 @@ import './styles.scss';
 function LandingPage() {
     const dispatch = useDispatch();
 
-    const allSongs = useSelector(store => store.songs.allSongs);
+    const allSongs = useSelector(store => store.songs.byID);
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
     return (
-        <div className="landingPage">
-            <div className="landingPage__carousel">
-                <h2>All Songs</h2>
-                {allSongs ? (
-                    <Carousel songsList={allSongs} />
-                ) : (
-                    <p>loading...</p>
-                )}
-            </div>
-        </div>
+        <>
+            {allSongs ? (
+                <Carousel key="eyyy" songsList={allSongs} />
+            ) : (
+                <p>loading...</p>
+            )}
+        </>
     );
 }
 

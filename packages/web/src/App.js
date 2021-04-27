@@ -6,6 +6,7 @@ import * as ROUTES from './routes';
 import Home from './pages/Home';
 import ChangePassword from './pages/ChangePassword';
 import Login from './pages/Login';
+import SongModal from './pages/SongModal';
 import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
@@ -18,7 +19,7 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 import { signOut, syncSignIn } from './redux/auth/auth-actions';
 import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
-import SongsPlayer from './components/SongsPlayer';
+// import SongsPlayer from './components/SongsPlayer';
 
 function App() {
     const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
             {auth.isAuthenticated && (
                 <>
                     <Header />
+                    <SongModal />
                 </>
             )}
             <main className="main">
@@ -86,11 +88,11 @@ function App() {
                     </Switch>
                 </div>
             </main>
-            {auth.isAuthenticated && (
+            {/* {auth.isAuthenticated && (
                 <>
                     <SongsPlayer />
                 </>
-            )}
+            )} */}
         </div>
     );
 }
