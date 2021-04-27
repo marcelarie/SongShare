@@ -62,7 +62,7 @@ function UploadSong() {
                         <button
                             className="btn btn-primary w-full"
                             type="submit"
-                            disabled={isUploadingSong}
+                            // disabled={isUploadingSong}
                         >
                             Upload
                         </button>

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Dialog, Transition } from '@headlessui/react';
@@ -25,12 +25,13 @@ function SongModal() {
         dispatch(getSongByID(songID));
     }, [dispatch, songID]);
 
-    // const [newName, setNewName] = useState(infoModal.name);
-    // const [newAuthor, setNewAuthor] = useState(infoModal.author);
-    // const [newGender, setNewGender] = useState(infoModal.gender);
+    const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
+    const [uploader, setUploader] = useState(songs[songID] ? songs[songID].uploadBy : '');
+    const [author, setAuthor] = useState(songs[songID] ? songs[songID].author : '');
+    const [genre, setGenre] = useState(songs[songID] ? songs[songID].gender : '');
     //
 
-    return infoModal.modal ? (
+    return infoModal.modal && songs[songID] ? (
         <Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
                 as="div"
@@ -85,68 +86,68 @@ function SongModal() {
                                                 as="h3"
                                                 className="text-lg leading-6 font-medium text-gray-900"
                                             >
-                                                {songs[songID].name
+                                                {songs[songID]
                                                     ? songs[songID].name
                                                     : null}
                                             </Dialog.Title>
                                             <div>
                                                 <div className="flex items-center p-1">
                                                     <label
-                                                        htmlFor="user_name"
+                                                        htmlFor="author"
                                                         className="flex-1 text-sm font-medium text-gray-700 mr-2"
                                                     >
                                                         Author
                                                     </label>
                                                     <input
                                                         type="text"
-                                                        name="user_name"
-                                                        id="user_name"
+                                                        name="author"
+                                                        id="author"
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
-                                                        value="author"
-                                                        /* onChange={e =>
-                                        setArtist(e.target.value)
-                                    } */
+                                                        value= {author}
+                                                        onChange={e =>
+                                        setAuthor(e.target.value)
+                                    }
                                                     />
                                                 </div>
                                                 <div className="flex items-center p-1">
                                                     <label
-                                                        htmlFor="user_name"
+                                                        htmlFor="genre"
                                                         className="flex-1 text-sm font-medium text-gray-700 mr-2"
                                                     >
-                                                        Gender
+                                                        Genre
                                                     </label>
                                                     <input
                                                         type="text"
-                                                        name="user_name"
-                                                        id="user_name"
+                                                        name="genre"
+                                                        id="genre"
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
-                                                        value="Gender"
-                                                        /* onChange={e =>
-                                        setArtist(e.target.value)
-                                    } */
+                                                        value={genre}
+                                                        onChange={e =>
+                                        setGenre(e.target.value)
+                                    }
                                                     />
                                                 </div>
                                                 <div className="flex items-center p-1">
                                                     <label
-                                                        htmlFor="user_name"
+                                                        htmlFor="uploader"
                                                         className="flex-1 text-sm font-medium text-gray-700 mr-2"
                                                     >
                                                         Upload by
                                                     </label>
                                                     <input
                                                         type="text"
-                                                        name="user_name"
-                                                        id="user_name"
+                                                        name="uploader"
+                                                        id="uploader"
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
-                                                        value="upload by"
-                                                        /* onChange={e =>
-                                        setArtist(e.target.value)
-                                    } */
+                                                        value={uploader}
+                                                        onChange={e =>
+                                        setUploader(e.target.value)
+                                    }
                                                     />
                                                 </div>
                                             </div>
                                             <div className="flex justify-end p-2 mr-2">
-                                                <p>
+                                                <p className="flex-1 text-sm font-medium text-gray-700 mr-2">
                                                     {songs[songID].likes.length}
                                                 </p>
                                                 <FontAwesomeIcon
@@ -182,7 +183,7 @@ function SongModal() {
                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red text-base font-medium text-white-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     onClick={() =>
                                         dispatch(
-                                            deleteSongByID(infoModal.song._id),
+                                            deleteSongByID(songID),
                                         )
                                     }
                                 >
