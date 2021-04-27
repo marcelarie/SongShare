@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './styles.scss';
 
 import { play } from '../../redux/listPlayer/listPlayer-actions';
-import { openInfoModal, getSongByID } from '../../redux/songs/songs-actions';
+import { openInfoModal } from '../../redux/songs/songs-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
-
-import QuickMenu from './QuickMenu';
 
 function SongsCard({ newsong }) {
     const dispatch = useDispatch();
@@ -20,12 +18,11 @@ function SongsCard({ newsong }) {
         dispatch(play(newsong));
     }
     const openSongInfo = () => {
-        // dispatch(getSongByID(newsong._id));
         dispatch(openInfoModal(newsong._id));
     };
     useQuickMenuListener();
     return (
-        <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
+        <div>
             <div className="songsCard">
                 <div className="songsCard__header">
                     <button className="songsCard__header__like" type="button" />
@@ -35,15 +32,17 @@ function SongsCard({ newsong }) {
                         onMouseDown={e => openMenu(e, cardId)}
                     />
                 </div>
+                <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
+                    <div className="songsCard__picture">
+                        <img
+                            className=""
+                            alt=""
+                            src="https://i.pinimg.com/originals/00/82/9b/00829bcca1db05d383fe549843976166.jpg"
+                        />
+                    </div>
+                    <p className="songsCard__title">{newsong.name}</p>
+                </section>
 
-                <div className="songsCard__picture">
-                    <img
-                        className=""
-                        alt=""
-                        src="https://i.pinimg.com/originals/00/82/9b/00829bcca1db05d383fe549843976166.jpg"
-                    />
-                </div>
-                <p className="songsCard__title">{newsong.name}</p>
                 <div className="songsCard__description">description</div>
                 <button
                     className="songsCard__playButton"
@@ -51,7 +50,7 @@ function SongsCard({ newsong }) {
                     onClick={reproduceSong}
                 />
             </div>
-        </section>
+        </div>
     );
 }
 

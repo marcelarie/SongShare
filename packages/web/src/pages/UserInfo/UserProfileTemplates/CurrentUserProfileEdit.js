@@ -320,21 +320,6 @@ function CurrentUserProfileEdit() {
                                 >
                                     Save
                                 </button>
-                                {/* {editMode ? (<button
-                      type="button"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      onClick = {handleSubmit}
-                    >
-                      Save
-                    </button>) :
-                    (<button
-                      type="button"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      onClick = {()=>setEditMode(true)}
-                    >
-                      Edit
-                    </button>)
-                    } */}
                             </div>
                         </form>
                     </div>
@@ -349,12 +334,5 @@ function CurrentUserProfileEdit() {
         </>
     );
 }
-/*  <p>{userInfo.username}</p>
-          <p>{userInfo.email}</p>
-          <p>{userInfo.name}</p>
-          <p>{userInfo.lastname}</p>
-          <p>{userInfo.createdAt}</p>
-          <Link to={`/${userInfo.username}/edit`}>Edit Info</Link>
-          {/* <button type="button" onClick={editInfo}>Edit Info</button> */
 
 export default CurrentUserProfileEdit;
