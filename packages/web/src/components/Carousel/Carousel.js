@@ -6,8 +6,8 @@ import './styles.scss';
 function Carousel({ songsList }) {
     return (
         <div className="carousel">
-            {songsList.map(song => {
-                return <SongsCard newsong={song} key={song.id} />;
+            {Object.values(songsList).map(song => {
+                return <SongsCard newsong={song} key={song._id} />;
             })}
         </div>
     );
