@@ -8,9 +8,8 @@ function Carousel() {
     const { ids, byID } = useSelector(({ songs }) => songs);
     return (
         <div className="carousel">
-            {ids.map(id => {
-                const song = byID[id];
-                return <SongsCard newsong={song} key={song.id} />;
+            {Object.values(songsList).map(song => {
+                return <SongsCard newsong={song} key={song._id} />;
             })}
         </div>
     );
