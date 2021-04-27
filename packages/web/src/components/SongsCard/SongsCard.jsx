@@ -25,13 +25,15 @@ function SongsCard({ newsong }) {
     return (
         <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
             <div className="songsCard">
-                <button
-                    className="songsCard__3pointButton quickMenu"
-                    type="button"
-                    onMouseDown={e => openMenu(e, cardId)}
-                >
-                    OPTIONS
-                </button>
+                <div className="songsCard__header">
+                    <button className="songsCard__header__like" type="button" />
+                    <button
+                        className="songsCard__header__3pointButton quickMenu"
+                        type="button"
+                        onMouseDown={e => openMenu(e, cardId)}
+                    />
+                </div>
+
                 <div className="songsCard__picture">
                     <img
                         className=""
@@ -40,14 +42,12 @@ function SongsCard({ newsong }) {
                     />
                 </div>
                 <p className="songsCard__title">{newsong.name}</p>
-                <div className="songsCard__description">tags</div>
+                <div className="songsCard__description">description</div>
                 <button
                     className="songsCard__playButton"
                     type="button"
                     onClick={reproduceSong}
-                >
-                    play
-                </button>
+                />
             </div>
         </section>
     );
