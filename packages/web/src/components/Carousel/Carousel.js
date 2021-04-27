@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 
 import './styles.scss';
 
-function Carousel({ songsList }) {
+function Carousel() {
+    const { ids, byID } = useSelector(({ songs }) => songs);
     return (
         <div className="carousel">
-            {songsList.map(song => {
+            {ids.map(id => {
+                const song = byID[id];
                 return <SongsCard newsong={song} key={song.id} />;
             })}
         </div>
