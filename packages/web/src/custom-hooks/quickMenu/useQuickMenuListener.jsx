@@ -9,22 +9,18 @@ function useQuickMenuListener() {
 
     useEffect(() => {
         const quickMenuListener = e => {
-            try {
-                if (open) {
-                    !e.target.parentElement.classList.contains('quickMenu') &&
-                        !e.target.classList.contains(
-                            'songsCard__3pointButton',
-                        ) &&
-                    console.log(e);
+            if (open) {
+                try {
+                    !e.target.classList.contains('quickMenu') &&
                         dispatch(openModal(false));
+                } catch (error) {
+                    dispatch(openModal(false));
                 }
-            } catch (error) {
-                open && dispatch(openModal(false));
             }
         };
         window.addEventListener('mousedown', quickMenuListener);
         return () => window.removeEventListener('mousedown', quickMenuListener);
-    }, [dispatch]);
+    }, [open, dispatch]);
 }
 
 export default useQuickMenuListener;

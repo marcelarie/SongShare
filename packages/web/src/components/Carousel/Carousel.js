@@ -7,7 +7,7 @@ import QuickMenu from '../SongsCard/QuickMenu';
 import './styles.scss';
 
 function Carousel() {
-    const {  open } = useSelector(({ quickMenu }) => quickMenu);
+    const { open } = useSelector(({ quickMenu }) => quickMenu);
     const { byID } = useSelector(({ songs }) => songs);
     return (
         <div className="carousel">
