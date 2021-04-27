@@ -6,6 +6,7 @@ import * as ROUTES from './routes';
 import Home from './pages/Home';
 import ChangePassword from './pages/ChangePassword';
 import Login from './pages/Login';
+import SongModal from './pages/SongModal';
 import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
@@ -47,6 +48,7 @@ function App() {
             {auth.isAuthenticated && (
                 <>
                     <Header />
+                    <SongModal />
                 </>
             )}
             <main className="main">

@@ -1,6 +1,7 @@
 import React from 'react';
-import AudioPlayer from 'react-h5-audio-player';
+
 import 'react-h5-audio-player/lib/styles.css';
+import AudioPlayer from 'react-h5-audio-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { nextSong, prevSong } from '../../redux/listPlayer/listPlayer-actions';
 
@@ -21,7 +22,7 @@ const SongsPlayer = () => {
                 onClickNext={() => dispatch(nextSong(listPlay))}
                 // onPlay={e => console.log('onPlay')}
                 // onPause={action('onPause')}
-                // onPlay={action('onPlay')}
+                // onPlay={action('onPlay')^
             />
             {/* <AudioPlayer
                 onAbort={action('onAbort')}

@@ -21,6 +21,7 @@ const userInitialState = {
     tracks: 0,
     loading: false,
     error: false,
+    // idsLikes: [], // poner en el reducer del usuario, cada usuario tendra su array de id de canciones que le han gustado
 };
 
 const userReducer = (state = userInitialState, action) => {

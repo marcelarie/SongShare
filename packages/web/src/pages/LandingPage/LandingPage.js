@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel';
-import SideNav from '../../components/SideNav';
+// import SideNav from '../../components/SideNav';
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import './styles.scss';
@@ -9,21 +9,17 @@ import './styles.scss';
 function LandingPage() {
     const dispatch = useDispatch();
 
-    const allSongs = useSelector(store => store.songs.allSongs);
+    const allSongs = useSelector(store => store.songs.byID);
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
+
+    if (!allSongs) return <p>loading...</p>;
+
     return (
-        <div className="landingPage">
-            <div className="landingPage__carousel">
-                <h2>All Songs</h2>
-                {allSongs ? (
-                    <Carousel songsList={allSongs} />
-                ) : (
-                    <p>loading...</p>
-                )}
-            </div>
-        </div>
+        <>
+            <Carousel key="allSongs" />
+        </>
     );
 }
 

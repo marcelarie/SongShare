@@ -52,6 +52,41 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getSongByID(headers, songID) {
+        // console.log(songID);
+        return request({
+            url: `/song/${songID}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function addLike(headers, songID) {
+        // console.log(songID);
+        return request({
+            url: `/song/like/${songID}`,
+            requestMethod: 'POST',
+            headers,
+        });
+    }
+
+    function editSong(headers, body, songID) {
+        return request({
+            url: `/song/${songID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
+    function deleteSong(headers, songID) {
+        return request({
+            url: `/song/${songID}`,
+            requestMethod: 'DELETE',
+            headers,
+        });
+    }
+
     return {
         signUp,
         signOut,
@@ -59,6 +94,10 @@ function makeApi(request = makeRequest()) {
         useApi,
         createTrack,
         getSongs,
+        getSongByID,
+        editSong,
+        addLike,
+        deleteSong,
     };
 }
 

@@ -48,7 +48,9 @@ async function getSongWithLikes(req, res, next) {
     try {
         const response = await SongRepo.findOneAndPouplate({ _id: id }, likes);
         const length = Object.keys(response.data.likes).length; // ✅
+
         response.data.likes.likesCounter = length;
+        console.log(response);
         // const myLike = response.data.likes.uid; // ❌
 
         if (response.error) return res.status(400).send(response);
@@ -92,6 +94,7 @@ async function getSongsByParams(req, res, next) {
 }
 
 async function likeSong(req, res, next) {
+    // TODO: Dont let the user repeat the likes, create a toggle
     const { uid } = req.user;
     const { id } = req.params;
 
