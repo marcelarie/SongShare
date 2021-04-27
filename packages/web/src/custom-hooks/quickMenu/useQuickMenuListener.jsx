@@ -6,23 +6,25 @@ import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 function useQuickMenuListener() {
     const dispatch = useDispatch();
     const { open } = useSelector(({ quickMenu }) => quickMenu);
-    const quickMenuListener = e => {
-        try {
-            return (
-                // open &&
-                !e.target.parentElement.classList.contains('quickMenu') &&
-                !e.target.classList.contains('songsCard__3pointButton') &&
-                dispatch(openModal(false))
-            );
-        } catch (error) {
-            return open && dispatch(openModal(false));
-        }
-    };
 
     useEffect(() => {
+        const quickMenuListener = e => {
+            try {
+                if (open) {
+                    !e.target.parentElement.classList.contains('quickMenu') &&
+                        !e.target.classList.contains(
+                            'songsCard__3pointButton',
+                        ) &&
+                    console.log(e);
+                        dispatch(openModal(false));
+                }
+            } catch (error) {
+                open && dispatch(openModal(false));
+            }
+        };
         window.addEventListener('mousedown', quickMenuListener);
         return () => window.removeEventListener('mousedown', quickMenuListener);
-    }, []);
+    }, [dispatch]);
 }
 
 export default useQuickMenuListener;
