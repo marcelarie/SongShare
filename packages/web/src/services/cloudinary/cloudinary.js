@@ -5,7 +5,11 @@ export const fileTypes = {
     IMAGE: 'image',
 };
 
-export const getFileUrl = ({ file, fileType, onUploadProgress }) => {
+export const getFileUrl = ({
+    file,
+    fileType,
+    onUploadProgress = 'onUploadProgress',
+}) => {
     const songUploadPreset = process.env.REACT_APP_CLOUDINARY_SONG_UPLOAD;
     const imageUploadPreset = process.env.REACT_APP_CLOUDINARY_IMAGE_UPLOAD;
     const unsignedCloudName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;

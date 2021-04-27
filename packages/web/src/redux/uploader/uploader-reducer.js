@@ -9,7 +9,6 @@ export const UploaderInitialState = {
     uploadImageSuccess: false,
     uploadImageError: null,
     imageUrls: [],
-    profileImageUrl: null,
 };
 
 const UploaderReducer = (state = UploaderInitialState, action) => {
