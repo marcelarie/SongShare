@@ -1,18 +1,18 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
+
+import { play } from '../../redux/listPlayer/listPlayer-actions';
+import { openInfoModal, getSongByID } from '../../redux/songs/songs-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
 
-import QuickMenu from './QuickMenu';
-import { play } from '../../redux/listPlayer/listPlayer-actions';
-import { openInfoModal, getSongByID } from '../../redux/songs/songs-actions';
-
 function SongsCard({ newsong }) {
-    const [open, id, cardId, openMenu] = useQuickMenu();
     const dispatch = useDispatch();
+    const [cardId] = useState(newsong._id);
+    const [openMenu] = useQuickMenu();
 
     function reproduceSong() {
         dispatch(play(newsong));
@@ -25,13 +25,13 @@ function SongsCard({ newsong }) {
     return (
         <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
             <div className="songsCard">
-                <input
-                    className="songsCard__3pointButton"
+                <button
+                    className="songsCard__3pointButton quickMenu"
                     type="button"
-                    onMouseDown={openMenu}
-                    value="OPTIONS"
-                />
-                {open && id === cardId && <QuickMenu song={newsong} />}
+                    onMouseDown={e => openMenu(e, cardId)}
+                >
+                    OPTIONS
+                </button>
                 <div className="songsCard__picture">
                     <img
                         className=""
