@@ -25,8 +25,7 @@ const SongsPlayer = () => {
                 // onPlay={action('onPlay')}
                 // onClickPrevious={action('onClickPrevious')}
                 // onClickNext={action('onClickNext')}
-            /> 
-            
+            />
         </>
     );
 };
