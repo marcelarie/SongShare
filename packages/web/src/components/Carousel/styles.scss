@@ -1,3 +1,8 @@
 .carousel {
+    flex: 5;
     display: flex;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 7px;
+    margin-bottom: 10px;
 }
