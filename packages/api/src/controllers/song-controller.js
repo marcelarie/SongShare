@@ -119,6 +119,7 @@ async function likeSong(req, res, next) {
 
 async function postSong(req, res, next) {
     const { body } = req;
+    const { uid } = req.user;
     try {
         const response = await SongRepo.findOne({ name: body.name });
         if (response.error) return res.status(400).send(response);
@@ -128,7 +129,7 @@ async function postSong(req, res, next) {
                 error: 'This song name is already in use.',
             });
 
-        const song = await SongRepo.create(body);
+        const song = await SongRepo.create({...body, username: uid });
 
         if (song.error) return res.status(400).send(song);
 
