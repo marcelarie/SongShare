@@ -20,30 +20,46 @@ const QuickMenu = ({ song }) => {
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
-            <button className='quickMenu' type="button" onClick={handleClick}>
+            <button className="quickMenu" type="button" onClick={handleClick}>
                 Close
             </button>
             <ul>
                 <li>
-                    <button className='quickMenu' type="button" onClick={handleClick}>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={handleClick}
+                    >
                         Add to playlist
                     </button>
                 </li>
                 <li>
-                    <button className='quickMenu' type="button" onClick={addSongToQueue}>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={addSongToQueue}
+                    >
                         Add to queue
                     </button>
                 </li>
                 {true && (
                     <li>
-                        <button className='quickMenu' type="button" onClick={handleClick}>
+                        <button
+                            className="quickMenu"
+                            type="button"
+                            onClick={handleClick}
+                        >
                             Edit
                         </button>
                     </li>
                 )}
                 {true && (
                     <li>
-                        <button className='quickMenu' type="button" onClick={handleClick}>
+                        <button
+                            className="quickMenu"
+                            type="button"
+                            onClick={handleClick}
+                        >
                             Delete
                         </button>
                     </li>

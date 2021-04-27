@@ -22,9 +22,8 @@ function SongsCard({ newsong }) {
         dispatch(openInfoModal(newsong._id));
     };
     useQuickMenuListener();
-    // onMouseDown={openSongInfo}
     return (
-        <section role="button" tabIndex={0}>
+        <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
             <div className="songsCard">
                 <button
                     className="songsCard__3pointButton quickMenu"
