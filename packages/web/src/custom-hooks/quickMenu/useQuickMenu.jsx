@@ -6,12 +6,13 @@ import {
     changeX,
     changeY,
     openModal,
-} from '../redux/quickMenu/quickMenu-actions';
+} from '../../redux/quickMenu/quickMenu-actions';
 
 function UseQuickMenu() {
     const [cardId] = useState(uuid());
     const dispatch = useDispatch();
     // will be the song card id ↴
+
     const { id, open } = useSelector(({ quickMenu }) => quickMenu);
 
     const openMenu = event => {

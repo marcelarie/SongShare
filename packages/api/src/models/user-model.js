@@ -26,6 +26,12 @@ const UserSchema = mongoose.Schema(
                 message: props => `The email ${props.value} is not valid`,
             },
         },
+        likes: [
+            {
+                type: String,
+                ref: 'song',
+            },
+        ],
     },
     {
         timestamps: true,

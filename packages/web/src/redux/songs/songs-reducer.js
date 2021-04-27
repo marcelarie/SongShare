@@ -4,7 +4,7 @@ export const SongsIntialState = {
     getSongsLoading: false,
     getSongsError: false,
 
-    allSongs: null,
+    allSongs: [],
     popularSongs: [],
     genderSongs: [],
     likedSongs: [],

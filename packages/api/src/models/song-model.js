@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
 
 const SongSchema = mongoose.Schema({
-    asset_id: {
-        type: String,
-        require: true,
-    },
+    _id: String,
     name: {
         type: String,
         required: true,
@@ -43,6 +40,15 @@ const SongSchema = mongoose.Schema({
         type: String,
         require: true,
     },
+    likes: [
+        {
+            type: String,
+            ref: 'user',
+        },
+        {
+            timestamps: true,
+        },
+    ],
 
     // video: { (?)
     //     type: String,

@@ -22,12 +22,6 @@ function LandingPage() {
                 ) : (
                     <p>loading...</p>
                 )}
-                <h2>Another Carousel</h2>
-                {allSongs ? (
-                    <Carousel songsList={allSongs} />
-                ) : (
-                    <p>loading...</p>
-                )}
             </div>
         </div>
     );

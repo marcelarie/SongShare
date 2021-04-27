@@ -53,6 +53,7 @@ export function uploadSong({ track, title }) {
             }
 
             const { url, duration, bytes, format, asset_id } = urlRes.data;
+            const _id = asset_id;
 
             const songRes = await api.createTrack({
                 body: {
@@ -61,7 +62,7 @@ export function uploadSong({ track, title }) {
                     duration,
                     bytes,
                     format,
-                    asset_id,
+                    _id,
                 },
                 headers: {
                     Authorization: `Bearer ${userToken}`,
