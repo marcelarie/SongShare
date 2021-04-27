@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useQuickMenu } from '../../custom-hooks/quickMenu';
 import SongsCard from '../SongsCard';
 import QuickMenu from '../SongsCard/QuickMenu';
 

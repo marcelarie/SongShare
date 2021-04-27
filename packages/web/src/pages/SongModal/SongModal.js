@@ -195,7 +195,7 @@ function SongModal() {
             </Dialog>
         </Transition.Root>
     ) : null;
-    {
+}
         /* <div>
         {infoModal.modal && (
             <div className="w-1/2 h-1/2 flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
@@ -208,8 +208,6 @@ function SongModal() {
             </div>
         )}
         </div> */
-    }
-    {
         /* <Modal isOpen={infoModal.modal} >
             <div className="w-full h-full bg-gray-700 border-red">
                 <div className="fixed z-10 inset-0 min-h-screen pt w-1/2 p-2 bg-gray-400">
@@ -224,7 +222,5 @@ function SongModal() {
                 </div>
             </div>
         </Modal> */
-    }
-}
 
 export default SongModal;

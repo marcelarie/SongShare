@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './styles.scss';
 
 import { play } from '../../redux/listPlayer/listPlayer-actions';
-import { openInfoModal, getSongByID } from '../../redux/songs/songs-actions';
+import { openInfoModal, } from '../../redux/songs/songs-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
