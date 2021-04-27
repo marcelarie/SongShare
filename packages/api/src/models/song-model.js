@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const SongSchema = mongoose.Schema({
     _id: String,
+    username: {
+        type: String,
+        ref: 'user',
+    },
     name: {
         type: String,
         required: true,
