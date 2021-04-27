@@ -19,7 +19,7 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 import { signOut, syncSignIn } from './redux/auth/auth-actions';
 import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
-// import SongsPlayer from './components/SongsPlayer';
+import SongsPlayer from './components/SongsPlayer';
 
 function App() {
     const dispatch = useDispatch();
@@ -88,11 +88,11 @@ function App() {
                     </Switch>
                 </div>
             </main>
-            {/* {auth.isAuthenticated && (
+            {auth.isAuthenticated && (
                 <>
                     <SongsPlayer />
                 </>
-            )} */}
+            )}
         </div>
     );
 }

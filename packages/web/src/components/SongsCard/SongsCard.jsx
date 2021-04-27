@@ -23,7 +23,7 @@ function SongsCard({ newsong }) {
     };
     useQuickMenuListener();
     return (
-        <button type="button" onClick={openSongInfo}>
+        <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
             <div className="songsCard">
                 <input
                     className="songsCard__3pointButton"
@@ -49,7 +49,7 @@ function SongsCard({ newsong }) {
                     play
                 </button>
             </div>
-        </button>
+        </section>
     );
 }
 

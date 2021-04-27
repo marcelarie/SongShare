@@ -5,10 +5,10 @@ import SongsCard from '../SongsCard';
 import './styles.scss';
 
 function Carousel() {
-    const { ids, byID } = useSelector(({ songs }) => songs);
+    const { byID } = useSelector(({ songs }) => songs);
     return (
         <div className="carousel">
-            {Object.values(songsList).map(song => {
+            {Object.values(byID).map(song => {
                 return <SongsCard newsong={song} key={song._id} />;
             })}
         </div>
