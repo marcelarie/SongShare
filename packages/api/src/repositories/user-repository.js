@@ -6,6 +6,27 @@ const UserRepository = {
         return normalizeDBQuery(User.create(options));
     },
 
+    find: filter => {
+        return normalizeDBQuery(User.find(filter));
+    },
+
+    findAndCheckLikes: filter => {
+        return normalizeDBQuery(
+            User.find({ _id: filter }).select({
+                likes: { $elemMatch: { _id: filter } },
+            }),
+
+            // .elemMatch(
+            //     'likes',
+            //     { $eq: filter },
+            //     function (err, results) {
+            //         console.log(results);
+            //         console.log(err);
+            //     },
+            // ),
+        );
+    },
+
     findOne: filter => {
         return normalizeDBQuery(User.findOne(filter, '-__v').populate('likes'));
     },

@@ -99,15 +99,18 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
+        const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
+        console.log( checkUserResponse)
+
         const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-            $push: { likes: id },
+            $addToSet: { likes: id },
         });
         if (userResponse.error) return res.status(400).send(userResponse);
         if (!userResponse.data) return res.status(404).send(userResponse);
 
         const songResponse = await SongRepo.findByIdAndUpdate(
             { _id: id },
-            { $push: { likes: uid } },
+            { $addToSet: { likes: uid } },
         );
         if (songResponse.error) return res.status(400).send(songResponse);
         if (!userResponse.data) return res.status(404).send(userResponse);
