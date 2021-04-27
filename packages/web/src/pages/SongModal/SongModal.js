@@ -26,9 +26,15 @@ function SongModal() {
     }, [dispatch, songID]);
 
     const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
-    const [uploader, setUploader] = useState(songs[songID] ? songs[songID].uploadBy : '');
-    const [author, setAuthor] = useState(songs[songID] ? songs[songID].author : '');
-    const [genre, setGenre] = useState(songs[songID] ? songs[songID].gender : '');
+    const [uploader, setUploader] = useState(
+        songs[songID] ? songs[songID].uploadBy : '',
+    );
+    const [author, setAuthor] = useState(
+        songs[songID] ? songs[songID].author : '',
+    );
+    const [genre, setGenre] = useState(
+        songs[songID] ? songs[songID].gender : '',
+    );
     //
 
     return infoModal.modal && songs[songID] ? (
@@ -103,10 +109,12 @@ function SongModal() {
                                                         name="author"
                                                         id="author"
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
-                                                        value= {author}
+                                                        value={author}
                                                         onChange={e =>
-                                        setAuthor(e.target.value)
-                                    }
+                                                            setAuthor(
+                                                                e.target.value,
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                                 <div className="flex items-center p-1">
@@ -123,8 +131,10 @@ function SongModal() {
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
                                                         value={genre}
                                                         onChange={e =>
-                                        setGenre(e.target.value)
-                                    }
+                                                            setGenre(
+                                                                e.target.value,
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                                 <div className="flex items-center p-1">
@@ -141,8 +151,10 @@ function SongModal() {
                                                         className="flex-1 focus:border-1 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-b-1 border-0 hover:border-gray-300"
                                                         value={uploader}
                                                         onChange={e =>
-                                        setUploader(e.target.value)
-                                    }
+                                                            setUploader(
+                                                                e.target.value,
+                                                            )
+                                                        }
                                                     />
                                                 </div>
                                             </div>
@@ -182,9 +194,7 @@ function SongModal() {
                                     type="button"
                                     className="mt-3 w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red text-base font-medium text-white-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     onClick={() =>
-                                        dispatch(
-                                            deleteSongByID(songID),
-                                        )
+                                        dispatch(deleteSongByID(songID))
                                     }
                                 >
                                     Delete

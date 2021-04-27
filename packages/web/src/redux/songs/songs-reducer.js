@@ -185,7 +185,7 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {
             const songID = action.payload.songID;
-            console.log('deletedsucc')
+            console.log('deletedsucc');
 
             return {
                 ...state,
@@ -201,7 +201,7 @@ function SongsReducer(state = SongsInitialState, action) {
                     [songID]: {
                         ...state.byID[songID],
                         delete: true,
-                    }
+                    },
                 },
             };
         }
