@@ -40,7 +40,7 @@ export default function NavBar() {
     return (
         <Disclosure
             as="nav"
-            className="bg-gray-800 flex-column w-1/4 h-max px-6 py-6 hidden lg:inline-block"
+            className="bg-gray-800 flex-column w-1/8 h-max px-6 py-6 hidden lg:inline-block"
         >
             <>
                 <div className="max-w-min">

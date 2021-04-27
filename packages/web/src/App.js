@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
 import UploadSong from './components/UploadSong';
+import './styles/main.scss';
 
 import UserInfo from './pages/UserInfo/UserInfo';
 import templates from './pages/UserInfo/UserProfileTemplates';
@@ -45,31 +46,46 @@ function App() {
         <div className="App__container">
             {auth.isAuthenticated && (
                 <>
-                    <Header /> <SideNav />
+                    <Header />
                 </>
             )}
-            <Switch>
-                <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                <Route path={ROUTES.LOGIN} component={Login} />
-                <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Home} exact />
-                <ProtectedRoute path={ROUTES.MY_MUSIC} component={UploadSong} />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER}
-                    component={UserInfo}
-                    exact
-                />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER_EDIT}
-                    component={templates.CurrentUserProfileEdit}
-                    exact
-                />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
-                    component={ChangePassword}
-                    exact
-                />
-            </Switch>
+            <main className="main">
+                {auth.isAuthenticated && (
+                    <>
+                        <SideNav className="main__sideNav" />
+                    </>
+                )}
+                <div className="main__content">
+                    <Switch>
+                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                        <Route path={ROUTES.LOGIN} component={Login} />
+                        <Route
+                            path={ROUTES.RESET_PASSWORD}
+                            component={ResetPassword}
+                        />
+                        <Route path={ROUTES.HOME} component={Home} exact />
+                        <ProtectedRoute
+                            path={ROUTES.MY_MUSIC}
+                            component={UploadSong}
+                        />
+                        <ProtectedRoute
+                            path={ROUTES.HOME_USER}
+                            component={UserInfo}
+                            exact
+                        />
+                        <ProtectedRoute
+                            path={ROUTES.HOME_USER_EDIT}
+                            component={templates.CurrentUserProfileEdit}
+                            exact
+                        />
+                        <ProtectedRoute
+                            path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
+                            component={ChangePassword}
+                            exact
+                        />
+                    </Switch>
+                </div>
+            </main>
             {auth.isAuthenticated && (
                 <>
                     <SongsPlayer />
