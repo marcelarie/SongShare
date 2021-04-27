@@ -47,31 +47,33 @@ export const songUpdatingError = errorMessage => ({
 });
 
 export const songDeleting = () => ({
-    type: SongsTypes.SONG_DELETING,
+    type: SongsTypes.SONG_DELETE_REQUEST,
 });
 
 export const songDeletingError = errorMessage => ({
-    type: SongsTypes.SONG_DELETING_ERROR,
+    type: SongsTypes.SONG_DELETE_ERROR,
     payload: errorMessage,
 });
 
-export const songDeletedSuccess = songName => ({
-    type: SongsTypes.SONG_DELETED_SUCCESS,
+export const songDeletedSuccess = songID => ({
+    type: SongsTypes.SONG_DELETE_SUCCESS,
     payload: {
-        successMessage: `You have deleted the song ${songName} successfully`,
-        songName: songName,
+        // successMessage: `You have deleted the song ${songName} successfully`,
+        songID: songID,
     },
 });
 
-export const addLikeToSongSuccess = (songID, user) => ({
+export const addLikeToSongSuccess = (song) => ({
     type: SongsTypes.ADD_LIKE_TO_SONG,
-    payload: {},
+    payload: {
+        song: song
+    },
 });
 
-export const openInfoModal = song => ({
+export const openInfoModal = songID => ({
     type: SongsTypes.OPEN_INFO_MODAL,
     payload: {
-        song: song,
+        songID: songID,
         modal: true,
     },
 });
@@ -123,11 +125,10 @@ export function getSongByID(songID) {
                 },
                 songID,
             );
-
             if (res.errorMessage) {
                 return dispatch(getSongError(res.errorMessage));
             }
-            dispatch(openInfoModal(res.data.data));
+            console.log(res)
             return dispatch(getSongSuccess(res.data.data));
         } catch (error) {
             return dispatch(getSongError(error));
@@ -152,13 +153,13 @@ export function addLikeToSong(songID) {
                 songID,
             );
             console.log(res);
-            if (res.errorMessage) {
+            /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
-            }
+            } */
 
-            return dispatch(addLikeToSongSuccess(songID));
+            return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
-            return dispatch(songUpdatingError(error.message));
+            return dispatch(songUpdatingError("hola"));
         }
     };
 }
@@ -181,10 +182,10 @@ export function deleteSongByID(songID) {
             );
             console.log(res);
 
-            if (!res.ok) {
-                return dispatch(songUpdatingError(res.errorMessage));
+            if (res.errorMessage) {
+                return dispatch(songDeletingError(res.errorMessage));
             }
-
+            dispatch(getAllSongs())
             return dispatch(songDeletedSuccess(songID));
         } catch (error) {
             return dispatch(songDeletingError(error.message));

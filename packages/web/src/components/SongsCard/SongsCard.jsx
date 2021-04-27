@@ -18,8 +18,8 @@ function SongsCard({ newsong }) {
         dispatch(play(newsong));
     }
     const openSongInfo = () => {
-        dispatch(getSongByID(newsong._id));
-        // dispatch(openInfoModal(newsong));
+        // dispatch(getSongByID(newsong._id));
+         dispatch(openInfoModal(newsong._id));
     };
     useQuickMenuListener();
     return (

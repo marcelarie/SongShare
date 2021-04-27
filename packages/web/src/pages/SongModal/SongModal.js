@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Dialog, Transition } from '@headlessui/react';
@@ -10,21 +10,26 @@ import {
     addLikeToSong,
     closeInfoModal,
     deleteSongByID,
+    getSongByID,
 } from '../../redux/songs/songs-actions';
 
 import '../../styles/utils.css';
 
 function SongModal() {
     const { infoModal } = useSelector(state => state.songs);
-    const currentUser = useSelector(state => state.auth.currentUser);
+    const songID = infoModal.songID;
+    const songs = useSelector(state => state.songs.byID);
 
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getSongByID(songID));
+    }, [dispatch, songID]);
 
     // const [newName, setNewName] = useState(infoModal.name);
     // const [newAuthor, setNewAuthor] = useState(infoModal.author);
     // const [newGender, setNewGender] = useState(infoModal.gender);
-    // console.log(infoModal);
     //
+
     return infoModal.modal ? (
         <Transition.Root show={infoModal.modal} as={Fragment}>
             <Dialog
@@ -80,8 +85,8 @@ function SongModal() {
                                                 as="h3"
                                                 className="text-lg leading-6 font-medium text-gray-900"
                                             >
-                                                {infoModal.song.name
-                                                    ? infoModal.song.name
+                                                {songs[songID].name
+                                                    ? songs[songID].name
                                                     : null}
                                             </Dialog.Title>
                                             <div>
@@ -143,22 +148,21 @@ function SongModal() {
                                             <div className="flex justify-end p-2 mr-2">
                                                 <p>
                                                     {
-                                                        infoModal.song.likes
+                                                        songs[songID].likes
                                                             .length
                                                     }
                                                 </p>
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
                                                     className={
-                                                        infoModal.song.like
+                                                        songs[songID].likes
                                                             ? 'text-indigo-800'
                                                             : 'text-gray-400'
                                                     }
                                                     onClick={() =>
                                                         dispatch(
                                                             addLikeToSong(
-                                                                infoModal.song
-                                                                    ._id,
+                                                                songID,
                                                             ),
                                                         )
                                                     }

@@ -141,8 +141,10 @@ function SongsReducer(state = SongsInitialState, action) {
             return {
                 ...state,
                 SongsState: {
+                    ...state.SongsState,
                     SongUpdating: false,
                     SongUpdatingError: true,
+                    ErrorMessage: action.payload,
                 },
             };
         }
@@ -167,9 +169,44 @@ function SongsReducer(state = SongsInitialState, action) {
             };
         }
 
-        case SongsTypes.ADD_LIKE_TO_SONG: {
+        case SongsTypes.SONG_DELETE_ERROR: {
             const songID = action.payload.songID;
-            const userID = action.payload.userID;
+            const song = state.byID[songID];
+
+            return {
+                ...state,
+                SongsState: {
+                    ...state.SongsState,
+                    SongDeleteError: true,
+                    SongDeleteRequest: false,
+                    SongDeleteSuccess: false,
+                },
+            };
+        }
+        case SongsTypes.SONG_DELETE_SUCCESS: {
+            const songID = action.payload.songID;
+            const song = state.byID[songID];
+
+            return {
+                ...state,
+                SongsState: {
+                    ...state.SongsState,
+                    SongDeleteError: false,
+                    SongDeleteRequest: false,
+                    SongDeleteSuccess: true,
+                    SongDeleteSuccessMessage: `You have deleted ${song.name} successful`,
+                },
+                byID: {
+                    ...state.byID,
+                },
+            };
+        }
+
+        case SongsTypes.ADD_LIKE_TO_SONG: {
+            console.log(action.payload)
+            const { song } = action.payload;
+            const songID = song._id;
+            console.log(songID)
 
             return {
                 ...state,
@@ -177,25 +214,19 @@ function SongsReducer(state = SongsInitialState, action) {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
-                        likes: {
-                            among: state.byID[songID].likes.among + 1,
-                            usersID: [
-                                userID,
-                                ...state.byID[songID].likes.usersID,
-                            ],
-                        },
+                        likes: song.likes,
                     },
                 },
             };
         }
         case SongsTypes.OPEN_INFO_MODAL: {
-            const song = action.payload.song;
-            console.log(song);
+            const songID = action.payload.songID;
+            console.log(songID);
             return {
                 ...state,
                 infoModal: {
                     modal: true,
-                    song: song,
+                    songID: songID,
                 },
             };
         }
