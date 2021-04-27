@@ -129,7 +129,7 @@ async function postSong(req, res, next) {
                 error: 'This song name is already in use.',
             });
 
-        const song = await SongRepo.create({...body, username: uid });
+        const song = await SongRepo.create({ ...body, username: uid });
 
         if (song.error) return res.status(400).send(song);
 
