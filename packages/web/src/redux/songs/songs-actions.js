@@ -95,7 +95,6 @@ export function getAllSongs() {
             const res = await api.getSongs({
                 Authorization: `Bearer ${token}`,
             });
-            console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
@@ -128,7 +127,6 @@ export function getSongByID(songID) {
             if (res.errorMessage) {
                 return dispatch(getSongError(res.errorMessage));
             }
-            console.log(res);
             return dispatch(getSongSuccess(res.data.data));
         } catch (error) {
             return dispatch(getSongError(error));
@@ -152,7 +150,6 @@ export function addLikeToSong(songID) {
                 },
                 songID,
             );
-            console.log(res);
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
@@ -180,7 +177,6 @@ export function deleteSongByID(songID) {
                 },
                 songID,
             );
-            console.log(res);
 
             if (res.errorMessage) {
                 return dispatch(songDeletingError(res.errorMessage));

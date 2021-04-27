@@ -170,9 +170,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
 
         case SongsTypes.SONG_DELETE_ERROR: {
-            const songID = action.payload.songID;
-            const song = state.byID[songID];
-
             return {
                 ...state,
                 SongsState: {
@@ -185,7 +182,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {
             const songID = action.payload.songID;
-            console.log('deletedsucc');
 
             return {
                 ...state,
@@ -207,10 +203,8 @@ function SongsReducer(state = SongsInitialState, action) {
         }
 
         case SongsTypes.ADD_LIKE_TO_SONG: {
-            console.log(action.payload);
             const { song } = action.payload;
             const songID = song._id;
-            console.log(songID);
 
             return {
                 ...state,
@@ -225,7 +219,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.OPEN_INFO_MODAL: {
             const songID = action.payload.songID;
-            console.log(songID);
             return {
                 ...state,
                 infoModal: {

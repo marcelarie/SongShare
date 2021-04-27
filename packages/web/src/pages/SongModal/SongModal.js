@@ -25,7 +25,7 @@ function SongModal() {
         dispatch(getSongByID(songID));
     }, [dispatch, songID]);
 
-    const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
+    // const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
     const [uploader, setUploader] = useState(
         songs[songID] ? songs[songID].uploadBy : '',
     );
@@ -35,7 +35,6 @@ function SongModal() {
     const [genre, setGenre] = useState(
         songs[songID] ? songs[songID].gender : '',
     );
-    //
 
     return infoModal.modal && songs[songID] ? (
         <Transition.Root show={infoModal.modal} as={Fragment}>
@@ -206,36 +205,6 @@ function SongModal() {
             </Dialog>
         </Transition.Root>
     ) : null;
-    {
-        /* <div>
-        {infoModal.modal && (
-            <div className="w-1/2 h-1/2 flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-                This is a Modal card
-                <button
-                type="button"
-                onClick = {() => dispatch(closeInfoModal())}
-                className="bg-gray-600"
-                >Close modal</button>
-            </div>
-        )}
-        </div> */
-    }
-    {
-        /* <Modal isOpen={infoModal.modal} >
-            <div className="w-full h-full bg-gray-700 border-red">
-                <div className="fixed z-10 inset-0 min-h-screen pt w-1/2 p-2 bg-gray-400">
-                    <ModalHeader>Modal title</ModalHeader>
-                    <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </ModalBody>
-                    <ModalFooter>
-                    <Button color="primary" onClick={() => dispatch(closeInfoModal())}>Do Something</Button>{' '}
-                    <Button color="secondary" onClick={() => dispatch(closeInfoModal())}>Cancel</Button>
-                    </ModalFooter>
-                </div>
-            </div>
-        </Modal> */
-    }
 }
 
 export default SongModal;
