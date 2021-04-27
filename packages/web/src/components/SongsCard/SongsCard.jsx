@@ -9,6 +9,8 @@ import {
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
 
+import QuickMenu from './QuickMenu';
+
 function SongsCard({ newsong }) {
     const dispatch = useDispatch();
     const [cardId] = useState(newsong._id);
