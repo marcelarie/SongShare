@@ -12,10 +12,7 @@ const UserRepository = {
 
     findAndCheckLikes: filter => {
         return normalizeDBQuery(
-            User.find({ _id: filter }).select({
-                likes: { $elemMatch: { _id: filter } },
-            }),
-
+            User.find({ _id: filter }).where('likes').nin(['other']),
             // .elemMatch(
             //     'likes',
             //     { $eq: filter },
