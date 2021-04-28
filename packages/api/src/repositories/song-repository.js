@@ -22,12 +22,16 @@ const SongRepository = {
 
     //                     return the updated document ↴
     findOneAndUpdate: (filter, body, option = { new: true }) => {
-        return normalizeDBQuery(Song.findOneAndUpdate(filter, body, option));
+        return normalizeDBQuery(
+            Song.findOneAndUpdate(filter, body, option).populate('likes'),
+        );
     },
 
     //                      return the updated document ↴
     findByIdAndUpdate: (filter, body, option = { new: true }) => {
-        return normalizeDBQuery(Song.findByIdAndUpdate(filter, body, option));
+        return normalizeDBQuery(
+            Song.findByIdAndUpdate(filter, body, option).populate('likes'),
+        );
     },
 
     findOneAndDelete: filter => {

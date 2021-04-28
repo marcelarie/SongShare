@@ -32,6 +32,12 @@ const UserSchema = mongoose.Schema(
                 ref: 'song',
             },
         ],
+        songs: [
+            {
+                type: String,
+                ref: 'song',
+            },
+        ],
     },
     {
         timestamps: true,
