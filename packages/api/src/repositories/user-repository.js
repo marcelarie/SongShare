@@ -6,8 +6,34 @@ const UserRepository = {
         return normalizeDBQuery(User.create(options));
     },
 
+    find: filter => {
+        return normalizeDBQuery(User.find(filter));
+    },
+
+    findLean: filter => {
+        return normalizeDBQuery(User.find(filter).lean());
+    },
+
+    findAndCheckLikes: filter => {
+        return normalizeDBQuery(
+            User.find({ _id: filter }).where('likes').nin(['other']),
+            // .elemMatch(
+            //     'likes',
+            //     { $eq: filter },
+            //     function (err, results) {
+            //         console.log(results);
+            //         console.log(err);
+            //     },
+            // ),
+        );
+    },
+
     findOne: filter => {
         return normalizeDBQuery(User.findOne(filter, '-__v').populate('likes'));
+    },
+
+    findOneLean: filter => {
+        return normalizeDBQuery(User.findOne(filter, '-__v').lean());
     },
 
     //                      return the updated document ↴

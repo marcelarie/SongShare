@@ -16,6 +16,7 @@ function Carousel() {
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
+
     return (
         <div className="carousel">
             {Object.values(byID).map(song => {
