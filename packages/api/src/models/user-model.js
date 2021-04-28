@@ -36,6 +36,12 @@ const UserSchema = mongoose.Schema(
         imageUrl: {
             type: String,
         },
+        songs: [
+            {
+                type: String,
+                ref: 'song',
+            },
+        ],
     },
     {
         timestamps: true,
