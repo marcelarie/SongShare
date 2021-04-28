@@ -84,10 +84,30 @@ async function deleteUser(req, res, next) {
     }
 }
 
+async function getAllUserLikes(req, res, next) {
+    try {
+        const { id } = req.params;
+
+        const response = await UserRepo.findOneLean({ _id: id });
+        const { data, error } = response;
+
+        if (error) return res.status(400).send(response);
+        if (!data) return res.status(404).send(response);
+        if (data)
+            return res.status(200).send({
+                data: data.likes,
+                error,
+            });
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     signUp,
     signOut,
     getUserInfoByUsername,
     patchUserInfoByUsername,
     deleteUser,
+    getAllUserLikes,
 };

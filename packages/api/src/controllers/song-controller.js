@@ -136,7 +136,14 @@ async function postSong(req, res, next) {
             });
 
         const song = await SongRepo.create({ ...body, username: uid });
+        const userResponse = await UserRepo.findByIdAndUpdate(
+            { _id: uid },
+            {
+                $addToSet: { songs: body._id },
+            },
+        );
 
+        if (userResponse.error) return res.status(400).send(userResponse);
         if (song.error) return res.status(400).send(song);
 
         if (song.data) return res.status(202).send(song);
@@ -223,10 +230,11 @@ async function getAllSongsFromUser(req, res, next) {
 
         if (error) return res.status(400).send(response);
         if (!data) return res.status(404).send(response);
-        if (data) return res.status(200).send({
-            data: data.likes,
-            error
-        });
+        if (data)
+            return res.status(200).send({
+                data: data.songs,
+                error,
+            });
     } catch (error) {
         next(error);
     }
