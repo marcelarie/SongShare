@@ -240,9 +240,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
 
         case SongsTypes.SONG_DELETE_ERROR: {
-            const songID = action.payload.songID;
-            const song = state.byID[songID];
-
             return {
                 ...state,
                 SongsState: {
@@ -255,7 +252,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {
             const songID = action.payload.songID;
-            const song = state.byID[songID];
 
             return {
                 ...state,
@@ -264,19 +260,21 @@ function SongsReducer(state = SongsInitialState, action) {
                     SongDeleteError: false,
                     SongDeleteRequest: false,
                     SongDeleteSuccess: true,
-                    SongDeleteSuccessMessage: `You have deleted ${song.name} successful`,
+                    SongDeleteSuccessMessage: `You have deleted successful`,
                 },
                 byID: {
                     ...state.byID,
+                    [songID]: {
+                        ...state.byID[songID],
+                        delete: true,
+                    },
                 },
             };
         }
 
         case SongsTypes.ADD_LIKE_TO_SONG: {
-            console.log(action.payload);
             const { song } = action.payload;
             const songID = song._id;
-            console.log(songID);
 
             return {
                 ...state,
@@ -291,7 +289,6 @@ function SongsReducer(state = SongsInitialState, action) {
         }
         case SongsTypes.OPEN_INFO_MODAL: {
             const songID = action.payload.songID;
-            console.log(songID);
             return {
                 ...state,
                 infoModal: {
@@ -304,8 +301,8 @@ function SongsReducer(state = SongsInitialState, action) {
             return {
                 ...state,
                 infoModal: {
+                    ...state.infoModal,
                     modal: false,
-                    song: null,
                 },
             };
         }

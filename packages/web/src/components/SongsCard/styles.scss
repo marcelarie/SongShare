@@ -1,17 +1,59 @@
 .songsCard {
     width: 200px;
-    margin-right: 10px;
+    position: relative;
+    margin-right: 15px;
     border-radius: 10px;
     min-width: 200px;
     height: 300px;
     border: 1px solid black;
-    text-align: center;
+    text-align: left;
+    padding: 12px;
+    box-shadow: 2px 2px 5px 1px;
+    background-color: rgb(93, 99, 121);
     &__picture {
-        width: 90%;
+        width: 100%;
         margin: auto;
         border-radius: 8px;
         img {
+            border-radius: 10px;
             width: 100%;
         }
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        &__3pointButton {
+            width: 50px;
+            height: 20px;
+            margin-right: 10px;
+            background-image: url('https://image.flaticon.com/icons/png/512/16/16073.png');
+            background-size: cover;
+            background-position: center;
+            border: none;
+            float: right;
+        }
+        &__like {
+            background-image: url('https://lh3.googleusercontent.com/proxy/sqLPHZGrlHuwEmtpXZMDelrKLC9k1pFOusnYJs4wud3Psws2OfZMe24Ga2A_rnsVGMY-C0AJCUqQN-79cOXmoTixTELXzHGYd1cGKqEwPltdoSuvyIQQ2vM');
+            background-size: cover;
+            background-position: center;
+            width: 22px;
+            height: 20px;
+        }
+    }
+    &__playButton {
+        width: 50px;
+        height: 50px;
+        background-image: url('https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c4f9.png');
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    &__title {
+        font-size: 22px;
+        font-weight: 200;
     }
 }
