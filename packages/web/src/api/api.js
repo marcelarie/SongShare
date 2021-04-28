@@ -61,9 +61,9 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function getLikedSongs(headers, username) {
+    function getLikedSongs(headers, id) {
         return request({
-            url: `/user/${username}`,
+            url: `/user/all-likes/${id}}`,
             requestMethod: 'GET',
             headers,
         });

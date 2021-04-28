@@ -38,16 +38,16 @@ export const getMeSongsSuccess = ({ ids }) => ({
 });
 
 export const getLikedSongsRequest = () => ({
-    type: SongsTypes.GET_SONGS_REQUEST,
+    type: SongsTypes.GET_LIKED_SONGS_REQUEST,
 });
 
 export const getLikedSongsError = errorMessage => ({
-    type: SongsTypes.GET_SONGS_ERROR,
+    type: SongsTypes.GET_LIKED_SONGS_ERROR,
     payload: errorMessage,
 });
 
 export const getLikedSongsSuccess = ({ ids }) => ({
-    type: SongsTypes.GET_SONGS_SUCCESS,
+    type: SongsTypes.GET_LIKED_SONGS_SUCCESS,
     payload: {
         likedIds: ids,
     },
@@ -158,12 +158,10 @@ export function getMeSongs(userInfo) {
                     username: userInfo._id,
                 },
             );
-            console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
-            console.log(userInfo);
             return dispatch(
                 getMeSongsSuccess({
                     idsMeSongs: '',
@@ -175,7 +173,8 @@ export function getMeSongs(userInfo) {
     };
 }
 
-export function getLikedSongs() {
+export function getLikedSongs(userID) {
+    console.log(userID)
     return async function getLikedSongsThunk(dispatch) {
         dispatch(getLikedSongsRequest());
 
@@ -183,16 +182,16 @@ export function getLikedSongs() {
             const token = await auth.getCurrentUserToken();
             const res = await api.getUserLikedSongs({
                 Authorization: `Bearer ${token}`,
-            });
-            // console.log(res);
+            },
+            userID
+            );
+            console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
             return dispatch(
-                getLikedSongsSuccess({
-                    idsMeLiked: '',
-                }),
+                getLikedSongsSuccess(res.data),
             );
         } catch (error) {
             return dispatch(getLikedSongsError(error.message));
