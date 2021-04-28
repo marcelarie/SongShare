@@ -11,7 +11,7 @@ function Carousel() {
 
     const { open } = useSelector(({ quickMenu }) => quickMenu);
 
-    const { byID } = useSelector(({ songs }) => songs);
+    const { byID, ids } = useSelector(({ songs }) => songs);
 
     useEffect(() => {
         dispatch(getAllSongs());
@@ -19,7 +19,8 @@ function Carousel() {
 
     return (
         <div className="carousel">
-            {Object.values(byID).map(song => {
+            {ids.map(id => {
+                const song = byID[id]
                 return <SongsCard newsong={song} key={song._id} />;
             })}
             {open && <QuickMenu />}
