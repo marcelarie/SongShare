@@ -151,11 +151,14 @@ export function getMeSongs(userInfo) {
 
         try {
             const token = await auth.getCurrentUserToken();
-            const res = await api.getUserSongs({
-                Authorization: `Bearer ${token}`,
-            }, {
-                username: userInfo._id
-            });
+            const res = await api.getUserSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    username: userInfo._id,
+                },
+            );
             console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));

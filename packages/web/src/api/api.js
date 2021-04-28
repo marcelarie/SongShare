@@ -57,7 +57,7 @@ function makeApi(request = makeRequest()) {
             url: '/songs/all-with',
             requestMethod: 'POST',
             headers,
-            body
+            body,
         });
     }
 
@@ -68,7 +68,6 @@ function makeApi(request = makeRequest()) {
             headers,
         });
     }
-
 
     function getSongByID(headers, songID) {
         // console.log(songID);
