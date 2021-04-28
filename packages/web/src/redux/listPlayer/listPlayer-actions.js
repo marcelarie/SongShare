@@ -28,7 +28,9 @@ export const playPrevSong = () => {
 
 export function nextSong(listPlay) {
     return function nextSongThunk(dispatch) {
-        if (listPlay.currentlyPlaying.index < listPlay.playlist.length - 1) {
+        if (listPlay.currentlyPlaying.index + 1 < listPlay.queue.length) {
+            console.log(listPlay.currentlyPlaying.index);
+            console.log(listPlay.queue.length - 1);
             return dispatch(playNextSong());
         }
         return null;

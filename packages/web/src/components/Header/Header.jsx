@@ -112,9 +112,9 @@ export default function Header() {
                                                     <img
                                                         className="h-8 w-8 rounded-full"
                                                         src={
-                                                            imageUrl !== ''
-                                                                ? imageUrl
-                                                                : 'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png'
+                                                            !imageUrl
+                                                                ? 'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png'
+                                                                : imageUrl
                                                         }
                                                         alt=""
                                                     />
