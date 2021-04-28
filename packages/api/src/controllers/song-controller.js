@@ -100,7 +100,7 @@ async function likeSong(req, res, next) {
 
     try {
         const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
-        console.log( checkUserResponse)
+        console.log(checkUserResponse);
 
         const userResponse = await UserRepo.findByIdAndUpdate(uid, {
             $addToSet: { likes: id },
@@ -214,12 +214,31 @@ async function deleteSongByName(req, res, next) {
     }
 }
 
+async function getAllSongsFromUser(req, res, next) {
+    try {
+        const { id } = req.params;
+
+        const response = await UserRepo.findOneLean({ _id: id });
+        const { data, error } = response;
+
+        if (error) return res.status(400).send(response);
+        if (!data) return res.status(404).send(response);
+        if (data) return res.status(200).send({
+            data: data.likes,
+            error
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     getAllSongs,
     getSongByName,
     getSong,
     getSongWithLikes,
     getSongByNameWithLikes,
+    getAllSongsFromUser,
     getSongsByParams,
     postSong,
     patchSong,

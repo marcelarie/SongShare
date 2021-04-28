@@ -8,6 +8,7 @@ import {
     getSongByName,
     getSongWithLikes,
     getSongByNameWithLikes,
+    getAllSongsFromUser,
     getSongsByParams,
     postSong,
     patchSongByName,
@@ -29,6 +30,9 @@ songRouter.post('/songs/all-with', getSongsByParams);
 
 songRouter.delete('/song/:id', deleteSong);
 songRouter.patch('/song/:id', patchSong);
+
+// all songs from a user by id - only array of id's
+songRouter.post('/songs/all-from/:id', getAllSongsFromUser);
 
 // By Name:
 songRouter.get('/song/name/:name', getSongByName);

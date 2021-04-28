@@ -10,6 +10,10 @@ const UserRepository = {
         return normalizeDBQuery(User.find(filter));
     },
 
+    findLean: filter => {
+        return normalizeDBQuery(User.find(filter).lean());
+    },
+
     findAndCheckLikes: filter => {
         return normalizeDBQuery(
             User.find({ _id: filter }).where('likes').nin(['other']),
@@ -26,6 +30,10 @@ const UserRepository = {
 
     findOne: filter => {
         return normalizeDBQuery(User.findOne(filter, '-__v').populate('likes'));
+    },
+
+    findOneLean: filter => {
+        return normalizeDBQuery(User.findOne(filter, '-__v').lean());
     },
 
     //                      return the updated document ↴
