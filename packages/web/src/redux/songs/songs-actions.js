@@ -22,18 +22,18 @@ export const getAllSongsSuccess = ({ byID, ids }) => ({
 });
 
 export const getMeSongsRequest = () => ({
-    type: SongsTypes.GET_SONGS_REQUEST,
+    type: SongsTypes.GET_ME_SONGS_REQUEST,
 });
 
 export const getMeSongsError = errorMessage => ({
-    type: SongsTypes.GET_SONGS_ERROR,
+    type: SongsTypes.GET_ME_SONGS_ERROR,
     payload: errorMessage,
 });
 
 export const getMeSongsSuccess = ({ ids }) => ({
-    type: SongsTypes.GET_SONGS_SUCCESS,
+    type: SongsTypes.GET_ME_SONGS_SUCCESS,
     payload: {
-        idsMeSongs: ids,
+        meSongsIds: ids,
     },
 });
 
@@ -49,7 +49,7 @@ export const getLikedSongsError = errorMessage => ({
 export const getLikedSongsSuccess = ({ ids }) => ({
     type: SongsTypes.GET_SONGS_SUCCESS,
     payload: {
-        idsMeLiked: ids,
+        likedIds: ids,
     },
 });
 
@@ -145,7 +145,7 @@ export function getAllSongs() {
     };
 }
 
-export function getMeSongs() {
+export function getMeSongs(userInfo) {
     return async function getMeSongsThunk(dispatch) {
         dispatch(getMeSongsRequest());
 
@@ -153,13 +153,15 @@ export function getMeSongs() {
             const token = await auth.getCurrentUserToken();
             const res = await api.getUserSongs({
                 Authorization: `Bearer ${token}`,
+            }, {
+                username: userInfo._id
             });
-            // console.log(res);
+            console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
-            
+            console.log(userInfo);
             return dispatch(
                 getMeSongsSuccess({
                     idsMeSongs: '',

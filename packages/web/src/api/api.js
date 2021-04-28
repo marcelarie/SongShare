@@ -52,6 +52,24 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getUserSongs(headers, body) {
+        return request({
+            url: '/songs/all-with',
+            requestMethod: 'POST',
+            headers,
+            body
+        });
+    }
+
+    function getLikedSongs(headers, username) {
+        return request({
+            url: `/user/${username}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+
     function getSongByID(headers, songID) {
         // console.log(songID);
         return request({
@@ -94,6 +112,8 @@ function makeApi(request = makeRequest()) {
         useApi,
         createTrack,
         getSongs,
+        getUserSongs,
+        getLikedSongs,
         getSongByID,
         editSong,
         addLike,

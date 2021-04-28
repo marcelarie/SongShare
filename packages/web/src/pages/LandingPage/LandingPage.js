@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel';
 // import SideNav from '../../components/SideNav';
-import { getAllSongs } from '../../redux/songs/songs-actions';
+import { getAllSongs, getMeSongs } from '../../redux/songs/songs-actions';
 
 import './styles.scss';
 
@@ -10,9 +10,12 @@ function LandingPage() {
     const dispatch = useDispatch();
 
     const allSongs = useSelector(store => store.songs.byID);
+    const currentUser = useSelector (store => store.auth.currentUser);
     useEffect(() => {
         dispatch(getAllSongs());
-    }, [dispatch]);
+        console.log(currentUser);
+        dispatch(getMeSongs(currentUser));
+    }, [dispatch, currentUser]);
 
     if (!allSongs) return <p>loading...</p>;
 

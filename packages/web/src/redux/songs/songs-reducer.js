@@ -6,6 +6,12 @@ const SongsInitialState = {
         SongsLoading: false,
         SongsLoadingError: null,
         SongsGetted: false,
+        MeSongsLoading: false,
+        MeSongsLoadingError: null,
+        MeSongsGetted: false,
+        LikedSongsLoading: false,
+        LikedSongsLoadingError: null,
+        LikedSongsGetted: false,
         SongLoading: false,
         SongLoadingError: null,
         SongGetted: false,
@@ -34,6 +40,9 @@ const SongsInitialState = {
 
     byID: {},
     ids: [],
+
+    meSongsIds: [],
+    likedSongs: [],
 
     infoModal: {
         modal: false,
@@ -76,6 +85,67 @@ function SongsReducer(state = SongsInitialState, action) {
                 ids: payload.ids,
             };
         }
+
+        case SongsTypes.GET_ME_SONGS_REQUEST: {
+            return {
+                ...state,
+                SongsState: {
+                    MeSongsLoading: true,
+                    MeSongsLoadingError: null,
+                },
+            };
+        }
+        case SongsTypes.GET_ME_SONGS_ERROR: {
+            return {
+                ...state,
+                SongsState: {
+                    MeSongsLoading: false,
+                    MeSongsLoadingError: true,
+                },
+            };
+        }
+        case SongsTypes.GET_ME_SONGS_SUCCESS: {
+            return {
+                ...state,
+                SongsState: {
+                    MeSongsLoading: false,
+                    MeSongsLoadingError: false,
+                    MeSongsGetted: true,
+                },
+                meSongsIds: payload.ids,
+            };
+        }
+        
+        case SongsTypes.GET_LIKED_SONGS_REQUEST: {
+            return {
+                ...state,
+                SongsState: {
+                    LikedSongsLoading: true,
+                    LikedSongsLoadingError: null,
+                },
+            };
+        }
+        case SongsTypes.GET_LIKED_SONGS_ERROR: {
+            return {
+                ...state,
+                SongsState: {
+                    LikedSongsLoading: false,
+                    LikedSongsLoadingError: true,
+                },
+            };
+        }
+        case SongsTypes.GET_LIKED_SONGS_SUCCESS: {
+            return {
+                ...state,
+                SongsState: {
+                    LikedSongsLoading: false,
+                    LikedSongsLoadingError: false,
+                    LikedSongsGetted: true,
+                },
+                LikedSongsIds: payload.likedIds,
+            };
+        }
+
         case SongsTypes.GET_SONG_REQUEST: {
             return {
                 ...state,
