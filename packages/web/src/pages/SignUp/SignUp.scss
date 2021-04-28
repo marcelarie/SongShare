@@ -1,4 +1,4 @@
-.singup-container {
+.form-container {
     background-color: #282828;
     height: 100vh;
     display: flex;
@@ -8,6 +8,9 @@
         color: white;
         font-size: 2rem;
         text-align: center;
+        span {
+            width: 100%;
+        }
     }
 
     .header {
@@ -38,8 +41,8 @@
     }
 }
 
-.singup-submit,
-.singup-login {
+.form-submit,
+.form-login {
     text-align: center;
     color: white;
     button {

@@ -10,13 +10,14 @@ import MainRouter from './Router';
 
 import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged';
 
-import './styles/main.scss';
+import './styles/fonts.scss';
+import './styles/reset.scss';
 
 function App() {
     const auth = useSelector(store => store.auth);
     useOnAuthStateChanged();
     return (
-        <div className="App__container">
+        <div>
             {auth.isAuthenticated && (
                 <>
                     <Header />

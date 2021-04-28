@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 
 import { Disclosure } from '@headlessui/react';
 
-import '../../styles/Header.css';
-
-/* This example requires Tailwind CSS v2.0+ */
-
 const navigation = [
     { name: 'Dashboard', href: '#', current: true },
     { name: 'Team', href: '#', current: false },

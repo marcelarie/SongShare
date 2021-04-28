@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 
-import '../../styles/Header.css';
 import './styles.scss';
 
 import { signOut } from '../../redux/auth/auth-actions';

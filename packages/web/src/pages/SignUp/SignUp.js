@@ -7,7 +7,9 @@ import {
 } from '../../redux/auth/auth-actions';
 import { authSelector } from '../../redux/auth/auth-selectors';
 import * as ROUTES from '../../routes';
-import './SignUp.scss';
+import '../../styles/GenericForm.scss';
+import Button from '../../styles/components/Button/GenericButton';
+import Input from '../../styles/components/Input/GenericInput';
 
 function SignUp() {
     const dispatch = useDispatch();
@@ -47,13 +49,12 @@ function SignUp() {
     }
 
     return (
-        <div className="singup-container">
-            <h1>LOGO SUPER GUAPO</h1>
+        <div className="form-container">
             <h2 className="header">Create your account </h2>
             <form action="#" method="POST" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="Name">First name</label>
-                    <input
+                    <Input
                         type="text"
                         id="Name"
                         required
@@ -64,7 +65,7 @@ function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="Name">Last name</label>
-                    <input
+                    <Input
                         type="text"
                         id="lastName"
                         required
@@ -75,7 +76,7 @@ function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="Name">User name</label>
-                    <input
+                    <Input
                         type="text"
                         id="username"
                         required
@@ -86,7 +87,7 @@ function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="email-address">Email address</label>
-                    <input
+                    <Input
                         type="text"
                         id="email"
                         autoComplete="email"
@@ -98,7 +99,7 @@ function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input
+                    <Input
                         type="password"
                         id="password"
                         required
@@ -108,12 +109,12 @@ function SignUp() {
                     />
                 </div>
 
-                <div className="singup-submit">
-                    <button type="submit">Sign up</button>
-                </div>
-                <div className="singup-login">
-                    <p className="">Are you already sharing?</p>
-                    <Link to={ROUTES.LOGIN}>Log in</Link>
+                <div className="form-login">
+                    <Button type="submit">Sign up</Button>
+                    <h3>Are you already sharing?</h3>
+                    <Link to={ROUTES.LOGIN}>
+                        <Button>Log in</Button>
+                    </Link>
                 </div>
             </form>
         </div>

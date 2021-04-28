@@ -13,8 +13,6 @@ import {
     getSongByID,
 } from '../../redux/songs/songs-actions';
 
-import '../../styles/utils.css';
-
 function SongModal() {
     const { infoModal } = useSelector(state => state.songs);
     const songID = infoModal.songID;
