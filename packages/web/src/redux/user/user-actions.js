@@ -8,8 +8,8 @@ export function updateUserInfo(userInfo) {
         const { username, name, lastName, file, fileType } = userInfo;
 
         const urlImageResponse = await getFileUrl({
-            file,
-            fileType,
+            file: file,
+            fileType: fileType,
         });
 
         const imageUrl = urlImageResponse.data.url;
