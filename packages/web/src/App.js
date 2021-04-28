@@ -8,13 +8,13 @@ import SongsPlayer from './components/SongsPlayer';
 
 import MainRouter from './Router';
 
-import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged'
+import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged';
 
 import './styles/main.scss';
 
 function App() {
     const auth = useSelector(store => store.auth);
-    useOnAuthStateChanged()
+    useOnAuthStateChanged();
     return (
         <div className="App__container">
             {auth.isAuthenticated && (

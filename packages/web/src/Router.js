@@ -13,28 +13,28 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 
 function MainRouter() {
     return (
-            <Switch>
-                <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                <Route path={ROUTES.LOGIN} component={Login} />
-                <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-                <Route path={ROUTES.HOME} component={Home} exact />
-                <ProtectedRoute path={ROUTES.MY_MUSIC} component={UploadSong} />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER}
-                    component={UserInfo}
-                    exact
-                />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER_EDIT}
-                    component={templates.CurrentUserProfileEdit}
-                    exact
-                />
-                <ProtectedRoute
-                    path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
-                    component={ChangePassword}
-                    exact
-                />
-            </Switch>
+        <Switch>
+            <Route path={ROUTES.SIGN_UP} component={SignUp} />
+            <Route path={ROUTES.LOGIN} component={Login} />
+            <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
+            <Route path={ROUTES.HOME} component={Home} exact />
+            <ProtectedRoute path={ROUTES.MY_MUSIC} component={UploadSong} />
+            <ProtectedRoute
+                path={ROUTES.HOME_USER}
+                component={UserInfo}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.HOME_USER_EDIT}
+                component={templates.CurrentUserProfileEdit}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
+                component={ChangePassword}
+                exact
+            />
+        </Switch>
     );
 }
 
