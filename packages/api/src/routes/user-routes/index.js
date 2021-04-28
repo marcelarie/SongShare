@@ -20,7 +20,7 @@ userRouter.get('/user/:username', getUserInfoByUsername);
 userRouter.patch('/user/edit', patchUserInfoByUsername);
 userRouter.delete('/user/delete', deleteUser);
 
-// all likes from a user by id, only array ids
-userRouter.post('/user/all-likes/:id', getAllUserLikes);
+//  all likes from a user by id, only array ids
+userRouter.get('/user/all-likes/:id', getAllUserLikes);
 
 export default userRouter;
