@@ -21,6 +21,38 @@ export const getAllSongsSuccess = ({ byID, ids }) => ({
     },
 });
 
+export const getMeSongsRequest = () => ({
+    type: SongsTypes.GET_SONGS_REQUEST,
+});
+
+export const getMeSongsError = errorMessage => ({
+    type: SongsTypes.GET_SONGS_ERROR,
+    payload: errorMessage,
+});
+
+export const getMeSongsSuccess = ({ ids }) => ({
+    type: SongsTypes.GET_SONGS_SUCCESS,
+    payload: {
+        idsMeSongs: ids,
+    },
+});
+
+export const getLikedSongsRequest = () => ({
+    type: SongsTypes.GET_SONGS_REQUEST,
+});
+
+export const getLikedSongsError = errorMessage => ({
+    type: SongsTypes.GET_SONGS_ERROR,
+    payload: errorMessage,
+});
+
+export const getLikedSongsSuccess = ({ ids }) => ({
+    type: SongsTypes.GET_SONGS_SUCCESS,
+    payload: {
+        idsMeLiked: ids,
+    },
+});
+
 export const getSongRequest = () => ({
     type: SongsTypes.GET_SONG_REQUEST,
 });
@@ -109,6 +141,57 @@ export function getAllSongs() {
             );
         } catch (error) {
             return dispatch(getAllSongsError(error.message));
+        }
+    };
+}
+
+export function getMeSongs() {
+    return async function getMeSongsThunk(dispatch) {
+        dispatch(getMeSongsRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            const res = await api.getUserSongs({
+                Authorization: `Bearer ${token}`,
+            });
+            // console.log(res);
+            /*  if (!res.isSuccessful) {
+                return dispatch(getSongsError(`Error: ${res.errorMessage}`));
+            } */
+
+            
+            return dispatch(
+                getMeSongsSuccess({
+                    idsMeSongs: '',
+                }),
+            );
+        } catch (error) {
+            return dispatch(getMeSongsError(error.message));
+        }
+    };
+}
+
+export function getLikedSongs() {
+    return async function getLikedSongsThunk(dispatch) {
+        dispatch(getLikedSongsRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            const res = await api.getUserLikedSongs({
+                Authorization: `Bearer ${token}`,
+            });
+            // console.log(res);
+            /*  if (!res.isSuccessful) {
+                return dispatch(getSongsError(`Error: ${res.errorMessage}`));
+            } */
+
+            return dispatch(
+                getLikedSongsSuccess({
+                    idsMeLiked: '',
+                }),
+            );
+        } catch (error) {
+            return dispatch(getLikedSongsError(error.message));
         }
     };
 }
