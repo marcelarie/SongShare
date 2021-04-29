@@ -23,7 +23,6 @@ export function updateUserInfo(userInfo) {
         }
 
         const userInfoEdited = { username, name, lastName, imageUrl };
-        console.log(userInfoEdited);
         dispatch(updateUserInfoRequest());
         try {
             const token = await auth.getCurrentUserToken();

@@ -4,17 +4,19 @@ import { useParams } from 'react-router-dom';
 import templates from './UserProfileTemplates';
 
 function UserInfo() {
-    const { currentUser } = useSelector(store => store.auth);
+    const user = useSelector(store => store.user);
+    console.log(user)
     const { username } = useParams();
 
     useEffect(() => {}, []);
 
     return (
+        (user && 
         <>
             <main className="userInfo w-full h-full">
                 <section className="UserInfo__wrapper w-full h-max flex">
                     <div className="flex-column">
-                        {currentUser.username === username ? (
+                        {user.username === username ? (
                             <templates.CurrentUserProfile />
                         ) : (
                             <templates.OtherUserProfile />
@@ -22,7 +24,7 @@ function UserInfo() {
                     </div>
                 </section>
             </main>
-        </>
+        </>)
     );
 }
 
