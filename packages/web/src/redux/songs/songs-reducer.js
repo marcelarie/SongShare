@@ -49,8 +49,8 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.GET_SONG_ERROR: {
             return {
                 ...state,
-                songsLoading: false,
-                songsLoadingError: action.payload,
+                SongLoading: false,
+                SongLoadingError: action.payload,
             };
         }
 
@@ -59,8 +59,8 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
-                SongsLoading: false,
-                SongsLoadingError: false,
+                SongLoading: false,
+                SongLoadingError: false,
                 byID: {
                     ...state.byID,
                     [songID]: {
@@ -70,14 +70,14 @@ function SongsReducer(state = SongsInitialState, action) {
                 },
             };
         }
-        case SongsTypes.SONG_UPDATING: {
+        case SongsTypes.SONG_EDIT_REQUEST: {
             return {
                 ...state,
                 SongUpdating: true,
                 SongUpdatingError: false,
             };
         }
-        case SongsTypes.SONG_UPDATING_ERROR: {
+        case SongsTypes.SONG_EDIT_ERROR: {
             return {
                 ...state,
                 SongUpdating: true,
@@ -85,31 +85,40 @@ function SongsReducer(state = SongsInitialState, action) {
             };
         }
 
-        case SongsTypes.EDIT_SONG: {
-            const songID = action.payload.songID;
-            const song = state.byID[songID];
+        case SongsTypes.EDIT_SONG_SUCCESS: {
+            const { song } = action.payload;
+            const songID = song._id;
+            console.log(song);
 
             return {
                 ...state,
+                SongUpdating: false,
+                SongUpdatingError: false,
                 byID: {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
-                        songName: song.songName,
-                        songAuthor: song.songAuthor,
-                        songGenger: song.songGender,
-                        likes: song.likes,
+                        name: song.name,
+                        author: song.author,
+                        genre: song.genre,
                         uploadBy: song.uploadBy,
                     },
                 },
             };
         }
 
+        case SongsTypes.SONG_DELETE_REQUEST: {
+            return {
+                ...state,
+                SongUpdating: true,
+                SongUpdatingError: false,
+            };
+        }
         case SongsTypes.SONG_DELETE_ERROR: {
             return {
                 ...state,
-                SongDeleteError: true,
-                SongDeleteRequest: false,
+                SongUpdatingError: true,
+                SongUpdating: false,
             };
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {

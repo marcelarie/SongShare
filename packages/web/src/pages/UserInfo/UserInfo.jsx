@@ -5,7 +5,6 @@ import templates from './UserProfileTemplates';
 
 function UserInfo() {
     const user = useSelector(store => store.user);
-    console.log(user);
     const { username } = useParams();
 
     useEffect(() => {}, []);

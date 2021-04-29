@@ -84,7 +84,7 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function editSong(headers, body, songID) {
+    function EditSong(headers, body, songID) {
         return request({
             url: `/song/${songID}`,
             requestMethod: 'PATCH',
@@ -111,7 +111,7 @@ function makeApi(request = makeRequest()) {
         getUserSongs,
         getLikedSongs,
         getSongByID,
-        editSong,
+        EditSong,
         addLike,
         deleteSong,
     };
