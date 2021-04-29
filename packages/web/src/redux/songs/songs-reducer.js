@@ -12,9 +12,7 @@ const SongsInitialState = {
         SongUpdating: false,
         SongUpdatingError: null,
     }, // ¿ Si el carrusel se hace con los arrays del estado no haria falta poner los estados del carrusel en funcion de la peticion
-    /* CarruselState: {
-        SongsLoading: false,
-        SongsLoadingError: null,
+    /* CarruselState: { SongsLoading: false, SongsLoadingError: null,
         SongsFetched: false,
         SongLoading: false,
         SongLoadingError: null,

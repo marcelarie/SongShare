@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import * as main from '../../color-palette';
 
-const GenericNavButton = styled.a`
+const GenericNavButton = styled.button`
     all: unset;
-    color: ${props => props.color};
+    color: ${({ theme }) => theme.lightGray};
     font-size: 1.3em;
     margin: 0 2rem;
     &:hover {
-        color: ${props => props.colorHover};
+        color: ${({ theme }) => theme.white};
         transition: 0.8ms;
     }
     &:active {
@@ -16,9 +15,5 @@ const GenericNavButton = styled.a`
     }
 `;
 
-GenericNavButton.defaultProps = {
-    color: main.lightGray,
-    colorHover: main.white,
-    width: '200px',
-};
+GenericNavButton.defaultProps = {};
 export default GenericNavButton;

@@ -6,6 +6,7 @@ import uploaderReducer from './uploader/uploader-reducer';
 import songsReducer from './songs/songs-reducer';
 import quickMenu from './quickMenu/quickMenu-reducer';
 import listPlayerReducer from './listPlayer/listPlayer-reducer';
+import changeTheme from './theme/theme-reducer';
 
 const RESET_STORE_AND_LOG_OUT = 'RESET_STORE_AND_LOG_OUT';
 
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
     songs: songsReducer,
     listPlay: listPlayerReducer,
     quickMenu,
+    changeTheme,
 });
 
 const rootReducer = (state, action) => {

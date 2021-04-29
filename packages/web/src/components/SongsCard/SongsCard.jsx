@@ -9,6 +9,8 @@ import {
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
 
+import SongCardStyle from './styles';
+
 function SongsCard({ newsong }) {
     const dispatch = useDispatch();
     const [cardId] = useState(newsong._id);
@@ -23,7 +25,7 @@ function SongsCard({ newsong }) {
     useQuickMenuListener();
     return (
         <>
-            <div className="songsCard">
+            <SongCardStyle className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
                         <button
@@ -34,9 +36,7 @@ function SongsCard({ newsong }) {
                             className="songsCard__container__3pointButton quickMenu"
                             type="button"
                             onMouseDown={e => openMenu(e, cardId)}
-                        >
-                            ...
-                        </button>
+                        />
                     </div>
                     <button
                         className="songsCard__playButton"
@@ -49,7 +49,7 @@ function SongsCard({ newsong }) {
                 </section>
 
                 <div className="songsCard__description">description</div>
-            </div>
+            </SongCardStyle>
         </>
     );
 }

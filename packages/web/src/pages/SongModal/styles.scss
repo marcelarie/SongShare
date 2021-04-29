@@ -1,0 +1,33 @@
+.song-modal {
+    color: white;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -60%);
+    background-color: black;
+    padding: 2rem 3rem;
+    min-width: 40vw;
+    min-height: 60vh;
+    border-radius: 5px;
+    border: 2px solid darkgray;
+
+    &__image {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 1rem;
+    }
+    &__likes {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 2rem;
+        p {
+            margin: 0.5rem;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-around;
+    }
+}

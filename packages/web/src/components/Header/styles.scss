@@ -1,29 +1,2 @@
 nav {
-    z-index: 2;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    justify-content: space-between;
-    color: white;
-    padding: 0.5rem 1rem;
-    .nav-menu {
-        display: flex;
-        justify-content: space-between;
-    }
-    .nav-user {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        button {
-            width: 30px;
-            height: 30px;
-            margin: 0 auto;
-            border-radius: 50%;
-            &:active {
-                opacity: 0.7;
-            }
-        }
-    }
 }

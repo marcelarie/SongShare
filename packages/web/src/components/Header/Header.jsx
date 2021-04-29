@@ -1,16 +1,19 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
+import { changeTheme } from '../../redux/theme/theme-actions';
 import { MY_MUSIC } from '../../routes';
-import './styles.scss';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
+import Nav from './styles';
 
 export default function Header() {
     const dispatch = useDispatch();
-    const { imageUrl, username } = useSelector(store => store.auth.currentUser);
+    const { imageUrl } = useSelector(store => store.auth.currentUser);
+    const { theme } = useSelector(store => store.changeTheme);
+
     const profilePic =
         imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
@@ -18,12 +21,18 @@ export default function Header() {
     const handleSignOut = () => {
         dispatch(signOut());
     };
+    const handleChangeTheme = () => {
+        console.log(theme);
+        dispatch(changeTheme());
+    };
 
     const [openMenu, setOpenMenu] = useState(false);
 
     return (
-        <nav>
-            <h1>Song Share</h1>
+        <Nav>
+            <NavLink to="/">
+                <h1>Song Share</h1>
+            </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
                     <NavButton>Home</NavButton>
@@ -36,6 +45,11 @@ export default function Header() {
                 </NavLink>
             </div>
 
+            <div>
+                <button onClick={handleChangeTheme} type="button">
+                    {theme ? 'Dark Theme' : 'Light Theme'}
+                </button>
+            </div>
             <div className="nav-user">
                 <ImageButton
                     onClick={() => setOpenMenu(!openMenu)}
@@ -52,6 +66,6 @@ export default function Header() {
                     </div>
                 )}
             </div>
-        </nav>
+        </Nav>
     );
 }

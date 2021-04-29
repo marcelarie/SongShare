@@ -15,9 +15,6 @@ function UploadSong() {
     const { isUploadingSong, uploadSongSuccess, uploadSongError } = useSelector(
         store => store.uploader,
     );
-    console.log('uploading', isUploadingSong);
-    console.log('success', uploadSongSuccess);
-    console.log('error', uploadSongError);
 
     const [title, setTitle] = useState('');
     const [file, setFile] = useState();
