@@ -32,6 +32,10 @@ const UserSchema = mongoose.Schema(
                 ref: 'song',
             },
         ],
+        // esto quiero revisarlo contigo Marcelllll
+        imageUrl: {
+            type: String,
+        },
         songs: [
             {
                 type: String,

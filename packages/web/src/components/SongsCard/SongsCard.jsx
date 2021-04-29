@@ -37,7 +37,7 @@ function SongsCard({ newsong }) {
                         <img
                             className=""
                             alt=""
-                            src="https://i.pinimg.com/originals/00/82/9b/00829bcca1db05d383fe549843976166.jpg"
+                            src="https://res.cloudinary.com/apollofymusicproject/image/upload/v1619606909/uploadedImages/music.jpg.jpg"
                         />
                     </div>
                     <p className="songsCard__title">{newsong.name}</p>

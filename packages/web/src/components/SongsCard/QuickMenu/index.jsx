@@ -4,9 +4,13 @@ import { addToQueue } from '../../../redux/listPlayer/listPlayer-actions';
 import { openModal } from '../../../redux/quickMenu/quickMenu-actions';
 import QuickMenuStyle from './styles';
 
-const QuickMenu = ({ song }) => {
+const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY } = useSelector(({ quickMenu }) => quickMenu);
+    const { positionX, positionY, id } = useSelector(
+        ({ quickMenu }) => quickMenu,
+    );
+
+    const song = useSelector(store => store.mus);
 
     //    closeModal(?)
     const handleClick = () => {
@@ -14,15 +18,13 @@ const QuickMenu = ({ song }) => {
     };
 
     const addSongToQueue = () => {
+        // coger canciona partir del id
         dispatch(addToQueue(song));
         dispatch(openModal(false));
     };
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
-            <button className="quickMenu" type="button" onClick={handleClick}>
-                Close
-            </button>
             <ul>
                 <li>
                     <button
