@@ -1,37 +1,12 @@
 import * as SongsTypes from './songs-types';
 
 const SongsInitialState = {
-    SongsState: {
-        // First petition to back
-        SongsLoading: false,
-        SongsLoadingError: null,
-        SongsGetted: false,
-        SongLoading: false,
-        SongLoadingError: null,
-        SongGetted: false,
-        SongUpdating: false,
-        SongUpdatingError: null,
-    }, // ¿ Si el carrusel se hace con los arrays del estado no haria falta poner los estados del carrusel en funcion de la peticion
-    /* CarruselState: {
-        SongsLoading: false,
-        SongsLoadingError: null,
-        SongsFetched: false,
-        SongLoading: false,
-        SongLoadingError: null,
-        SongFetched: false,
-        SongUpdating: false,
-        SongUpdatingError: null,
-    }, */ songName:
-        '',
-    songAuthor: '',
-    songGenger: '',
-    likes: {
-        among: 0,
-        users: [],
-        me: false,
-    },
-    uploadBy: '', // user who upload the song
-
+    SongsLoading: false,
+    SongsLoadingError: null,
+    SongLoading: false,
+    SongLoadingError: null,
+    SongUpdating: false,
+    SongUpdatingError: null,
     byID: {},
     ids: [],
 
@@ -39,8 +14,6 @@ const SongsInitialState = {
         modal: false,
         songID: null,
     },
-
-    // allGender: [], // array con todos los generos de las canciones,
 };
 
 function SongsReducer(state = SongsInitialState, action) {
@@ -49,29 +22,25 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.GET_SONGS_REQUEST: {
             return {
                 ...state,
-                SongsState: {
-                    SongsLoading: true,
-                    SongsLoadingError: null,
-                },
+
+                SongsLoading: true,
+                SongsLoadingError: null,
             };
         }
         case SongsTypes.GET_SONGS_ERROR: {
             return {
                 ...state,
-                SongsState: {
-                    SongsLoading: false,
-                    SongsLoadingError: true,
-                },
+                SongsLoading: false,
+                SongsLoadingError: true,
             };
         }
         case SongsTypes.GET_SONGS_SUCCESS: {
             return {
                 ...state,
-                SongsState: {
-                    SongsLoading: false,
-                    SongsLoadingError: false,
-                    SongsGetted: true,
-                },
+                SongsLoading: false,
+                SongsLoadingError: false,
+                SongsGetted: true,
+
                 byID: payload.byID,
                 ids: payload.ids,
             };
@@ -89,11 +58,8 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.GET_SONG_ERROR: {
             return {
                 ...state,
-                SongsState: {
-                    songsLoading: false,
-                    songsLoadingError: action.payload,
-                    SongsGetted: false,
-                },
+                songsLoading: false,
+                songsLoadingError: action.payload,
             };
         }
         case SongsTypes.GET_SONG_SUCCESS: {
@@ -101,29 +67,13 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
-
-                SongsState: {
-                    SongsLoading: false,
-                    SongsLoadingError: false,
-                    SongsGetted: true,
-                },
+                SongsLoading: false,
+                SongsLoadingError: false,
                 byID: {
                     ...state.byID,
                     [songID]: {
                         ...state.byID[songID],
                         ...action.payload,
-                        // name: {
-                        //     ...action.payload.name,
-                        // },
-                        // author: {
-                        //     ...action.payload.author,
-                        // },
-                        // likes: {
-                        //     ...action.payload.likes,
-                        // },
-                        // genre: {
-                        //     ...action.payload.songGender,
-                        // },
                     },
                 },
             };
@@ -131,21 +81,17 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.SONG_UPDATING: {
             return {
                 ...state,
-                SongsState: {
-                    SongUpdating: true,
-                    SongUpdatingError: false,
-                },
+                SongUpdating: true,
+                SongUpdatingError: false,
             };
         }
         case SongsTypes.SONG_UPDATING_ERROR: {
             return {
                 ...state,
-                SongsState: {
-                    ...state.SongsState,
-                    SongUpdating: false,
-                    SongUpdatingError: true,
-                    ErrorMessage: action.payload,
-                },
+                ...state.SongsState,
+                SongUpdating: false,
+                SongUpdatingError: true,
+                ErrorMessage: action.payload,
             };
         }
 
@@ -172,12 +118,10 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.SONG_DELETE_ERROR: {
             return {
                 ...state,
-                SongsState: {
-                    ...state.SongsState,
-                    SongDeleteError: true,
-                    SongDeleteRequest: false,
-                    SongDeleteSuccess: false,
-                },
+                ...state.SongsState,
+                SongDeleteError: true,
+                SongDeleteRequest: false,
+                SongDeleteSuccess: false,
             };
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {
@@ -185,13 +129,9 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
-                SongsState: {
-                    ...state.SongsState,
-                    SongDeleteError: false,
-                    SongDeleteRequest: false,
-                    SongDeleteSuccess: true,
-                    SongDeleteSuccessMessage: `You have deleted successful`,
-                },
+                SongDeleteError: false,
+                SongDeleteRequest: false,
+                SongDeleteSuccessMessage: `You have deleted successful`,
                 byID: {
                     ...state.byID,
                     [songID]: {
@@ -244,43 +184,3 @@ function SongsReducer(state = SongsInitialState, action) {
 }
 
 export default SongsReducer;
-/* export const SongsIntialState = {
-    getSongsLoading: false,
-    getSongsError: false,
-
-    allSongs: [],
-    popularSongs: [],
-    genderSongs: [],
-    likedSongs: [],
-};
-
-const songsReducer = (state = SongsIntialState, action) => {
-    const { type, payload } = action;
-
-    switch (type) {
-        case SongsTypes.SONGS_REQUEST:
-            return {
-                ...state,
-                getSongsLoading: true,
-                getSongsError: false,
-            };
-
-        case SongsTypes.SONGS_SUCCES:
-            return {
-                ...state,
-                getSongsLoading: false,
-                getSongsError: false,
-                allSongs: payload,
-            };
-        case SongsTypes.SONGS_ERROR:
-            return {
-                ...state,
-                getSongsError: true,
-            };
-
-        default:
-            return state;
-    }
-};
-
-export default songsReducer; */
