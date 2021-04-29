@@ -24,7 +24,7 @@ const QuickMenu = ({ song }) => {
                 Close
             </button>
             <ul>
-                <li> 
+                <li>
                     <button
                         className="quickMenu"
                         type="button"

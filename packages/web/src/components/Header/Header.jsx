@@ -6,33 +6,41 @@ import { signOut } from '../../redux/auth/auth-actions';
 import { MY_MUSIC } from '../../routes';
 import './styles.scss';
 
-const navigation = [
-    { name: 'Dashboard', href: '/', current: true },
-    { name: 'Team', href: '/', current: false },
-    { name: 'Projects', href: '/', current: false },
-    { name: 'Calendar', href: '/', current: false },
-];
-
 export default function Header() {
     const dispatch = useDispatch();
-    const userInfo = useSelector(store => store.auth.currentUser);
-    const currentLocation = useLocation().pathname;
+    const { imageUrl, username } = useSelector(store => store.auth.currentUser);
+    const profilePic =
+        imageUrl ||
+        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
-    function handleSignOut() {
+    const handleSignOut = () => {
         dispatch(signOut());
-    }
+    };
 
-    const paths = [
-        { name: 'Home', path: '/' },
-        { name: 'Search', path: '/search' },
-        { name: 'My music', path: MY_MUSIC },
-    ];
-
-    const [openMainMenu, setOpenMainMenu] = useState(false);
-
-    useEffect(() => {}, [currentLocation]);
+    const [openMenu, setOpenMenu] = useState(false);
 
     return (
-        <h1>Header</h1>
+        <nav>
+            <h1>Song Share</h1>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/search">Search</NavLink>
+            <NavLink to={MY_MUSIC}>My Music</NavLink>
+
+            <div>
+                <img alt="user-image" width="50px" src={profilePic} />
+                <button onClick={() => setOpenMenu(!openMenu)} type="button">
+                    {username}
+                </button>
+                {openMenu && (
+                    <div>
+                        <NavLink to="/">Profile</NavLink>
+                        <NavLink to="/search">Settings</NavLink>
+                        <button type="button" onClick={handleSignOut}>
+                            Sign Out
+                        </button>
+                    </div>
+                )}
+            </div>
+        </nav>
     );
 }

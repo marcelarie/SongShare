@@ -20,7 +20,7 @@ function Carousel() {
     return (
         <div className="carousel">
             {ids.map(id => {
-                const song = byID[id]
+                const song = byID[id];
                 return <SongsCard newsong={song} key={song._id} />;
             })}
             {open && <QuickMenu />}

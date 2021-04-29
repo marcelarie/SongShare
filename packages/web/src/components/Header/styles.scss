@@ -2,3 +2,13 @@
     position: sticky;
     top: 0;
 }
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    color: white;
+    a {
+        color: white;
+    }
+}

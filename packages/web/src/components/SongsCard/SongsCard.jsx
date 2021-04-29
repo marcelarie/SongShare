@@ -22,35 +22,35 @@ function SongsCard({ newsong }) {
     };
     useQuickMenuListener();
     return (
-        <div>
+        <>
             <div className="songsCard">
-                <div className="songsCard__header">
-                    <button className="songsCard__header__like" type="button" />
+                <div className="songsCard__container">
+                    <div className="songsCard__container__header">
+                        <button
+                            className="songsCard__container__like"
+                            type="button"
+                        />
+                        <button
+                            className="songsCard__container__3pointButton quickMenu"
+                            type="button"
+                            onMouseDown={e => openMenu(e, cardId)}
+                        >
+                            ...
+                        </button>
+                    </div>
                     <button
-                        className="songsCard__header__3pointButton quickMenu"
+                        className="songsCard__playButton"
                         type="button"
-                        onMouseDown={e => openMenu(e, cardId)}
+                        onClick={reproduceSong}
                     />
                 </div>
                 <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
-                    <div className="songsCard__picture">
-                        <img
-                            className=""
-                            alt=""
-                            src="https://i.pinimg.com/originals/00/82/9b/00829bcca1db05d383fe549843976166.jpg"
-                        />
-                    </div>
                     <p className="songsCard__title">{newsong.name}</p>
                 </section>
 
                 <div className="songsCard__description">description</div>
-                <button
-                    className="songsCard__playButton"
-                    type="button"
-                    onClick={reproduceSong}
-                />
             </div>
-        </div>
+        </>
     );
 }
 
