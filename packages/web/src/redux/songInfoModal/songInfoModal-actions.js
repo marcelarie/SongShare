@@ -16,5 +16,3 @@ export const closeInfoModal = () => ({
         modal: false,
     },
 });
-
-

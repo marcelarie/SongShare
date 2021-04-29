@@ -158,25 +158,24 @@ export function getMeSongs(userInfo) {
 }
 
 export function getLikedSongs(userID) {
-    console.log(userID)
+    console.log(userID);
     return async function getLikedSongsThunk(dispatch) {
         dispatch(getLikedSongsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
-            const res = await api.getUserLikedSongs({
-                Authorization: `Bearer ${token}`,
-            },
-            userID
+            const res = await api.getUserLikedSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                userID,
             );
             console.log(res);
             /*  if (!res.isSuccessful) {
                 return dispatch(getSongsError(`Error: ${res.errorMessage}`));
             } */
 
-            return dispatch(
-                getLikedSongsSuccess(res.data),
-            );
+            return dispatch(getLikedSongsSuccess(res.data));
         } catch (error) {
             return dispatch(getLikedSongsError(error.message));
         }

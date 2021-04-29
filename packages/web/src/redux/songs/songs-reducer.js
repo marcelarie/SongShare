@@ -146,7 +146,6 @@ function SongsReducer(state = SongsInitialState, action) {
             };
         }
 
-
         default: {
             return state;
         }
