@@ -99,15 +99,18 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
+        const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
+        console.log(checkUserResponse);
+
         const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-            $push: { likes: id },
+            $addToSet: { likes: id },
         });
         if (userResponse.error) return res.status(400).send(userResponse);
         if (!userResponse.data) return res.status(404).send(userResponse);
 
         const songResponse = await SongRepo.findByIdAndUpdate(
             { _id: id },
-            { $push: { likes: uid } },
+            { $addToSet: { likes: uid } },
         );
         if (songResponse.error) return res.status(400).send(songResponse);
         if (!userResponse.data) return res.status(404).send(userResponse);
@@ -133,7 +136,14 @@ async function postSong(req, res, next) {
             });
 
         const song = await SongRepo.create({ ...body, username: uid });
+        const userResponse = await UserRepo.findByIdAndUpdate(
+            { _id: uid },
+            {
+                $addToSet: { songs: body._id },
+            },
+        );
 
+        if (userResponse.error) return res.status(400).send(userResponse);
         if (song.error) return res.status(400).send(song);
 
         if (song.data) return res.status(202).send(song);
@@ -211,12 +221,32 @@ async function deleteSongByName(req, res, next) {
     }
 }
 
+async function getAllSongsFromUser(req, res, next) {
+    try {
+        const { id } = req.params;
+
+        const response = await UserRepo.findOneLean({ _id: id });
+        const { data, error } = response;
+
+        if (error) return res.status(400).send(response);
+        if (!data) return res.status(404).send(response);
+        if (data)
+            return res.status(200).send({
+                data: data.songs,
+                error,
+            });
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     getAllSongs,
     getSongByName,
     getSong,
     getSongWithLikes,
     getSongByNameWithLikes,
+    getAllSongsFromUser,
     getSongsByParams,
     postSong,
     patchSong,

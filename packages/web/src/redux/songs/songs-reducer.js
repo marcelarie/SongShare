@@ -7,7 +7,6 @@ const SongsInitialState = {
     SongLoadingError: null,
     SongUpdating: false,
     SongUpdatingError: null,
-
     byID: {},
     ids: [],
 };
