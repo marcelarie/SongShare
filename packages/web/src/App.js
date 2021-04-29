@@ -11,7 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
-import UploadSong from './components/UploadSong';
+import QuickMenu from './components/QuickMenu';
 import './styles/main.scss';
 
 import UserInfo from './pages/UserInfo/UserInfo';
@@ -20,11 +20,14 @@ import { signOut, syncSignIn } from './redux/auth/auth-actions';
 import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
 import SongsPlayer from './components/SongsPlayer';
+import MyMusic from './pages/MyMusic/MyMusic';
 
 function App() {
     const dispatch = useDispatch();
 
     const auth = useSelector(store => store.auth);
+
+    const { open } = useSelector(({ quickMenu }) => quickMenu);
 
     useEffect(() => {
         let unsubscribeFromAuth = null;
@@ -68,7 +71,7 @@ function App() {
                         <Route path={ROUTES.HOME} component={Home} exact />
                         <ProtectedRoute
                             path={ROUTES.MY_MUSIC}
-                            component={UploadSong}
+                            component={MyMusic}
                         />
                         <ProtectedRoute
                             path={ROUTES.HOME_USER}
@@ -87,6 +90,8 @@ function App() {
                         />
                     </Switch>
                 </div>
+
+                {open && <QuickMenu />}
             </main>
             {auth.isAuthenticated && (
                 <>

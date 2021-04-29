@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToQueue } from '../../../redux/listPlayer/listPlayer-actions';
-import { openModal } from '../../../redux/quickMenu/quickMenu-actions';
+import { addToQueue } from '../../redux/listPlayer/listPlayer-actions';
+import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import QuickMenuStyle from './styles';
 
 const QuickMenu = () => {
