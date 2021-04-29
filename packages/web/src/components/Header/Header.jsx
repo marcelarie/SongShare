@@ -26,7 +26,7 @@ function classNames(...classes) {
 
 export default function Header() {
     const dispatch = useDispatch();
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const user = useSelector(store => store.user);
     const currentLocation = useLocation().pathname;
 
     const imageUrl = useSelector(store => store.auth.currentUser.imageUrl);
@@ -118,9 +118,9 @@ export default function Header() {
                                                         }
                                                         alt=""
                                                     />
-                                                    {userInfo ? (
+                                                    {user ? (
                                                         <span className="hidden lg:block md:block text-gray-300 hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
-                                                            {userInfo.username}
+                                                            {user.username}
                                                         </span>
                                                     ) : (
                                                         <p>loading</p>
@@ -145,7 +145,7 @@ export default function Header() {
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <NavLink
-                                                            to={`/${userInfo.username}`}
+                                                            to={`/${user.username}`}
                                                             className={classNames(
                                                                 active
                                                                     ? 'bg-gray-100 '
