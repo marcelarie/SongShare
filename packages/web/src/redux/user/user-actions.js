@@ -5,25 +5,24 @@ import { getFileUrl } from '../../services/cloudinary';
 
 export function updateUserInfo(userInfo) {
     return async function updateUserInfoThunk(dispatch) {
-        const { username, name, lastName, file, fileType } = userInfo;
-
-        const urlImageResponse = await getFileUrl({
-            file: file,
-            fileType: fileType,
-        });
-
-        const imageUrl = urlImageResponse.data.url;
-
-        if (!imageUrl) {
-            return dispatch(
-                updateUserInfoError(
-                    'error with the image. Try again with another image',
-                ),
-            );
+        const { username, name, lastname, file, fileType } = userInfo;
+        let imageUrl = null;
+        if (file) {
+            const urlImageResponse = await getFileUrl({
+                file: file,
+                fileType: fileType,
+            });
+            imageUrl = urlImageResponse.data.url;
+            if (!imageUrl) {
+                dispatch(
+                    updateUserInfoError(
+                        'error with the image. Try again with another image',
+                    ),
+                );
+            }
         }
 
-        const userInfoEdited = { username, name, lastName, imageUrl };
-        console.log(userInfoEdited);
+        const userInfoEdited = { username, name, lastname, imageUrl };
         dispatch(updateUserInfoRequest());
         try {
             const token = await auth.getCurrentUserToken();
