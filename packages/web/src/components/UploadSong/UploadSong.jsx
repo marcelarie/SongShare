@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Dropzone from '../Dropzone';
@@ -15,6 +15,9 @@ function UploadSong() {
     const { isUploadingSong, uploadSongSuccess, uploadSongError } = useSelector(
         store => store.uploader,
     );
+    console.log('uploading', isUploadingSong);
+    console.log('success', uploadSongSuccess);
+    console.log('error', uploadSongError);
 
     const [title, setTitle] = useState('');
     const [file, setFile] = useState();
@@ -55,17 +58,16 @@ function UploadSong() {
                         handleSetFile(files[0]);
                     }}
                 />
+                <div className="upload-song__messages">
+                    {isUploadingSong && <p>Uploading song...</p>}
+                    {uploadSongSuccess && file && <p>Upload successful!</p>}
+                    {uploadSongError && <p>Upload error!</p>}
+                </div>
 
                 <Button type="submit" disabled={isUploadingSong}>
                     Upload
                 </Button>
             </form>
-
-            <div className="upload-song__messages">
-                {isUploadingSong && <p>Uploading song...</p>}
-                {uploadSongSuccess && file && <p>Upload successful!</p>}
-                {uploadSongError && <p>Upload error!</p>}
-            </div>
         </div>
     );
 }

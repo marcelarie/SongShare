@@ -6,6 +6,7 @@ import { signOut } from '../../redux/auth/auth-actions';
 import { MY_MUSIC } from '../../routes';
 import './styles.scss';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
+import ImageButton from '../../styles/components/Button/ImageButton';
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -36,11 +37,11 @@ export default function Header() {
             </div>
 
             <div className="nav-user">
-                <img alt="user-image" width="50px" src={profilePic} />
-                <NavButton onClick={() => setOpenMenu(!openMenu)} type="button">
-                    {' '}
-                    {username}
-                </NavButton>
+                <ImageButton
+                    onClick={() => setOpenMenu(!openMenu)}
+                    type="button"
+                    image={profilePic}
+                />
                 {openMenu && (
                     <div>
                         <NavLink to="/">Profile</NavLink>
