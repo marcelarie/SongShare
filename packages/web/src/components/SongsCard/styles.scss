@@ -1,7 +1,6 @@
 .songsCard {
     width: 200px;
-    min-width: 100px;
-    position: relative;
+    min-width: 200px;
     margin-right: 15px;
     border-radius: 5px;
     text-align: left;
@@ -18,6 +17,7 @@
         background-position: center;
 
         height: 200px;
+        width: 100%;
         border-radius: 5px;
         &:hover {
             opacity: 0.6;
@@ -34,6 +34,7 @@
             background-size: cover;
             width: 25px;
             height: 25px;
+            cursor: pointer;
         }
         &__like {
             all: unset;
@@ -41,6 +42,7 @@
             background-size: cover;
             width: 25px;
             height: 25px;
+            cursor: pointer;
         }
     }
     &__playButton {
@@ -50,7 +52,7 @@
         background-image: url('https://img.icons8.com/ios-filled/452/play--v1.png');
         background-size: cover;
         background-position: center;
-        float: right;
+        cursor: pointer;
     }
 
     &__title {

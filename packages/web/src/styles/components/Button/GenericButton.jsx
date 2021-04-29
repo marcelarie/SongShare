@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as main from '../../color-palette';
 
 const GenericButton = styled.button`
         font-weight: 600;
@@ -24,8 +25,8 @@ const GenericButton = styled.button`
 `;
 
 GenericButton.defaultProps = {
-    color: '#c3352e',
-    colorHover: '#ac362e',
+    color: main.color,
+    colorHover: main.colorDark,
     width: '200px',
 };
 

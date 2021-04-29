@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from '../../redux/auth/auth-actions';
 import { MY_MUSIC } from '../../routes';
 import './styles.scss';
+import NavButton from '../../styles/components/NavButton/GenericNavButton';
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -22,15 +23,24 @@ export default function Header() {
     return (
         <nav>
             <h1>Song Share</h1>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/search">Search</NavLink>
-            <NavLink to={MY_MUSIC}>My Music</NavLink>
+            <div className="nav-menu">
+                <NavLink to="/">
+                    <NavButton>Home</NavButton>
+                </NavLink>
+                <NavLink to="/search">
+                    <NavButton>Search</NavButton>
+                </NavLink>
+                <NavLink to={MY_MUSIC}>
+                    <NavButton>My Music</NavButton>
+                </NavLink>
+            </div>
 
-            <div>
+            <div className="nav-user">
                 <img alt="user-image" width="50px" src={profilePic} />
-                <button onClick={() => setOpenMenu(!openMenu)} type="button">
+                <NavButton onClick={() => setOpenMenu(!openMenu)} type="button">
+                    {' '}
                     {username}
-                </button>
+                </NavButton>
                 {openMenu && (
                     <div>
                         <NavLink to="/">Profile</NavLink>
