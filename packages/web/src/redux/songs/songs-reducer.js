@@ -10,10 +10,6 @@ const SongsInitialState = {
 
     byID: {},
     ids: [],
-    infoModal: {
-        modal: false,
-        songID: null,
-    },
 };
 
 function SongsReducer(state = SongsInitialState, action) {
@@ -149,25 +145,7 @@ function SongsReducer(state = SongsInitialState, action) {
                 },
             };
         }
-        case SongsTypes.OPEN_INFO_MODAL: {
-            const songID = action.payload.songID;
-            return {
-                ...state,
-                infoModal: {
-                    modal: true,
-                    songID: songID,
-                },
-            };
-        }
-        case SongsTypes.CLOSE_INFO_MODAL: {
-            return {
-                ...state,
-                infoModal: {
-                    ...state.infoModal,
-                    modal: false,
-                },
-            };
-        }
+
 
         default: {
             return state;

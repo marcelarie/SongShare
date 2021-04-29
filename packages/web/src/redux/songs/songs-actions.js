@@ -102,22 +102,6 @@ export const addLikeToSongSuccess = song => ({
     },
 });
 
-export const openInfoModal = songID => ({
-    type: SongsTypes.OPEN_INFO_MODAL,
-    payload: {
-        songID: songID,
-        modal: true,
-    },
-});
-
-export const closeInfoModal = () => ({
-    type: SongsTypes.CLOSE_INFO_MODAL,
-    payload: {
-        songID: null,
-        modal: false,
-    },
-});
-
 export function getAllSongs() {
     return async function getAllSongsThunk(dispatch) {
         dispatch(getAllSongsRequest());
@@ -240,7 +224,6 @@ export function addLikeToSong(songID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
             return dispatch(songUpdatingError('hola'));
