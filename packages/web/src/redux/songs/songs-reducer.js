@@ -9,14 +9,6 @@ const SongsInitialState = {
     SongUpdatingError: null,
     byID: {},
     ids: [],
-
-    meSongsIds: [],
-    likedSongs: [],
-
-    infoModal: {
-        modal: false,
-        songID: null,
-    },
 };
 
 function SongsReducer(state = SongsInitialState, action) {
@@ -25,7 +17,6 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.GET_SONGS_REQUEST: {
             return {
                 ...state,
-
                 SongsLoading: true,
                 SongsLoadingError: null,
             };
@@ -42,83 +33,19 @@ function SongsReducer(state = SongsInitialState, action) {
                 ...state,
                 SongsLoading: false,
                 SongsLoadingError: false,
-                SongsGetted: true,
-
                 byID: payload.byID,
                 ids: payload.ids,
-            };
-        }
-
-        case SongsTypes.GET_ME_SONGS_REQUEST: {
-            return {
-                ...state,
-                SongsState: {
-                    MeSongsLoading: true,
-                    MeSongsLoadingError: null,
-                },
-            };
-        }
-        case SongsTypes.GET_ME_SONGS_ERROR: {
-            return {
-                ...state,
-                SongsState: {
-                    MeSongsLoading: false,
-                    MeSongsLoadingError: true,
-                },
-            };
-        }
-        case SongsTypes.GET_ME_SONGS_SUCCESS: {
-            return {
-                ...state,
-                SongsState: {
-                    MeSongsLoading: false,
-                    MeSongsLoadingError: false,
-                    MeSongsGetted: true,
-                },
-                meSongsIds: payload,
-            };
-        }
-
-        case SongsTypes.GET_LIKED_SONGS_REQUEST: {
-            return {
-                ...state,
-                SongsState: {
-                    LikedSongsLoading: true,
-                    LikedSongsLoadingError: null,
-                },
-            };
-        }
-        case SongsTypes.GET_LIKED_SONGS_ERROR: {
-            return {
-                ...state,
-                SongsState: {
-                    LikedSongsLoading: false,
-                    LikedSongsLoadingError: true,
-                },
-            };
-        }
-        case SongsTypes.GET_LIKED_SONGS_SUCCESS: {
-            return {
-                ...state,
-                SongsState: {
-                    LikedSongsLoading: false,
-                    LikedSongsLoadingError: false,
-                    LikedSongsGetted: true,
-                },
-                LikedSongsIds: payload.likedIds,
             };
         }
 
         case SongsTypes.GET_SONG_REQUEST: {
             return {
                 ...state,
-                SongsState: {
-                    SongLoading: true,
-                    SongLoadingError: false,
-                    SongGetted: false,
-                },
+                SongLoading: true,
+                SongLoadingError: false,
             };
         }
+
         case SongsTypes.GET_SONG_ERROR: {
             return {
                 ...state,
@@ -126,6 +53,7 @@ function SongsReducer(state = SongsInitialState, action) {
                 songsLoadingError: action.payload,
             };
         }
+
         case SongsTypes.GET_SONG_SUCCESS: {
             const songID = action.payload._id;
 
@@ -152,10 +80,8 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.SONG_UPDATING_ERROR: {
             return {
                 ...state,
-                ...state.SongsState,
-                SongUpdating: false,
-                SongUpdatingError: true,
-                ErrorMessage: action.payload,
+                SongUpdating: true,
+                SongUpdatingError: action.payload,
             };
         }
 
@@ -182,10 +108,8 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.SONG_DELETE_ERROR: {
             return {
                 ...state,
-                ...state.SongsState,
                 SongDeleteError: true,
                 SongDeleteRequest: false,
-                SongDeleteSuccess: false,
             };
         }
         case SongsTypes.SONG_DELETE_SUCCESS: {
@@ -195,7 +119,6 @@ function SongsReducer(state = SongsInitialState, action) {
                 ...state,
                 SongDeleteError: false,
                 SongDeleteRequest: false,
-                SongDeleteSuccessMessage: `You have deleted successful`,
                 byID: {
                     ...state.byID,
                     [songID]: {
@@ -218,25 +141,6 @@ function SongsReducer(state = SongsInitialState, action) {
                         ...state.byID[songID],
                         likes: song.likes,
                     },
-                },
-            };
-        }
-        case SongsTypes.OPEN_INFO_MODAL: {
-            const songID = action.payload.songID;
-            return {
-                ...state,
-                infoModal: {
-                    modal: true,
-                    songID: songID,
-                },
-            };
-        }
-        case SongsTypes.CLOSE_INFO_MODAL: {
-            return {
-                ...state,
-                infoModal: {
-                    ...state.infoModal,
-                    modal: false,
                 },
             };
         }

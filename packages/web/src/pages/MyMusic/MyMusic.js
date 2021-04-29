@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SongsCard from '../../components/SongsCard';
 import UploadSong from '../../components/UploadSong';
-import { getMeSongs } from '../../redux/songs/songs-actions';
+import { getMeSongs } from '../../redux/userSongs/userSongs-actions';
 
 function MyMusic() {
     const dispatch = useDispatch();

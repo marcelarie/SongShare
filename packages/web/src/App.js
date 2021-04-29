@@ -11,7 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
-import UploadSong from './components/UploadSong';
+import QuickMenu from './components/QuickMenu';
 import './styles/main.scss';
 
 import UserInfo from './pages/UserInfo/UserInfo';
@@ -26,6 +26,8 @@ function App() {
     const dispatch = useDispatch();
 
     const auth = useSelector(store => store.auth);
+
+    const { open } = useSelector(({ quickMenu }) => quickMenu);
 
     useEffect(() => {
         let unsubscribeFromAuth = null;
@@ -88,6 +90,8 @@ function App() {
                         />
                     </Switch>
                 </div>
+
+                {open && <QuickMenu />}
             </main>
             {auth.isAuthenticated && (
                 <>
