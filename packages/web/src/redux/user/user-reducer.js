@@ -42,6 +42,7 @@ const userReducer = (state = userInitialState, action) => {
                 lastName: action.payload.userInfo.lastName,
                 username: action.payload.userInfo.username,
                 id: action.payload.userInfo.id,
+                imageUrl: action.payload.userInfo.imageUrl,
             };
         case UserTypes.USER_INFO_ERROR:
             return {
