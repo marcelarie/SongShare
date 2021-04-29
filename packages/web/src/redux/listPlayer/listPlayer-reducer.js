@@ -1,7 +1,7 @@
 import * as listPlayerTypes from './listPlayer-types';
 
 export const listPlayerIntialState = {
-    queue: [],
+    playlist: [],
     currentlyPlaying: {
         song: '',
         index: 0,
@@ -14,26 +14,25 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
     const index = state.currentlyPlaying.index;
     switch (type) {
         case listPlayerTypes.PLAY:
-            state.queue.splice(index, 0, payload);
+            state.playlist.splice(index, 0, payload);
             return {
                 ...state,
-                queue: state.queue,
+                playlist: state.playlist,
                 currentlyPlaying: {
                     song: payload,
                     index: state.currentlyPlaying.index,
                 },
             };
         case listPlayerTypes.ADD_SONG_TO_QUEUE:
-            console.log(payload);
             return {
                 ...state,
-                queue: [...state.queue, payload],
+                playlist: [...state.playlist, payload],
             };
         case listPlayerTypes.NEXT_SONG:
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index + 1],
+                    song: state.playlist[state.currentlyPlaying.index + 1],
                     index: state.currentlyPlaying.index + 1,
                 },
             };
@@ -41,7 +40,7 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index - 1],
+                    song: state.playlist[state.currentlyPlaying.index - 1],
                     index: state.currentlyPlaying.index - 1,
                 },
             };

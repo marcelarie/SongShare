@@ -5,19 +5,13 @@ export const fileTypes = {
     IMAGE: 'image',
 };
 
-export const getFileUrl = ({
-    file,
-    fileType,
-    onUploadProgress = 'onUploadProgress',
-}) => {
+export const getFileUrl = ({ file, fileType, onUploadProgress }) => {
     const songUploadPreset = process.env.REACT_APP_CLOUDINARY_SONG_UPLOAD;
-    const imageUploadPreset = process.env.REACT_APP_CLOUDINARY_IMAGE_UPLOAD;
+    const imageUploadPreset =
+        process.env.REACT_APP_CLOUDINARY_IMAGE_UPLOAD_PRESET;
     const unsignedCloudName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 
     const url = `https://api.cloudinary.com/v1_1/${unsignedCloudName}/upload`;
-
-    console.log(file);
-    console.log(fileType);
 
     const formData = new FormData();
     fileType === fileTypes.AUDIO
@@ -37,8 +31,6 @@ export const getFileUrl = ({
         },
         onUploadProgress: onUploadProgress,
     };
-    console.log('url', url);
-    console.log('formData', formData);
-    console.log('config', config);
+
     return axios.post(url, formData, config);
 };

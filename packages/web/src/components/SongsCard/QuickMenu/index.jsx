@@ -4,13 +4,9 @@ import { addToQueue } from '../../../redux/listPlayer/listPlayer-actions';
 import { openModal } from '../../../redux/quickMenu/quickMenu-actions';
 import QuickMenuStyle from './styles';
 
-const QuickMenu = () => {
+const QuickMenu = ({ song }) => {
     const dispatch = useDispatch();
-    const { positionX, positionY, id } = useSelector(
-        ({ quickMenu }) => quickMenu,
-    );
-
-    const song = useSelector(store => store.mus);
+    const { positionX, positionY } = useSelector(({ quickMenu }) => quickMenu);
 
     //    closeModal(?)
     const handleClick = () => {
@@ -18,50 +14,36 @@ const QuickMenu = () => {
     };
 
     const addSongToQueue = () => {
-        // coger canciona partir del id
         dispatch(addToQueue(song));
         dispatch(openModal(false));
     };
 
     return (
-        <QuickMenuStyle x={positionX} y={positionY}>
-            <ul>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={handleClick}
-                    >
+        <QuickMenuStyle x={positionX} y={positionY} className="quickMenu">
+            <button type="button" onClick={handleClick}>
+                Close
+            </button>
+            <ul className="quickMenu">
+                <li className="quickMenu">
+                    <button type="button" onClick={handleClick}>
                         Add to playlist
                     </button>
                 </li>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={addSongToQueue}
-                    >
+                <li className="quickMenu">
+                    <button type="button" onClick={addSongToQueue}>
                         Add to queue
                     </button>
                 </li>
                 {true && (
-                    <li>
-                        <button
-                            className="quickMenu"
-                            type="button"
-                            onClick={handleClick}
-                        >
+                    <li className="quickMenu">
+                        <button type="button" onClick={handleClick}>
                             Edit
                         </button>
                     </li>
                 )}
                 {true && (
-                    <li>
-                        <button
-                            className="quickMenu"
-                            type="button"
-                            onClick={handleClick}
-                        >
+                    <li className="quickMenu">
+                        <button type="button" onClick={handleClick}>
                             Delete
                         </button>
                     </li>

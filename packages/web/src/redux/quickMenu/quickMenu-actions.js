@@ -1,7 +1,12 @@
 import Types from './quickMenu-types';
 
-export const changeXandY = payload => ({
-    type: Types.CHANGE_X_AND_Y,
+export const changeX = payload => ({
+    type: Types.CHANGE_X,
+    payload,
+});
+
+export const changeY = payload => ({
+    type: Types.CHANGE_Y,
     payload,
 });
 

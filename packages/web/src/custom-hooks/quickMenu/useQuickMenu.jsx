@@ -1,16 +1,21 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import uuid from 'react-uuid';
 import {
     changeId,
+    changeX,
+    changeY,
     openModal,
-    changeXandY,
 } from '../../redux/quickMenu/quickMenu-actions';
 
 function UseQuickMenu() {
+    const [cardId] = useState(uuid());
     const dispatch = useDispatch();
+    // will be the song card id ↴
 
     const { id, open } = useSelector(({ quickMenu }) => quickMenu);
 
-    const openMenu = (event, cardId) => {
+    const openMenu = event => {
         const x =
             window.innerWidth > event.clientX + 100
                 ? `${event.clientX}px`
@@ -20,16 +25,17 @@ function UseQuickMenu() {
                 ? `${event.clientY}px`
                 : `${event.clientY - 50}px`;
 
-        dispatch(changeXandY({ x, y }));
+        dispatch(changeX(x));
+        dispatch(changeY(y));
         if (cardId !== id) {
-            !open && dispatch(openModal(true));
+            dispatch(openModal(true));
         } else {
             dispatch(openModal(!open));
         }
-        return dispatch(changeId(cardId));
+        dispatch(changeId(cardId));
     };
 
-    return [openMenu];
+    return [open, id, cardId, openMenu];
 }
 
 export default UseQuickMenu;

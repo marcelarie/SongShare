@@ -6,7 +6,6 @@ import uploaderReducer from './uploader/uploader-reducer';
 import songsReducer from './songs/songs-reducer';
 import quickMenu from './quickMenu/quickMenu-reducer';
 import listPlayerReducer from './listPlayer/listPlayer-reducer';
-import songInfoModal from './songInfoModal/songInfoModal-reducer';
 
 const RESET_STORE_AND_LOG_OUT = 'RESET_STORE_AND_LOG_OUT';
 
@@ -19,16 +18,14 @@ const appReducer = combineReducers({
     user: userReducer,
     uploader: uploaderReducer,
     songs: songsReducer,
-    songInfoModal,
     listPlay: listPlayerReducer,
     quickMenu,
 });
 
 const rootReducer = (state, action) => {
-    if (action.type === RESET_STORE_AND_LOG_OUT) {
-        state = undefined;
-        localStorage.clear();
-    }
+    // if (action.type === RESET_STORE_AND_LOG_OUT) {
+    //     state = undefined;
+    // }
 
     return appReducer(state, action);
 };

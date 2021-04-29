@@ -29,8 +29,6 @@ export default function Header() {
     const userInfo = useSelector(store => store.auth.currentUser);
     const currentLocation = useLocation().pathname;
 
-    const imageUrl = useSelector(store => store.auth.currentUser.imageUrl);
-
     function handleSignOut() {
         dispatch(signOut());
     }
@@ -43,7 +41,7 @@ export default function Header() {
 
     const [openMainMenu, setOpenMainMenu] = useState(false);
 
-    useEffect(() => {}, [currentLocation]); // esto pa que??
+    useEffect(() => {}, [currentLocation]);
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -111,11 +109,7 @@ export default function Header() {
                                                 <div className="flex space-x-4">
                                                     <img
                                                         className="h-8 w-8 rounded-full"
-                                                        src={
-                                                            !imageUrl
-                                                                ? 'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png'
-                                                                : imageUrl
-                                                        }
+                                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                         alt=""
                                                     />
                                                     {userInfo ? (

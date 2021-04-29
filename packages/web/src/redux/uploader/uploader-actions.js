@@ -98,10 +98,16 @@ export function uploadImage({
 
             const imageUrl = urlRes.data.url;
 
-            if (!imageUrl) {
-                return dispatch(uploadImageError('error while uploading'));
+            const imgRes = api.createTrack({
+                title: name,
+                url: imageUrl,
+            });
+
+            if (imgRes.errorMessage) {
+                return dispatch(uploadImageError(imgRes.errorMessage));
             }
-            return dispatch(uploadImageSuccess(imageUrl));
+
+            return dispatch(uploadImageSuccess(imgRes.data));
         } catch (err) {
             return dispatch(uploadImageError(err));
         }
