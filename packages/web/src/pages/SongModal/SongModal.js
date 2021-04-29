@@ -5,19 +5,18 @@ import { Dialog, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {
     addLikeToSong,
-    closeInfoModal,
     deleteSongByID,
     getSongByID,
 } from '../../redux/songs/songs-actions';
 
+import { closeInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+
 import '../../styles/utils.css';
 
 function SongModal() {
-    const { infoModal } = useSelector(state => state.songs);
-    const songID = infoModal.songID;
+    const { songID, modal } = useSelector(state => state.songInfoModal);
     const songs = useSelector(state => state.songs.byID);
 
     const dispatch = useDispatch();
@@ -36,13 +35,13 @@ function SongModal() {
         songs[songID] ? songs[songID].gender : '',
     );
 
-    return infoModal.modal && songs[songID] ? (
-        <Transition.Root show={infoModal.modal} as={Fragment}>
+    return modal && songs[songID] ? (
+        <Transition.Root show={modal} as={Fragment}>
             <Dialog
                 as="div"
                 static
                 className="fixed z-10 inset-0 overflow-y-auto"
-                open={infoModal.modal}
+                open={modal}
                 onClose={() => dispatch(closeInfoModal())}
             >
                 <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

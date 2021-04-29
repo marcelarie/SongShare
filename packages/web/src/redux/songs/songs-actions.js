@@ -21,6 +21,38 @@ export const getAllSongsSuccess = ({ byID, ids }) => ({
     },
 });
 
+export const getMeSongsRequest = () => ({
+    type: SongsTypes.GET_ME_SONGS_REQUEST,
+});
+
+export const getMeSongsError = errorMessage => ({
+    type: SongsTypes.GET_ME_SONGS_ERROR,
+    payload: errorMessage,
+});
+
+export const getMeSongsSuccess = ({ ids }) => ({
+    type: SongsTypes.GET_ME_SONGS_SUCCESS,
+    payload: {
+        meSongsIds: ids,
+    },
+});
+
+export const getLikedSongsRequest = () => ({
+    type: SongsTypes.GET_LIKED_SONGS_REQUEST,
+});
+
+export const getLikedSongsError = errorMessage => ({
+    type: SongsTypes.GET_LIKED_SONGS_ERROR,
+    payload: errorMessage,
+});
+
+export const getLikedSongsSuccess = ({ ids }) => ({
+    type: SongsTypes.GET_LIKED_SONGS_SUCCESS,
+    payload: {
+        likedIds: ids,
+    },
+});
+
 export const getSongRequest = () => ({
     type: SongsTypes.GET_SONG_REQUEST,
 });
@@ -70,22 +102,6 @@ export const addLikeToSongSuccess = song => ({
     },
 });
 
-export const openInfoModal = songID => ({
-    type: SongsTypes.OPEN_INFO_MODAL,
-    payload: {
-        songID: songID,
-        modal: true,
-    },
-});
-
-export const closeInfoModal = () => ({
-    type: SongsTypes.CLOSE_INFO_MODAL,
-    payload: {
-        songID: null,
-        modal: false,
-    },
-});
-
 export function getAllSongs() {
     return async function getAllSongsThunk(dispatch) {
         dispatch(getAllSongsRequest());
@@ -108,6 +124,60 @@ export function getAllSongs() {
             );
         } catch (error) {
             return dispatch(getAllSongsError(error.message));
+        }
+    };
+}
+
+export function getMeSongs(userInfo) {
+    return async function getMeSongsThunk(dispatch) {
+        dispatch(getMeSongsRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            const res = await api.getUserSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    username: userInfo._id,
+                },
+            );
+            /*  if (!res.isSuccessful) {
+                return dispatch(getSongsError(`Error: ${res.errorMessage}`));
+            } */
+
+            return dispatch(
+                getMeSongsSuccess({
+                    idsMeSongs: '',
+                }),
+            );
+        } catch (error) {
+            return dispatch(getMeSongsError(error.message));
+        }
+    };
+}
+
+export function getLikedSongs(userID) {
+    console.log(userID);
+    return async function getLikedSongsThunk(dispatch) {
+        dispatch(getLikedSongsRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            const res = await api.getUserLikedSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                userID,
+            );
+            console.log(res);
+            /*  if (!res.isSuccessful) {
+                return dispatch(getSongsError(`Error: ${res.errorMessage}`));
+            } */
+
+            return dispatch(getLikedSongsSuccess(res.data));
+        } catch (error) {
+            return dispatch(getLikedSongsError(error.message));
         }
     };
 }
@@ -153,7 +223,6 @@ export function addLikeToSong(songID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
             return dispatch(songUpdatingError('hola'));
