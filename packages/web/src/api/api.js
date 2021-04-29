@@ -69,7 +69,6 @@ function makeApi(request = makeRequest()) {
     }
 
     function getSongByID(headers, songID) {
-        // console.log(songID);
         return request({
             url: `/song/${songID}`,
             requestMethod: 'GET',
@@ -78,7 +77,6 @@ function makeApi(request = makeRequest()) {
     }
 
     function addLike(headers, songID) {
-        // console.log(songID);
         return request({
             url: `/song/like/${songID}`,
             requestMethod: 'POST',

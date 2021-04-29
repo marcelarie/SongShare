@@ -57,6 +57,7 @@ const UploaderReducer = (state = UploaderInitialState, action) => {
         case UploaderTypes.UPLOAD_IMAGE_SUCCESS: {
             return {
                 ...state,
+                profileImageUrl: action.payload,
                 isUploadingImage: false,
                 uploadImageSuccess: true,
                 uploadImageError: null,
