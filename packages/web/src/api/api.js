@@ -52,12 +52,11 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function getUserSongs(headers, body) {
+    function getUserSongs(headers, userId) {
         return request({
-            url: '/songs/all-with',
-            requestMethod: 'POST',
+            url: `/songs/all-from/${userId}`,
+            requestMethod: 'GET',
             headers,
-            body,
         });
     }
 

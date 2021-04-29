@@ -112,7 +112,7 @@ function SongsReducer(state = SongsInitialState, action) {
                     MeSongsLoadingError: false,
                     MeSongsGetted: true,
                 },
-                meSongsIds: payload.ids,
+                meSongsIds: payload,
             };
         }
 

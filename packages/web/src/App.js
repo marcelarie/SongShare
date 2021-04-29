@@ -20,6 +20,7 @@ import { signOut, syncSignIn } from './redux/auth/auth-actions';
 import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
 import SongsPlayer from './components/SongsPlayer';
+import MyMusic from './pages/MyMusic/MyMusic';
 
 function App() {
     const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function App() {
                         <Route path={ROUTES.HOME} component={Home} exact />
                         <ProtectedRoute
                             path={ROUTES.MY_MUSIC}
-                            component={UploadSong}
+                            component={MyMusic}
                         />
                         <ProtectedRoute
                             path={ROUTES.HOME_USER}

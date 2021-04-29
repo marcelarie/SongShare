@@ -30,11 +30,9 @@ export const getMeSongsError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const getMeSongsSuccess = ({ ids }) => ({
+export const getMeSongsSuccess = ids => ({
     type: SongsTypes.GET_ME_SONGS_SUCCESS,
-    payload: {
-        meSongsIds: ids,
-    },
+    payload: ids,
 });
 
 export const getLikedSongsRequest = () => ({
@@ -144,7 +142,7 @@ export function getAllSongs() {
     };
 }
 
-export function getMeSongs(userInfo) {
+export function getMeSongs(id) {
     return async function getMeSongsThunk(dispatch) {
         dispatch(getMeSongsRequest());
 
@@ -154,21 +152,15 @@ export function getMeSongs(userInfo) {
                 {
                     Authorization: `Bearer ${token}`,
                 },
-                {
-                    username: userInfo._id,
-                },
-            );
-            console.log(res);
-            /*  if (!res.isSuccessful) {
-                return dispatch(getSongsError(`Error: ${res.errorMessage}`));
-            } */
 
-            console.log(userInfo);
-            return dispatch(
-                getMeSongsSuccess({
-                    idsMeSongs: '',
-                }),
+                id,
             );
+
+            // if (!res.isSuccessful) {
+            //     return dispatch(getMeSongsError(`Error: ${res.errorMessage}`));
+            // }
+
+            return dispatch(getMeSongsSuccess(res.data.data));
         } catch (error) {
             return dispatch(getMeSongsError(error.message));
         }

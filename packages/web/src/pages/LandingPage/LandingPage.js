@@ -13,7 +13,6 @@ function LandingPage() {
     const currentUser = useSelector(store => store.auth.currentUser);
     useEffect(() => {
         dispatch(getAllSongs());
-        console.log(currentUser);
         dispatch(getMeSongs(currentUser));
     }, [dispatch, currentUser]);
 
