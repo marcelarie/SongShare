@@ -13,7 +13,7 @@ const userInitialState = {
     lastModifiedDate: '',
     loading: false,
     error: false,
-}
+};
 
 const userReducer = (state = userInitialState, action) => {
     switch (action.type) {

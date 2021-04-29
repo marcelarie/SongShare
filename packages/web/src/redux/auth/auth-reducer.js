@@ -12,7 +12,7 @@ export const AuthInitialState = {
     passwordResetSent: false,
     currentUser: {
         email: null,
-      },
+    },
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {
@@ -39,7 +39,8 @@ const AuthReducer = (state = AuthInitialState, action) => {
                 isSigningUp: false,
                 signUpError: null,
                 currentUser: {
-                    email: payload.email,}
+                    email: payload.email,
+                },
             };
         }
         case AuthTypes.SIGN_OUT_REQUEST: {
