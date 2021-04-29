@@ -17,9 +17,10 @@ function LandingPage() {
     if (!allSongs) return <p>loading...</p>;
 
     return (
-        <>
+        <div className="landingPage">
+            <h1>All songs</h1>
             <Carousel key="allSongs" />
-        </>
+        </div>
     );
 }
 

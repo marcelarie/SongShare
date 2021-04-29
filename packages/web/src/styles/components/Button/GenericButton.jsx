@@ -4,13 +4,12 @@ import * as main from '../../color-palette';
 const GenericButton = styled.button`
         font-weight: 600;
         color: white;
-        font-size: 1.5em;
+        font-size: 1.3em;
         background-color: ${props => props.color} ;
-        padding: 1.5rem;
-        margin: 10px 0;
+        padding: 1.1rem;
+        margin: 1rem 0;
         border: none;
         cursor: pointer;
-        font-size: 20px;
         border-radius: 5px;
         width: ${props => props.width};
         &:hover {
