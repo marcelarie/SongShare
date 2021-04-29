@@ -9,14 +9,13 @@ import { fileTypes } from '../../../services/cloudinary';
 
 function CurrentUserProfileEdit() {
     const dispatch = useDispatch();
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const user = useSelector(store => store.user);
 
-    //   const [username,setUsername] = useState(userInfo.username)
-    const [username, setUsername] = useState(userInfo.username);
-    const [name, setName] = useState(userInfo.name);
-    const [lastName, setLastName] = useState(userInfo.lastname);
-    const [email, setEmail] = useState(userInfo.email);
-    const [file, setFile] = useState();
+    const [username, setUsername] = useState(user.username);
+    const [name, setName] = useState(user.name);
+    const [lastname, setLastName] = useState(user.lastname);
+    const [email, setEmail] = useState(user.email);
+    const [file, setFile] = useState(user.photoURL || '');
 
     const history = useHistory();
 
@@ -27,7 +26,7 @@ function CurrentUserProfileEdit() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateUserInfo({ username, name, lastName, file, fileType }));
+        dispatch(updateUserInfo({ username, name, lastname, file, fileType }));
         history.push(`/${username}`);
     };
 
@@ -102,7 +101,7 @@ function CurrentUserProfileEdit() {
                                                 id="last_name"
                                                 autoComplete="family-name"
                                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                value={lastName}
+                                                value={lastname}
                                                 onChange={e =>
                                                     setLastName(e.target.value)
                                                 }
@@ -144,7 +143,7 @@ function CurrentUserProfileEdit() {
                                                 disabled
                                             />
                                             <Link
-                                                to={`/${userInfo.username}/edit/changePassword`}
+                                                to={`/${user.username}/edit/changePassword`}
                                                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                             >
                                                 Change password
