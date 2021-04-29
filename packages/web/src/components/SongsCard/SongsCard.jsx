@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
 
-import { play } from '../../redux/listPlayer/listPlayer-actions';
+import { play } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 import {
     useQuickMenu,
