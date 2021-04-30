@@ -10,14 +10,16 @@ function CreatePlaylist() {
         store => store.playlists,
     );
     const author = useSelector(store => store.user.username);
+    const userID = useSelector(store => store.user._id);
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(createPlaylist({ title, type, author, publicAccess }));
+        console.log(publicAccess);
+        dispatch(createPlaylist({ title, userID, publicAccess }));
     };
 
     const [title, setTitle] = useState('');
-    const [type, setType] = useState('');
+    // const [type, setType] = useState('');
     const [publicAccess, setPublicAccess] = useState(false);
 
     return (
@@ -53,10 +55,25 @@ function CreatePlaylist() {
                     </label>
                     <input
                         type="radio"
-                        id="playlistAccess"
+                        id="playlistAccessPublic"
                         className="form-input"
-                        value={publicAccess}
-                        onChange={e => setPublicAccess(e.target.value)}
+                        name="publicAccess"
+                        value="false"
+                        onChange={() => setPublicAccess(true)}
+                    />
+                    <label
+                        htmlFor="publicAccess"
+                        className="form-label text-dark"
+                    >
+                        Private
+                    </label>
+                    <input
+                        type="radio"
+                        id="playlistAccessPrivate"
+                        className="form-input"
+                        name="publicAccess"
+                        value="true"
+                        onChange={() => setPublicAccess(false)}
                     />
 
                     <button className="btn btn-primary w-full" type="submit">

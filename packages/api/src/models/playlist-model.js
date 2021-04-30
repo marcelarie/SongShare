@@ -1,16 +1,36 @@
 import mongoose from 'mongoose';
 
 const PlaylistSchema = mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
+        trim: true,
     },
-    songs: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'song', // (?) Song
-        },
-    ],
+    author: {
+        type: String,
+        ref: 'user',
+    },
+    publicAccess: {
+        type: Boolean,
+    },
+    songs: {
+        type: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'song', // (?) Song
+            },
+        ],
+        default: [],
+    },
+    likedBy: {
+        type: [
+            {
+                type: String,
+                ref: 'user',
+            },
+        ],
+        default: [],
+    },
 });
 
 const Playlist = mongoose.model('Playlist', PlaylistSchema);
