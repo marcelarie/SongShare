@@ -1,45 +1,46 @@
-import * as listPlayerTypes from './listPlayer-types';
+import * as audioPlayerTypes from './audioPlayer-types';
 
 export const play = song => {
     return {
-        type: listPlayerTypes.PLAY,
+        type: audioPlayerTypes.PLAY,
         payload: song,
     };
 };
 
 export const addToQueue = song => {
     return {
-        type: listPlayerTypes.ADD_SONG_TO_QUEUE,
+        type: audioPlayerTypes.ADD_SONG_TO_QUEUE,
         payload: song,
     };
 };
 
 export const playNextSong = () => {
     return {
-        type: listPlayerTypes.NEXT_SONG,
+        type: audioPlayerTypes.NEXT_SONG,
     };
 };
 
 export const playPrevSong = () => {
     return {
-        type: listPlayerTypes.PREV_SONG,
+        type: audioPlayerTypes.PREV_SONG,
     };
 };
 
-export function nextSong(listPlay) {
+export function nextSong(audioPlayerState) {
     return function nextSongThunk(dispatch) {
-        if (listPlay.currentlyPlaying.index + 1 < listPlay.queue.length) {
-            console.log(listPlay.currentlyPlaying.index);
-            console.log(listPlay.queue.length - 1);
+        if (
+            audioPlayerState.currentlyPlaying.index + 1 <
+            audioPlayerState.queue.length
+        ) {
             return dispatch(playNextSong());
         }
         return null;
     };
 }
 
-export function prevSong(listPlay) {
+export function prevSong(audioPlayerState) {
     return function prevSongThunk(dispatch) {
-        if (listPlay.currentlyPlaying.index > 0) {
+        if (audioPlayerState.currentlyPlaying.index > 0) {
             return dispatch(playPrevSong());
         }
         return null;

@@ -5,7 +5,7 @@ import userReducer from './user/user-reducer';
 import uploaderReducer from './uploader/uploader-reducer';
 import songsReducer from './songs/songs-reducer';
 import quickMenu from './quickMenu/quickMenu-reducer';
-import listPlayerReducer from './listPlayer/listPlayer-reducer';
+import audioPlayer from './audioPlayer/audioPlayer-reducer';
 import songInfoModal from './songInfoModal/songInfoModal-reducer';
 import userSongs from './userSongs/userSongs-reducer';
 
@@ -21,7 +21,7 @@ const appReducer = combineReducers({
     uploader: uploaderReducer,
     songs: songsReducer,
     songInfoModal,
-    listPlay: listPlayerReducer,
+    audioPlayer,
     quickMenu,
     userSongs,
 });

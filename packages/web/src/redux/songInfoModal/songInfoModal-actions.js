@@ -1,5 +1,4 @@
 import * as SongModalTypes from './songInfoModal-types';
-import api from '../../api';
 
 export const openInfoModal = songID => ({
     type: SongModalTypes.OPEN_INFO_MODAL,
