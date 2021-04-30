@@ -52,8 +52,23 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getUserSongs(headers, userId) {
+        return request({
+            url: `/songs/all-from/${userId}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getLikedSongs(headers, id) {
+        return request({
+            url: `/user/all-likes/${id}}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
     function getSongByID(headers, songID) {
-        // console.log(songID);
         return request({
             url: `/song/${songID}`,
             requestMethod: 'GET',
@@ -62,7 +77,6 @@ function makeApi(request = makeRequest()) {
     }
 
     function addLike(headers, songID) {
-        // console.log(songID);
         return request({
             url: `/song/like/${songID}`,
             requestMethod: 'POST',
@@ -70,7 +84,7 @@ function makeApi(request = makeRequest()) {
         });
     }
 
-    function editSong(headers, body, songID) {
+    function EditSong(headers, body, songID) {
         return request({
             url: `/song/${songID}`,
             requestMethod: 'PATCH',
@@ -94,8 +108,10 @@ function makeApi(request = makeRequest()) {
         useApi,
         createTrack,
         getSongs,
+        getUserSongs,
+        getLikedSongs,
         getSongByID,
-        editSong,
+        EditSong,
         addLike,
         deleteSong,
     };

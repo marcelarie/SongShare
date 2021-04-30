@@ -2,14 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
-import QuickMenu from '../SongsCard/QuickMenu';
 
 import './styles.scss';
 
 function Carousel() {
     const dispatch = useDispatch();
-
-    const { open } = useSelector(({ quickMenu }) => quickMenu);
 
     const { byID, ids } = useSelector(({ songs }) => songs);
 
@@ -23,7 +20,6 @@ function Carousel() {
                 const song = byID[id];
                 return <SongsCard newsong={song} key={song._id} />;
             })}
-            {open && <QuickMenu />}
         </div>
     );
 }

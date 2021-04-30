@@ -1,31 +1,28 @@
 import * as UserTypes from './user-types';
+import { SIGN_UP_SUCCESS } from '../auth/auth-types';
 
 const userInitialState = {
     username: '',
-    activated: false,
-    authorities: [''],
-    createdBy: '',
-    createdDate: '',
     email: '',
-    firstName: '',
-    followers: 0,
-    following: 0,
-    id: 0,
+    name: '',
+    lastname: '',
+    _id: null,
     imageUrl: '',
     langKey: 'ES',
     lastModifiedBy: '',
     lastModifiedDate: '',
-    lastName: '',
-    login: '',
-    playlists: 0,
-    tracks: 0,
     loading: false,
     error: false,
-    // idsLikes: [], // poner en el reducer del usuario, cada usuario tendra su array de id de canciones que le han gustado
 };
 
 const userReducer = (state = userInitialState, action) => {
     switch (action.type) {
+        case SIGN_UP_SUCCESS:
+            return {
+                ...action.payload,
+                loading: false,
+                error: false,
+            };
         case UserTypes.USER_INFO_REQUEST:
             return {
                 ...state,
@@ -42,6 +39,7 @@ const userReducer = (state = userInitialState, action) => {
                 lastName: action.payload.userInfo.lastName,
                 username: action.payload.userInfo.username,
                 id: action.payload.userInfo.id,
+                imageUrl: action.payload.userInfo.imageUrl,
             };
         case UserTypes.USER_INFO_ERROR:
             return {

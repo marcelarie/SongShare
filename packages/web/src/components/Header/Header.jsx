@@ -12,18 +12,19 @@ import DarkLightToggle from '../DarkLightToggle';
 
 export default function Header() {
     const dispatch = useDispatch();
-    const { imageUrl } = useSelector(store => store.auth.currentUser);
     const { theme } = useSelector(store => store.changeTheme);
+
+    const imageUrl = useSelector(store => store.auth.currentUser.imageUrl);
 
     const profilePic =
         imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
+
     const handleSignOut = () => {
         dispatch(signOut());
     };
     const handleChangeTheme = () => {
-        console.log(theme);
         dispatch(changeTheme());
     };
 

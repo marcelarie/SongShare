@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
     all: unset;
+    transition: 0.6s;
     z-index: 2;
     background-color: ${({ theme }) => theme.backgroundColor};
     display: flex;
@@ -15,6 +16,11 @@ const Nav = styled.nav`
     }
     h1 {
         font-size: 1.7rem;
+        transition: 0.6s;
+        &:hover {
+            color: ${({ theme }) => theme.color};
+            transition: 0.5s;
+        }
     }
     .nav-menu {
         display: flex;

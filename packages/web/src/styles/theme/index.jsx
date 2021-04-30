@@ -15,12 +15,12 @@ export const dark = {
 };
 
 export const light = {
-    color: '#c3352e',
-    colorDark: '#ac362e',
+    color: '#7CBCDC',
+    colorDark: '#56839a',
     mainBlack: '#363636',
     mainDarkGray: '#3f4042',
-    colorTransparent: 'rgba( 195,53,46, 0.7 )',
-    colorDarkTransparent: 'rgba( 172,54,46, 0.7 )',
+    colorTransparent: 'rgba( 124,188,220, 0.7 )',
+    colorDarkTransparent: 'rgba( 86,131,154, 0.7 )',
     mainBlackTransparent: 'rgba( 54,54,54, 0.7 )',
     mainDarkGrayTransparent: 'rgba( 63,64,66, 0.7 )',
     lightGray: '#7A7A7A',

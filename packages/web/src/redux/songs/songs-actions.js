@@ -37,15 +37,30 @@ export const getSongSuccess = song => {
     };
 };
 
-export const songUpdating = () => ({
+/* export const songUpdating = () => ({
     type: SongsTypes.SONG_UPDATING,
 });
 
 export const songUpdatingError = errorMessage => ({
     type: SongsTypes.SONG_UPDATING_ERROR,
     payload: errorMessage,
+}); */
+
+export const songEditRequest = () => ({
+    type: SongsTypes.SONG_EDIT_REQUEST,
 });
 
+export const songEditError = errorMessage => ({
+    type: SongsTypes.SONG_EDIT_ERROR,
+    payload: errorMessage,
+});
+
+export const songEditSuccess = song => ({
+    type: SongsTypes.EDIT_SONG_SUCCESS,
+    payload: {
+        song: song,
+    },
+});
 export const songDeleting = () => ({
     type: SongsTypes.SONG_DELETE_REQUEST,
 });
@@ -67,22 +82,6 @@ export const addLikeToSongSuccess = song => ({
     type: SongsTypes.ADD_LIKE_TO_SONG,
     payload: {
         song: song,
-    },
-});
-
-export const openInfoModal = songID => ({
-    type: SongsTypes.OPEN_INFO_MODAL,
-    payload: {
-        songID: songID,
-        modal: true,
-    },
-});
-
-export const closeInfoModal = () => ({
-    type: SongsTypes.CLOSE_INFO_MODAL,
-    payload: {
-        songID: null,
-        modal: false,
     },
 });
 
@@ -137,10 +136,10 @@ export function getSongByID(songID) {
 export function addLikeToSong(songID) {
     return async function addLikeToSongThunk(dispatch) {
         const token = await auth.getCurrentUserToken();
-        dispatch(songUpdating());
+        dispatch(songEditRequest());
 
         if (!token) {
-            return dispatch(songUpdatingError('Missing auth token'));
+            return dispatch(songEditError('Missing auth token'));
         }
 
         try {
@@ -153,10 +152,39 @@ export function addLikeToSong(songID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
-            return dispatch(songUpdatingError('hola'));
+            return dispatch(songEditError(error.message));
+        }
+    };
+}
+export function editSongByID(songID, song) {
+    console.log(songID);
+    console.log(song);
+    return async function editSongThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(songEditRequest());
+
+        if (!token) {
+            return dispatch(songEditError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.EditSong(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                song,
+                songID,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(songEditError(res.errorMessage));
+            }
+            console.log(res.data.data);
+            return dispatch(songEditSuccess(res.data.data));
+        } catch (error) {
+            return dispatch(songEditError(error.message));
         }
     };
 }

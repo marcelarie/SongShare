@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function CurrentUserProfile() {
-    const userInfo = useSelector(store => store.auth.currentUser);
+    const user = useSelector(store => store.user);
 
     return (
         <>
-            {userInfo ? (
+            {user ? (
                 <>
                     <div className="sm:mt-5 px-8 py-4">
                         <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -37,7 +37,7 @@ function CurrentUserProfile() {
                                                     id="user_name"
                                                     autoComplete="given-name"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    value={userInfo.username}
+                                                    value={user.username}
                                                     disabled
                                                 />
                                             </div>
@@ -54,7 +54,7 @@ function CurrentUserProfile() {
                                                     id="first_name"
                                                     autoComplete="family-name"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    value={userInfo.name}
+                                                    value={user.name}
                                                     disabled
                                                 />
                                             </div>
@@ -71,7 +71,7 @@ function CurrentUserProfile() {
                                                     id="last_name"
                                                     autoComplete="family-name"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    value={userInfo.lastName}
+                                                    value={user.lastname}
                                                     disabled
                                                 />
                                             </div>
@@ -89,7 +89,7 @@ function CurrentUserProfile() {
                                                     id="email_address"
                                                     autoComplete="email"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    value={userInfo.email}
+                                                    value={user.email}
                                                     disabled
                                                 />
                                             </div>
@@ -105,7 +105,7 @@ function CurrentUserProfile() {
                                                     name="password"
                                                     id="password"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    placeholder="xxxxxx"
+                                                    value="xxxxxx"
                                                     disabled
                                                 />
                                             </div>
@@ -114,7 +114,7 @@ function CurrentUserProfile() {
 
                                     <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                         <Link
-                                            to={`/${userInfo.username}/edit`}
+                                            to={`/${user.username}/edit`}
                                             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
                                             Edit

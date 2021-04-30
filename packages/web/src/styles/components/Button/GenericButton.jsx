@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 const GenericButton = styled.button`
         font-weight: 600;
-        font-size: 1.3em;
+        font-size: 1em;
         background-color: ${({ theme }) => theme.color} ;
-        padding: 1.1rem;
+        color: ${({ theme }) => theme.textColor};
+        padding: 0.4rem 0;
         margin: 1rem 0;
         border: none;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 3px;
         width: ${({ width }) => width};
         &:hover {
         background-color: ${({ theme }) => theme.colorDark} ;
@@ -23,7 +24,7 @@ const GenericButton = styled.button`
 `;
 
 GenericButton.defaultProps = {
-    width: '200px',
+    width: '150px',
 };
 
 export default GenericButton;

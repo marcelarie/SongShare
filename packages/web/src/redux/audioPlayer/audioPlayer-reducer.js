@@ -1,46 +1,46 @@
-import * as listPlayerTypes from './listPlayer-types';
+import * as audioPlayerTypes from './audioPlayer-types';
 
-export const listPlayerIntialState = {
-    playlist: [],
+export const audioPlayerIntialState = {
+    queue: [],
     currentlyPlaying: {
         song: '',
         index: 0,
     },
 };
 
-const listPlayerReducer = (state = listPlayerIntialState, action) => {
+const listPlayerReducer = (state = audioPlayerIntialState, action) => {
     const { type, payload } = action;
 
     const index = state.currentlyPlaying.index;
     switch (type) {
-        case listPlayerTypes.PLAY:
-            state.playlist.splice(index, 0, payload);
+        case audioPlayerTypes.PLAY:
+            state.queue.splice(index, 0, payload);
             return {
                 ...state,
-                playlist: state.playlist,
+                queue: state.queue,
                 currentlyPlaying: {
                     song: payload,
                     index: state.currentlyPlaying.index,
                 },
             };
-        case listPlayerTypes.ADD_SONG_TO_QUEUE:
+        case audioPlayerTypes.ADD_SONG_TO_QUEUE:
             return {
                 ...state,
-                playlist: [...state.playlist, payload],
+                queue: [...state.queue, payload],
             };
-        case listPlayerTypes.NEXT_SONG:
+        case audioPlayerTypes.NEXT_SONG:
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.playlist[state.currentlyPlaying.index + 1],
+                    song: state.queue[state.currentlyPlaying.index + 1],
                     index: state.currentlyPlaying.index + 1,
                 },
             };
-        case listPlayerTypes.PREV_SONG:
+        case audioPlayerTypes.PREV_SONG:
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.playlist[state.currentlyPlaying.index - 1],
+                    song: state.queue[state.currentlyPlaying.index - 1],
                     index: state.currentlyPlaying.index - 1,
                 },
             };

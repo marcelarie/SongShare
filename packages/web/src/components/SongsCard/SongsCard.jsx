@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './styles.scss';
 
-import { play } from '../../redux/listPlayer/listPlayer-actions';
-import { openInfoModal } from '../../redux/songs/songs-actions';
+import { play } from '../../redux/audioPlayer/audioPlayer-actions';
+import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
@@ -17,7 +17,7 @@ function SongsCard({ newsong }) {
     const [openMenu] = useQuickMenu();
 
     function reproduceSong() {
-        dispatch(play(newsong));
+        dispatch(play(newsong.url));
     }
     const openSongInfo = () => {
         dispatch(openInfoModal(newsong._id));
@@ -25,7 +25,7 @@ function SongsCard({ newsong }) {
     useQuickMenuListener();
     return (
         <>
-            <SongCardStyle className="songsCard">
+            <SongCardStyle image={newsong.imageUrl } className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
                         <button
