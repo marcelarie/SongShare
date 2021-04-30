@@ -16,7 +16,7 @@ export const dark = {
 
 export const light = {
     color: '#7CBCDC',
-    colorDark: '#56839a',
+    colorDark: '#65a2c2',
     mainBlack: '#363636',
     mainDarkGray: '#3f4042',
     colorTransparent: 'rgba( 124,188,220, 0.7 )',

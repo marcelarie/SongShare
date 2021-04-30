@@ -12,6 +12,9 @@ const SongCard = styled.div`
             transition: 0.3s;
         }
     }
+    .songsCard__playButton {
+        fill: ${({ theme }) => theme.backgroundColor};
+    }
 `;
 
 SongCard.defaultProps = {

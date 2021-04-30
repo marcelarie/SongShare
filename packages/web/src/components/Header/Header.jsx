@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
@@ -9,10 +9,12 @@ import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
 import DarkLightToggle from '../DarkLightToggle';
+import './style.scss';
 
-export default function Header() {
+function Header() {
     const dispatch = useDispatch();
     const { theme } = useSelector(store => store.changeTheme);
+    const currentLocation = useLocation().pathname;
 
     const { imageUrl, username } = useSelector(store => store.user);
 
@@ -26,13 +28,18 @@ export default function Header() {
     const handleChangeTheme = () => {
         dispatch(changeTheme());
     };
-
     const [openMenu, setOpenMenu] = useState(false);
+
+    useEffect(() => {}, [currentLocation, imageUrl]);
 
     return (
         <Nav color="red">
             <NavLink to="/">
-                <h1>Song Share</h1>
+                <h1>
+                    Song
+                    <br />
+                    Share
+                </h1>
             </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
@@ -68,7 +75,7 @@ export default function Header() {
                     <DarkLightToggle theme={theme} />
                 </button>
                 {openMenu && (
-                    <div>
+                    <div className="nav-user__menu">
                         <NavLink to="/">Profile</NavLink>
                         <NavLink to="/search">Settings</NavLink>
                         <button type="button" onClick={handleSignOut}>
@@ -80,3 +87,5 @@ export default function Header() {
         </Nav>
     );
 }
+
+export default Header;

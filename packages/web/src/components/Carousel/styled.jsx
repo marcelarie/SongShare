@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Carousel = styled.div`
     &::-webkit-scrollbar {
         width: 20px;
-        height: 10px;
+        height: 6px;
     }
 
     /* Track */
@@ -17,7 +17,6 @@ const Carousel = styled.div`
         border-radius: 2px;
     }
 
-    /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: ${({ theme }) => theme.colorDark};
         transition: 0.5s;

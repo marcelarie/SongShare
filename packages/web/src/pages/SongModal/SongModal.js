@@ -38,7 +38,7 @@ function SongModal() {
         setUploader(song.uploadBy);
         setAuthor(song.author);
         setGenre(song.gender);
-    }, [dispatch, songID]);
+    }, [song, dispatch, songID]);
 
     return modal && songs[songID] ? (
         <Transition.Root show={modal} as={Fragment}>
@@ -56,6 +56,7 @@ function SongModal() {
                                     songs[songID].imageUrl ||
                                     'https://picsum.photos/seed/picsum/500'
                                 }
+                                alt="song"
                                 width="200px"
                             />
                             <Input

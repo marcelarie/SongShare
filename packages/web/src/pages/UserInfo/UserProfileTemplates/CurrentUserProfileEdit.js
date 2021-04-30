@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { updateUserInfo } from '../../../redux/user/user-actions';
+import { updateUserInfoMidleware } from '../../../redux/user/user-actions';
 
 import Dropzone from '../../../components/Dropzone';
 
@@ -26,7 +26,16 @@ function CurrentUserProfileEdit() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateUserInfo({ username, name, lastname, file, fileType }));
+        dispatch(
+            updateUserInfoMidleware({
+                username,
+                name,
+                lastname,
+                file,
+                fileType,
+            }),
+        );
+        // dispatch(updateUserImage())
         history.push(`/${username}`);
     };
 
