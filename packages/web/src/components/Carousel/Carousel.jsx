@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
-import ScrollBar from '../ScrollBar';
 
 import './styles.scss';
+import CarouselStyle from './styled';
 
 function Carousel() {
     const dispatch = useDispatch();
@@ -16,12 +16,12 @@ function Carousel() {
     }, [dispatch]);
 
     return (
-        <div className="carousel">
+        <CarouselStyle className="carousel">
             {ids.map(id => {
                 const song = byID[id];
                 return <SongsCard newsong={song} key={song._id} />;
             })}
-        </div>
+        </CarouselStyle>
     );
 }
 

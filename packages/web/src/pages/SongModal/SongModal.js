@@ -22,7 +22,7 @@ import './styles.scss';
 function SongModal() {
     const { songID, modal } = useSelector(state => state.songInfoModal);
     const songs = useSelector(state => state.songs.byID);
-    const song = songs[songID];
+    const song = songs[songID] || '';
 
     const dispatch = useDispatch();
 

@@ -30,7 +30,11 @@ const Nav = styled.nav`
         display: flex;
         justify-content: center;
         align-items: center;
-        button {
+        &__username {
+            all: unset;
+            cursor: pointer;
+        }
+        &__image {
             cursor: pointer;
             width: 30px;
             height: 30px;

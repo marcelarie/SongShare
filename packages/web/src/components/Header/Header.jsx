@@ -14,7 +14,7 @@ export default function Header() {
     const dispatch = useDispatch();
     const { theme } = useSelector(store => store.changeTheme);
 
-    const imageUrl = useSelector(store => store.auth.currentUser.imageUrl);
+    const { imageUrl, username } = useSelector(store => store.user);
 
     const profilePic =
         imageUrl ||
@@ -47,20 +47,26 @@ export default function Header() {
             </div>
 
             <div className="nav-user">
-                <div>
-                    <button
-                        style={{ all: 'unset' }}
-                        onClick={handleChangeTheme}
-                        type="button"
-                    >
-                        <DarkLightToggle theme={theme} />
-                    </button>
-                </div>
+                <button
+                    className="nav-user__username"
+                    type="button"
+                    onClick={() => setOpenMenu(!openMenu)}
+                >
+                    {username}
+                </button>
                 <ImageButton
                     onClick={() => setOpenMenu(!openMenu)}
                     type="button"
                     image={profilePic}
+                    className="nav-user__image"
                 />
+                <button
+                    style={{ all: 'unset' }}
+                    onClick={handleChangeTheme}
+                    type="button"
+                >
+                    <DarkLightToggle theme={theme} />
+                </button>
                 {openMenu && (
                     <div>
                         <NavLink to="/">Profile</NavLink>

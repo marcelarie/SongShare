@@ -22,7 +22,7 @@ export const light = {
     colorTransparent: 'rgba( 124,188,220, 0.7 )',
     colorDarkTransparent: 'rgba( 86,131,154, 0.7 )',
     mainBlackTransparent: 'rgba( 54,54,54, 0.7 )',
-    mainDarkGrayTransparent: 'rgba( 63,64,66, 0.7 )',
+    mainDarkGrayTransparent: 'rgba( 122,122,122, 0.3 )',
     lightGray: '#7A7A7A',
     white: '#fff',
     greenSuccess: '#4FCD61',

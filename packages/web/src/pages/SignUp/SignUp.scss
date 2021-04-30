@@ -1,11 +1,9 @@
 .form-container {
-    background-color: #282828;
     height: 100vh;
     display: flex;
     flex-direction: column;
 
     h2 {
-        color: white;
         font-size: 2rem;
         text-align: center;
         span {
@@ -18,13 +16,11 @@
     }
 
     label {
-        color: white;
         font-size: 1.2rem;
     }
 
     p,
     a {
-        color: white;
         text-align: center;
     }
 
@@ -44,19 +40,14 @@
 .form-submit,
 .form-login {
     text-align: center;
-    color: white;
     button {
-        background-color: #c3352e;
         border-radius: 5px;
         padding: 1rem 1.5rem;
     }
     a {
-        background-color: #3f4042;
+        // background-color: #3f4042;
         padding: 1rem 1.5rem;
         border-radius: 5px;
         transition: 0.1s;
-        &:hover {
-            background-color: #ac362e;
-        }
     }
 }
