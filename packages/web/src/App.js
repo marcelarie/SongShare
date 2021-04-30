@@ -40,7 +40,7 @@ function App() {
                     </div>
                     {open && <QuickMenu />}
                 </main>
-                {auth.isAuthenticated && <AudioPlayer/>}
+                {auth.isAuthenticated && <AudioPlayer />}
             </GlobalStyles>
         </ThemeProvider>
     );

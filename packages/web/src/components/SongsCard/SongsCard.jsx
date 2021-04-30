@@ -25,7 +25,7 @@ function SongsCard({ newsong }) {
     useQuickMenuListener();
     return (
         <>
-            <SongCardStyle image={newsong.imageUrl } className="songsCard">
+            <SongCardStyle image={newsong.imageUrl} className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
                         <button

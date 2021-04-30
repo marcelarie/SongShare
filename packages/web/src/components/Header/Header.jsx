@@ -20,7 +20,6 @@ export default function Header() {
         imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
-
     const handleSignOut = () => {
         dispatch(signOut());
     };
