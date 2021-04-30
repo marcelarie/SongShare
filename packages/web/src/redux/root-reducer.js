@@ -8,6 +8,7 @@ import quickMenu from './quickMenu/quickMenu-reducer';
 import listPlayerReducer from './listPlayer/listPlayer-reducer';
 import songInfoModal from './songInfoModal/songInfoModal-reducer';
 import userSongs from './userSongs/userSongs-reducer';
+import PlaylistsReducer from './Playlists/playlists-reducer';
 
 const RESET_STORE_AND_LOG_OUT = 'RESET_STORE_AND_LOG_OUT';
 
@@ -24,6 +25,8 @@ const appReducer = combineReducers({
     listPlay: listPlayerReducer,
     quickMenu,
     userSongs,
+
+    playlists: PlaylistsReducer,
 });
 
 const rootReducer = (state, action) => {

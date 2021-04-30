@@ -1,5 +1,5 @@
 import { normalize, schema } from 'normalizr';
-import { song } from './songs-schema'
+import { song } from './songs-schema';
 
 const playlist = new schema.Entity(
     'playlists',
@@ -18,7 +18,7 @@ const fullPlaylist = new schema.Entity(
     },
 );
 
-export function normalizePlaylist(playlists) {
+export function normalizePlaylists(playlists) {
     return normalize(playlists, [playlist]);
 }
 

@@ -101,6 +101,16 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    /* PLAYLISTS */
+    function createPlaylist(headers, body) {
+        return request({
+            url: ``,
+            requestMethod: 'POST',
+            headers,
+            body,
+        });
+    }
+
     return {
         signUp,
         signOut,
@@ -114,6 +124,8 @@ function makeApi(request = makeRequest()) {
         EditSong,
         addLike,
         deleteSong,
+
+        createPlaylist,
     };
 }
 
