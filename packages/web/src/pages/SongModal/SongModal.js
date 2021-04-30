@@ -8,6 +8,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import {
     addLikeToSong,
     deleteSongByID,
+    editSongByID,
     getSongByID,
 } from '../../redux/songs/songs-actions';
 
@@ -24,7 +25,7 @@ function SongModal() {
         dispatch(getSongByID(songID));
     }, [dispatch, songID]);
 
-    // const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
+    const [name, setName] = useState(songs[songID] ? songs[songID].name : '');
     const [uploader, setUploader] = useState(
         songs[songID] ? songs[songID].uploadBy : '',
     );
@@ -184,7 +185,16 @@ function SongModal() {
                                 <button
                                     type="button"
                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={() => dispatch(closeInfoModal())}
+                                    onClick={() =>
+                                        dispatch(
+                                            editSongByID(songID, {
+                                                name,
+                                                uploader,
+                                                author,
+                                                genre,
+                                            }),
+                                        )
+                                    }
                                 >
                                     Edit
                                 </button>
