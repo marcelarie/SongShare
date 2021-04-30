@@ -10,6 +10,9 @@ const PlaylistSchema = mongoose.Schema({
         type: String,
         ref: 'user',
     },
+    publicAccess: {
+        type: Boolean,
+    },
     songs: {
         type: [
             {

@@ -80,7 +80,7 @@ export const updatePlaylistsSuccess = ({ playlist }) => {
     };
 };
 
-export function createPlaylist({ title, type, publicAccess, createdBy }) {
+export function createPlaylist({ title, publicAccess, author }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
 
@@ -95,9 +95,8 @@ export function createPlaylist({ title, type, publicAccess, createdBy }) {
                 },
                 {
                     title,
-                    type,
                     publicAccess,
-                    createdBy,
+                    author,
                 },
             );
 

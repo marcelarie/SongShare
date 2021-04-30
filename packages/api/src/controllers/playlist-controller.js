@@ -4,12 +4,12 @@ import { PlaylistRepository as PlaylistRepo } from '../repositories/index.js';
 async function createPlaylist(req, res, next) {
     const {
         body: { title, publicAccess, tracks },
-        user: { id },
+        user: { uid },
     } = req;
     try {
         const response = await PlaylistRepo.create({
             title,
-            author: id,
+            author: uid,
             publicAccess,
             tracks: tracks || [],
         });

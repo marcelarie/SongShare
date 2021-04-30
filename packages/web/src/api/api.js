@@ -104,7 +104,7 @@ function makeApi(request = makeRequest()) {
     /* PLAYLISTS */
     function createPlaylist(headers, body) {
         return request({
-            url: ``,
+            url: `/newplaylist`,
             requestMethod: 'POST',
             headers,
             body,
