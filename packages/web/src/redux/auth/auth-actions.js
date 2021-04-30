@@ -2,6 +2,7 @@ import * as AuthTypes from './auth-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
 import { resetStoreAndLogOut } from '../root-reducer';
+import { updateUserInfo } from '../user/user-actions';
 
 export const signUpRequest = () => ({
     type: AuthTypes.SIGN_UP_REQUEST,
@@ -46,11 +47,31 @@ export const resetAuthState = () => ({
     type: AuthTypes.RESET_AUTH_STATE,
 });
 
+export const isNewUser = googleData => ({
+    type: AuthTypes.NEW_USER,
+    payload: googleData,
+});
+
 export function signUpWithGoogleRequest() {
     return async function signUpThunk(dispatch) {
         dispatch(signUpRequest());
         try {
-            await auth.singInWithGoogle();
+            const info = await auth.singInWithGoogle();
+
+            const response = await api.getUserInfo({
+                Authorization: `Bearer ${info.user.za}`,
+            });
+
+            if (!response.data) {
+                const displayName = info.user.displayName.split(' ');
+                const userInfo = {
+                    username: info.user.email,
+                    name: displayName[0],
+                    lastname: displayName[1] ? displayName[1] : '',
+                    imageUrl: info.user.photoURL,
+                };
+                dispatch(isNewUser(userInfo));
+            }
         } catch (error) {
             dispatch(signUpError(error.message));
         }

@@ -159,8 +159,6 @@ export function addLikeToSong(songID) {
     };
 }
 export function editSongByID(songID, song) {
-    console.log(songID);
-    console.log(song);
     return async function editSongThunk(dispatch) {
         const token = await auth.getCurrentUserToken();
         dispatch(songEditRequest());
@@ -181,7 +179,7 @@ export function editSongByID(songID, song) {
             if (res.errorMessage) {
                 return dispatch(songEditError(res.errorMessage));
             }
-            console.log(res.data.data);
+
             return dispatch(songEditSuccess(res.data.data));
         } catch (error) {
             return dispatch(songEditError(error.message));
