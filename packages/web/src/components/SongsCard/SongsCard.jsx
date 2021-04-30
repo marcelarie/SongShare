@@ -15,7 +15,7 @@ function SongsCard({ newsong }) {
     const [openMenu] = useQuickMenu();
 
     function reproduceSong() {
-        dispatch(play(newsong));
+        dispatch(play(newsong.url));
     }
     const openSongInfo = () => {
         dispatch(openInfoModal(newsong._id));

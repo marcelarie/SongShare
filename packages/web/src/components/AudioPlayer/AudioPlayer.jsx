@@ -17,9 +17,9 @@ const SongsPlayer = () => {
         <>
             <AudioPlayer
                 className="audioPlayer"
-                autoPlay
+                // autoPlay
                 showSkipControls
-                src={audioPlayer.currentlyPlaying.song.url}
+                src={audioPlayer.currentlyPlaying.song}
                 onEnded={() => dispatch(nextSong(audioPlayer))}
                 onClickPrevious={() => dispatch(prevSong(audioPlayer))}
                 onClickNext={() => dispatch(nextSong(audioPlayer))}

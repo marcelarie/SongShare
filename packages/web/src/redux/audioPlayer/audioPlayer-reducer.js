@@ -24,7 +24,6 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                 },
             };
         case audioPlayerTypes.ADD_SONG_TO_QUEUE:
-            console.log(payload);
             return {
                 ...state,
                 queue: [...state.queue, payload],

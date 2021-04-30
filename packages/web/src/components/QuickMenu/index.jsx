@@ -9,17 +9,14 @@ const QuickMenu = () => {
     const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
+    const url = useSelector(store => store.songs.byID[id].url);
 
-    const song = useSelector(store => store.mus);
-
-    //    closeModal(?)
     const handleClick = () => {
         dispatch(openModal(false));
     };
 
     const addSongToQueue = () => {
-        // coger canciona partir del id
-        dispatch(addToQueue(song));
+        dispatch(addToQueue(url));
         dispatch(openModal(false));
     };
 

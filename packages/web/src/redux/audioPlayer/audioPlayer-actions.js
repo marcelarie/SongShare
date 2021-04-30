@@ -32,8 +32,6 @@ export function nextSong(audioPlayerState) {
             audioPlayerState.currentlyPlaying.index + 1 <
             audioPlayerState.queue.length
         ) {
-            console.log(audioPlayerState.currentlyPlaying.index);
-            console.log(audioPlayerState.queue.length - 1);
             return dispatch(playNextSong());
         }
         return null;
