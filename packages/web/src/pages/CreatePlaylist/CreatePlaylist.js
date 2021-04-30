@@ -14,7 +14,7 @@ function CreatePlaylist() {
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(publicAccess)
+        console.log(publicAccess);
         dispatch(createPlaylist({ title, userID, publicAccess }));
     };
 
@@ -58,8 +58,8 @@ function CreatePlaylist() {
                         id="playlistAccessPublic"
                         className="form-input"
                         name="publicAccess"
-                        value= "false"
-                        onChange={()=> setPublicAccess(true)}
+                        value="false"
+                        onChange={() => setPublicAccess(true)}
                     />
                     <label
                         htmlFor="publicAccess"
@@ -72,8 +72,8 @@ function CreatePlaylist() {
                         id="playlistAccessPrivate"
                         className="form-input"
                         name="publicAccess"
-                        value= "true"
-                        onChange={()=> setPublicAccess(false)}
+                        value="true"
+                        onChange={() => setPublicAccess(false)}
                     />
 
                     <button className="btn btn-primary w-full" type="submit">
