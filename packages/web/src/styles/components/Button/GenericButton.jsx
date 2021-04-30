@@ -5,7 +5,7 @@ const GenericButton = styled.button`
         font-weight: 600;
         font-size: 1em;
         background-color: ${({ theme }) => theme.color} ;
-        color: ${({ theme }) => theme.textColor};
+        color: ${({ theme }) => theme.backgroundColor};
         padding: 0.4rem 0;
         margin: 1rem 0;
         border: none;

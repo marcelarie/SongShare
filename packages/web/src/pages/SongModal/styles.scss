@@ -12,7 +12,7 @@
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-top: 0.5rem;
         img {
             border-radius: 3px;
         }
@@ -23,7 +23,7 @@
         align-items: center;
         font-size: 1.5rem;
         p {
-            margin: 0.5rem;
+            margin: 0 0.5rem;
         }
     }
     &__buttons {
@@ -36,7 +36,7 @@
         margin: 0.3rem 0;
     }
     button {
-        margin: 0.3rem 0;
+        margin: 0.3rem;
     }
 
     .disable-input {

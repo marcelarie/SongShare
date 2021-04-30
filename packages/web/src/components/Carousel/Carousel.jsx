@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
+import ScrollBar from '../ScrollBar';
 
 import './styles.scss';
 

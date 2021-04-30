@@ -71,6 +71,20 @@ function SongModal() {
                         <div>
                             <div>
                                 <div>
+                                    <div className="song-modal__likes">
+                                        <p>{songs[songID].likes.length}</p>
+                                        <FontAwesomeIcon
+                                            icon={faHeart}
+                                            className={
+                                                songs[songID].likes
+                                                    ? 'text-indigo-800'
+                                                    : 'text-gray-400'
+                                            }
+                                            onClick={() =>
+                                                dispatch(addLikeToSong(songID))
+                                            }
+                                        />
+                                    </div>
                                     <label htmlFor="author" className="">
                                         Author
                                     </label>
@@ -109,20 +123,6 @@ function SongModal() {
                                         }
                                     />
                                 </div>
-                            </div>
-                            <div className="song-modal__likes">
-                                <p>{songs[songID].likes.length}</p>
-                                <FontAwesomeIcon
-                                    icon={faHeart}
-                                    className={
-                                        songs[songID].likes
-                                            ? 'text-indigo-800'
-                                            : 'text-gray-400'
-                                    }
-                                    onClick={() =>
-                                        dispatch(addLikeToSong(songID))
-                                    }
-                                />
                             </div>
                         </div>
                     </div>

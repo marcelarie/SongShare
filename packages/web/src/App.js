@@ -7,6 +7,7 @@ import Header from './components/Header';
 import QuickMenu from './components/QuickMenu';
 import MainRouter from './Router';
 import AudioPlayer from './components/AudioPlayer';
+import ScrollBar from './components/ScrollBar';
 
 import { dark, light } from './styles/theme';
 import { GlobalStyles } from './styles/theme/root';
@@ -27,21 +28,23 @@ function App() {
 
     return (
         <ThemeProvider theme={currentTheme ? dark : light}>
-            <GlobalStyles>
-                {auth.isAuthenticated && (
-                    <>
-                        <Header />
-                        <SongModal />
-                    </>
-                )}
-                <main className="main">
-                    <div className="main__content">
-                        <MainRouter />
-                    </div>
-                    {open && <QuickMenu />}
-                </main>
-                {auth.isAuthenticated && <AudioPlayer />}
-            </GlobalStyles>
+            <ScrollBar>
+                <GlobalStyles>
+                    {auth.isAuthenticated && (
+                        <>
+                            <Header />
+                            <SongModal />
+                        </>
+                    )}
+                    <main className="main">
+                        <div className="main__content">
+                            <MainRouter />
+                        </div>
+                        {open && <QuickMenu />}
+                    </main>
+                    {auth.isAuthenticated && <AudioPlayer />}
+                </GlobalStyles>
+            </ScrollBar>
         </ThemeProvider>
     );
 }
