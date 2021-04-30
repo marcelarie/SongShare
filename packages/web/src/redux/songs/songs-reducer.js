@@ -126,8 +126,8 @@ function SongsReducer(state = SongsInitialState, action) {
 
             return {
                 ...state,
-                SongDeleteError: false,
-                SongDeleteRequest: false,
+                SongUpdatingError: false,
+                SongUpdating: false,
                 byID: {
                     ...state.byID,
                     [songID]: {
