@@ -29,7 +29,7 @@ export default function Header() {
     const user = useSelector(store => store.user);
     const currentLocation = useLocation().pathname;
 
-    const imageUrl = useSelector(store => store.auth.currentUser.imageUrl);
+    const imageUrl = useSelector(store => store.user.imageUrl);
 
     function handleSignOut() {
         dispatch(signOut());
@@ -43,7 +43,7 @@ export default function Header() {
 
     const [openMainMenu, setOpenMainMenu] = useState(false);
 
-    useEffect(() => {}, [currentLocation]); // esto pa que??
+    useEffect(() => {}, [currentLocation, imageUrl]); // esto pa que??
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
