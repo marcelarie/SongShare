@@ -21,6 +21,7 @@ import { onAuthStateChanged } from './services/auth';
 import ProtectedRoute from './routes/protectedRoutes';
 import SongsPlayer from './components/AudioPlayer';
 import MyMusic from './pages/MyMusic/MyMusic';
+import { updateUserInfo } from './redux/user/user-actions';
 
 function App() {
     const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
         unsubscribeFromAuth = onAuthStateChanged(user => {
             if (user) {
                 dispatch(syncSignIn());
+                if (auth.googleInfo) {
+                    dispatch(updateUserInfo(auth.googleInfo));
+                }
             } else {
                 dispatch(signOut());
             }

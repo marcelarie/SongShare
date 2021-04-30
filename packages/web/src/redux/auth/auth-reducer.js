@@ -1,6 +1,8 @@
 import * as AuthTypes from './auth-types';
 
 export const AuthInitialState = {
+    isNewUser: true,
+    googleInfo: null,
     isSigningUp: false,
     signUpError: null,
     isSigningOut: false,
@@ -18,6 +20,13 @@ export const AuthInitialState = {
 const AuthReducer = (state = AuthInitialState, action) => {
     const { type, payload } = action;
     switch (type) {
+        case AuthTypes.NEW_USER: {
+            return {
+                ...state,
+                isNewUser: true,
+                googleInfo: payload,
+            };
+        }
         case AuthTypes.SIGN_UP_REQUEST: {
             return {
                 ...state,

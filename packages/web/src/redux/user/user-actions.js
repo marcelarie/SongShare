@@ -3,30 +3,11 @@ import api from '../../api';
 import * as auth from '../../services/auth';
 import { getFileUrl } from '../../services/cloudinary';
 
-export function updateUserInfo(userInfo) {
+export function updateUserInfo(userInfoEdited) {
     return async function updateUserInfoThunk(dispatch) {
-        const { username, name, lastname, file, fileType } = userInfo;
-        let imageUrl = null;
-        if (file) {
-            const urlImageResponse = await getFileUrl({
-                file: file,
-                fileType: fileType,
-            });
-            imageUrl = urlImageResponse.data.url;
-            if (!imageUrl) {
-                dispatch(
-                    updateUserInfoError(
-                        'error with the image. Try again with another image',
-                    ),
-                );
-            }
-        }
-
-        const userInfoEdited = { username, name, lastname, imageUrl };
         dispatch(updateUserInfoRequest());
         try {
             const token = await auth.getCurrentUserToken();
-
             const response = await api.useApi(
                 {
                     Authorization: `Bearer ${token}`,
@@ -34,11 +15,35 @@ export function updateUserInfo(userInfo) {
 
                 userInfoEdited,
             );
-
             return dispatch(updateUserInfoSucces(response.data.data));
         } catch (error) {
             return dispatch(updateUserInfoError(error));
         }
+    };
+}
+
+export function updateUserInfoMidleware(userInfo) {
+    return async function updateUserInfoMidlewareThunk(dispatch) {
+        const { username, name, lastname, file, fileType } = userInfo;
+        let userInfoEdited = null;
+        if (file) {
+            const urlImageResponse = await getFileUrl({
+                file: file,
+                fileType: fileType,
+            });
+            const imageUrl = urlImageResponse.data.url;
+            if (!imageUrl) {
+                dispatch(
+                    updateUserInfoError(
+                        'error with the image. Try again with another image',
+                    ),
+                );
+            }
+            userInfoEdited = { username, name, lastname, imageUrl };
+        } else {
+            userInfoEdited = { username, name, lastname };
+        }
+        dispatch(updateUserInfo(userInfoEdited));
     };
 }
 
