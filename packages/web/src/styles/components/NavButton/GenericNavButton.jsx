@@ -6,7 +6,7 @@ const GenericNavButton = styled.button`
     font-size: 1.3em;
     margin: 0 2rem;
     &:hover {
-        color: ${({ theme }) => theme.white};
+        color: ${({ theme }) => theme.textColor};
         transition: 0.8ms;
     }
     &:active {

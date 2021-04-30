@@ -22,12 +22,13 @@ const Nav = styled.nav`
     }
     .nav-user {
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: center;
         button {
+            cursor: pointer;
             width: 30px;
             height: 30px;
-            margin: 0 auto;
+            margin: auto 0.5rem;
             border-radius: 50%;
             &:active {
                 opacity: 0.7;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
@@ -12,10 +12,9 @@ import MainRouter from './Router';
 import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged';
 
 import { dark, light } from './styles/theme';
-import { Body } from './styles/theme/root';
+import { GlobalStyles } from './styles/theme/root';
 import './styles/fonts.scss';
 import './styles/reset.scss';
-import './styles/color-palette.scss';
 
 function App() {
     const auth = useSelector(store => store.auth);
@@ -24,7 +23,7 @@ function App() {
 
     return (
         <ThemeProvider theme={currentTheme ? dark : light}>
-            <Body>
+            <GlobalStyles>
                 {auth.isAuthenticated && (
                     <>
                         <Header />
@@ -37,7 +36,7 @@ function App() {
                     </div>
                 </main>
                 {auth.isAuthenticated && <SongsPlayer />}
-            </Body>
+            </GlobalStyles>
         </ThemeProvider>
     );
 }

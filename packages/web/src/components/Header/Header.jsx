@@ -8,6 +8,7 @@ import { MY_MUSIC } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
+import DarkLightToggle from '../DarkLightToggle';
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Header() {
     const [openMenu, setOpenMenu] = useState(false);
 
     return (
-        <Nav>
+        <Nav color="red">
             <NavLink to="/">
                 <h1>Song Share</h1>
             </NavLink>
@@ -45,12 +46,16 @@ export default function Header() {
                 </NavLink>
             </div>
 
-            <div>
-                <button onClick={handleChangeTheme} type="button">
-                    {theme ? 'Dark Theme' : 'Light Theme'}
-                </button>
-            </div>
             <div className="nav-user">
+                <div>
+                    <button
+                        style={{ all: 'unset' }}
+                        onClick={handleChangeTheme}
+                        type="button"
+                    >
+                        <DarkLightToggle theme={theme} />
+                    </button>
+                </div>
                 <ImageButton
                     onClick={() => setOpenMenu(!openMenu)}
                     type="button"
