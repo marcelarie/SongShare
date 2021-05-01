@@ -1,6 +1,6 @@
-import * as listPlayerTypes from './listPlayer-types';
+import * as audioPlayerTypes from './audioPlayer-types';
 
-export const listPlayerIntialState = {
+export const audioPlayerIntialState = {
     queue: [],
     currentlyPlaying: {
         song: '',
@@ -8,12 +8,12 @@ export const listPlayerIntialState = {
     },
 };
 
-const listPlayerReducer = (state = listPlayerIntialState, action) => {
+const listPlayerReducer = (state = audioPlayerIntialState, action) => {
     const { type, payload } = action;
 
     const index = state.currentlyPlaying.index;
     switch (type) {
-        case listPlayerTypes.PLAY:
+        case audioPlayerTypes.PLAY:
             state.queue.splice(index, 0, payload);
             return {
                 ...state,
@@ -23,13 +23,12 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
                     index: state.currentlyPlaying.index,
                 },
             };
-        case listPlayerTypes.ADD_SONG_TO_QUEUE:
-            console.log(payload);
+        case audioPlayerTypes.ADD_SONG_TO_QUEUE:
             return {
                 ...state,
                 queue: [...state.queue, payload],
             };
-        case listPlayerTypes.NEXT_SONG:
+        case audioPlayerTypes.NEXT_SONG:
             return {
                 ...state,
                 currentlyPlaying: {
@@ -37,7 +36,7 @@ const listPlayerReducer = (state = listPlayerIntialState, action) => {
                     index: state.currentlyPlaying.index + 1,
                 },
             };
-        case listPlayerTypes.PREV_SONG:
+        case audioPlayerTypes.PREV_SONG:
             return {
                 ...state,
                 currentlyPlaying: {

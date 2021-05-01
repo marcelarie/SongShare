@@ -1,0 +1,21 @@
+.upload-song {
+    margin: 10vh auto;
+
+    .upload-song__messages {
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 1rem;
+    }
+    h1 {
+        text-align: center;
+    }
+    label {
+        font-size: 1.4rem;
+    }
+    button {
+        margin: 0 auto;
+    }
+    input {
+        font-size: 1.4rem;
+    }
+}

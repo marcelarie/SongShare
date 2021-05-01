@@ -1,9 +1,53 @@
-.SignUp {
-    max-width: 32rem;
+.form-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-    @apply h-full w-full p-1 flex flex-col align-middle mx-auto;
+    h2 {
+        font-size: 2rem;
+        text-align: center;
+        span {
+            width: 100%;
+        }
+    }
 
-    &__wrapper {
-        @apply p-4;
+    .header {
+        margin: 4vh;
+    }
+
+    label {
+        font-size: 1.2rem;
+    }
+
+    p,
+    a {
+        text-align: center;
+    }
+
+    form {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        input {
+            text-align: center;
+            width: 100%;
+            text-align: center;
+            margin: 2vh auto;
+        }
+    }
+}
+
+.form-submit,
+.form-login {
+    text-align: center;
+    button {
+        border-radius: 5px;
+        padding: 1rem 1.5rem;
+    }
+    a {
+        // background-color: #3f4042;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        transition: 0.1s;
     }
 }

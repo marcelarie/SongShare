@@ -1,110 +1,54 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
-import * as ROUTES from './routes';
-import Home from './pages/Home';
-import ChangePassword from './pages/ChangePassword';
-import Login from './pages/Login';
 import SongModal from './pages/SongModal';
-import ResetPassword from './pages/ResetPassword';
-import SignUp from './pages/SignUp';
 import Header from './components/Header';
-import SideNav from './components/SideNav';
 import QuickMenu from './components/QuickMenu';
-import './styles/main.scss';
+import MainRouter from './Router';
+import AudioPlayer from './components/AudioPlayer';
+import ScrollBar from './components/ScrollBar';
 
-import UserInfo from './pages/UserInfo/UserInfo';
-import templates from './pages/UserInfo/UserProfileTemplates';
-import { signOut, syncSignIn } from './redux/auth/auth-actions';
-import { onAuthStateChanged } from './services/auth';
-import ProtectedRoute from './routes/protectedRoutes';
-import SongsPlayer from './components/SongsPlayer';
-import MyMusic from './pages/MyMusic/MyMusic';
-import CreatePlaylist from './pages/CreatePlaylist';
+import { dark, light } from './styles/theme';
+import { GlobalStyles } from './styles/theme/root';
+import './styles/fonts.scss';
+import './styles/reset.scss';
+
+import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged';
+
+// old styles + SideNav still WIP
+// import './styles/main.scss';
+// import SideNav from './components/SideNav';
 
 function App() {
-    const dispatch = useDispatch();
-
     const auth = useSelector(store => store.auth);
-
+    useOnAuthStateChanged();
+    const currentTheme = useSelector(({ changeTheme }) => changeTheme.theme);
     const { open } = useSelector(({ quickMenu }) => quickMenu);
 
-    useEffect(() => {
-        let unsubscribeFromAuth = null;
-        unsubscribeFromAuth = onAuthStateChanged(user => {
-            if (user) {
-                dispatch(syncSignIn());
-            } else {
-                dispatch(signOut());
-            }
-        });
-
-        return () => {
-            if (unsubscribeFromAuth) {
-                unsubscribeFromAuth();
-            }
-        };
-    }, [dispatch]);
-
     return (
-        <div className="App__container">
-            {auth.isAuthenticated && (
-                <>
-                    <Header />
-                    <SongModal />
-                </>
-            )}
-            <main className="main">
-                {auth.isAuthenticated && (
-                    <>
-                        <SideNav className="main__sideNav" />
-                    </>
-                )}
-                <div className="main__content">
-                    <Switch>
-                        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                        <Route path={ROUTES.LOGIN} component={Login} />
-                        <Route
-                            path={ROUTES.RESET_PASSWORD}
-                            component={ResetPassword}
-                        />
-                        <Route path={ROUTES.HOME} component={Home} exact />
-                        <ProtectedRoute
-                            path={ROUTES.MY_MUSIC}
-                            component={MyMusic}
-                        />
-                        <ProtectedRoute
-                            path={ROUTES.PLAYLIST}
-                            component={CreatePlaylist}
-                        />
-                        <ProtectedRoute
-                            path={ROUTES.HOME_USER}
-                            component={UserInfo}
-                            exact
-                        />
-                        <ProtectedRoute
-                            path={ROUTES.HOME_USER_EDIT}
-                            component={templates.CurrentUserProfileEdit}
-                            exact
-                        />
-                        <ProtectedRoute
-                            path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
-                            component={ChangePassword}
-                            exact
-                        />
-                    </Switch>
-                </div>
-
-                {open && <QuickMenu />}
-            </main>
-            {auth.isAuthenticated && (
-                <>
-                    <SongsPlayer />
-                </>
-            )}
-        </div>
+        <ThemeProvider theme={currentTheme ? dark : light}>
+            <ScrollBar>
+                <GlobalStyles>
+                    {auth.isAuthenticated && (
+                        <>
+                            <Header />
+                            <SongModal />
+                        </>
+                    )}
+                    <main className="main">
+                        <div className="main__content">
+                            <MainRouter />
+                        </div>
+                        {open && <QuickMenu />}
+                    </main>
+                    {auth.isAuthenticated && <AudioPlayer />}
+                </GlobalStyles>
+            </ScrollBar>
+        </ThemeProvider>
     );
 }
 
 export default App;
+
+// {auth.isAuthenticated && <SideNav className="main__sideNav" />}

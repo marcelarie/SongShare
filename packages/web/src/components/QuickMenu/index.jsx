@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToQueue } from '../../redux/listPlayer/listPlayer-actions';
+import { addToQueue } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import QuickMenuStyle from './styles';
 
@@ -9,17 +9,14 @@ const QuickMenu = () => {
     const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
+    const url = useSelector(store => store.songs.byID[id].url);
 
-    const song = useSelector(store => store.mus);
-
-    //    closeModal(?)
     const handleClick = () => {
         dispatch(openModal(false));
     };
 
     const addSongToQueue = () => {
-        // coger canciona partir del id
-        dispatch(addToQueue(song));
+        dispatch(addToQueue(url));
         dispatch(openModal(false));
     };
 

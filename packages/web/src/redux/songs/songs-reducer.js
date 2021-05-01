@@ -88,7 +88,6 @@ function SongsReducer(state = SongsInitialState, action) {
         case SongsTypes.EDIT_SONG_SUCCESS: {
             const { song } = action.payload;
             const songID = song._id;
-            console.log(song);
 
             return {
                 ...state,

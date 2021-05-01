@@ -43,6 +43,13 @@ function makeApi(request = makeRequest()) {
             headers,
         });
     }
+    function getUserInfo(headers) {
+        return request({
+            url: `/user`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
 
     function getSongs(headers) {
         return request({
@@ -126,6 +133,7 @@ function makeApi(request = makeRequest()) {
         deleteSong,
 
         createPlaylist,
+        getUserInfo,
     };
 }
 

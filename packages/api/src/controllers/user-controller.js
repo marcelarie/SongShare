@@ -48,6 +48,23 @@ async function getUserInfoByUsername(req, res, next) {
     }
 }
 
+async function getUserInfo(req, res, next) {
+    const { uid } = req.user;
+
+    try {
+        const response = await UserRepo.findOne({
+            _id: uid,
+        });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+
+        res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function patchUserInfoByUsername(req, res, next) {
     try {
         const { uid } = req.user;
@@ -110,4 +127,5 @@ export {
     patchUserInfoByUsername,
     deleteUser,
     getAllUserLikes,
+    getUserInfo,
 };

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export default styled.div`
     position: absolute;
-    background-color: gray;
+    background-color: ${({ theme }) => theme.backgroundColor};
+    padding: 1rem;
+    border-radius: 5px;
     width: '100px';
     height: '100px';
     font-size: '0.8em';
@@ -11,4 +13,7 @@ export default styled.div`
     left: ${props => props.x};
     bottom: auto;
     right: auto;
+    button {
+        all: unset;
+    }
 `;
