@@ -3,7 +3,7 @@ import * as audioPlayerTypes from './audioPlayer-types';
 export const audioPlayerIntialState = {
     queue: [],
     currentlyPlaying: {
-        song: '',
+        songId: '',
         index: 0,
     },
 };
@@ -19,7 +19,7 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                 ...state,
                 queue: state.queue,
                 currentlyPlaying: {
-                    song: payload,
+                    songId: payload,
                     index: state.currentlyPlaying.index,
                 },
             };
@@ -32,7 +32,7 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index + 1],
+                    songId: state.queue[state.currentlyPlaying.index + 1],
                     index: state.currentlyPlaying.index + 1,
                 },
             };
@@ -40,7 +40,7 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index - 1],
+                    songId: state.queue[state.currentlyPlaying.index - 1],
                     index: state.currentlyPlaying.index - 1,
                 },
             };

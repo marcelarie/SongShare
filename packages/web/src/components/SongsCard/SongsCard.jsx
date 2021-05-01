@@ -11,21 +11,21 @@ import {
 
 import SongCardStyle from './styles';
 
-function SongsCard({ newsong }) {
+function SongsCard({ song }) {
     const dispatch = useDispatch();
-    const [cardId] = useState(newsong._id);
+    const [cardId] = useState(song._id);
     const [openMenu] = useQuickMenu();
 
     function reproduceSong() {
-        dispatch(play(newsong.url));
+        dispatch(play(song._id));
     }
     const openSongInfo = () => {
-        dispatch(openInfoModal(newsong._id));
+        dispatch(openInfoModal(song._id));
     };
     useQuickMenuListener();
     return (
         <>
-            <SongCardStyle image={newsong.imageUrl} className="songsCard">
+            <SongCardStyle image={song.imageUrl} className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
                         <button
@@ -62,7 +62,7 @@ function SongsCard({ newsong }) {
                     </button>
                 </div>
                 <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
-                    <p className="songsCard__title">{newsong.name}</p>
+                    <p className="songsCard__title">{song.name}</p>
                 </section>
 
                 <div className="songsCard__description">description</div>
