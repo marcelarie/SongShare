@@ -36,6 +36,29 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 // add new playlist getting de info by payload
             };
         }
+        case PlaylistsTypes.GET_PLAYLISTS_REQUEST: {
+            return {
+                ...state,
+                PlaylistUpdating: true,
+                PlaylistUpdatingError: null,
+            };
+        }
+        case PlaylistsTypes.GET_PLAYLISTS_ERROR: {
+            return {
+                ...state,
+                PlaylistUpdating: false,
+                PlaylistUpdatingError: payload, // payload == error message
+            };
+        }
+        case PlaylistsTypes.GET_PLAYLISTS_SUCCESS: {
+            return {
+                ...state,
+                PlaylistUpdating: false,
+                PlaylistUpdatingError: false,
+                byID: payload.byID,
+                ids: payload.ids,
+            };
+        }
 
         default: {
             return state;

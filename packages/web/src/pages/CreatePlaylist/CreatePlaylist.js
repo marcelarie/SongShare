@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { createPlaylist } from '../../redux/Playlists/playlists-actions';
 
-import '../../styles/utils.css';
-
 function CreatePlaylist() {
     const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
         store => store.playlists,

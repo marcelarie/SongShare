@@ -109,6 +109,14 @@ function makeApi(request = makeRequest()) {
     }
 
     /* PLAYLISTS */
+    function AllPlaylists(headers) {
+        return request({
+            url: `/playlists/all`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
     function createPlaylist(headers, body) {
         return request({
             url: `/newplaylist`,
@@ -123,6 +131,8 @@ function makeApi(request = makeRequest()) {
         signOut,
         login,
         useApi,
+        getUserInfo,
+
         createTrack,
         getSongs,
         getUserSongs,
@@ -133,7 +143,7 @@ function makeApi(request = makeRequest()) {
         deleteSong,
 
         createPlaylist,
-        getUserInfo,
+        AllPlaylists,
     };
 }
 

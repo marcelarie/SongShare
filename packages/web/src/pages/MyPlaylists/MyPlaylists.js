@@ -1,102 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { createPlaylist } from '../../redux/Playlists/playlists-actions';
+import { NEW_PLAYLIST } from '../../routes';
+import { getAllPlaylists } from '../../redux/Playlists/playlists-actions';
 
-import '../../styles/utils.css';
-
-function CreatePlaylist() {
+function MyPlaylists() {
     const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
         store => store.playlists,
     );
-    const author = useSelector(store => store.user.username);
+
     const userID = useSelector(store => store.user._id);
     const dispatch = useDispatch();
-    const handleSubmit = e => {
-        e.preventDefault();
-        console.log(publicAccess);
-        dispatch(createPlaylist({ title, userID, publicAccess }));
-    };
+    const AllPlaylists = useSelector(store => store.playlists.byID);
+    const AllPlaylistsIds = useSelector(store => store.playlists.ids);
 
-    const [title, setTitle] = useState('');
-    // const [type, setType] = useState('');
-    const [publicAccess, setPublicAccess] = useState(false);
+    useEffect(() => {
+        dispatch(getAllPlaylists());
+        // dispatch(getUserPlaylists(userID));
+    }, [dispatch]);
+
+    if (!AllPlaylists) return <p>loading...</p>;
 
     return (
         <>
             <div>
-                <h2>CreatePlaylist</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="title" className="form-label text-dark">
-                        Title
-                    </label>
-                    <input
-                        type="text"
-                        id="title"
-                        className="form-input"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                    <label htmlFor="author" className="form-label text-dark">
-                        Author
-                    </label>
-                    <input
-                        type="text"
-                        id="author"
-                        className="form-input"
-                        value={author}
-                        disabled
-                    />
-                    <label
-                        htmlFor="publicAccess"
-                        className="form-label text-dark"
-                    >
-                        Public
-                    </label>
-                    <input
-                        type="radio"
-                        id="playlistAccessPublic"
-                        className="form-input"
-                        name="publicAccess"
-                        value="false"
-                        onChange={() => setPublicAccess(true)}
-                    />
-                    <label
-                        htmlFor="publicAccess"
-                        className="form-label text-dark"
-                    >
-                        Private
-                    </label>
-                    <input
-                        type="radio"
-                        id="playlistAccessPrivate"
-                        className="form-input"
-                        name="publicAccess"
-                        value="true"
-                        onChange={() => setPublicAccess(false)}
-                    />
-
-                    <button className="btn btn-primary w-full" type="submit">
-                        Create
-                    </button>
-                </form>
-
+                <h2>My Playlists</h2>
+                {AllPlaylistsIds.map(id => {
+                    const playlist = AllPlaylists[id];
+                    return (
+                        <div key={playlist._id}>
+                            {playlist.title}
+                            {playlist.author}
+                            {playlist.publicAccess}
+                        </div>
+                    );
+                })}
                 {PlaylistUpdating && (
-                    <p className="text-dark">Creating playlist</p>
+                    <p className="text-dark">Loading playlists</p>
                 )}
                 {PlaylistUpdatingError && (
                     <p className="text-dark">
                         There was an error: {PlaylistUpdatingError}
                     </p>
                 )}
-                {!PlaylistUpdating && !PlaylistUpdatingError && (
-                    <p className="text-dark">
-                        The playlist has been created successfull
-                    </p>
-                )}
+                {/* TODO: Carousel with my playlists */}
+                {/* TODO: Carousel with my liked playlists */}
+                {/* TODO: Carousel with my followed playlists */}
+
+                <Link to={NEW_PLAYLIST}>Create new playlist</Link>
             </div>
         </>
     );
 }
 
-export default CreatePlaylist;
+export default MyPlaylists;

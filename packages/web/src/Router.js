@@ -11,6 +11,8 @@ import UserInfo from './pages/UserInfo/UserInfo';
 import ProtectedRoute from './routes/protectedRoutes';
 import templates from './pages/UserInfo/UserProfileTemplates';
 import MyMusic from './pages/MyMusic/MyMusic';
+import MyPlaylists from './pages/MyPlaylists';
+import CreatePlaylist from './pages/CreatePlaylist';
 
 function MainRouter() {
     return (
@@ -20,6 +22,14 @@ function MainRouter() {
             <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
             <Route path={ROUTES.HOME} component={Home} exact />
             <ProtectedRoute path={ROUTES.MY_MUSIC} component={MyMusic} />
+            <ProtectedRoute
+                path={ROUTES.MY_PLAYLISTS}
+                component={MyPlaylists}
+            />
+            <ProtectedRoute
+                path={ROUTES.NEW_PLAYLIST}
+                component={CreatePlaylist}
+            />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserInfo}
