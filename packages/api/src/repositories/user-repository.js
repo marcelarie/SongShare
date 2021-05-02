@@ -14,18 +14,8 @@ const UserRepository = {
         return normalizeDBQuery(User.find(filter).lean());
     },
 
-    findAndCheckLikes: filter => {
-        return normalizeDBQuery(
-            User.find({ _id: filter }).where('likes').nin(['other']),
-            // .elemMatch(
-            //     'likes',
-            //     { $eq: filter },
-            //     function (err, results) {
-            //         console.log(results);
-            //         console.log(err);
-            //     },
-            // ),
-        );
+    findAndCheckLikes: (uid, id) => {
+        return normalizeDBQuery(User.find({ _id: uid, likes: { $in: [id] } }));
     },
 
     findOne: filter => {
