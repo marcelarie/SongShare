@@ -50,7 +50,6 @@ async function getSongWithLikes(req, res, next) {
         const length = Object.keys(response.data.likes).length; // ✅
 
         response.data.likes.likesCounter = length;
-        console.log(response);
         // const myLike = response.data.likes.uid; // ❌
 
         if (response.error) return res.status(400).send(response);
@@ -99,8 +98,7 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
-        console.log(checkUserResponse);
+        // const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
 
         const userResponse = await UserRepo.findByIdAndUpdate(uid, {
             $addToSet: { likes: id },

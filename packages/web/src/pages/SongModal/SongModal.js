@@ -38,7 +38,7 @@ function SongModal() {
         setUploader(song.uploadBy);
         setAuthor(song.author);
         setGenre(song.gender);
-    }, [song, dispatch, songID]);
+    }, [dispatch]);
 
     return modal && songs[songID] ? (
         <Transition.Root show={modal} as={Fragment}>

@@ -14,10 +14,7 @@ function useOnAuthStateChanged() {
             if (user) {
                 dispatch(syncSignIn());
                 if (googleInfo) {
-                    console.log('top', googleInfo);
                     dispatch(updateUserInfo(googleInfo));
-                } else {
-                    console.log('bottom', googleInfo);
                 }
             } else {
                 dispatch(signOut());
