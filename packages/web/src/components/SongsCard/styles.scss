@@ -1,59 +1,78 @@
 .songsCard {
     width: 200px;
-    position: relative;
-    margin-right: 15px;
-    border-radius: 10px;
     min-width: 200px;
-    height: 300px;
-    border: 1px solid black;
+    position: relative;
+    border-radius: 5px;
     text-align: left;
-    padding: 12px;
-    box-shadow: 2px 2px 5px 1px;
-    background-color: rgb(93, 99, 121);
-    &__picture {
-        width: 100%;
-        margin: auto;
-        border-radius: 8px;
-        img {
-            border-radius: 10px;
-            width: 100%;
-        }
-    }
-    &__header {
+    padding: 0 0.5rem;
+    &__container {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        margin-bottom: 10px;
+        align-items: flex-end;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+
+        height: 200px;
+        width: 100%;
+        border-radius: 5px;
+        &:hover {
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+        &__header {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
         &__3pointButton {
-            width: 50px;
-            height: 20px;
-            margin-right: 10px;
-            background-image: url('https://image.flaticon.com/icons/png/512/16/16073.png');
+            all: unset;
+            background-image: url('https://cdn3.iconfinder.com/data/icons/user-interface-1-10/24/icon-ui-1-options-512.png');
             background-size: cover;
-            background-position: center;
-            border: none;
-            float: right;
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
         }
         &__like {
-            background-image: url('https://lh3.googleusercontent.com/proxy/sqLPHZGrlHuwEmtpXZMDelrKLC9k1pFOusnYJs4wud3Psws2OfZMe24Ga2A_rnsVGMY-C0AJCUqQN-79cOXmoTixTELXzHGYd1cGKqEwPltdoSuvyIQQ2vM');
+            all: unset;
+            background-image: url('https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png');
             background-size: cover;
-            background-position: center;
-            width: 22px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
         }
     }
     &__playButton {
-        width: 50px;
-        height: 50px;
-        background-image: url('https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c4f9.png');
-        background-size: cover;
-        background-position: center;
+        all: unset;
+        cursor: pointer;
+        opacity: 0.2;
         position: absolute;
-        bottom: 5px;
-        right: 5px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &:hover &__playButton {
+        opacity: 0.7;
+        transition: 0.5s;
+        // svg {
+        //     fill: red;
+        // }
     }
 
     &__title {
-        font-size: 22px;
-        font-weight: 200;
+        margin-top: 0.2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__description {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #b4b4b4;
     }
 }

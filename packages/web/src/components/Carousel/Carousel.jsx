@@ -4,22 +4,24 @@ import SongsCard from '../SongsCard';
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import './styles.scss';
+import CarouselStyle from './styled';
 
 function Carousel() {
     const dispatch = useDispatch();
 
-    const { byID } = useSelector(({ songs }) => songs);
+    const { byID, ids } = useSelector(({ songs }) => songs);
 
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
 
     return (
-        <div className="carousel">
-            {Object.values(byID).map(song => {
+        <CarouselStyle className="carousel">
+            {ids.map(id => {
+                const song = byID[id];
                 return <SongsCard newsong={song} key={song._id} />;
             })}
-        </div>
+        </CarouselStyle>
     );
 }
 

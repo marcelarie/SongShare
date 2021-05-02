@@ -2,7 +2,6 @@ import * as AuthTypes from './auth-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
 import { resetStoreAndLogOut } from '../root-reducer';
-import { updateUserInfo } from '../user/user-actions';
 
 export const signUpRequest = () => ({
     type: AuthTypes.SIGN_UP_REQUEST,
@@ -17,7 +16,6 @@ export const signUpError = message => ({
     type: AuthTypes.SIGN_UP_ERROR,
     payload: message,
 });
-
 export const signOutRequest = () => ({
     type: AuthTypes.SIGN_OUT_REQUEST,
 });
