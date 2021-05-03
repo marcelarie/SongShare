@@ -1,6 +1,6 @@
 import { normalize, schema } from 'normalizr';
 
-const song = new schema.Entity(
+export const song = new schema.Entity(
     'songs',
     {},
     {

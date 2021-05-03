@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
 import { changeTheme } from '../../redux/theme/theme-actions';
-import { MY_MUSIC } from '../../routes';
+import { MY_MUSIC, HOME_USER, MY_PLAYLISTS } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
@@ -51,6 +51,9 @@ function Header() {
                 <NavLink to={MY_MUSIC}>
                     <NavButton>My Music</NavButton>
                 </NavLink>
+                <NavLink to={MY_PLAYLISTS}>
+                    <NavButton>My Playlists</NavButton>
+                </NavLink>
             </div>
 
             <div className="nav-user">
@@ -76,7 +79,7 @@ function Header() {
                 </button>
                 {openMenu && (
                     <div className="nav-user__menu">
-                        <NavLink to="/">Profile</NavLink>
+                        <NavLink to={username}>Profile</NavLink>
                         <NavLink to="/search">Settings</NavLink>
                         <button type="button" onClick={handleSignOut}>
                             Sign Out

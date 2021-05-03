@@ -32,7 +32,9 @@ function SongModal() {
     const [genre, setGenre] = useState(song.gender);
 
     useEffect(() => {
-        dispatch(getSongByID(songID));
+        if (songID) {
+            dispatch(getSongByID(songID));
+        }
 
         setName(song.name);
         setUploader(song.uploadBy);

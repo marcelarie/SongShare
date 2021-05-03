@@ -3,14 +3,14 @@ export const dark = {
     colorDark: '#ac362e',
     mainBlack: '#363636',
     mainDarkGray: '#3f4042',
-    colorTransparent: 'rgba( 195,53,46, 0.7 )',
-    colorDarkTransparent: 'rgba( 172,54,46, 0.7 )',
+    colorTransparent: 'rgba( 51,59,62, 0.7 )',
+    colorDarkTransparent: 'rgba( 47,53,57, 0.7 )',
     mainBlackTransparent: 'rgba( 54,54,54, 0.7 )',
     mainDarkGrayTransparent: 'rgba( 63,64,66, 0.7 )',
     lightGray: '#7A7A7A',
     white: '#fff',
     greenSuccess: '#4FCD61',
-    backgroundColor: '#030303',
+    backgroundColor: '#000',
     textColor: 'white',
     audioplayerBackground: 'rgba(28, 28, 28, .75)',
     audioplayerButtonColor: '#F2EAEA',
@@ -37,3 +37,10 @@ export const light = {
     audioplayerProgressColor: '#dddddd',
     boxShadow: '0 0 3px 0 rgb(0 0 0 / 20%)',
 };
+
+// IDEAS :
+// #37755f,
+// #3f7768,
+// #333b3e,
+// #2f3539,
+// #3d8ba9

@@ -108,11 +108,48 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    /* PLAYLISTS */
+    function AllPlaylists(headers) {
+        return request({
+            url: `/playlists/all`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getPlaylistById(headers, playlistID, withSongsInfo) {
+        return request({
+            url: `/playlist/${playlistID}?withSongsInfo=${withSongsInfo}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function createPlaylist(headers, body) {
+        return request({
+            url: `/newplaylist`,
+            requestMethod: 'POST',
+            headers,
+            body,
+        });
+    }
+
+    function updatePlaylist(headers, body, playlistID) {
+        return request({
+            url: `/playlist/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     return {
         signUp,
         signOut,
         login,
         useApi,
+        getUserInfo,
+
         createTrack,
         getSongs,
         getUserSongs,
@@ -121,7 +158,11 @@ function makeApi(request = makeRequest()) {
         EditSong,
         addLike,
         deleteSong,
-        getUserInfo,
+
+        createPlaylist,
+        AllPlaylists,
+        getPlaylistById,
+        updatePlaylist,
     };
 }
 
