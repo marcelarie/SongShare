@@ -52,13 +52,10 @@ export const getPlaylistError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const getPlaylistSuccess = ({ byIds, ids }) => {
+export const getPlaylistSuccess = playlist => {
     return {
         type: playlistTypes.GET_PLAYLIST_SUCCESS,
-        payload: {
-            byIds: byIds,
-            ids: ids,
-        },
+        payload: playlist,
     };
 };
 
@@ -140,6 +137,35 @@ export function getAllPlaylists() {
             );
         } catch (error) {
             return dispatch(getPlaylistsError(error.message));
+        }
+    };
+}
+export function getPlaylist(playlistID, withSongsInfo) {
+    return async function getPlaylistThunk(dispatch) {
+        dispatch(getPlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(signOutSuccess());
+            }
+            const res = await api.getPlaylistById(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+                withSongsInfo,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(
+                    getPlaylistsError(`Error: ${res.errorMessage}`),
+                );
+            }
+            console.log(res);
+            return dispatch(getPlaylistSuccess(res.data.data));
+        } catch (error) {
+            return dispatch(getPlaylistError(error.message));
         }
     };
 }

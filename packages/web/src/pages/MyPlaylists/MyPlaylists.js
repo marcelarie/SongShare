@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { NEW_PLAYLIST } from '../../routes';
-import { getAllPlaylists } from '../../redux/Playlists/playlists-actions';
+import {
+    getAllPlaylists,
+    getPlaylist,
+} from '../../redux/Playlists/playlists-actions';
 
 function MyPlaylists() {
     const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
@@ -33,6 +36,14 @@ function MyPlaylists() {
                             {playlist.title}
                             {playlist.author}
                             {playlist.publicAccess}
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    dispatch(getPlaylist(playlist._id, false))
+                                }
+                            >
+                                get info
+                            </button>
                         </div>
                     );
                 })}

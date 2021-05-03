@@ -117,6 +117,14 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getPlaylistById(headers, playlistID, withSongsInfo) {
+        return request({
+            url: `/playlist/${playlistID}?withSongsInfo=${withSongsInfo}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
     function createPlaylist(headers, body) {
         return request({
             url: `/newplaylist`,
@@ -144,6 +152,7 @@ function makeApi(request = makeRequest()) {
 
         createPlaylist,
         AllPlaylists,
+        getPlaylistById,
     };
 }
 
