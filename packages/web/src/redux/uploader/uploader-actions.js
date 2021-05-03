@@ -31,8 +31,7 @@ export const uploadImageSuccess = imageUrl => ({
     payload: imageUrl,
 });
 
-export function uploadSong({ track, title }) {
-    const name = title;
+export function uploadSong({ file, title }) {
     return async function uploadThunk(dispatch) {
         dispatch(uploadSongRequest());
 
@@ -44,7 +43,7 @@ export function uploadSong({ track, title }) {
             }
 
             const urlRes = await getFileUrl({
-                file: track,
+                file,
                 fileType: fileTypes.AUDIO,
             });
 
@@ -53,16 +52,15 @@ export function uploadSong({ track, title }) {
             }
 
             const { url, duration, bytes, format, asset_id } = urlRes.data;
-            const _id = asset_id;
 
             const songRes = await api.createTrack({
                 body: {
-                    name,
+                    _id: asset_id,
+                    name: title,
                     url,
                     duration,
                     bytes,
                     format,
-                    _id,
                 },
                 headers: {
                     Authorization: `Bearer ${userToken}`,
