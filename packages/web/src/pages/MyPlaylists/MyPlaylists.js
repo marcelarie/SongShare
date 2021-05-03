@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { NEW_PLAYLIST } from '../../routes';
+import { NEW_PLAYLIST, SONGS_LIST } from '../../routes';
 import {
     getAllPlaylists,
     getPlaylist,
@@ -44,6 +44,7 @@ function MyPlaylists() {
                             >
                                 get info
                             </button>
+                            <Link to={`/${playlist._id}/addsongs`}>Add songs to playlist</Link>
                         </div>
                     );
                 })}

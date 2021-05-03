@@ -13,6 +13,7 @@ import templates from './pages/UserInfo/UserProfileTemplates';
 import MyMusic from './pages/MyMusic/MyMusic';
 import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
+import SongsList from './components/SongsList';
 
 function MainRouter() {
     return (
@@ -29,6 +30,10 @@ function MainRouter() {
             <ProtectedRoute
                 path={ROUTES.NEW_PLAYLIST}
                 component={CreatePlaylist}
+            />
+            <ProtectedRoute
+                path={ROUTES.SONGS_LIST}
+                component={SongsList}
             />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}

@@ -10,3 +10,4 @@ export const SONG_INFO_MODAL = '/songInfo';
 
 export const MY_PLAYLISTS = '/playlists';
 export const NEW_PLAYLIST = '/newplaylist';
+export const SONGS_LIST = '/:paylistId/addsongs';

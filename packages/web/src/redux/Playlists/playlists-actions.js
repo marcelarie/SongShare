@@ -59,6 +59,25 @@ export const getPlaylistSuccess = playlist => {
     };
 };
 
+// export const addSongToPlaylistRequest = () => ({
+//     type: playlistTypes.GET_PLAYLIST_REQUEST,
+// });
+//
+// export const addSongToPlaylistError = errorMessage => ({
+//     type: playlistTypes.GET_PLAYLIST_ERROR,
+//     payload: errorMessage,
+// });
+
+export const addSongToPlaylistSuccess = (playlistId, songsId) => {
+    return {
+        type: playlistTypes.GET_PLAYLIST_SUCCESS,
+        payload: {
+            playlistId,
+            songsId
+        }
+    };
+};
+
 export const updatePlaylistsRequest = () => ({
     type: playlistTypes.UPDATE_PLAYLIST_REQUEST,
 });
