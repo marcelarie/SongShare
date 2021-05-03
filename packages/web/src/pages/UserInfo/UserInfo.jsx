@@ -12,8 +12,8 @@ function UserInfo() {
     return (
         user && (
             <>
-                <main className="userInfo w-full h-full">
-                    <section className="UserInfo__wrapper w-full h-max flex">
+                <main className="userInfo">
+                    <section className="UserInfo__wrapper">
                         <div className="flex-column">
                             {user.username === username ? (
                                 <templates.CurrentUserProfile />
