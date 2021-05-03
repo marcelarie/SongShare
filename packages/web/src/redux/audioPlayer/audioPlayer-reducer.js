@@ -6,6 +6,7 @@ export const audioPlayerIntialState = {
         songId: '',
         index: 0,
     },
+    playing: false,
 };
 
 const listPlayerReducer = (state = audioPlayerIntialState, action) => {
@@ -22,6 +23,11 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                     songId: payload,
                     index: state.currentlyPlaying.index,
                 },
+            };
+        case audioPlayerTypes.PLAYING:
+            return {
+                ...state,
+                playing: !state.playing,
             };
         case audioPlayerTypes.ADD_SONG_TO_QUEUE:
             return {

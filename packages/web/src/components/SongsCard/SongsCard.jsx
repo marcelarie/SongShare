@@ -11,6 +11,8 @@ import {
 
 import SongCardStyle from './styles';
 
+import PlayPauseButton from '../playPauseButton';
+
 const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function SongsCard({ song }) {
@@ -51,22 +53,7 @@ function SongsCard({ song }) {
                         type="button"
                         onClick={reproduceSong}
                     >
-                        <svg
-                            version="1.1"
-                            id="Capa_1"
-                            x="0px"
-                            y="0px"
-                            width="53.861px"
-                            height="53.861px"
-                            viewBox="0 0 163.861 163.861"
-                        >
-                            <g>
-                                <path
-                                    d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
-		c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"
-                                />
-                            </g>
-                        </svg>
+                        {PlayPauseButton(song._id)}
                     </button>
                 </div>
                 <section onMouseDown={openSongInfo} role="button" tabIndex={0}>

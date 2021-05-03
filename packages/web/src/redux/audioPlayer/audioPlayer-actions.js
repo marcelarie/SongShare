@@ -7,6 +7,12 @@ export const play = song => {
     };
 };
 
+export const playing = () => {
+    return {
+        type: audioPlayerTypes.PLAYING,
+    };
+};
+
 export const addToQueue = song => {
     return {
         type: audioPlayerTypes.ADD_SONG_TO_QUEUE,
