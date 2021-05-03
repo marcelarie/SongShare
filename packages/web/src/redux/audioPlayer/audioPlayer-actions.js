@@ -52,7 +52,7 @@ export function nextSong(audioPlayerState) {
 
 export function prevSong(audioPlayerState) {
     return function prevSongThunk(dispatch) {
-        if (audioPlayerState.currentlyPlaying.index > 0) {
+        if (audioPlayerState.currentlyPlaying.index > 1) {
             return dispatch(playPrevSong());
         }
         return null;
