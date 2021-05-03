@@ -46,10 +46,12 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                 queue: [...state.queue, payload],
             };
         case audioPlayerTypes.NEXT_SONG:
+            console.log(state.currentlyPlaying.index + 1);
+            console.log(state.queue);
             return {
                 ...state,
                 currentlyPlaying: {
-                    songId: state.queue[state.currentlyPlaying.index + 1],
+                    songId: state.queue[state.currentlyPlaying.index],
                     index: state.currentlyPlaying.index + 1,
                 },
             };

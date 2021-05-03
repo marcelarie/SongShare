@@ -41,7 +41,7 @@ export const playPrevSong = () => {
 export function nextSong(audioPlayerState) {
     return function nextSongThunk(dispatch) {
         if (
-            audioPlayerState.currentlyPlaying.index + 1 <
+            audioPlayerState.currentlyPlaying.index <
             audioPlayerState.queue.length
         ) {
             return dispatch(playNextSong());
