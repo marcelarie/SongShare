@@ -11,6 +11,8 @@ import {
 
 import SongCardStyle from './styles';
 
+const play_pause = document.getElementsByClassName('rhap_play-pause-button');
+
 function SongsCard({ song }) {
     const dispatch = useDispatch();
     const [cardId] = useState(song._id);
@@ -18,6 +20,12 @@ function SongsCard({ song }) {
 
     function reproduceSong() {
         dispatch(play(song._id));
+        const simulateClick = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+        });
+        play_pause[0].dispatchEvent(simulateClick);
     }
     const openSongInfo = () => {
         dispatch(openInfoModal(song._id));
