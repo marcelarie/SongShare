@@ -6,8 +6,6 @@ function PlayPauseButton(id) {
         store => store.audioPlayer,
     );
 
-    console.log(playing);
-
     const playSvg = (
         <svg
             version="1.1"
@@ -55,13 +53,13 @@ function PlayPauseButton(id) {
         </svg>
     );
 
-    let illo = 'illo';
+    let playPause = 'playPause';
     if (id === currentlyPlaying.songId) {
-        illo = playing ? pauseSvg : playSvg;
+        playPause = playing ? pauseSvg : playSvg;
     } else {
-        illo = playSvg;
+        playPause = playSvg;
     }
-    return illo;
+    return playPause;
 }
 
 export default PlayPauseButton;
