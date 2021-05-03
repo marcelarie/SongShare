@@ -1,7 +1,7 @@
 import * as UploaderTypes from './uploader-types';
 
 export const UploaderInitialState = {
-    isUploadingSong: false,
+    isUploadingSong: true,
     uploadSongSuccess: false,
     uploadSongError: null,
     songUrls: [],

@@ -4,7 +4,9 @@ export const GlobalStyles = styled.div`
     transition: 0.6s;
     background-color: ${({ theme }) => theme.backgroundColor};
     color: ${({ theme }) => theme.textColor};
-    height: 100vh;
+    body {
+        background-color: ${({ theme }) => theme.backgroundColor};
+    }
     a {
         color: ${({ theme }) => theme.textColor};
     }
