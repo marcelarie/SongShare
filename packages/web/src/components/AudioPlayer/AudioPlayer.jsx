@@ -9,28 +9,28 @@ import {
 } from '../../redux/audioPlayer/audioPlayer-actions';
 
 import './styles.scss';
+import DinamicPlayer from './styled';
 
 const SongsPlayer = () => {
     const audioPlayer = useSelector(store => store.audioPlayer);
     const song = useSelector(
         store => store.songs.byID[audioPlayer.currentlyPlaying.songId],
     );
-    console.log(song);
     const dispatch = useDispatch();
     return (
-        <>
+        <DinamicPlayer>
             <AudioPlayer
                 className="audioPlayer"
                 // autoPlay
                 // layout="horizontal-reverse"
                 showSkipControls
-                src={song.url}
+                src={song ? song.url : null}
                 onEnded={() => dispatch(nextSong(audioPlayer))}
                 onClickPrevious={() => dispatch(prevSong(audioPlayer))}
                 onClickNext={() => dispatch(nextSong(audioPlayer))}
                 customProgressBarSection={[
                     RHAP_UI.MAIN_CONTROLS,
-                    <div key="song-name">{song.name}</div>,
+                    <div key="song-name">{song ? song.name : null}</div>,
                     RHAP_UI.CURRENT_TIME,
                     RHAP_UI.PROGRESS_BAR,
                     RHAP_UI.DURATION,
@@ -39,7 +39,7 @@ const SongsPlayer = () => {
                 ]}
                 customControlsSection={[]}
             />
-        </>
+        </DinamicPlayer>
     );
 };
 
