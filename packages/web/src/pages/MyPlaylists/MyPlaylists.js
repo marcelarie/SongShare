@@ -44,7 +44,9 @@ function MyPlaylists() {
                             >
                                 get info
                             </button>
-                            <Link to={`/${playlist._id}/addsongs`}>Add songs to playlist</Link>
+                            <Link to={`/${playlist._id}/addsongs`}>
+                                Add songs to playlist
+                            </Link>
                         </div>
                     );
                 })}

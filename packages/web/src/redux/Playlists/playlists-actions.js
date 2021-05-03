@@ -73,8 +73,8 @@ export const addSongToPlaylistSuccess = (playlistId, songsId) => {
         type: playlistTypes.GET_PLAYLIST_SUCCESS,
         payload: {
             playlistId,
-            songsId
-        }
+            songsId,
+        },
     };
 };
 

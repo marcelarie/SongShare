@@ -31,10 +31,7 @@ function MainRouter() {
                 path={ROUTES.NEW_PLAYLIST}
                 component={CreatePlaylist}
             />
-            <ProtectedRoute
-                path={ROUTES.SONGS_LIST}
-                component={SongsList}
-            />
+            <ProtectedRoute path={ROUTES.SONGS_LIST} component={SongsList} />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserInfo}
