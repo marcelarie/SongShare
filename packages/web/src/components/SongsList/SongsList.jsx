@@ -45,9 +45,7 @@ function SongsList({ match }) {
                     type="button"
                     className=""
                     onClick={() =>
-                        dispatch(
-                            addSongsToPlaylist(playlistId, songsToAdd),
-                        )
+                        dispatch(addSongsToPlaylist(playlistId, songsToAdd))
                     }
                 >
                     Add to playlist

@@ -193,9 +193,9 @@ export function addSongsToPlaylist(playlistId, songs) {
                     Authorization: `Bearer ${token}`,
                 },
                 {
-                    songs
+                    songs,
                 },
-                playlistId
+                playlistId,
             );
 
             if (res.errorMessage) {

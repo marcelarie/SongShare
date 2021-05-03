@@ -67,12 +67,13 @@ async function getPlaylistById(req, res, next) {
     }
 }
 
-
 async function updatePlaylist(req, res, next) {
     const { body } = req;
     const { id } = req.params;
     try {
-        const response = await PlaylistRepo.findByIdAndUpdate(({ _id: id }, body));
+        const response = await PlaylistRepo.findByIdAndUpdate(
+            ({ _id: id }, body),
+        );
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
     } catch (err) {
