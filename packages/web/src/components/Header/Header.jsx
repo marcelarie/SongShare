@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
 import { changeTheme } from '../../redux/theme/theme-actions';
-import { MY_MUSIC, HOME_USER, MY_PLAYLISTS } from '../../routes';
+import { MY_MUSIC, MY_PLAYLISTS } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';

@@ -1,15 +1,21 @@
 import * as audioPlayerTypes from './audioPlayer-types';
 
-export const play = song => {
+export const startSong = song => {
     return {
-        type: audioPlayerTypes.PLAY,
+        type: audioPlayerTypes.START_SONG,
         payload: song,
     };
 };
 
-export const playing = () => {
+export const play = () => {
     return {
-        type: audioPlayerTypes.PLAYING,
+        type: audioPlayerTypes.PLAY,
+    };
+};
+
+export const pause = () => {
+    return {
+        type: audioPlayerTypes.PAUSE,
     };
 };
 

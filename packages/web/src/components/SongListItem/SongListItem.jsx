@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './styles.scss';
 
 import { play } from '../../redux/audioPlayer/audioPlayer-actions';

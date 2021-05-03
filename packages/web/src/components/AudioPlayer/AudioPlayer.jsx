@@ -5,7 +5,8 @@ import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     nextSong,
-    playing,
+    play,
+    pause,
     prevSong,
 } from '../../redux/audioPlayer/audioPlayer-actions';
 
@@ -29,8 +30,8 @@ const SongsPlayer = () => {
                 onEnded={() => dispatch(nextSong(audioPlayer))}
                 onClickPrevious={() => dispatch(prevSong(audioPlayer))}
                 onClickNext={() => dispatch(nextSong(audioPlayer))}
-                onPlay={() => dispatch(playing())}
-                onPause={() => dispatch(playing())}
+                onPlay={() => dispatch(play())}
+                onPause={() => dispatch(pause())}
                 customProgressBarSection={[
                     RHAP_UI.MAIN_CONTROLS,
                     <div key="song-name">{song ? song.name : null}</div>,

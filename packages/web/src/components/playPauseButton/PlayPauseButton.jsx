@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function PlayPauseButton(id) {
-    const { currentlyPlaying, playing } = useSelector(
+    const { currentlyPlaying, isPlaying } = useSelector(
         store => store.audioPlayer,
     );
 
@@ -54,8 +54,13 @@ function PlayPauseButton(id) {
     );
 
     let playPause = 'playPause';
+
     if (id === currentlyPlaying.songId) {
-        playPause = playing ? pauseSvg : playSvg;
+        if (isPlaying) {
+            playPause = pauseSvg;
+        } else {
+            playPause = playSvg;
+        }
     } else {
         playPause = playSvg;
     }

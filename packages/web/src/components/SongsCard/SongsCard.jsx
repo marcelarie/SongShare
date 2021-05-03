@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
 
-import { play } from '../../redux/audioPlayer/audioPlayer-actions';
+import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 import {
     useQuickMenu,
@@ -20,15 +20,21 @@ function SongsCard({ song }) {
     const [cardId] = useState(song._id);
     const [openMenu] = useQuickMenu();
 
+    const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+
     function reproduceSong() {
-        dispatch(play(song._id));
-        const simulateClick = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-        });
-        play_pause[0].dispatchEvent(simulateClick);
+        if (song._id === currentlyPlaying.songId) {
+            const simulateClick = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+            });
+            play_pause[0].dispatchEvent(simulateClick);
+        } else {
+            dispatch(startSong(song._id));
+        }
     }
+
     const openSongInfo = () => {
         dispatch(openInfoModal(song._id));
     };
