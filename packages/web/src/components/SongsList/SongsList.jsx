@@ -5,10 +5,10 @@ import './styles.scss';
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import SongListItem from '../SongListItem';
-import { addSongToPlaylistSuccess } from '../../redux/Playlists/playlists-actions';
+import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 function SongsList({ match }) {
-    const playlistID = match.params.playlistId;
+    const { playlistId } = match.params;
     const dispatch = useDispatch();
 
     const { byID, ids } = useSelector(({ songs }) => songs);
@@ -46,7 +46,7 @@ function SongsList({ match }) {
                     className=""
                     onClick={() =>
                         dispatch(
-                            addSongToPlaylistSuccess(playlistID, songsToAdd),
+                            addSongsToPlaylist(playlistId, songsToAdd),
                         )
                     }
                 >

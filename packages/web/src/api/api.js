@@ -134,6 +134,15 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function updatePlaylist(headers, body, playlistID) {
+        return request({
+            url: `/playlist/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     return {
         signUp,
         signOut,
@@ -153,6 +162,7 @@ function makeApi(request = makeRequest()) {
         createPlaylist,
         AllPlaylists,
         getPlaylistById,
+        updatePlaylist,
     };
 }
 

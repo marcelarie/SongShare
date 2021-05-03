@@ -68,26 +68,16 @@ export const getPlaylistSuccess = playlist => {
 //     payload: errorMessage,
 // });
 
-export const addSongToPlaylistSuccess = (playlistId, songsId) => {
-    return {
-        type: playlistTypes.GET_PLAYLIST_SUCCESS,
-        payload: {
-            playlistId,
-            songsId,
-        },
-    };
-};
-
-export const updatePlaylistsRequest = () => ({
+export const updatePlaylistRequest = () => ({
     type: playlistTypes.UPDATE_PLAYLIST_REQUEST,
 });
 
-export const updatePlaylistsError = errorMessage => ({
+export const updatePlaylistError = errorMessage => ({
     type: playlistTypes.UPDATE_PLAYLIST_ERROR,
     payload: errorMessage,
 });
 
-export const updatePlaylistsSuccess = ({ playlist }) => {
+export const updatePlaylistSuccess = ({ playlist }) => {
     return {
         type: playlistTypes.UPDATE_PLAYLIST_SUCCESS,
         payload: {
@@ -185,6 +175,37 @@ export function getPlaylist(playlistID, withSongsInfo) {
             return dispatch(getPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(getPlaylistError(error.message));
+        }
+    };
+}
+
+export function addSongsToPlaylist(playlistId, songs) {
+    return async function addSongsThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(signOutSuccess());
+            }
+            const res = await api.updatePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    songs
+                },
+                playlistId
+            );
+
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
         }
     };
 }

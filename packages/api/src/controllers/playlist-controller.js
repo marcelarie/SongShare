@@ -66,25 +66,15 @@ async function getPlaylistById(req, res, next) {
         next(error);
     }
 }
+
+
 async function updatePlaylist(req, res, next) {
-    const {
-        body: { _id, title, publicAccess, songs },
-        user: { uid },
-    } = req;
+    const { body } = req;
+    const { id } = req.params;
     try {
-        const response = await PlaylistRepo.findByIdAndUpdate(
-            {
-                _id: _id,
-            },
-            {
-                title,
-                author: uid,
-                publicAccess,
-                songs: songs,
-            },
-        );
+        const response = await PlaylistRepo.findByIdAndUpdate(({ _id: id }, body));
         if (response.error) return res.status(400).send(response);
-        if (response.data) return res.status(201).send(response);
+        if (response.data) return res.status(200).send(response);
     } catch (err) {
         next(err);
     }
