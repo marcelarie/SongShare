@@ -72,7 +72,10 @@ async function updatePlaylist(req, res, next) {
     const { id } = req.params;
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
-            ({ _id: id }, body),
+            (
+                { _id: id },
+                { $addToSet: { songs: body }}
+            )
         );
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);

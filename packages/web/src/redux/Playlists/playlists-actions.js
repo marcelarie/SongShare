@@ -120,7 +120,7 @@ export function createPlaylist({ title, publicAccess, author }) {
 
 export function getAllPlaylists() {
     return async function getPlaylistsThunk(dispatch) {
-        dispatch(getPlaylistRequest());
+        dispatch(getPlaylistsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
