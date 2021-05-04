@@ -4,7 +4,7 @@ import Carousel from '../../../components/Carousel/index';
 function UserProfileLanding() {
     return (
         <>
-            <p>user lsnding</p>
+            <p>USER LANDING</p>
 
             <div className="user__main__content">
                 <div className="user__main__content__playlist">

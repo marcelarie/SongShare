@@ -6,6 +6,7 @@ import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
 
 import useUser from '../../custom-hooks/userProfile/useUser';
+import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
 import UserProfileInfo from './UserProfileInfo';
 import UserProfileEdit from './UserProfileContent/UserProfileEdit';
 import UserProfileMusic from './UserProfileContent/UserProfileMusic';
@@ -14,6 +15,7 @@ import UserProfileLanding from './UserProfileContent/UserProfileLanding';
 
 function CurrentUserProfile() {
     const { user, isLoading, pathUsername } = useUser();
+    const Component = useUserProfileSwitch(pathUsername);
 
     if (isLoading) return <h1>Loading...</h1>;
 
@@ -48,21 +50,7 @@ function CurrentUserProfile() {
                     </div>
                 </div>
 
-                {(() => {
-                    switch (pathUsername) {
-                        case pathUsername[2] === 'Info':
-                            return <UserProfileInfo />;
-                        case pathUsername[2] === 'Edit':
-                            return <UserProfileEdit />;
-
-                        case pathUsername[2] === 'Music':
-                            return <UserProfileMusic />;
-                        case pathUsername[2] === 'Playlists':
-                            return <UserProfilePlaylists />;
-                        default:
-                            return <UserProfileLanding />;
-                    }
-                })()}
+                <Component />
             </div>
         </UserProfile>
     );

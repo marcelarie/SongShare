@@ -1,6 +1,6 @@
 import React from 'react';
 
 function UserProfileEdit() {
-    return <p>user edit</p>;
+    return <p>USER EDIT</p>;
 }
 export default UserProfileEdit;

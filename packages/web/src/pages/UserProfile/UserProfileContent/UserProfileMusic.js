@@ -1,6 +1,6 @@
 import React from 'react';
 
 function UserProfileMusic() {
-    return <p>user music</p>;
+    return <p>USER MUSIC</p>;
 }
 export default UserProfileMusic;
