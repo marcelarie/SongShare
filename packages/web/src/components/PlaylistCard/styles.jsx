@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SongCard = styled.div`
+const PlaylistCard = styled.div`
     color: ${({ theme }) => theme.textColor};
     .songsCard__container {
         background-image: url(${props => props.image});
@@ -17,8 +17,4 @@ const SongCard = styled.div`
     }
 `;
 
-SongCard.defaultProps = {
-    image: 'https://picsum.photos/500',
-};
-
-export default SongCard;
+export default PlaylistCard;
