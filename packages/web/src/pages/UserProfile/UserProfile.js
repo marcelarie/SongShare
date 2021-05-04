@@ -1,18 +1,41 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import './styles.scss';
-import '../../../styles/flex.scss';
-import Button from '../../../styles/components/Button/GenericButton';
-import Carousel from '../../../components/Carousel/index';
+import Button from '../../styles/components/Button/GenericButton';
+import Carousel from '../../components/Carousel/index';
 import UserProfile from './styled';
+import UserProfileInfo from './UserProfileInfo';
+import { HOME_USER_EDIT } from '../../routes';
+import ProtectedRoute from '../../routes/protectedRoutes';
+import { getOtherUserInfo } from '../../redux/otherUser/otherUser-actions';
+// import { addLikeToSong } from '../../../redux/songs/songs-actions';
 
 function CurrentUserProfile() {
-    const user = useSelector(store => store.user);
+    const path = useLocation();
+    const pathUsername = path.pathname.split('/');
+    const currentUser = useSelector(store => store.user);
+    const otherUser = useSelector(store => store.otherUser);
+    const dispatch = useDispatch();
 
-    if (!user) return <h1>Loading...</h1>;
+    const [user, setUser] = useState();
+    const [isLoading, setIsLoading] = useState(true);
 
-    console.log(user);
+    useEffect(() => {
+        if (currentUser) {
+            if (currentUser.username === pathUsername[1]) {
+                setUser(currentUser);
+                setIsLoading(false);
+            } else {
+                dispatch(getOtherUserInfo(pathUsername[1]));
+                setUser(otherUser);
+                setIsLoading(false);
+            }
+        }
+    }, [path, dispatch]);
+
+    if (isLoading) return <h1>Loading...</h1>;
+
     return (
         <UserProfile cover={user.imageUrl} className="user">
             <div className="user__header">
@@ -27,13 +50,11 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <img
-                                    src={user.imageUrl}
-                                    alt="user profile image"
-                                />
+                                <img src={user.imageUrl} alt={user.imageUrl} />
                                 <p>{user.username}</p>
                             </div>
                         </div>
+
                         <div className="user__main__aside__content">
                             {
                                 // value={user.email}
@@ -50,6 +71,7 @@ function CurrentUserProfile() {
                         </div>
                     </div>
                 </div>
+
                 <div className="user__main__content">
                     <div className="user__main__content__playlist">
                         <h1>Playlist 0</h1>

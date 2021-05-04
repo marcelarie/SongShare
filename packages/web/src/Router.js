@@ -7,9 +7,9 @@ import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
 // import UploadSong from './components/UploadSong';
-import UserInfo from './pages/UserInfo/UserInfo';
+import UserProfile from './pages/UserProfile';
 import ProtectedRoute from './routes/protectedRoutes';
-import templates from './pages/UserInfo/UserProfileTemplates';
+// import templates from './pages/UserInfo/UserProfileTemplates';
 import MyMusic from './pages/MyMusic/MyMusic';
 import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
@@ -34,19 +34,19 @@ function MainRouter() {
             <ProtectedRoute path={ROUTES.SONGS_LIST} component={SongsList} />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
-                component={UserInfo}
-                exact
+                component={UserProfile}
+                // exact
             />
-            <ProtectedRoute
+            {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}
                 exact
-            />
-            <ProtectedRoute
+            /> */}
+            {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT_CHANGEPASSWORD}
                 component={ChangePassword}
                 exact
-            />
+            /> */}
         </Switch>
     );
 }

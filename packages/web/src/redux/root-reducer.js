@@ -10,6 +10,7 @@ import audioPlayer from './audioPlayer/audioPlayer-reducer';
 import songInfoModal from './songInfoModal/songInfoModal-reducer';
 import userSongs from './userSongs/userSongs-reducer';
 import PlaylistsReducer from './Playlists/playlists-reducer';
+import otherUser from './otherUser/otherUser-reducer';
 
 const RESET_STORE_AND_LOG_OUT = 'RESET_STORE_AND_LOG_OUT';
 
@@ -27,6 +28,7 @@ const appReducer = combineReducers({
     quickMenu,
     changeTheme,
     userSongs,
+    otherUser,
 
     playlists: PlaylistsReducer,
 });

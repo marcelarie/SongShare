@@ -143,6 +143,14 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getOtherUser(headers, username) {
+        return request({
+            url: `/username/${username}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
     return {
         signUp,
         signOut,
@@ -163,6 +171,8 @@ function makeApi(request = makeRequest()) {
         AllPlaylists,
         getPlaylistById,
         updatePlaylist,
+
+        getOtherUser,
     };
 }
 
