@@ -19,7 +19,7 @@ function Carousel() {
         <CarouselStyle className="carousel">
             {ids.map(id => {
                 const song = byID[id];
-                return <SongsCard newsong={song} key={song._id} />;
+                return <SongsCard song={song} key={song._id} />;
             })}
         </CarouselStyle>
     );

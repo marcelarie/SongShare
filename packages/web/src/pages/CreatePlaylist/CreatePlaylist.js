@@ -12,7 +12,6 @@ function CreatePlaylist() {
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(publicAccess);
         dispatch(createPlaylist({ title, userID, publicAccess }));
     };
 

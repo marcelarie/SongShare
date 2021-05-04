@@ -49,7 +49,6 @@ async function addSongsInfo(playlist) {
 
 async function getPlaylistById(req, res, next) {
     const { id } = req.params;
-    console.log(id);
     const { withSongsInfo } = req.query; // another way to make a populate Marcel :)
     try {
         const response = await PlaylistRepo.findOne({ _id: id });

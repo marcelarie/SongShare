@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Dropzone from '../Dropzone';
 
-import { uploadSong } from '../../redux/uploader/uploader-actions';
+import {
+    uploadSong,
+    uploadSongRequest,
+} from '../../redux/uploader/uploader-actions';
 import { fileTypes } from '../../services/cloudinary';
 import './styles.scss';
 import '../../styles/GenericForm.scss';
@@ -19,16 +22,16 @@ function UploadSong() {
     const [title, setTitle] = useState('');
     const [file, setFile] = useState();
 
-    function handleSubmit(e) {
+    const handleSubmit = e => {
         e.preventDefault();
 
         dispatch(
             uploadSong({
-                track: file,
-                title: title,
+                file,
+                title,
             }),
         );
-    }
+    };
 
     function handleSetTitle(e) {
         setTitle(e.target.value);
@@ -37,6 +40,10 @@ function UploadSong() {
     function handleSetFile(uploadFile) {
         setFile(uploadFile);
     }
+
+    useEffect(() => {
+        dispatch(uploadSongRequest);
+    }, [title, dispatch]);
 
     return (
         <div className="upload-song">

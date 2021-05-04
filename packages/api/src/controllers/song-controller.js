@@ -93,29 +93,49 @@ async function getSongsByParams(req, res, next) {
 }
 
 async function likeSong(req, res, next) {
-    // TODO: Dont let the user repeat the likes, create a toggle
     const { uid } = req.user;
     const { id } = req.params;
 
     try {
-        // const checkUserResponse = await UserRepo.findAndCheckLikes(uid);
+        const checkUserResponse = await UserRepo.findAndCheckLikes(uid, id);
 
-        const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-            $addToSet: { likes: id },
-        });
-        if (userResponse.error) return res.status(400).send(userResponse);
-        if (!userResponse.data) return res.status(404).send(userResponse);
+        if (checkUserResponse.error)
+            return res.status(400).send(checkUserResponse);
+        if (checkUserResponse.data.length === 0) {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $addToSet: { likes: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
 
-        const songResponse = await SongRepo.findByIdAndUpdate(
-            { _id: id },
-            { $addToSet: { likes: uid } },
-        );
-        if (songResponse.error) return res.status(400).send(songResponse);
-        if (!userResponse.data) return res.status(404).send(userResponse);
-        if (userResponse.data.length <= 0)
-            return res.status(204).send(userResponse);
-        if (songResponse.data)
-            return res.status(200).send({ songResponse, userResponse });
+            const songResponse = await SongRepo.findByIdAndUpdate(
+                { _id: id },
+                { $addToSet: { likes: uid } },
+            );
+            if (songResponse.error) return res.status(400).send(songResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (songResponse.data)
+                return res.status(200).send({ songResponse, userResponse });
+        } else {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $pull: { likes: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+
+            const songResponse = await SongRepo.findByIdAndUpdate(
+                { _id: id },
+                { $pull: { likes: uid } },
+            );
+            if (songResponse.error) return res.status(400).send(songResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (songResponse.data)
+                return res.status(200).send({ songResponse, userResponse });
+        }
     } catch (error) {
         next(error);
     }

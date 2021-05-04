@@ -9,14 +9,14 @@ const QuickMenu = () => {
     const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
-    const url = useSelector(store => store.songs.byID[id].url);
+    // const url = useSelector(store => store.songs.byID[id].url);
 
     const handleClick = () => {
         dispatch(openModal(false));
     };
 
     const addSongToQueue = () => {
-        dispatch(addToQueue(url));
+        dispatch(addToQueue(id));
         dispatch(openModal(false));
     };
 
