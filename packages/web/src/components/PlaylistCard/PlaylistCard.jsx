@@ -16,6 +16,7 @@ import PlayPauseButton from '../playPauseButton';
 const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
+    console.log(playlist)
     const dispatch = useDispatch();
     const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); --> use same quick menu ?
@@ -63,11 +64,16 @@ function PlaylistCard({ playlist }) {
                         {PlayPauseButton(song._id)}
                     </button> */}
                 </div>
-                <section /* onMouseDown={Open playlist} */ role="button" tabIndex={0}>
+                <section
+                    /* onMouseDown={Open playlist} */ role="button"
+                    tabIndex={0}
+                >
                     <p className="PlaylistCard__title">{playlist.title}</p>
                 </section>
 
-                <div className="PlaylistCard__description">By: {playlist.username}</div>
+                <div className="PlaylistCard__description">
+                    By: {playlist.author.username}
+                </div>
             </PlaylistCardStyle>
         </>
     );

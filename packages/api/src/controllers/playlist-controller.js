@@ -1,19 +1,21 @@
 import { PlaylistRepository as PlaylistRepo } from '../repositories/index.js';
 import { SongRepository as SongRepo } from '../repositories/index.js';
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 // import { UserRepository as UserRepo } from '../repositories/index.js';
 
 async function createPlaylist(req, res, next) {
+    console.log(req.body)
     const {
-        body: { title, publicAccess, songs },
+        body: { title, publicAccess, songs, type },
         user: { uid },
     } = req;
     try {
         const response = await PlaylistRepo.create({
             title,
             author: uid,
+            type,
             publicAccess,
-            tracks: songs || [],
+            songs: songs || [],
         });
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(201).send(response);
@@ -24,7 +26,7 @@ async function createPlaylist(req, res, next) {
 
 async function getAllPlaylists(req, res, next) {
     try {
-        const response = await PlaylistRepo.find();
+        const response = await PlaylistRepo.find({});
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);
@@ -69,11 +71,13 @@ async function getPlaylistById(req, res, next) {
 async function updatePlaylist(req, res, next) {
     const { body } = req;
     const { id } = req.params;
+    console.log(body.songs[0])
+    console.log(id)
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
             (
-                { _id: id },
-                { $addToSet: { songs: body }}
+                { _id: mongoose.Types.ObjectId(id) },
+                { $addToSet: {songs: body.songs[0]}}
             )
         );
         if (response.error) return res.status(400).send(response);

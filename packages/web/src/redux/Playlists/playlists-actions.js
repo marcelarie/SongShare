@@ -86,7 +86,7 @@ export const updatePlaylistSuccess = ({ playlist }) => {
     };
 };
 
-export function createPlaylist({ title, publicAccess, author }) {
+export function createPlaylist({ title, publicAccess, author, type }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
 
@@ -103,6 +103,7 @@ export function createPlaylist({ title, publicAccess, author }) {
                     title,
                     publicAccess,
                     author,
+                    type,
                 },
             );
 
@@ -186,6 +187,8 @@ export function addSongsToPlaylist(playlistId, songs) {
             if (!token) {
                 return dispatch(signOutSuccess());
             }
+            console.log(playlistId);
+            console.log(songs);
             const res = await api.updatePlaylist(
                 {
                     Authorization: `Bearer ${token}`,
@@ -196,6 +199,37 @@ export function addSongsToPlaylist(playlistId, songs) {
                 playlistId,
             );
 
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+// update playlist -> edit playlist info
+export function editPlaylist(playlistId, newPlaylistChanges) {
+    return async function editPlaylistThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(signOutSuccess());
+            }
+            const res = await api.updatePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    newPlaylistChanges,
+                },
+                playlistId,
+            );
             if (res.errorMessage) {
                 return dispatch(
                     updatePlaylistError(`Error: ${res.errorMessage}`),

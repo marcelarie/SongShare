@@ -12,16 +12,25 @@ const PlaylistSchema = mongoose.Schema({
     },
     publicAccess: {
         type: Boolean,
+        default: true,
     },
-    songs: {
-        type: [
+    type: {
+        type: String,
+        enum: ["Playlist", "Album"],
+        default: "Playlist",
+    },
+    img: {
+        type: String,
+        default: "https://picsum.photos/100",
+    },
+    songs:
+        [
             {
-                type: mongoose.Schema.Types.ObjectId,
+                type: String,
                 ref: 'song', // (?) Song
             },
         ],
         default: [],
-    },
     likedBy: {
         type: [
             {

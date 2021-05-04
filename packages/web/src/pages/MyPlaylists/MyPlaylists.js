@@ -8,7 +8,7 @@ import {
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 import PlaylistCard from '../../components/PlaylistCard';
-import Carousel from '../../components/Carousel'
+import Carousel from '../../components/Carousel';
 
 function MyPlaylists() {
     const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
@@ -32,8 +32,12 @@ function MyPlaylists() {
 
     return (
         <div className="landingPage">
-        <h1>All playlists</h1>
-        <Carousel key="allPlaylist" ids={AllPlaylistsIds} type="playlists"/>
+            <h1>All playlists</h1>
+            <Carousel
+                key="allPlaylist"
+                ids={AllPlaylistsIds}
+                type="playlists"
+            />
         </div>
     );
 }
@@ -54,10 +58,17 @@ function MyPlaylists() {
             </p>
         )}
         </CarouselStyle> */
-                {/* TODO: Carousel with my playlists */}
-                {/* TODO: Carousel with my liked playlists */}
-                {/* TODO: Carousel with my followed playlists */}
-{/* <Link to={NEW_PLAYLIST}>Create new playlist</Link>
+{
+    /* TODO: Carousel with my playlists */
+}
+{
+    /* TODO: Carousel with my liked playlists */
+}
+{
+    /* TODO: Carousel with my followed playlists */
+}
+{
+    /* <Link to={NEW_PLAYLIST}>Create new playlist</Link>
     <div key={playlist._id}>
                             <div>
                                 <img src={playlist.img} alt=""/>
@@ -76,5 +87,6 @@ function MyPlaylists() {
                             <Link to={`/${playlist._id}/addsongs`}>
                                 Add songs to playlist
                             </Link>
-                        </div> */}
+                        </div> */
+}
 export default MyPlaylists;

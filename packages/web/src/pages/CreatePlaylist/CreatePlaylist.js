@@ -12,11 +12,11 @@ function CreatePlaylist() {
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(createPlaylist({ title, userID, publicAccess }));
+        dispatch(createPlaylist({ title, userID, publicAccess, type }));
     };
 
     const [title, setTitle] = useState('');
-    // const [type, setType] = useState('');
+    const [type, setType] = useState('Playlist');
     const [publicAccess, setPublicAccess] = useState(false);
 
     return (
@@ -56,6 +56,7 @@ function CreatePlaylist() {
                         className="form-input"
                         name="publicAccess"
                         value="false"
+                        defaultChecked
                         onChange={() => setPublicAccess(true)}
                     />
                     <label
@@ -71,6 +72,29 @@ function CreatePlaylist() {
                         name="publicAccess"
                         value="true"
                         onChange={() => setPublicAccess(false)}
+                    />
+                    <label htmlFor="type" className="form-label text-dark">
+                        Playlist
+                    </label>
+                    <input
+                        type="radio"
+                        id="typePlaylist"
+                        className="form-input"
+                        name="type"
+                        value="Playlist"
+                        defaultChecked
+                        onChange={() => setType('Playlist')}
+                    />
+                    <label htmlFor="type" className="form-label text-dark">
+                        Album
+                    </label>
+                    <input
+                        type="radio"
+                        id="typeAlbum"
+                        className="form-input"
+                        name="type"
+                        value="Album"
+                        onChange={() => setType('Album')}
                     />
 
                     <button className="btn btn-primary w-full" type="submit">

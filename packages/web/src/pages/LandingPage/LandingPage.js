@@ -19,7 +19,7 @@ function LandingPage() {
     return (
         <div className="landingPage">
             <h1>All songs</h1>
-            <Carousel key="allSongs" ids={allSongsIds} type="songs"/>
+            <Carousel key="allSongs" ids={allSongsIds} type="songs" />
         </div>
     );
 }
