@@ -18,10 +18,12 @@ import SongModalStyle from './styled';
 import { closeInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
 import './styles.scss';
+import { deleteInAudioplayer } from '../../redux/audioPlayer/audioPlayer-actions';
 
 function SongModal() {
     const { songID, modal } = useSelector(state => state.songInfoModal);
     const songs = useSelector(state => state.songs.byID);
+    const audioPlayer = useSelector(state => state.audioPlayer);
     const song = songs[songID] || '';
 
     const dispatch = useDispatch();
@@ -155,7 +157,12 @@ function SongModal() {
                         <Button
                             type="button"
                             width="100px"
-                            onClick={() => dispatch(deleteSongByID(songID))}
+                            onClick={() => {
+                                dispatch(deleteSongByID(songID));
+                                dispatch(
+                                    deleteInAudioplayer(songID, audioPlayer),
+                                );
+                            }}
                         >
                             Delete
                         </Button>

@@ -38,6 +38,53 @@ export const playPrevSong = () => {
     };
 };
 
+export const deleteInCurrent = (songToDelete, newSongToPutInCurrent) => {
+    return {
+        type: audioPlayerTypes.DELETE_IN_CURRENTLY,
+        payload: {
+            songToDelete,
+            newSongToPutInCurrent,
+        },
+    };
+};
+
+export const deleteInQueue = songId => {
+    return {
+        type: audioPlayerTypes.DELETE_IN_QUEUE,
+        payload: songId,
+    };
+};
+
+export function deleteInAudioplayer(songId, state) {
+    return function deleteInAudioplayerThunk(dispatch) {
+        if (state.queue.includes(songId)) {
+            if (state.currentlyPlaying.songId === songId) {
+                if (state.currentlyPlaying.index < state.queue.length) {
+                    const newSongToPutInCurrent = {
+                        sondId: state.queue[state.currentlyPlaying.index],
+                        index: state.currentlyPlaying.index,
+                    };
+                    return dispatch(
+                        deleteInCurrent(songId, newSongToPutInCurrent),
+                    );
+                }
+                if (state.currentlyPlaying.index > 1) {
+                    const newSongToPutInCurrent = {
+                        sondId: state.queue[state.currentlyPlaying.index - 1],
+                        index: state.currentlyPlaying.index - 1,
+                    };
+                    dispatch(deleteInCurrent(songId, newSongToPutInCurrent));
+                } else {
+                    dispatch(deleteInCurrent(songId, { songId: '', index: 1 }));
+                }
+            } else {
+                dispatch(deleteInQueue(songId));
+            }
+        }
+        return null;
+    };
+}
+
 export function nextSong(audioPlayerState) {
     return function nextSongThunk(dispatch) {
         if (

@@ -6,3 +6,5 @@ export const PAUSE = 'PAUSE';
 export const ISPLAYING = 'ISPLAYING';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREV_SONG = 'PREV_SONG';
+export const DELETE_IN_QUEUE = 'DELETE_IN_QUEUE';
+export const DELETE_IN_CURRENTLY = 'DELETE_IN_CURRENTLY';
