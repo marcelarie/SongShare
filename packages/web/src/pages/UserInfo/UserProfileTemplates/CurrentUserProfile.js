@@ -12,7 +12,6 @@ function CurrentUserProfile() {
 
     if (!user) return <h1>Loading...</h1>;
 
-    console.log(user);
     return (
         <UserProfile cover={user.imageUrl} className="user">
             <div className="user__header">

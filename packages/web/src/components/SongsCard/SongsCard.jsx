@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
 
-import { play } from '../../redux/audioPlayer/audioPlayer-actions';
+import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 import {
     useQuickMenu,
@@ -11,21 +11,37 @@ import {
 
 import SongCardStyle from './styles';
 
-function SongsCard({ newsong }) {
+import PlayPauseButton from '../playPauseButton';
+
+const play_pause = document.getElementsByClassName('rhap_play-pause-button');
+
+function SongsCard({ song }) {
     const dispatch = useDispatch();
-    const [cardId] = useState(newsong._id);
+    const [cardId] = useState(song._id);
     const [openMenu] = useQuickMenu();
 
+    const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+
     function reproduceSong() {
-        dispatch(play(newsong.url));
+        if (song._id === currentlyPlaying.songId) {
+            const simulateClick = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+            });
+            play_pause[0].dispatchEvent(simulateClick);
+        } else {
+            dispatch(startSong(song._id));
+        }
     }
+
     const openSongInfo = () => {
-        dispatch(openInfoModal(newsong._id));
+        dispatch(openInfoModal(song._id));
     };
     useQuickMenuListener();
     return (
         <>
-            <SongCardStyle image={newsong.imageUrl} className="songsCard">
+            <SongCardStyle image={song.imageUrl} className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
                         <button
@@ -43,26 +59,11 @@ function SongsCard({ newsong }) {
                         type="button"
                         onClick={reproduceSong}
                     >
-                        <svg
-                            version="1.1"
-                            id="Capa_1"
-                            x="0px"
-                            y="0px"
-                            width="53.861px"
-                            height="53.861px"
-                            viewBox="0 0 163.861 163.861"
-                        >
-                            <g>
-                                <path
-                                    d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
-		c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"
-                                />
-                            </g>
-                        </svg>
+                        {PlayPauseButton(song._id)}
                     </button>
                 </div>
                 <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
-                    <p className="songsCard__title">{newsong.name}</p>
+                    <p className="songsCard__title">{song.name}</p>
                 </section>
 
                 <div className="songsCard__description">description</div>

@@ -43,7 +43,7 @@ function UploadSong() {
 
     useEffect(() => {
         dispatch(uploadSongRequest);
-    }, [title]);
+    }, [title, dispatch]);
 
     return (
         <div className="upload-song">

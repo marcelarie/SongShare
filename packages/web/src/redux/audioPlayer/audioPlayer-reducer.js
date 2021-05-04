@@ -3,9 +3,10 @@ import * as audioPlayerTypes from './audioPlayer-types';
 export const audioPlayerIntialState = {
     queue: [],
     currentlyPlaying: {
-        song: '',
+        songId: '',
         index: 0,
     },
+    isPlaying: false,
 };
 
 const listPlayerReducer = (state = audioPlayerIntialState, action) => {
@@ -13,15 +14,31 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
 
     const index = state.currentlyPlaying.index;
     switch (type) {
-        case audioPlayerTypes.PLAY:
+        case audioPlayerTypes.START_SONG:
             state.queue.splice(index, 0, payload);
             return {
                 ...state,
                 queue: state.queue,
+                isPlaying: true,
                 currentlyPlaying: {
-                    song: payload,
-                    index: state.currentlyPlaying.index,
+                    songId: payload,
+                    index: state.currentlyPlaying.index + 1,
                 },
+            };
+        case audioPlayerTypes.PLAY:
+            return {
+                ...state,
+                isPlaying: true,
+            };
+        case audioPlayerTypes.PAUSE:
+            return {
+                ...state,
+                isPlaying: false,
+            };
+        case audioPlayerTypes.ISPLAYING:
+            return {
+                ...state,
+                isPlaying: !state.isPlaying,
             };
         case audioPlayerTypes.ADD_SONG_TO_QUEUE:
             return {
@@ -32,7 +49,7 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index + 1],
+                    songId: state.queue[state.currentlyPlaying.index],
                     index: state.currentlyPlaying.index + 1,
                 },
             };
@@ -40,7 +57,7 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
             return {
                 ...state,
                 currentlyPlaying: {
-                    song: state.queue[state.currentlyPlaying.index - 1],
+                    songId: state.queue[state.currentlyPlaying.index - 2],
                     index: state.currentlyPlaying.index - 1,
                 },
             };

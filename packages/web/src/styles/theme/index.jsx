@@ -12,6 +12,10 @@ export const dark = {
     greenSuccess: '#4FCD61',
     backgroundColor: '#000',
     textColor: 'white',
+    audioplayerBackground: 'rgba(28, 28, 28, .75)',
+    audioplayerButtonColor: '#F2EAEA',
+    audioplayerProgressColor: '#6F6868',
+    boxShadow: '0 0 3px 0 #F2EAEA',
 };
 
 export const light = {
@@ -28,6 +32,10 @@ export const light = {
     greenSuccess: '#4FCD61',
     backgroundColor: 'white',
     textColor: 'black',
+    audioplayerBackground: 'white',
+    audioplayerButtonColor: '#868686',
+    audioplayerProgressColor: '#dddddd',
+    boxShadow: '0 0 3px 0 rgb(0 0 0 / 20%)',
 };
 
 // IDEAS :

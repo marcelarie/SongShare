@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { NEW_PLAYLIST, SONGS_LIST } from '../../routes';
+import { NEW_PLAYLIST } from '../../routes';
 import {
     getAllPlaylists,
     getPlaylist,
@@ -13,7 +13,6 @@ function MyPlaylists() {
         store => store.playlists,
     );
 
-    const userID = useSelector(store => store.user._id);
     const dispatch = useDispatch();
     const AllPlaylists = useSelector(store => store.playlists.byID);
     const AllPlaylistsIds = useSelector(store => store.playlists.ids);

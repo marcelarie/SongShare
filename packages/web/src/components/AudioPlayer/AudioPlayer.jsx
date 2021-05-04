@@ -1,56 +1,49 @@
 import React from 'react';
 
 import 'react-h5-audio-player/lib/styles.css';
-import AudioPlayer from 'react-h5-audio-player';
+import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     nextSong,
+    play,
+    pause,
     prevSong,
 } from '../../redux/audioPlayer/audioPlayer-actions';
 
 import './styles.scss';
+import DinamicPlayer from './styled';
 
 const SongsPlayer = () => {
     const audioPlayer = useSelector(store => store.audioPlayer);
+    const song = useSelector(
+        store => store.songs.byID[audioPlayer.currentlyPlaying.songId],
+    );
     const dispatch = useDispatch();
     return (
-        <>
+        <DinamicPlayer>
             <AudioPlayer
                 className="audioPlayer"
                 // autoPlay
+                // layout="horizontal-reverse"
                 showSkipControls
-                src={audioPlayer.currentlyPlaying.song}
+                src={song ? song.url : null}
                 onEnded={() => dispatch(nextSong(audioPlayer))}
                 onClickPrevious={() => dispatch(prevSong(audioPlayer))}
                 onClickNext={() => dispatch(nextSong(audioPlayer))}
-                // onPlay={e => console.log('onPlay')}
-                // onPause={action('onPause')}
-                // onPlay={action('onPlay')^
+                onPlay={() => dispatch(play())}
+                onPause={() => dispatch(pause())}
+                customProgressBarSection={[
+                    RHAP_UI.MAIN_CONTROLS,
+                    <div key="song-name">{song ? song.name : null}</div>,
+                    RHAP_UI.CURRENT_TIME,
+                    RHAP_UI.PROGRESS_BAR,
+                    RHAP_UI.DURATION,
+                    RHAP_UI.VOLUME_CONTROLS,
+                    RHAP_UI.ADDITIONAL_CONTROLS,
+                ]}
+                customControlsSection={[]}
             />
-            {/* <AudioPlayer
-                onAbort={action('onAbort')}
-                onCanPlay={action('onCanPlay')}
-                onCanPlayThrough={action('onCanPlayThrough')}
-                onEnded={action('onEnded')}
-                onPlaying={action('onPlaying')}
-                onSeeking={action('onSeeking')}
-                onSeeked={action('onSeeked')}
-                onLoadStart={action('onLoadStart')}
-                onLoadedMetaData={action('onLoadedMetaData')}
-                onLoadedData={action('onLoadedData')}
-                onError={action('onError')}
-                onListen={action('onListen')}
-                onVolumeChange={action('onVolumeChange')}
-                onPause={action('onPause')}
-                onPlay={action('onPlay')}
-                onClickPrevious={action('onClickPrevious')}
-                onClickNext={action('onClickNext')}
-                volume={0.8}
-                showSkipControls
-                progressUpdateInterval={100}
-                src={SAMPLE_MP3_URL}
-            /> */}
-        </>
+        </DinamicPlayer>
     );
 };
 
