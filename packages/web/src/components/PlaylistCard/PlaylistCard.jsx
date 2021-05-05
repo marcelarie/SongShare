@@ -17,7 +17,6 @@ import PlayPauseButton from '../playPauseButton';
 const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
-    console.log(playlist);
     const dispatch = useDispatch();
     const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); --> use same quick menu ?

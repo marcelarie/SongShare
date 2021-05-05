@@ -11,7 +11,6 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
     const dispatch = useDispatch();
 
     function reproduceSong(s) {
-        console.log(s)
         dispatch(play(s.url));
     }
 
@@ -51,38 +50,41 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                 <div className="songListItem__content">
                     <p className="songListItem__content__title">{song.name}</p>
                     <div className="songListItem__content__info">
-                    <div className="songListItem__content__info__like">
-                    <p className="songListItem__content__info__like__text">{song.likes.length} likes</p>
-                    <button
-                            className="songListItem__content__info__like__icon"
+                        <div className="songListItem__content__info__like">
+                            <p className="songListItem__content__info__like__text">
+                                {song.likes.length} likes
+                            </p>
+                            <button
+                                className="songListItem__content__info__like__icon"
+                                type="button"
+                            />
+                        </div>
+                        <button
+                            className="songListItem__content__info__playButton"
                             type="button"
-                        />
-                    </div>
-                    <button
-                        className="songListItem__content__info__playButton"
-                        type="button"
-                        onMouseDown={(e) => {
-                            e.stopPropagation();
-                            reproduceSong(song)}}
-                    >
-                        <svg
-                            version="1.1"
-                            id="Capa_1"
-                            x="0px"
-                            y="0px"
-                            width="23.861px"
-                            height="23.861px"
-                            viewBox="0 0 163.861 163.861"
-                            className="songListItem__content__info__playIcon"
+                            onMouseDown={e => {
+                                e.stopPropagation();
+                                reproduceSong(song);
+                            }}
                         >
-                            <g>
-                                <path
-                                    d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
+                            <svg
+                                version="1.1"
+                                id="Capa_1"
+                                x="0px"
+                                y="0px"
+                                width="23.861px"
+                                height="23.861px"
+                                viewBox="0 0 163.861 163.861"
+                                className="songListItem__content__info__playIcon"
+                            >
+                                <g>
+                                    <path
+                                        d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
 		c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"
-                                />
-                            </g>
-                        </svg>
-                    </button>
+                                    />
+                                </g>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </section>

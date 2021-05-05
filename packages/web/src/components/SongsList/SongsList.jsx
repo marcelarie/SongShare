@@ -14,7 +14,6 @@ function SongsList({
     handleRemoveToPlaylist,
 }) {
     const dispatch = useDispatch();
-    console.log(songsToList);
     const { byID } = useSelector(({ songs }) => songs);
 
     return (
@@ -24,7 +23,6 @@ function SongsList({
                     <div className="songsList__container">
                         {songsToList.map(id => {
                             const song = byID[id];
-                            console.log(song);
                             return (
                                 <SongListItem
                                     song={song}

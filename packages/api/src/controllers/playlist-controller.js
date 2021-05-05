@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // import { UserRepository as UserRepo } from '../repositories/index.js';
 
 async function createPlaylist(req, res, next) {
-    console.log(req.body)
+    console.log(req.body);
     const {
         body: { title, publicAccess, songs, type },
         user: { uid },
@@ -71,14 +71,12 @@ async function getPlaylistById(req, res, next) {
 async function updatePlaylist(req, res, next) {
     const { body } = req;
     const { id } = req.params;
-    console.log(body.songs[0])
-    console.log(id)
+    console.log(body.songs[0]);
+    console.log(id);
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
-            (
-                { _id: mongoose.Types.ObjectId(id) },
-                { $addToSet: {songs: body.songs[0]}}
-            )
+            ({ _id: mongoose.Types.ObjectId(id) },
+            { $addToSet: { songs: body.songs[0] } }),
         );
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
