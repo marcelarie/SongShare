@@ -4,11 +4,12 @@ import './styles.scss';
 
 import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+import { addLikeToSong } from '../../redux/songs/songs-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
-
+import LikeIcon from '../LikeButton';
 import SongCardStyle from './styles';
 
 import PlayPauseButton from '../playPauseButton';
@@ -44,9 +45,9 @@ function SongsCard({ song }) {
             <SongCardStyle image={song.imageUrl} className="songsCard">
                 <div className="songsCard__container">
                     <div className="songsCard__container__header">
-                        <button
-                            className="songsCard__container__like"
-                            type="button"
+                        <LikeIcon
+                            handleLike={() => dispatch(addLikeToSong(song._id))}
+                            likes={song.likes}
                         />
                         <button
                             className="songsCard__container__3pointButton quickMenu"
