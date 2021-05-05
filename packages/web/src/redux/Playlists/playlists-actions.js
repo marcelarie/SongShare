@@ -113,7 +113,7 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
                     createPlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            console.log(res.data)
+            console.log(res.data);
             return dispatch(createPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(createPlaylistError(error.message));
@@ -140,7 +140,7 @@ export function getAllPlaylists() {
                 );
             }
             const normalizedPlaylists = normalizePlaylists(res.data.data);
-            console.log(normalizedPlaylists)
+            console.log(normalizedPlaylists);
             return dispatch(
                 getPlaylistsSuccess({
                     byID: normalizedPlaylists.entities.playlists,
