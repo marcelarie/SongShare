@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 // import { UserRepository as UserRepo } from '../repositories/index.js';
 
 async function createPlaylist(req, res, next) {
-    console.log(req.body);
     const {
         body: { title, publicAccess, songs, type },
         user: { uid },
@@ -26,7 +25,7 @@ async function createPlaylist(req, res, next) {
 
 async function getAllPlaylists(req, res, next) {
     try {
-        const response = await PlaylistRepo.find({});
+        const response = await PlaylistRepo.find();
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);

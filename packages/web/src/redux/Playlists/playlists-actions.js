@@ -86,7 +86,7 @@ export const updatePlaylistSuccess = ({ playlist }) => {
     };
 };
 
-export function createPlaylist({ title, publicAccess, author, type }) {
+export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
 
@@ -104,6 +104,7 @@ export function createPlaylist({ title, publicAccess, author, type }) {
                     publicAccess,
                     author,
                     type,
+                    songs,
                 },
             );
 
@@ -112,7 +113,8 @@ export function createPlaylist({ title, publicAccess, author, type }) {
                     createPlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(createPlaylistSuccess(res.data));
+            console.log(res.data)
+            return dispatch(createPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(createPlaylistError(error.message));
         }
@@ -138,6 +140,7 @@ export function getAllPlaylists() {
                 );
             }
             const normalizedPlaylists = normalizePlaylists(res.data.data);
+            console.log(normalizedPlaylists)
             return dispatch(
                 getPlaylistsSuccess({
                     byID: normalizedPlaylists.entities.playlists,

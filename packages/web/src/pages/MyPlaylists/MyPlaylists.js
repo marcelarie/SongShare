@@ -34,6 +34,11 @@ function MyPlaylists() {
     return (
         <div className="landingPage">
             <h1>All playlists</h1>
+            <Link
+                to={NEW_PLAYLIST}
+            >
+                Create playlist
+            </Link>
             <Carousel
                 key="allPlaylist"
                 ids={AllPlaylistsIds}

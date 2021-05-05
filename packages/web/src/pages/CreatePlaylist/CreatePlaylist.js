@@ -12,12 +12,14 @@ function CreatePlaylist() {
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(createPlaylist({ title, userID, publicAccess, type }));
+        console.log(songs)
+        dispatch(createPlaylist({ title, userID, publicAccess, type, songs }));
     };
 
     const [title, setTitle] = useState('');
     const [type, setType] = useState('Playlist');
     const [publicAccess, setPublicAccess] = useState(false);
+    const songs = ["95b67a5f307b28980f9d3cb87a4068e0", "57ebca9c29e7fb5c2647378415d9a82d"]
 
     return (
         <>
