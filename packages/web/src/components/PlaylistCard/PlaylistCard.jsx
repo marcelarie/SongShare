@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import LikeIcon from '../LikeButton';
 import './styles.scss';
 
 // import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -49,7 +51,9 @@ function PlaylistCard({ playlist }) {
                         <button
                             className="PlaylistCard__container__like"
                             type="button"
-                        />
+                        >
+                            <LikeIcon />
+                        </button>
                         <Link
                             to={{
                                 pathname: `/${playlist.title}/addsongs`,
