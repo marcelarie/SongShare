@@ -1,55 +1,43 @@
-.songsList__container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-}
-.selected {
-    border: 2px solid yellow;
-}
 .songListItem {
     width: auto;
-    background-color: #b4b4b4;
     display: flex;
     align-items: center;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    &__container {
+    border-radius: 1px;
+    padding: 1rem;
+    &:hover {
+        opacity: 0.9;
+        transition: 0.3s;
+    }
+    &__img {
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+        img {
+            padding: 0;
+            width: 50px;
+        }
+    }
+    &__content {
+        width: 90%;
         display: flex;
-        position: relative;
-        width: 100%;
-        border-radius: 5px;
-        &:hover {
-            opacity: 0.9;
-            transition: 0.3s;
+        align-items: center;
+        justify-content: space-between;
+        &__title {
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
         }
-        &__header {
-            margin: 0.5rem 0;
-            display: flex;
-            align-items: center;
+        &__playButton {
+            all: unset;
+            cursor: pointer;
+            opacity: 0.2;
         }
-    }
-    &__playButton {
-        all: unset;
-        cursor: pointer;
-        opacity: 0.2;
-    }
-    &:hover &__playButton {
-        opacity: 0.7;
-        transition: 0.5s;
-        // svg {
-        //     fill: red;
-        // }
-    }
-
-    &__title {
-        margin-top: 0.2rem;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
+        &:hover &__playButton {
+            opacity: 0.7;
+            transition: 0.5s;
         }
     }
 

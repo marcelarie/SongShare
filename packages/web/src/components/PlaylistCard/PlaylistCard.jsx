@@ -17,7 +17,7 @@ import PlayPauseButton from '../playPauseButton';
 const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
-    console.log(playlist)
+    console.log(playlist);
     const dispatch = useDispatch();
     const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); --> use same quick menu ?
@@ -52,10 +52,10 @@ function PlaylistCard({ playlist }) {
                             type="button"
                         />
                         <Link
-                        to={{
-                            pathname: `/${playlist.title}/addsongs`,
-                            playlistId: playlist._id
-                        }}
+                            to={{
+                                pathname: `/${playlist.title}/addsongs`,
+                                playlistId: playlist._id,
+                            }}
                             className="PlaylistCard__container__3pointButton quickMenu"
                             type="button"
                             /* onMouseDown={e => openMenu(e, cardId)} */
@@ -70,16 +70,17 @@ function PlaylistCard({ playlist }) {
                     </button> */}
                 </div>
                 <Link
-                to={{
-                    pathname: `playlist/${playlist.title}`,
-                    playlistId: playlist._id
-                }}>
-                <section
-                    /* onMouseDown={Open playlist} */ role="button"
-                    tabIndex={0}
+                    to={{
+                        pathname: `playlist/${playlist.title}`,
+                        playlistId: playlist._id,
+                    }}
                 >
-                    <p className="PlaylistCard__title">{playlist.title}</p>
-                </section>
+                    <section
+                        /* onMouseDown={Open playlist} */ role="button"
+                        tabIndex={0}
+                    >
+                        <p className="PlaylistCard__title">{playlist.title}</p>
+                    </section>
                 </Link>
                 <div className="PlaylistCard__description">
                     By: {playlist.author.username}

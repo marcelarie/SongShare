@@ -11,6 +11,7 @@ import PlaylistCard from '../../components/PlaylistCard';
 import Carousel from '../../components/Carousel';
 
 function MyPlaylists() {
+    // rename to playlistsToShow or playlistLandingPage (?)
     const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
         store => store.playlists,
     );

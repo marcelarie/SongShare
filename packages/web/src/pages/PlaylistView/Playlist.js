@@ -39,23 +39,36 @@ function Playlist({ location }) {
         // setGenre(song.gender);
     }, [dispatch, id]);
 
-    return  (
+    return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
                 <div className="PlaylistView__header__container__info">
-                    <h2 className="PlaylistView__header__container__info__title">{playlist.title}</h2>
-                    <p className="PlaylistView__header__container__info__author">{playlist.author.username}</p>
+                    <h2 className="PlaylistView__header__container__info__title">
+                        {playlist.title}
+                    </h2>
+                    <p className="PlaylistView__header__container__info__author">
+                        {playlist.author.username}
+                    </p>
                     <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">{playlist.type}</p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">{playlist.publicAccess ? "Public" : "Private"}</p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">playlist.description</p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.type}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.publicAccess ? 'Public' : 'Private'}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            playlist.description
+                        </p>
                     </div>
                 </div>
                 <div className="PlaylistView__header__container__img">
                     <p>{playlist.title}</p>
                 </div>
             </div>
-            <SongsList songsToList={playlist.songs} handleClick={()=> console.log("play")}/>
+            <SongsList
+                songsToList={playlist.songs}
+                handleClick={() => console.log('play')}
+            />
         </PlaylistViewStyle>
     );
 }
