@@ -6,8 +6,8 @@ import { Router } from 'express';
 import {
     getAllSongs,
     getSongByName,
-    getSongWithLikes,
-    getSongByNameWithLikes,
+    getSong,
+    /* getSongWithLikes */ getSongByNameWithLikes,
     getAllSongsFromUser,
     getSongsByParams,
     postSong,
@@ -22,7 +22,7 @@ const songRouter = Router();
 
 // By Id:
 songRouter.get('/songs/all', getAllSongs);
-songRouter.get('/song/:id', getSongWithLikes);
+songRouter.get('/song/:id', getSong);
 
 songRouter.post('/song', postSong);
 songRouter.post('/song/like/:id', likeSong);

@@ -8,8 +8,6 @@ import './styles.scss';
 import CarouselStyle from './styled';
 
 function Carousel({ ids, type }) {
-    console.log(ids);
-    console.log(type);
     const ByID = useSelector(store => store[type].byID);
     return (
         <CarouselStyle className="carousel">

@@ -13,6 +13,7 @@ import {
 
 import Button from '../../styles/components/Button/GenericButton';
 import Input from '../../styles/components/Input/GenericInput';
+import LikeIcon from '../../components/LikeButton';
 import SongModalStyle from './styled';
 
 import { closeInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
@@ -40,7 +41,7 @@ function SongModal() {
         setUploader(song.uploadBy);
         setAuthor(song.author);
         setGenre(song.gender);
-    }, [dispatch]);
+    }, [dispatch, songID]);
 
     return modal && songs[songID] ? (
         <Transition.Root show={modal} as={Fragment}>
@@ -76,7 +77,13 @@ function SongModal() {
                                 <div>
                                     <div className="song-modal__likes">
                                         <p>{songs[songID].likes.length}</p>
-                                        <FontAwesomeIcon
+                                        <LikeIcon
+                                            handleLike={() =>
+                                                dispatch(addLikeToSong(songID))
+                                            }
+                                            likes={songs[songID].likes}
+                                        />
+                                        {/* <FontAwesomeIcon
                                             icon={faHeart}
                                             className={
                                                 songs[songID].likes
@@ -86,7 +93,7 @@ function SongModal() {
                                             onClick={() =>
                                                 dispatch(addLikeToSong(songID))
                                             }
-                                        />
+                                        /> */}
                                     </div>
                                     <label htmlFor="author" className="">
                                         Author

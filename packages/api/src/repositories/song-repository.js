@@ -30,7 +30,11 @@ const SongRepository = {
     //                      return the updated document ↴
     findByIdAndUpdate: (filter, body, option = { new: true }) => {
         return normalizeDBQuery(
-            Song.findByIdAndUpdate(filter, body, option).populate('likes'),
+            Song.findByIdAndUpdate(
+                filter,
+                body,
+                option,
+            ) /* .populate('likes') */,
         );
     },
 

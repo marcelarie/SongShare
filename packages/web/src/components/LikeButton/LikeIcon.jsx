@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
-function LikeIcon({like}) {
-    const [active, setActive] = useState(like);
-    const heartSvg = (
+function LikeIcon({ likes, handleLike }) {
+    const [active, setActive] = useState(false);
+    const currentUser = useSelector(({ user }) => user);
+
+    useEffect(() => {
+        if (likes.findIndex(like => like === currentUser._id) >= 0) {
+            setActive(true);
+        } else {
+            setActive(false);
+        }
+    }, [likes, currentUser._id]);
+
+    return (
         <svg
             x="0"
             y="0"
@@ -15,8 +26,8 @@ function LikeIcon({like}) {
                     ? 'icon is-hoverable is-transit is-activeable active'
                     : 'icon is-outlined is-hoverable is-transit is-activeable'
             }
-            onClick={e => {
-                setActive(!active);
+            onClick={() => {
+                handleLike();
                 /*
          const str = `"${e.target.parentElement.className.baseVal}"`;
          console.log(e.target.parentElement.className.baseVal)
@@ -34,7 +45,6 @@ function LikeIcon({like}) {
             />
         </svg>
     );
-    return heartSvg;
 }
 
 export default LikeIcon;
