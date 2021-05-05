@@ -11,9 +11,6 @@ function UserProfileLanding({ user }) {
     const { playlists, songs, likes } = useSelector(
         ({ otherUser }) => otherUser,
     );
-    console.log(playlists);
-    console.log(songs);
-    console.log(likes);
 
     useEffect(() => {
         dispatch(getOtherUserInfo(user.username));

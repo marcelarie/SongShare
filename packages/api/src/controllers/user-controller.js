@@ -1,4 +1,4 @@
-import   Repo  from '../repositories/index.js';
+import Repo from '../repositories/index.js';
 
 const UserRepo = new Repo('User');
 
@@ -37,9 +37,13 @@ async function getUserInfoByUsername(req, res, next) {
     const username = req.params.username.toLowerCase();
 
     try {
-        const response = await UserRepo.findOne({
-            username: username,
-        });
+        const response = await UserRepo.findOneAndPouplate(
+            {
+                username: username,
+            },
+            ['songs', 'likes', 'playlists'],
+        );
+        console.log( response)
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
