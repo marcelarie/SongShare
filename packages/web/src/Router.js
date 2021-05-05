@@ -2,18 +2,20 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import * as ROUTES from './routes';
 import Home from './pages/Home';
-import ChangePassword from './pages/ChangePassword';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import SignUp from './pages/SignUp';
-// import UploadSong from './components/UploadSong';
 import UserProfile from './pages/UserProfile';
 import ProtectedRoute from './routes/protectedRoutes';
-// import templates from './pages/UserInfo/UserProfileTemplates';
 import MyMusic from './pages/MyMusic/MyMusic';
 import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
-import SongsList from './components/SongsList';
+import AddSongs from './pages/AddSongs';
+import Playlist from './pages/PlaylistView';
+
+// import templates from './pages/UserInfo/UserProfileTemplates';
+// import UploadSong from './components/UploadSong';
+// import ChangePassword from './pages/ChangePassword';
 
 function MainRouter() {
     return (
@@ -31,7 +33,8 @@ function MainRouter() {
                 path={ROUTES.NEW_PLAYLIST}
                 component={CreatePlaylist}
             />
-            <ProtectedRoute path={ROUTES.SONGS_LIST} component={SongsList} />
+            <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} />
+            <ProtectedRoute path={ROUTES.ADD_SONGS} component={AddSongs} />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserProfile}

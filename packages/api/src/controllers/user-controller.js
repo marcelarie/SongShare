@@ -1,4 +1,6 @@
-import { UserRepository as UserRepo } from '../repositories/index.js';
+import   Repo  from '../repositories/index.js';
+
+const UserRepo = new Repo('User');
 
 async function signUp(req, res, next) {
     const { uid, email } = req.user;

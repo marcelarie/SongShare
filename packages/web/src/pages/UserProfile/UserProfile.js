@@ -44,7 +44,7 @@ function CurrentUserProfile() {
                         </div>
                     </div>
                 </div>
-                <Component />
+                <Component user={user} />
             </div>
         </UserProfile>
     );

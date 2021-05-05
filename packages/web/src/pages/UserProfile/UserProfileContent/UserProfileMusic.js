@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from '../../../components/Carousel/index';
+// import Carousel from '../../../components/Carousel/index';
 import Uploader from '../../../components/UploadSong';
 
 function UserProfileMusic() {

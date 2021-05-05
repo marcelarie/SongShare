@@ -1,9 +1,21 @@
 import * as audioPlayerTypes from './audioPlayer-types';
 
-export const play = song => {
+export const startSong = song => {
+    return {
+        type: audioPlayerTypes.START_SONG,
+        payload: song,
+    };
+};
+
+export const play = () => {
     return {
         type: audioPlayerTypes.PLAY,
-        payload: song,
+    };
+};
+
+export const pause = () => {
+    return {
+        type: audioPlayerTypes.PAUSE,
     };
 };
 
@@ -29,7 +41,7 @@ export const playPrevSong = () => {
 export function nextSong(audioPlayerState) {
     return function nextSongThunk(dispatch) {
         if (
-            audioPlayerState.currentlyPlaying.index + 1 <
+            audioPlayerState.currentlyPlaying.index <
             audioPlayerState.queue.length
         ) {
             return dispatch(playNextSong());
@@ -40,7 +52,7 @@ export function nextSong(audioPlayerState) {
 
 export function prevSong(audioPlayerState) {
     return function prevSongThunk(dispatch) {
-        if (audioPlayerState.currentlyPlaying.index > 0) {
+        if (audioPlayerState.currentlyPlaying.index > 1) {
             return dispatch(playPrevSong());
         }
         return null;

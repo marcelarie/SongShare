@@ -1,64 +1,6 @@
 .songsList__container {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-}
-.select {
-    border: 2px solid yellow;
-}
-.songListItem {
-    width: auto;
-    background-color: #b4b4b4;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    &__container {
-        display: flex;
-        position: relative;
-        width: 100%;
-        border-radius: 5px;
-        &:hover {
-            opacity: 0.9;
-            transition: 0.3s;
-        }
-        &__header {
-            margin: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
-    }
-    &__playButton {
-        all: unset;
-        cursor: pointer;
-        opacity: 0.2;
-    }
-    &:hover &__playButton {
-        opacity: 0.7;
-        transition: 0.5s;
-        // svg {
-        //     fill: red;
-        // }
-    }
-
-    &__title {
-        margin-top: 0.2rem;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    &__addSongButton__container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.9rem;
-        font-weight: 400;
-        color: #b4b4b4;
-    }
+    margin: 1rem;
 }

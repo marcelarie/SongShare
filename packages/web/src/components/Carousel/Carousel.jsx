@@ -1,22 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
+import PlaylistCard from '../PlaylistCard';
 
 import './styles.scss';
 import CarouselStyle from './styled';
 
-function Carousel({ collection, ids }) {
+function Carousel({ ids, type }) {
+    const ByID = useSelector(store => store[type].byID);
     return (
         <CarouselStyle className="carousel">
-            {!ids &&
-                collection.map(item => {
-                    return <SongsCard newsong={item} key={item._id} />;
-                })}
             {ids.map(id => {
-                return (
-                    <SongsCard
-                        newsong={collection[id]}
-                        key={collection[id]._id}
-                    />
+                const item = ByID[id];
+                return type === 'songs' ? (
+                    <SongsCard song={item} key={item._id} />
+                ) : (
+                    <PlaylistCard playlist={item} key={item._id} />
                 );
             })}
         </CarouselStyle>

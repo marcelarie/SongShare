@@ -4,7 +4,7 @@ import * as auth from '../../services/auth';
 
 import {
     normalizePlaylists,
-    normalizeFullPlaylists,
+    // normalizeFullPlaylists,
 } from '../../schema/playlists-schema';
 import { signOutSuccess } from '../auth/auth-actions';
 
@@ -86,7 +86,7 @@ export const updatePlaylistSuccess = ({ playlist }) => {
     };
 };
 
-export function createPlaylist({ title, publicAccess, author }) {
+export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
 
@@ -103,6 +103,8 @@ export function createPlaylist({ title, publicAccess, author }) {
                     title,
                     publicAccess,
                     author,
+                    type,
+                    songs,
                 },
             );
 
@@ -111,7 +113,7 @@ export function createPlaylist({ title, publicAccess, author }) {
                     createPlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(createPlaylistSuccess(res.data));
+            return dispatch(createPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(createPlaylistError(error.message));
         }
@@ -120,7 +122,7 @@ export function createPlaylist({ title, publicAccess, author }) {
 
 export function getAllPlaylists() {
     return async function getPlaylistsThunk(dispatch) {
-        dispatch(getPlaylistRequest());
+        dispatch(getPlaylistsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
@@ -196,6 +198,37 @@ export function addSongsToPlaylist(playlistId, songs) {
                 playlistId,
             );
 
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+// update playlist -> edit playlist info
+export function editPlaylist(playlistId, newPlaylistChanges) {
+    return async function editPlaylistThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(signOutSuccess());
+            }
+            const res = await api.updatePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    newPlaylistChanges,
+                },
+                playlistId,
+            );
             if (res.errorMessage) {
                 return dispatch(
                     updatePlaylistError(`Error: ${res.errorMessage}`),
