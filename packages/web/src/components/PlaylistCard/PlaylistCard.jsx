@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
 // import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -50,7 +51,11 @@ function PlaylistCard({ playlist }) {
                             className="PlaylistCard__container__like"
                             type="button"
                         />
-                        <button
+                        <Link
+                        to={{
+                            pathname: `/${playlist.title}/addsongs`,
+                            playlistId: playlist._id
+                        }}
                             className="PlaylistCard__container__3pointButton quickMenu"
                             type="button"
                             /* onMouseDown={e => openMenu(e, cardId)} */
@@ -64,13 +69,18 @@ function PlaylistCard({ playlist }) {
                         {PlayPauseButton(song._id)}
                     </button> */}
                 </div>
+                <Link
+                to={{
+                    pathname: `playlist/${playlist.title}`,
+                    playlistId: playlist._id
+                }}>
                 <section
                     /* onMouseDown={Open playlist} */ role="button"
                     tabIndex={0}
                 >
                     <p className="PlaylistCard__title">{playlist.title}</p>
                 </section>
-
+                </Link>
                 <div className="PlaylistCard__description">
                     By: {playlist.author.username}
                 </div>
