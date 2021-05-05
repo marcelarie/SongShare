@@ -10,8 +10,9 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
     const [itemSelected, setItemSelected] = useState(false);
     const dispatch = useDispatch();
 
-    function reproduceSong() {
-        dispatch(play(song.url));
+    function reproduceSong(s) {
+        console.log(s)
+        dispatch(play(s.url));
     }
 
     return (
@@ -49,10 +50,20 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                 </div>
                 <div className="songListItem__content">
                     <p className="songListItem__content__title">{song.name}</p>
+                    <div className="songListItem__content__info">
+                    <div className="songListItem__content__info__like">
+                    <p className="songListItem__content__info__like__text">{song.likes.length} likes</p>
                     <button
-                        className="songListItem__content__playButton"
+                            className="songListItem__content__info__like__icon"
+                            type="button"
+                        />
+                    </div>
+                    <button
+                        className="songListItem__content__info__playButton"
                         type="button"
-                        onClick={() => reproduceSong(song._id)}
+                        onMouseDown={(e) => {
+                            e.stopPropagation();
+                            reproduceSong(song)}}
                     >
                         <svg
                             version="1.1"
@@ -62,6 +73,7 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                             width="23.861px"
                             height="23.861px"
                             viewBox="0 0 163.861 163.861"
+                            className="songListItem__content__info__playIcon"
                         >
                             <g>
                                 <path
@@ -71,20 +83,7 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                             </g>
                         </svg>
                     </button>
-                    {/* <div className="songListItem__addSongButton__container">
-                    <label htmlFor="addSongButton">Add song</label>
-                    <input
-                        id="addSongButton"
-                        className="songListItem__addSongButton"
-                        type="checkbox"
-                        onChange={() => setItemSelected(!itemSelected)}
-                        onClick={e => {
-                            if (e.target.checked) {
-                                handleClick();
-                            }
-                        }}
-                    />
-                </div> */}
+                    </div>
                 </div>
             </section>
         </SongListItemStyle>
