@@ -29,16 +29,13 @@ export const getOtherUserInfo = username => {
                 },
                 username,
             );
-            console.log(res);
 
             if (res.errorMessage) {
-                console.log('error messageeee');
                 return dispatch(getOtherUserInfoError(res.errorMessage));
             }
 
             return dispatch(getOtherUserInfoSuccess(res.data.data));
         } catch (error) {
-            console.log('error');
             return dispatch(getOtherUserInfoError(error.message));
         }
     };

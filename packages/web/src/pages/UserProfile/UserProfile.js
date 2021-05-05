@@ -7,11 +7,6 @@ import UserProfile from './styled';
 
 import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
-import UserProfileInfo from './UserProfileInfo';
-import UserProfileEdit from './UserProfileContent/UserProfileEdit';
-import UserProfileMusic from './UserProfileContent/UserProfileMusic';
-import UserProfilePlaylists from './UserProfileContent/UserProfilePlaylists';
-import UserProfileLanding from './UserProfileContent/UserProfileLanding';
 
 function CurrentUserProfile() {
     const { user, isLoading, pathUsername } = useUser();
@@ -49,7 +44,6 @@ function CurrentUserProfile() {
                         </div>
                     </div>
                 </div>
-
                 <Component />
             </div>
         </UserProfile>

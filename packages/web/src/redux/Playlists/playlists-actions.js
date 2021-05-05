@@ -136,7 +136,6 @@ export function getAllPlaylists() {
                     getPlaylistsError(`Error: ${res.errorMessage}`),
                 );
             }
-            console.log(res);
             const normalizedPlaylists = normalizePlaylists(res.data.data);
             return dispatch(
                 getPlaylistsSuccess({
@@ -171,7 +170,6 @@ export function getPlaylist(playlistID, withSongsInfo) {
                     getPlaylistsError(`Error: ${res.errorMessage}`),
                 );
             }
-            console.log(res);
             return dispatch(getPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(getPlaylistError(error.message));

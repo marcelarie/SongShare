@@ -10,6 +10,9 @@ function LandingPage() {
 
     const allSongs = useSelector(store => store.songs.byID);
     const currentUser = useSelector(store => store.auth.currentUser);
+
+    const { byID, ids } = useSelector(({ songs }) => songs);
+
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch, currentUser]);
@@ -19,7 +22,7 @@ function LandingPage() {
     return (
         <div className="landingPage">
             <h1>All songs</h1>
-            <Carousel key="allSongs" />
+            <Carousel collection={byID} ids={ids} key="allSongs" />
         </div>
     );
 }

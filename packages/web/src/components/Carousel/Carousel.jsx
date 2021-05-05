@@ -1,25 +1,23 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import SongsCard from '../SongsCard';
-import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import './styles.scss';
 import CarouselStyle from './styled';
 
-function Carousel() {
-    const dispatch = useDispatch();
-
-    const { byID, ids } = useSelector(({ songs }) => songs);
-
-    useEffect(() => {
-        dispatch(getAllSongs());
-    }, [dispatch]);
-
+function Carousel({ collection, ids }) {
     return (
         <CarouselStyle className="carousel">
+            {!ids &&
+                collection.map(item => {
+                    return <SongsCard newsong={item} key={item._id} />;
+                })}
             {ids.map(id => {
-                const song = byID[id];
-                return <SongsCard newsong={song} key={song._id} />;
+                return (
+                    <SongsCard
+                        newsong={collection[id]}
+                        key={collection[id]._id}
+                    />
+                );
             })}
         </CarouselStyle>
     );
