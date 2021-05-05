@@ -88,7 +88,6 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 },
             };
         }
-
         default: {
             return state;
         }

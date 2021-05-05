@@ -9,22 +9,40 @@ const QuickPlaylistMenu = id => {
     const { positionXPL, positionYPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
+
+    const AllPlaylists = useSelector(store => store.playlists.byID);
+    const AllPlaylistsIds = useSelector(store => store.playlists.ids);
+
     const add = () => {
-        console.log('1');
         dispatch(addSongsToPlaylist(id));
         dispatch(openPlaylistModal(false));
     };
+
     return (
         <QuickPlaylistMenuStyle x={positionXPL} y={positionYPL}>
             <ul>
-                {/* map por aqui */}
+                {AllPlaylistsIds.map(idPlaylist => {
+                    const playlist = AllPlaylists[idPlaylist];
+                    return (
+                        <li key={playlist._id}>
+                            <button
+                                className="quickPlaylistMenu"
+                                type="button"
+                                onClick={add}
+                            >
+                                {playlist.title}
+                            </button>
+                        </li>
+                    );
+                })}
+
                 <li>
                     <button
                         className="quickPlaylistMenu"
                         type="button"
-                        onClick={add}
+                        onClick={add} // TODO: change action
                     >
-                        Add to playlist
+                        Create new playlist
                     </button>
                 </li>
             </ul>

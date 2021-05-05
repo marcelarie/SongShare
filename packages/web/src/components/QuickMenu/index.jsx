@@ -8,10 +8,7 @@ import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { deleteSongByID } from '../../redux/songs/songs-actions';
 import QuickMenuStyle from './styles';
 
-import {
-    UseQuickPlaylistMenu,
-    useQuickPlaylistMenuListener,
-} from '../../custom-hooks/quickPlaylistMenu';
+import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
@@ -37,9 +34,6 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
-    const callOpenPlaylistMenu = e => openPlaylistMenu(e, id);
-
-    useQuickPlaylistMenuListener();
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
             <ul>
@@ -47,7 +41,7 @@ const QuickMenu = () => {
                     <button
                         className="quickMenu"
                         type="button"
-                        onClick={callOpenPlaylistMenu}
+                        onClick={openPlaylistMenu}
                     >
                         Add to playlist
                     </button>

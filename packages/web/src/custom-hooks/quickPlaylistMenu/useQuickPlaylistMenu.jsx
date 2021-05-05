@@ -9,19 +9,17 @@ function UseQuickPlaylistMenu() {
     const { positionX, positionY, open, id } = useSelector(
         store => store.quickMenu,
     );
-    const illo = parseInt(positionX.replace('px', ''), 10);
+    const auxposition = parseInt(positionX.replace('px', ''), 10);
 
-    const { openPL, idPL } = useSelector(
+    const { openPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
 
     const openPlaylistMenu = () => {
-        const xPL = `${illo + 100}px`;
+        const xPL = `${auxposition + 110}px`;
         const yPL = positionY;
         dispatch(changeXandYPlaylist({ xPL, yPL }));
-        if (id !== idPL) {
-            dispatch(openPlaylistModal(false));
-        }
+
         if (open) {
             !openPL
                 ? dispatch(openPlaylistModal(true))

@@ -4,7 +4,6 @@ export const InitialState = {
     positionXPL: 0,
     positionYPL: 0,
     openPL: false,
-    idPL: 0,
 };
 
 const OptionsModalReducer = (state = InitialState, { type, payload }) => {
