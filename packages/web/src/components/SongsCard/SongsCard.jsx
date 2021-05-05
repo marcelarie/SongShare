@@ -40,35 +40,33 @@ function SongsCard({ song }) {
     };
     useQuickMenuListener();
     return (
-        <>
-            <SongCardStyle image={song.imageUrl} className="songsCard">
-                <div className="songsCard__container">
-                    <div className="songsCard__container__header">
-                        <button
-                            className="songsCard__container__like"
-                            type="button"
-                        />
-                        <button
-                            className="songsCard__container__3pointButton quickMenu"
-                            type="button"
-                            onMouseDown={e => openMenu(e, cardId)}
-                        />
-                    </div>
+        <SongCardStyle image={song.imageUrl} className="songsCard">
+            <div className="songsCard__container">
+                <div className="songsCard__container__header">
                     <button
-                        className="songsCard__playButton"
+                        className="songsCard__container__like"
                         type="button"
-                        onClick={reproduceSong}
-                    >
-                        {PlayPauseButton(song._id)}
-                    </button>
+                    />
+                    <button
+                        className="songsCard__container__3pointButton quickMenu"
+                        type="button"
+                        onMouseDown={e => openMenu(e, cardId)}
+                    />
                 </div>
-                <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
-                    <p className="songsCard__title">{song.name}</p>
-                </section>
+                <button
+                    className="songsCard__playButton"
+                    type="button"
+                    onClick={reproduceSong}
+                >
+                    {PlayPauseButton(song._id)}
+                </button>
+            </div>
+            <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
+                <p className="songsCard__title">{song.name}</p>
+            </section>
 
-                <div className="songsCard__description">description</div>
-            </SongCardStyle>
-        </>
+            <div className="songsCard__description">description</div>
+        </SongCardStyle>
     );
 }
 
