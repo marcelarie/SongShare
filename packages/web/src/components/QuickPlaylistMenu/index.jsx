@@ -6,18 +6,15 @@ import QuickPlaylistMenuStyle from './styles';
 
 const QuickPlaylistMenu = id => {
     const dispatch = useDispatch();
-    const { positionX, positionY } = useSelector(
+    const { positionXPL, positionYPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
-
     const add = () => {
         dispatch(addSongsToPlaylist(id));
         dispatch(openPlaylistModal(false));
     };
-    console.log(positionX);
-    console.log(positionY);
     return (
-        <QuickPlaylistMenuStyle x={positionX} y={positionY}>
+        <QuickPlaylistMenuStyle x={positionXPL} y={positionYPL}>
             <ul>
                 {/* map por aqui */}
                 <li>

@@ -4,38 +4,28 @@ import {
     openPlaylistModal,
 } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 
-// close quickMenu on any click outside the menu
 function UseQuickPlaylistMenu() {
     const dispatch = useDispatch();
+    const { positionX, positionY, open } = useSelector(
+        store => store.quickMenu,
+    );
+    const illo = positionX.replace('px', '');
+    const illo2 = parseInt(illo, 10);
 
     const { openPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
 
     const openPlaylistMenu = (event, cardId) => {
-        const x =
-            window.innerWidth > event.clientX + 100
-                ? `${event.clientX}px`
-                : `${event.clientX - 100}px`;
-        const y =
-            window.innerHeight > event.clientY + 100
-                ? `${event.clientY}px`
-                : `${event.clientY - 50}px`;
+        const xPL = `${illo2 + 100}px`;
+        const yPL = positionY;
+        dispatch(changeXandYPlaylist({ xPL, yPL }));
 
-        dispatch(changeXandYPlaylist({ x, y }));
-
-        if (!openPL) {
-            dispatch(openPlaylistModal(true));
+        if (open) {
+            !openPL && dispatch(openPlaylistModal(true));
         } else {
-            dispatch(openPlaylistModal(!openPL));
+            dispatch(openPlaylistModal(false));
         }
-
-        // if (cardId !== id) {
-        //     console.log('llllllllll');
-        //     !open && dispatch(openPlaylistModal(true));
-        // } else {
-        //     dispatch(openPlaylistModal(!open));
-        // }
     };
 
     return [openPlaylistMenu];

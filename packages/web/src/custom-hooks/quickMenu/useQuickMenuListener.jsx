@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/quickMenu/quickMenu-actions';
+import { openPlaylistModal } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 
 // close quickMenu on any click outside the menu
 function useQuickMenuListener() {
@@ -13,8 +14,10 @@ function useQuickMenuListener() {
                 try {
                     !e.target.classList.contains('quickMenu') &&
                         dispatch(openModal(false));
+                    dispatch(openPlaylistModal(false));
                 } catch (error) {
                     dispatch(openModal(false));
+                    dispatch(openPlaylistModal(false));
                 }
             }
         };
