@@ -6,23 +6,26 @@ import {
 
 function UseQuickPlaylistMenu() {
     const dispatch = useDispatch();
-    const { positionX, positionY, open } = useSelector(
+    const { positionX, positionY, open, id } = useSelector(
         store => store.quickMenu,
     );
-    const illo = positionX.replace('px', '');
-    const illo2 = parseInt(illo, 10);
+    const illo = parseInt(positionX.replace('px', ''), 10);
 
-    const { openPL } = useSelector(
+    const { openPL, idPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
 
-    const openPlaylistMenu = (event, cardId) => {
-        const xPL = `${illo2 + 100}px`;
+    const openPlaylistMenu = () => {
+        const xPL = `${illo + 100}px`;
         const yPL = positionY;
         dispatch(changeXandYPlaylist({ xPL, yPL }));
-
+        if (id !== idPL) {
+            dispatch(openPlaylistModal(false));
+        }
         if (open) {
-            !openPL && dispatch(openPlaylistModal(true));
+            !openPL
+                ? dispatch(openPlaylistModal(true))
+                : dispatch(openPlaylistModal(false));
         } else {
             dispatch(openPlaylistModal(false));
         }

@@ -12,9 +12,10 @@ function useQuickMenuListener() {
         const quickMenuListener = e => {
             if (open) {
                 try {
-                    !e.target.classList.contains('quickMenu') &&
+                    if (!e.target.classList.contains('quickMenu')) {
                         dispatch(openModal(false));
-                    dispatch(openPlaylistModal(false));
+                        dispatch(openPlaylistModal(false));
+                    }
                 } catch (error) {
                     dispatch(openModal(false));
                     dispatch(openPlaylistModal(false));

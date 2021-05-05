@@ -10,6 +10,7 @@ const QuickPlaylistMenu = id => {
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
     );
     const add = () => {
+        console.log('1');
         dispatch(addSongsToPlaylist(id));
         dispatch(openPlaylistModal(false));
     };

@@ -27,6 +27,7 @@ function UseQuickMenu() {
         } else {
             dispatch(openModal(!open));
         }
+        dispatch(openPlaylistModal(false));
         return dispatch(changeId(cardId));
     };
 
