@@ -29,13 +29,12 @@ const PlaylistSchema = mongoose.Schema({
             ref: 'song',
         },
     ],
-    likedBy: 
-         [
-            {
-                type: String,
-                ref: 'user',
-            },
-        ],
+    likedBy: [
+        {
+            type: String,
+            ref: 'user',
+        },
+    ],
 });
 
 const Playlist = mongoose.model('playlist', PlaylistSchema);

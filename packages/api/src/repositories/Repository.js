@@ -30,12 +30,14 @@ class Repository {
         );
     };
 
-    findLean= filter => {
+    findLean = filter => {
         return normalizeDBQuery(Models[this.type].find(filter).lean());
     };
 
-    findAndCheckLikes= (uid, id) => {
-        return normalizeDBQuery(Models[this.type].find({ _id: uid, likes: { $in: [id] } }));
+    findAndCheckLikes = (uid, id) => {
+        return normalizeDBQuery(
+            Models[this.type].find({ _id: uid, likes: { $in: [id] } }),
+        );
     };
 
     findOneAndPouplate = (filter, toPopulate) => {
