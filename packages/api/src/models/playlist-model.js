@@ -26,21 +26,17 @@ const PlaylistSchema = mongoose.Schema({
     songs: [
         {
             type: String,
-            ref: 'song', // (?) Song
+            ref: 'song',
         },
     ],
-    default: [],
-    likedBy: {
-        type: [
-            {
-                type: String,
-                ref: 'user',
-            },
-        ],
-        default: [],
-    },
+    likedBy: [
+        {
+            type: String,
+            ref: 'user',
+        },
+    ],
 });
 
-const Playlist = mongoose.model('Playlist', PlaylistSchema);
+const Playlist = mongoose.model('playlist', PlaylistSchema);
 
 export default Playlist;

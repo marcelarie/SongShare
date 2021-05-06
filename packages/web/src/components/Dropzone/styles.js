@@ -24,7 +24,7 @@ const DropzoneStyle = styled.div`
             font-size: 1.1rem;
         }
         div {
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 10px;
             border: 4px solid ${colors.mainBlack};
             background-color: ${handleBackgroundColor};
@@ -36,7 +36,6 @@ const DropzoneStyle = styled.div`
         }
     }
     .dropzone_controls {
-        padding: 1rem;
         text-align: center;
         text-decoration: none;
     }

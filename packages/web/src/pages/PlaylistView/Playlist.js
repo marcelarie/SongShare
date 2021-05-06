@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
     // addLikeToSong,
@@ -10,20 +11,20 @@ import {
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
-import Button from '../../styles/components/Button/GenericButton';
-import Input from '../../styles/components/Input/GenericInput';
+// import Button from '../../styles/components/Button/GenericButton';
+// import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
 
 import './styles.scss';
 
-function Playlist({ location }) {
-    const id = location.playlistId;
-
-    const playlists = useSelector(state => state.playlists.byID);
-    const playlist = playlists[id] || '';
-
+function Playlist() {
     const dispatch = useDispatch();
+    const { id } = useParams();
+
+    const { byID } = useSelector(state => state.playlists);
+    const playlist = byID[id] || '';
+    console.log(playlist);
 
     // const [name, setName] = useState(song.name);
     // const [uploader, setUploader] = useState(song.uploadBy);

@@ -11,7 +11,6 @@ import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 function AddSongs({ location }) {
     const { playlistId } = location;
-    console.log(playlistId);
     const dispatch = useDispatch();
 
     const { ids } = useSelector(({ songs }) => songs);
@@ -24,9 +23,8 @@ function AddSongs({ location }) {
         return <Redirect to="/playlists" />;
     }
     const songsToAdd = byID[playlistId].songs;
+
     function addSong(id) {
-        console.log('add');
-        console.log(id);
         const index = songsToAdd.findIndex(element => element === id);
         if (index === -1) {
             songsToAdd.push(id);
@@ -34,10 +32,7 @@ function AddSongs({ location }) {
     }
 
     function removeSong(id) {
-        console.log(id);
-        console.log('rem');
         const index = songsToAdd.findIndex(element => element === id);
-        console.log(index);
         if (index >= 0) {
             songsToAdd.splice(index, 1);
         }

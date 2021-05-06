@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import SongsCard from '../SongsCard';
 import PlaylistCard from '../PlaylistCard';
-import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import './styles.scss';
 import CarouselStyle from './styled';

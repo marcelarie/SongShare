@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { NEW_PLAYLIST } from '../../routes';
 import {
     getAllPlaylists,
-    getPlaylist,
+    // getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
-import PlaylistCard from '../../components/PlaylistCard';
 import Carousel from '../../components/Carousel';
+// import PlaylistCard from '../../components/PlaylistCard';
 
 function MyPlaylists() {
     // rename to playlistsToShow or playlistLandingPage (?)
-    const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
-        store => store.playlists,
-    );
+    // const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
+    //     store => store.playlists,
+    // );
 
     const dispatch = useDispatch();
     const AllPlaylists = useSelector(store => store.playlists.byID);
@@ -60,17 +60,10 @@ function MyPlaylists() {
             </p>
         )}
         </CarouselStyle> */
-{
-    /* TODO: Carousel with my playlists */
-}
-{
-    /* TODO: Carousel with my liked playlists */
-}
-{
-    /* TODO: Carousel with my followed playlists */
-}
-{
-    /* <Link to={NEW_PLAYLIST}>Create new playlist</Link>
+/* TODO: Carousel with my playlists */
+/* TODO: Carousel with my liked playlists */
+/* TODO: Carousel with my followed playlists */
+/* <Link to={NEW_PLAYLIST}>Create new playlist</Link>
     <div key={playlist._id}>
                             <div>
                                 <img src={playlist.img} alt=""/>
@@ -90,5 +83,4 @@ function MyPlaylists() {
                                 Add songs to playlist
                             </Link>
                         </div> */
-}
 export default MyPlaylists;

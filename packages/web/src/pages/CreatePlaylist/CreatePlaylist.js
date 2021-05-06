@@ -19,8 +19,8 @@ function CreatePlaylist() {
     const [type, setType] = useState('Playlist');
     const [publicAccess, setPublicAccess] = useState(false);
     const songs = [
-        '95b67a5f307b28980f9d3cb87a4068e0',
-        '57ebca9c29e7fb5c2647378415d9a82d',
+        '09a46b571028e5b42a9dbad8ea30b470',
+        'e376eb38f8f10297bf1394b40cfdd1a1',
     ];
 
     return (

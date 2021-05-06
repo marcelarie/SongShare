@@ -4,7 +4,7 @@ import * as auth from '../../services/auth';
 
 import {
     normalizePlaylists,
-    normalizeFullPlaylists,
+    // normalizeFullPlaylists,
 } from '../../schema/playlists-schema';
 import { signOutSuccess } from '../auth/auth-actions';
 
@@ -113,7 +113,6 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
                     createPlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            console.log(res.data);
             return dispatch(createPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(createPlaylistError(error.message));
@@ -140,7 +139,6 @@ export function getAllPlaylists() {
                 );
             }
             const normalizedPlaylists = normalizePlaylists(res.data.data);
-            console.log(normalizedPlaylists);
             return dispatch(
                 getPlaylistsSuccess({
                     byID: normalizedPlaylists.entities.playlists,
@@ -190,8 +188,6 @@ export function addSongsToPlaylist(playlistId, songs) {
             if (!token) {
                 return dispatch(signOutSuccess());
             }
-            console.log(playlistId);
-            console.log(songs);
             const res = await api.updatePlaylist(
                 {
                     Authorization: `Bearer ${token}`,

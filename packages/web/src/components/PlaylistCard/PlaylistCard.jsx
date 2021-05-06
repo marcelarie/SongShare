@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+// import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import LikeIcon from '../LikeButton';
@@ -14,13 +14,13 @@ import './styles.scss';
 
 import PlaylistCardStyle from './styles';
 
-import PlayPauseButton from '../playPauseButton';
+// import PlayPauseButton from '../playPauseButton';
 
-const play_pause = document.getElementsByClassName('rhap_play-pause-button');
+// const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
-    const dispatch = useDispatch();
-    const [cardId] = useState(playlist._id);
+    // const dispatch = useDispatch();
+    // const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); @Marcel --> use same quick menu ?
 
     // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
@@ -56,7 +56,7 @@ function PlaylistCard({ playlist }) {
                         </button>
                         <Link
                             to={{
-                                pathname: `/${playlist.title}/addsongs`,
+                                pathname: `/${playlist._id}/addsongs`,
                                 playlistId: playlist._id,
                             }}
                             className="PlaylistCard__container__3pointButton quickMenu"
@@ -74,7 +74,7 @@ function PlaylistCard({ playlist }) {
                 </div>
                 <Link
                     to={{
-                        pathname: `playlist/${playlist.title}`,
+                        pathname: `playlist/${playlist._id}`,
                         playlistId: playlist._id,
                     }}
                 >

@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import SongListStyle from './styles';
 import './styles.scss';
 
-import { getAllSongs } from '../../redux/songs/songs-actions';
+// import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import SongListItem from '../SongListItem';
-import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
+// import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 function SongsList({
     songsToList,
     handleAddToPlaylist,
     handleRemoveToPlaylist,
 }) {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const { byID } = useSelector(({ songs }) => songs);
 
     return (
