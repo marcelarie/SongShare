@@ -77,7 +77,7 @@ export const updatePlaylistError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const updatePlaylistSuccess = ({ playlist }) => {
+export const updatePlaylistSuccess = playlist => {
     return {
         type: playlistTypes.UPDATE_PLAYLIST_SUCCESS,
         payload: {

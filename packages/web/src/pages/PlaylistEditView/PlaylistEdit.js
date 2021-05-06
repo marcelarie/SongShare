@@ -18,7 +18,7 @@ import PlaylistViewStyle from './styled';
 
 import './styles.scss';
 
-function Playlist() {
+function PlaylistEdit() {
     const dispatch = useDispatch();
     const { id } = useParams();
 
@@ -46,20 +46,10 @@ function Playlist() {
                     <h2 className="PlaylistView__header__container__info__title">
                         {playlist.title}
                     </h2>
+                    <input type="text" value={playlist.title} />
                     <p className="PlaylistView__header__container__info__author">
                         {playlist.author.username}
                     </p>
-                    <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
-                    </div>
                     <div className="PlaylistView__header__container__info__container">
                         <p className="PlaylistView__header__container__info__container__characteristic">
                             {playlist.type}
@@ -84,7 +74,7 @@ function Playlist() {
     );
 }
 
-export default Playlist;
+export default PlaylistEdit;
 
 /* <div className="PlaylistView__image">
                     <img

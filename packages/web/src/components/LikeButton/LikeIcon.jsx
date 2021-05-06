@@ -12,7 +12,7 @@ function LikeIcon({ likes, handleLike }) {
         } else {
             setActive(false);
         }
-    }, [likes, currentUser._id]);
+    }, [likes, currentUser._id, active]);
 
     return (
         <svg

@@ -51,17 +51,15 @@ class Repository {
 
     findOneAndUpdate = (filter, body, option = { new: true }) => {
         return normalizeDBQuery(
-            Models[this.type]
-                .findOneAndUpdate(filter, body, option)
-                .populate('likes'),
+            Models[this.type].findOneAndUpdate(filter, body, option),
+            /* .populate('likes') */
         );
     };
 
     findByIdAndUpdate = (filter, body, option = { new: true }) => {
         return normalizeDBQuery(
-            Models[this.type]
-                .findByIdAndUpdate(filter, body, option)
-                .populate('likes'),
+            Models[this.type].findByIdAndUpdate(filter, body, option),
+            /* .populate('likes') */
         );
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ function PlaylistCard({ playlist }) {
     // const [openMenu] = useQuickMenu(); @Marcel --> use same quick menu ?
 
     // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+    // const currentPlaylistLikes = useSelector(store => store.playlists.byID[playlist._id].likes);
 
     // @Mike -> opcion de reproducir playlist
     /* function reproduceSong() {
