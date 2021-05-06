@@ -1,6 +1,10 @@
-import React from 'react';
-// import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { addLikeToPlaylist } from '../../redux/Playlists/playlists-actions';
+
+import LikeIcon from '../LikeButton';
 import './styles.scss';
 
 // import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -17,11 +21,12 @@ import PlaylistCardStyle from './styles';
 // const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); @Marcel --> use same quick menu ?
 
     // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+    // const currentPlaylistLikes = useSelector(store => store.playlists.byID[playlist._id].likes);
 
     // @Mike -> opcion de reproducir playlist
     /* function reproduceSong() {
@@ -49,7 +54,14 @@ function PlaylistCard({ playlist }) {
                         <button
                             className="PlaylistCard__container__like"
                             type="button"
-                        />
+                        >
+                            <LikeIcon
+                                handleLike={() =>
+                                    dispatch(addLikeToPlaylist(playlist._id))
+                                }
+                                likes={playlist.likedBy}
+                            />
+                        </button>
                         <Link
                             to={{
                                 pathname: `/${playlist._id}/addsongs`,

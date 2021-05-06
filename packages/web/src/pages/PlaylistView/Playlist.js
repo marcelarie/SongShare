@@ -24,7 +24,6 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-    console.log(playlist);
 
     // const [name, setName] = useState(song.name);
     // const [uploader, setUploader] = useState(song.uploadBy);
@@ -50,6 +49,17 @@ function Playlist() {
                     <p className="PlaylistView__header__container__info__author">
                         {playlist.author.username}
                     </p>
+                    <div className="PlaylistView__header__container__info__container">
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.type}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.publicAccess ? 'Public' : 'Private'}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            playlist.description
+                        </p>
+                    </div>
                     <div className="PlaylistView__header__container__info__container">
                         <p className="PlaylistView__header__container__info__container__characteristic">
                             {playlist.type}

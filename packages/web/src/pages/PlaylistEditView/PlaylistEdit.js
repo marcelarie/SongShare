@@ -1,89 +1,106 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dialog, Transition } from '@headlessui/react';
+import { useParams } from 'react-router';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
-    addLikeToSong,
-    deleteSongByID,
-    editSongByID,
-    getSongByID,
-} from '../../redux/songs/songs-actions';
+    // addLikeToSong,
+    // deleteSongByID,
+    // editSongByID,
+    getPlaylist,
+} from '../../redux/Playlists/playlists-actions';
 
-import Button from '../../styles/components/Button/GenericButton';
-import Input from '../../styles/components/Input/GenericInput';
-import LikeIcon from '../../components/LikeButton';
-import SongModalStyle from './styled';
-
-import { closeInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+// import Button from '../../styles/components/Button/GenericButton';
+// import Input from '../../styles/components/Input/GenericInput';
+import SongsList from '../../components/SongsList';
+import PlaylistViewStyle from './styled';
 
 import './styles.scss';
-import { deleteInAudioplayer } from '../../redux/audioPlayer/audioPlayer-actions';
 
-function SongModal() {
-    const { songID, modal } = useSelector(state => state.songInfoModal);
-    const songs = useSelector(state => state.songs.byID);
-    const audioPlayer = useSelector(state => state.audioPlayer);
-    const song = songs[songID] || '';
-
+function PlaylistEdit() {
     const dispatch = useDispatch();
+    const { id } = useParams();
 
-    const [name, setName] = useState(song.name);
-    const [uploader, setUploader] = useState(song.uploadBy);
-    const [author, setAuthor] = useState(song.author);
-    const [genre, setGenre] = useState(song.gender);
+    const { byID } = useSelector(state => state.playlists);
+    const playlist = byID[id] || '';
+
+    // const [name, setName] = useState(song.name);
+    // const [uploader, setUploader] = useState(song.uploadBy);
+    // const [author, setAuthor] = useState(song.author);
+    // const [genre, setGenre] = useState(song.gender);
 
     useEffect(() => {
-        if (songID) {
-            dispatch(getSongByID(songID));
-        }
+        dispatch(getPlaylist(id));
 
-        setName(song.name);
-        setUploader(song.uploadBy);
-        setAuthor(song.author);
-        setGenre(song.gender);
-    }, [dispatch, songID]);
+        // setName(song.name);
+        // setUploader(song.uploadBy);
+        // setAuthor(song.author);
+        // setGenre(song.gender);
+    }, [dispatch, id]);
 
-    return modal && songs[songID] ? (
-        <Transition.Root show={modal} as={Fragment}>
-            <Dialog
-                as="div"
-                static
-                open={modal}
-                onClose={() => dispatch(closeInfoModal())}
-            >
-                <SongModalStyle className="song-modal">
-                    <div>
-                        <div className="song-modal__image">
-                            <img
-                                src={
-                                    songs[songID].imageUrl ||
-                                    'https://picsum.photos/seed/picsum/500'
-                                }
-                                alt="song"
-                                width="200px"
-                            />
-                            <Input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={name}
-                                className="disable-input"
-                                spellCheck="false"
-                                onChange={e => setName(e.target.value)}
-                            />
+    return (
+        <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
+            <div className="PlaylistView__header__container">
+                <div className="PlaylistView__header__container__info">
+                    <h2 className="PlaylistView__header__container__info__title">
+                        {playlist.title}
+                    </h2>
+                    <input type="text" value={playlist.title} />
+                    <p className="PlaylistView__header__container__info__author">
+                        {playlist.author.username}
+                    </p>
+                    <div className="PlaylistView__header__container__info__container">
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.type}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            {playlist.publicAccess ? 'Public' : 'Private'}
+                        </p>
+                        <p className="PlaylistView__header__container__info__container__characteristic">
+                            playlist.description
+                        </p>
+                    </div>
+                </div>
+                <div className="PlaylistView__header__container__img">
+                    <p>{playlist.title}</p>
+                </div>
+            </div>
+            <SongsList
+                songsToList={playlist.songs}
+                handleClick={() => console.log('play')}
+            />
+        </PlaylistViewStyle>
+    );
+}
+
+export default PlaylistEdit;
+
+/* <div className="PlaylistView__image">
+                    <img
+                        src={
+                            playlist.img ||
+                            'https://picsum.photos/seed/picsum/500'
+                        }
+                        alt="headerImg"
+                        width="100%"
+                    />
+                <Input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={name}
+                    className="disable-input"
+                    spellCheck="false"
+                    onChange={e => setName(e.target.value)}
+                />
                         </div>
                         <div>
                             <div>
                                 <div>
                                     <div className="song-modal__likes">
                                         <p>{songs[songID].likes.length}</p>
-                                        <LikeIcon
-                                            handleLike={() =>
-                                                dispatch(addLikeToSong(songID))
-                                            }
-                                            likes={songs[songID].likes}
-                                        />
-                                        {/* <FontAwesomeIcon
+                                        <FontAwesomeIcon
                                             icon={faHeart}
                                             className={
                                                 songs[songID].likes
@@ -93,7 +110,7 @@ function SongModal() {
                                             onClick={() =>
                                                 dispatch(addLikeToSong(songID))
                                             }
-                                        /> */}
+                                        />
                                     </div>
                                     <label htmlFor="author" className="">
                                         Author
@@ -139,13 +156,6 @@ function SongModal() {
                     <div className="song-modal__buttons">
                         <Button
                             type="button"
-                            width="100px"
-                            onClick={() => dispatch(closeInfoModal())}
-                        >
-                            Close
-                        </Button>
-                        <Button
-                            type="button"
                             onClick={() =>
                                 dispatch(
                                     editSongByID(songID, {
@@ -162,20 +172,7 @@ function SongModal() {
                         <Button
                             type="button"
                             width="100px"
-                            onClick={() => {
-                                dispatch(deleteSongByID(songID));
-                                dispatch(
-                                    deleteInAudioplayer(songID, audioPlayer),
-                                );
-                            }}
+                            onClick={() => dispatch(deleteSongByID(songID))}
                         >
                             Delete
-                        </Button>
-                    </div>
-                </SongModalStyle>
-            </Dialog>
-        </Transition.Root>
-    ) : null;
-}
-
-export default SongModal;
+                        </Button> */

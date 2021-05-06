@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './styles.scss';
 
 import { startSong } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+import { addLikeToSong } from '../../redux/songs/songs-actions';
 import {
     useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
-
+import LikeIcon from '../LikeButton';
 import SongCardStyle from './styles';
 
 import PlayPauseButton from '../playPauseButton';
@@ -40,18 +41,20 @@ function SongsCard({ song }) {
     };
     useQuickMenuListener();
     return (
-        <SongCardStyle image={song.imageUrl} className="songsCard">
-            <div className="songsCard__container">
-                <div className="songsCard__container__header">
-                    <button
-                        className="songsCard__container__like"
-                        type="button"
-                    />
-                    <button
-                        className="songsCard__container__3pointButton quickMenu"
-                        type="button"
-                        onMouseDown={e => openMenu(e, cardId)}
-                    />
+        <>
+            <SongCardStyle image={song.imageUrl} className="songsCard">
+                <div className="songsCard__container">
+                    <div className="songsCard__container__header">
+                        <LikeIcon
+                            handleLike={() => dispatch(addLikeToSong(song._id))}
+                            likes={song.likes}
+                        />
+                        <button
+                            className="songsCard__container__3pointButton quickMenu"
+                            type="button"
+                            onMouseDown={e => openMenu(e, cardId)}
+                        />
+                    </div>
                 </div>
                 <button
                     className="songsCard__playButton"
@@ -60,13 +63,13 @@ function SongsCard({ song }) {
                 >
                     {PlayPauseButton(song._id)}
                 </button>
-            </div>
-            <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
-                <p className="songsCard__title">{song.name}</p>
-            </section>
+                <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
+                    <p className="songsCard__title">{song.name}</p>
+                </section>
 
-            <div className="songsCard__description">description</div>
-        </SongCardStyle>
+                <div className="songsCard__description">description</div>
+            </SongCardStyle>
+        </>
     );
 }
 
