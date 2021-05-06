@@ -86,6 +86,14 @@ export const updatePlaylistSuccess = ({ playlist }) => {
     };
 };
 
+// Para el add like se puede user el update playlist success
+// export const addLikeToPlaylistSuccess = song => ({
+//     type: playlistTypes.ADD_LIKE_TO_SONG,
+//     payload: {
+//         song: song,
+//     },
+// });
+
 export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
@@ -235,6 +243,34 @@ export function editPlaylist(playlistId, newPlaylistChanges) {
                 );
             }
             return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function addLikeToPlaylist(playlistID) {
+    return async function addLikeToPlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(updatePlaylistRequest());
+
+        if (!token) {
+            return dispatch(updatePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.addLikePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+            /* if (res.errorMessage) {
+                return dispatch(songUpdatingError(res.errorMessage));
+            } */
+            console.log(res.data.PlaylistResponse.data);
+            // update user info and song info (?)
+            return dispatch(updatePlaylistSuccess(res.data.PlaylistResponse.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }

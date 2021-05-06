@@ -88,7 +88,20 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 },
             };
         }
+        case PlaylistsTypes.UPDATE_PLAYLIST_SUCCESS: {
+            const { playlist } = action.payload;
+            const playlistID = playlist._id;
 
+            return {
+                ...state,
+                byID: {
+                    ...state.byID,
+                    [playlistID]: {
+                        ...playlist
+                    },
+                },
+            };
+        }
         default: {
             return state;
         }

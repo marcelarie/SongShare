@@ -1,6 +1,8 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { addLikeToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import LikeIcon from '../LikeButton';
 import './styles.scss';
@@ -19,7 +21,7 @@ import PlaylistCardStyle from './styles';
 // const play_pause = document.getElementsByClassName('rhap_play-pause-button');
 
 function PlaylistCard({ playlist }) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const [cardId] = useState(playlist._id);
     // const [openMenu] = useQuickMenu(); @Marcel --> use same quick menu ?
 
@@ -52,7 +54,10 @@ function PlaylistCard({ playlist }) {
                             className="PlaylistCard__container__like"
                             type="button"
                         >
-                            <LikeIcon />
+                            <LikeIcon
+                            handleLike={() => dispatch(addLikeToPlaylist(playlist._id))}
+                            likes={playlist.likedBy}
+                            />
                         </button>
                         <Link
                             to={{
