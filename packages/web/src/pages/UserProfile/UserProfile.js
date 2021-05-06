@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
@@ -7,17 +8,14 @@ import UserProfile from './styled';
 
 import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
-import UserProfileInfo from './UserProfileInfo';
-import UserProfileEdit from './UserProfileContent/UserProfileEdit';
-import UserProfileMusic from './UserProfileContent/UserProfileMusic';
-import UserProfilePlaylists from './UserProfileContent/UserProfilePlaylists';
-import UserProfileLanding from './UserProfileContent/UserProfileLanding';
 
 function CurrentUserProfile() {
+    const currentUser = useSelector(store => store.user);
     const { user, isLoading, pathUsername } = useUser();
     const Component = useUserProfileSwitch(pathUsername);
-
     if (isLoading) return <h1>Loading...</h1>;
+
+    const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
 
     return (
         <UserProfile cover={user.imageUrl} className="user">
@@ -28,6 +26,51 @@ function CurrentUserProfile() {
                     </p>
                 </div>
             </div>
+
+            <div className="user__nav">
+                <nav>
+                    <ul>
+                        {navLinks.map(li => {
+                            if (pathUsername[2] === li) {
+                                return (
+                                    <Link
+                                        key={li}
+                                        to={`/${user.username}/${li}`}
+                                    >
+                                        <li className="selectedNav">{li}</li>
+                                    </Link>
+                                );
+                            }
+                            if (!pathUsername[2] && li === 'Landing') {
+                                return (
+                                    <Link to={`/${user.username}`} key={li}>
+                                        <li className="selectedNav">{li}</li>
+                                    </Link>
+                                );
+                            }
+                            if (pathUsername[2] && li === 'Landing') {
+                                return (
+                                    <Link to={`/${user.username}`} key={li}>
+                                        <li>{li}</li>
+                                    </Link>
+                                );
+                            }
+                            if (
+                                user.username != currentUser.username &&
+                                li === 'Edit'
+                            ) {
+                                return false;
+                            }
+                            return (
+                                <Link to={`/${user.username}/${li}`} key={li}>
+                                    <li>{li}</li>
+                                </Link>
+                            );
+                        })}
+                    </ul>
+                </nav>
+            </div>
+
             <div className="user__main">
                 <div className="user__main__aside relative">
                     <div className="user__main__aside__offset">
@@ -37,14 +80,21 @@ function CurrentUserProfile() {
                                 <p>{user.username}</p>
                             </div>
                         </div>
-
                         <div className="user__main__aside__content">
                             <p>Name:</p>
                             <p>{user.name}</p>
                             <p>Last name:</p>
                             <p>{user.lastname}</p>
-                            <Link to={`/${user.username}/edit`}>
-                                <Button>Edit</Button>
+
+                            {user.username === currentUser.username && (
+                                <Link to={`/${user.username}/Edit`}>
+                                    <Button>Edit</Button>
+                                </Link>
+                            )}
+
+                            <br />
+                            <Link to={`/${user.username}/Info`}>
+                                <Button>Info</Button>
                             </Link>
                         </div>
                     </div>

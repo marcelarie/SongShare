@@ -79,7 +79,7 @@ function Header() {
                 </button>
                 {openMenu && (
                     <div className="nav-user__menu">
-                        <NavLink to={username}>Profile</NavLink>
+                        <NavLink to={`/${username}/`}>Profile</NavLink>
                         <NavLink to="/search">Settings</NavLink>
                         <button type="button" onClick={handleSignOut}>
                             Sign Out
