@@ -1,16 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import './styles.scss';
-import '../../../styles/flex.scss';
-import Button from '../../../styles/components/Button/GenericButton';
-import Carousel from '../../../components/Carousel/index';
+import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
 
-function CurrentUserProfile() {
-    const user = useSelector(store => store.user);
+import useUser from '../../custom-hooks/userProfile/useUser';
+import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
 
-    if (!user) return <h1>Loading...</h1>;
+function CurrentUserProfile() {
+    const { user, isLoading, pathUsername } = useUser();
+    const Component = useUserProfileSwitch(pathUsername);
+
+    if (isLoading) return <h1>Loading...</h1>;
 
     return (
         <UserProfile cover={user.imageUrl} className="user">
@@ -26,19 +28,12 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <img
-                                    src={user.imageUrl}
-                                    alt="user profile image"
-                                />
+                                <img src={user.imageUrl} alt={user.imageUrl} />
                                 <p>{user.username}</p>
                             </div>
                         </div>
+
                         <div className="user__main__aside__content">
-                            {
-                                // value={user.email}
-                                // id="password"
-                                // value="xxxxxx"
-                            }
                             <p>Name:</p>
                             <p>{user.name}</p>
                             <p>Last name:</p>
@@ -49,22 +44,7 @@ function CurrentUserProfile() {
                         </div>
                     </div>
                 </div>
-                <div className="user__main__content">
-                    <div className="user__main__content__playlist">
-                        <h1>Playlist 0</h1>
-                        <Carousel />
-                    </div>
-                    <div className="user__main__content__playlist">
-                        <h1>Playlist 1</h1>
-                        <Carousel />
-                    </div>
-                    <div className="user__main__content__playlist">
-                        <h1>Playlist 2</h1>
-                        <div>
-                            <Carousel />
-                        </div>
-                    </div>
-                </div>
+                <Component user={user} />
             </div>
         </UserProfile>
     );

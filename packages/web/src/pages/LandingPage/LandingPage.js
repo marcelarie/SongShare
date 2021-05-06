@@ -8,18 +8,19 @@ import './styles.scss';
 function LandingPage() {
     const dispatch = useDispatch();
 
-    const allSongs = useSelector(store => store.songs.byID);
+    const allSongsIds = useSelector(store => store.songs.ids);
     const currentUser = useSelector(store => store.auth.currentUser);
+
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch, currentUser]);
 
-    if (!allSongs) return <p>loading...</p>;
+    if (!allSongsIds) return <p>loading...</p>;
 
     return (
         <div className="landingPage">
             <h1>All songs</h1>
-            <Carousel key="allSongs" />
+            <Carousel key="allSongs" ids={allSongsIds} type="songs" />
         </div>
     );
 }

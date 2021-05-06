@@ -1,5 +1,6 @@
-import { SongRepository as SongRepo } from '../repositories/index.js';
-import { UserRepository as UserRepo } from '../repositories/index.js';
+import Repo from '../repositories/index.js';
+const UserRepo = new Repo('User');
+const SongRepo = new Repo('Song');
 
 async function getAllSongs(req, res, next) {
     try {

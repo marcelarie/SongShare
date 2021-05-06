@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { updateUserInfoMidleware } from '../../../redux/user/user-actions';
+import { updateUserInfoMidleware } from '../../redux/user/user-actions';
 
-import Dropzone from '../../../components/Dropzone';
+import Dropzone from '../../components/Dropzone';
 
-import { fileTypes } from '../../../services/cloudinary';
+import { fileTypes } from '../../services/cloudinary';
 
-function CurrentUserProfileEdit() {
+function UserProfileInfo() {
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
 
@@ -236,4 +236,4 @@ function CurrentUserProfileEdit() {
     );
 }
 
-export default CurrentUserProfileEdit;
+export default UserProfileInfo;

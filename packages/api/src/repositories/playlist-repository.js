@@ -7,7 +7,9 @@ const PlaylistRepository = {
     },
 
     find: filter => {
-        return normalizeDBQuery(Playlist.find(filter));
+        return normalizeDBQuery(
+            Playlist.find(filter).populate('author', 'username'),
+        );
     },
 
     findOne: filter => {
