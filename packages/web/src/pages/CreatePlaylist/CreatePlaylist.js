@@ -18,10 +18,7 @@ function CreatePlaylist() {
     const [title, setTitle] = useState('');
     const [type, setType] = useState('Playlist');
     const [publicAccess, setPublicAccess] = useState(false);
-    const songs = [
-        '09a46b571028e5b42a9dbad8ea30b470',
-        'e376eb38f8f10297bf1394b40cfdd1a1',
-    ];
+    const songs = ['8b34b5bd67713f284f24d772c1bba65d']; // add ids here
 
     return (
         <>
