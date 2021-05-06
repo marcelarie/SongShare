@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Repo from '../repositories/index.js';
 
 const UserRepo = new Repo('User');

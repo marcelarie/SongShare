@@ -17,7 +17,7 @@ function CreatePlaylist() {
 
     const [title, setTitle] = useState('');
     const [type, setType] = useState('Playlist');
-    const [songs ] = useState([]);
+    const [songs] = useState([]);
     const [publicAccess, setPublicAccess] = useState(false);
 
     return (
