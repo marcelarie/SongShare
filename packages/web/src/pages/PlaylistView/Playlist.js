@@ -24,7 +24,6 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-    console.log(playlist);
 
     // const [name, setName] = useState(song.name);
     // const [uploader, setUploader] = useState(song.uploadBy);
