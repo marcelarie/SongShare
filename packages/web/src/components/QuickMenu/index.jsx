@@ -10,6 +10,8 @@ import QuickMenuStyle from './styles';
 
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
+import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+
 const QuickMenu = () => {
     const dispatch = useDispatch();
     const { positionX, positionY, id } = useSelector(
@@ -19,12 +21,13 @@ const QuickMenu = () => {
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 
-    const handleClick = () => {
+    const addSongToQueue = () => {
+        dispatch(addToQueue(id));
         dispatch(openModal(false));
     };
 
-    const addSongToQueue = () => {
-        dispatch(addToQueue(id));
+    const openSongInfo = () => {
+        dispatch(openInfoModal(id));
         dispatch(openModal(false));
     };
 
@@ -60,7 +63,7 @@ const QuickMenu = () => {
                         <button
                             className="quickMenu"
                             type="button"
-                            onClick={handleClick}
+                            onClick={openSongInfo}
                         >
                             Edit
                         </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
+import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { openPlaylistModal } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 import QuickPlaylistMenuStyle from './styles';
 
@@ -15,9 +16,15 @@ const QuickPlaylistMenu = id => {
 
     const add = idPlaylist => {
         dispatch(addSongsToPlaylist(idPlaylist, [id]));
-        dispatch(openPlaylistModal(false)); // QUESTION: should this be 'dispatch(openModal(false))' instead???
+        dispatch(openModal(false));
+        dispatch(openPlaylistModal(false));
     };
 
+    const createPlaylistInmenu = () => {
+        // TODO: DISPATCH LINK TO GO TO NEW PLAYLIST
+        dispatch(openModal(false));
+        dispatch(openPlaylistModal(false));
+    };
     return (
         <QuickPlaylistMenuStyle x={positionXPL} y={positionYPL}>
             <ul>
@@ -40,7 +47,7 @@ const QuickPlaylistMenu = id => {
                     <button
                         className="quickPlaylistMenu"
                         type="button"
-                        onClick={() => console.log('TODO: change action')} // TODO: change action
+                        onClick={() => createPlaylistInmenu}
                     >
                         Create new playlist
                     </button>

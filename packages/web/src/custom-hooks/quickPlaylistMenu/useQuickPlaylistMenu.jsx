@@ -16,7 +16,10 @@ function UseQuickPlaylistMenu() {
     );
 
     const openPlaylistMenu = () => {
-        const xPL = `${auxposition + 110}px`;
+        const xPL =
+            window.innerWidth - auxposition > 230
+                ? `${auxposition + 110}px`
+                : `${auxposition - 150}px`;
         const yPL = positionY;
         dispatch(changeXandYPlaylist({ xPL, yPL }));
 
