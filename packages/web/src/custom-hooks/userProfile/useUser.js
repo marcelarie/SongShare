@@ -14,6 +14,8 @@ function useUser() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        console.log('recharge');
+        console.log(path);
         if (currentUser) {
             if (currentUser.username === pathUsername[1]) {
                 setUser(currentUser);
@@ -24,7 +26,7 @@ function useUser() {
                 setIsLoading(false);
             }
         }
-    }, [path, dispatch]);
+    }, [path, dispatch, currentUser, otherUser.username]);
 
     return { user, isLoading, pathUsername };
 }

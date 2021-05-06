@@ -29,7 +29,6 @@ export const getOtherUserInfo = username => {
                 },
                 username,
             );
-
             if (res.errorMessage) {
                 return dispatch(getOtherUserInfoError(res.errorMessage));
             }
