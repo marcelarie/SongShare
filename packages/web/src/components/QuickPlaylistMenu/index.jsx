@@ -13,9 +13,9 @@ const QuickPlaylistMenu = id => {
     const AllPlaylists = useSelector(store => store.playlists.byID);
     const AllPlaylistsIds = useSelector(store => store.playlists.ids);
 
-    const add = () => {
-        dispatch(addSongsToPlaylist(id));
-        dispatch(openPlaylistModal(false));
+    const add = idPlaylist => {
+        dispatch(addSongsToPlaylist(idPlaylist, [id]));
+        dispatch(openPlaylistModal(false)); // QUESTION: should this be 'dispatch(openModal(false))' instead???
     };
 
     return (
@@ -28,7 +28,7 @@ const QuickPlaylistMenu = id => {
                             <button
                                 className="quickPlaylistMenu"
                                 type="button"
-                                onClick={add}
+                                onClick={() => add(idPlaylist)}
                             >
                                 {playlist.title}
                             </button>
@@ -40,7 +40,7 @@ const QuickPlaylistMenu = id => {
                     <button
                         className="quickPlaylistMenu"
                         type="button"
-                        onClick={add} // TODO: change action
+                        onClick={() => console.log('TODO: change action')} // TODO: change action
                     >
                         Create new playlist
                     </button>

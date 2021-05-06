@@ -6,7 +6,7 @@ import {
 
 function UseQuickPlaylistMenu() {
     const dispatch = useDispatch();
-    const { positionX, positionY, open, id } = useSelector(
+    const { positionX, positionY, open } = useSelector(
         store => store.quickMenu,
     );
     const auxposition = parseInt(positionX.replace('px', ''), 10);
