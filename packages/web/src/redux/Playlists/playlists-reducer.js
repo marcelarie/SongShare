@@ -97,7 +97,7 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 byID: {
                     ...state.byID,
                     [playlistID]: {
-                        ...playlist
+                        ...playlist,
                     },
                 },
             };

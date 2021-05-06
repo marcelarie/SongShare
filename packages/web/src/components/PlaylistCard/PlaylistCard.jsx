@@ -55,8 +55,10 @@ function PlaylistCard({ playlist }) {
                             type="button"
                         >
                             <LikeIcon
-                            handleLike={() => dispatch(addLikeToPlaylist(playlist._id))}
-                            likes={playlist.likedBy}
+                                handleLike={() =>
+                                    dispatch(addLikeToPlaylist(playlist._id))
+                                }
+                                likes={playlist.likedBy}
                             />
                         </button>
                         <Link

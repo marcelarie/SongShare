@@ -270,7 +270,9 @@ export function addLikeToPlaylist(playlistID) {
             } */
             console.log(res.data.PlaylistResponse.data);
             // update user info and song info (?)
-            return dispatch(updatePlaylistSuccess(res.data.PlaylistResponse.data));
+            return dispatch(
+                updatePlaylistSuccess(res.data.PlaylistResponse.data),
+            );
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }

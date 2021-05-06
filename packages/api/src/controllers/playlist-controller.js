@@ -117,7 +117,8 @@ async function likePlaylist(req, res, next) {
                 { _id: id },
                 { $addToSet: { likedBy: uid } },
             );
-            if (PlaylistResponse.error) return res.status(400).send(PlaylistResponse);
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
             if (userResponse.data.length <= 0)
                 return res.status(204).send(userResponse);
@@ -134,7 +135,8 @@ async function likePlaylist(req, res, next) {
                 { _id: id },
                 { $pull: { likedBy: uid } },
             );
-            if (PlaylistResponse.error) return res.status(400).send(PlaylistResponse);
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
             if (userResponse.data.length <= 0)
                 return res.status(204).send(userResponse);
@@ -152,5 +154,5 @@ export {
     addSongsInfo,
     getAllPlaylists,
     updatePlaylist,
-    likePlaylist
+    likePlaylist,
 };
