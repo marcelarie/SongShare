@@ -1,4 +1,5 @@
 export const color = '#c3352e';
+export const black = '#000000';
 export const mainBlack = '#363636';
 export const mainDarkGray = '#3f4042';
 export const colorTransparent = 'rgba( 195,53,46, 0.7 )';

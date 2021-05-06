@@ -4,7 +4,7 @@ import * as auth from '../../services/auth';
 
 import {
     normalizePlaylists,
-    normalizeFullPlaylists,
+    // normalizeFullPlaylists,
 } from '../../schema/playlists-schema';
 import { signOutSuccess } from '../auth/auth-actions';
 
@@ -77,7 +77,7 @@ export const updatePlaylistError = errorMessage => ({
     payload: errorMessage,
 });
 
-export const updatePlaylistSuccess = ({ playlist }) => {
+export const updatePlaylistSuccess = playlist => {
     return {
         type: playlistTypes.UPDATE_PLAYLIST_SUCCESS,
         payload: {
@@ -86,7 +86,15 @@ export const updatePlaylistSuccess = ({ playlist }) => {
     };
 };
 
-export function createPlaylist({ title, publicAccess, author }) {
+// Para el add like se puede user el update playlist success
+// export const addLikeToPlaylistSuccess = song => ({
+//     type: playlistTypes.ADD_LIKE_TO_SONG,
+//     payload: {
+//         song: song,
+//     },
+// });
+
+export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
 
@@ -103,6 +111,8 @@ export function createPlaylist({ title, publicAccess, author }) {
                     title,
                     publicAccess,
                     author,
+                    type,
+                    songs,
                 },
             );
 
@@ -111,7 +121,7 @@ export function createPlaylist({ title, publicAccess, author }) {
                     createPlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(createPlaylistSuccess(res.data));
+            return dispatch(createPlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(createPlaylistError(error.message));
         }
@@ -120,7 +130,7 @@ export function createPlaylist({ title, publicAccess, author }) {
 
 export function getAllPlaylists() {
     return async function getPlaylistsThunk(dispatch) {
-        dispatch(getPlaylistRequest());
+        dispatch(getPlaylistsRequest());
 
         try {
             const token = await auth.getCurrentUserToken();
@@ -202,6 +212,67 @@ export function addSongsToPlaylist(playlistId, songs) {
                 );
             }
             return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+// update playlist -> edit playlist info
+export function editPlaylist(playlistId, newPlaylistChanges) {
+    return async function editPlaylistThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(signOutSuccess());
+            }
+            const res = await api.updatePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    newPlaylistChanges,
+                },
+                playlistId,
+            );
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function addLikeToPlaylist(playlistID) {
+    return async function addLikeToPlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(updatePlaylistRequest());
+
+        if (!token) {
+            return dispatch(updatePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.addLikePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+            /* if (res.errorMessage) {
+                return dispatch(songUpdatingError(res.errorMessage));
+            } */
+            console.log(res.data.PlaylistResponse.data);
+            // update user info and song info (?)
+            return dispatch(
+                updatePlaylistSuccess(res.data.PlaylistResponse.data),
+            );
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }

@@ -12,27 +12,31 @@ const PlaylistSchema = mongoose.Schema({
     },
     publicAccess: {
         type: Boolean,
+        default: true,
     },
-    songs: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'song', // (?) Song
-            },
-        ],
-        default: [],
+    type: {
+        type: String,
+        enum: ['Playlist', 'Album'],
+        default: 'Playlist',
     },
-    likedBy: {
-        type: [
-            {
-                type: String,
-                ref: 'user',
-            },
-        ],
-        default: [],
+    img: {
+        type: String,
+        default: 'https://picsum.photos/100',
     },
+    songs: [
+        {
+            type: String,
+            ref: 'song',
+        },
+    ],
+    likedBy: [
+        {
+            type: String,
+            ref: 'user',
+        },
+    ],
 });
 
-const Playlist = mongoose.model('Playlist', PlaylistSchema);
+const Playlist = mongoose.model('playlist', PlaylistSchema);
 
 export default Playlist;

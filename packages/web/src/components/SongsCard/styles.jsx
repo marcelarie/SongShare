@@ -18,7 +18,7 @@ const SongCard = styled.div`
 `;
 
 SongCard.defaultProps = {
-    image: 'https://picsum.photos/seed/picsum/500',
+    image: 'https://picsum.photos/500',
 };
 
 export default SongCard;

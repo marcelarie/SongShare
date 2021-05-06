@@ -1,21 +1,30 @@
-import { PlaylistRepository as PlaylistRepo } from '../repositories/index.js';
-import { SongRepository as SongRepo } from '../repositories/index.js';
-// import mongoose from 'mongoose';
-// import { UserRepository as UserRepo } from '../repositories/index.js';
+import mongoose from 'mongoose';
+import Repo from '../repositories/index.js';
+
+const UserRepo = new Repo('User');
+const SongRepo = new Repo('Song');
+const PlaylistRepo = new Repo('Playlist');
 
 async function createPlaylist(req, res, next) {
     const {
-        body: { title, publicAccess, songs },
+        body,
         user: { uid },
     } = req;
+
     try {
         const response = await PlaylistRepo.create({
-            title,
+            ...body,
             author: uid,
-            publicAccess,
-            tracks: songs || [],
         });
         if (response.error) return res.status(400).send(response);
+
+        const userResponse = await UserRepo.findByIdAndUpdate(
+            { _id: uid },
+            {
+                $addToSet: { playlists: response.data._id },
+            },
+        );
+        if (userResponse.error) return res.status(400).send(userResponse);
         if (response.data) return res.status(201).send(response);
     } catch (err) {
         next(err);
@@ -24,7 +33,11 @@ async function createPlaylist(req, res, next) {
 
 async function getAllPlaylists(req, res, next) {
     try {
-        const response = await PlaylistRepo.find();
+        const response = await PlaylistRepo.findAndPopulate({}, [
+            'author',
+            'username',
+        ]);
+
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);
@@ -49,7 +62,7 @@ async function addSongsInfo(playlist) {
 
 async function getPlaylistById(req, res, next) {
     const { id } = req.params;
-    const { withSongsInfo } = req.query; // another way to make a populate Marcel :)
+    const { withSongsInfo } = req.query;
     try {
         const response = await PlaylistRepo.findOne({ _id: id });
 
@@ -66,17 +79,72 @@ async function getPlaylistById(req, res, next) {
     }
 }
 
+// addSongsToPlaylist on frontend
 async function updatePlaylist(req, res, next) {
     const { body } = req;
     const { id } = req.params;
+    console.log(body.songs[0]);
+    console.log(id);
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
-            ({ _id: id }, body),
+            ({ _id: mongoose.Types.ObjectId(id) },
+            { $addToSet: { songs: body.songs[0] } }),
         );
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
     } catch (err) {
         next(err);
+    }
+}
+
+async function likePlaylist(req, res, next) {
+    const { uid } = req.user;
+    const { id } = req.params;
+
+    try {
+        const checkUserResponse = await UserRepo.findAndCheckLikes(uid, id);
+
+        if (checkUserResponse.error)
+            return res.status(400).send(checkUserResponse);
+        if (checkUserResponse.data.length === 0) {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $addToSet: { likes: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+
+            const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
+                { _id: id },
+                { $addToSet: { likedBy: uid } },
+            );
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (PlaylistResponse.data)
+                return res.status(200).send({ PlaylistResponse, userResponse });
+        } else {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $pull: { likes: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+
+            const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
+                { _id: id },
+                { $pull: { likedBy: uid } },
+            );
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (PlaylistResponse.data)
+                return res.status(200).send({ PlaylistResponse, userResponse });
+        }
+    } catch (error) {
+        next(error);
     }
 }
 
@@ -86,4 +154,5 @@ export {
     addSongsInfo,
     getAllPlaylists,
     updatePlaylist,
+    likePlaylist,
 };

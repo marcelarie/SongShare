@@ -12,12 +12,13 @@ function CreatePlaylist() {
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(createPlaylist({ title, userID, publicAccess }));
+        dispatch(createPlaylist({ title, userID, publicAccess, type, songs }));
     };
 
     const [title, setTitle] = useState('');
-    // const [type, setType] = useState('');
+    const [type, setType] = useState('Playlist');
     const [publicAccess, setPublicAccess] = useState(false);
+    const songs = ['8b34b5bd67713f284f24d772c1bba65d']; // add ids here
 
     return (
         <>
@@ -56,6 +57,7 @@ function CreatePlaylist() {
                         className="form-input"
                         name="publicAccess"
                         value="false"
+                        defaultChecked
                         onChange={() => setPublicAccess(true)}
                     />
                     <label
@@ -71,6 +73,29 @@ function CreatePlaylist() {
                         name="publicAccess"
                         value="true"
                         onChange={() => setPublicAccess(false)}
+                    />
+                    <label htmlFor="type" className="form-label text-dark">
+                        Playlist
+                    </label>
+                    <input
+                        type="radio"
+                        id="typePlaylist"
+                        className="form-input"
+                        name="type"
+                        value="Playlist"
+                        defaultChecked
+                        onChange={() => setType('Playlist')}
+                    />
+                    <label htmlFor="type" className="form-label text-dark">
+                        Album
+                    </label>
+                    <input
+                        type="radio"
+                        id="typeAlbum"
+                        className="form-input"
+                        name="type"
+                        value="Album"
+                        onChange={() => setType('Album')}
                     />
 
                     <button className="btn btn-primary w-full" type="submit">

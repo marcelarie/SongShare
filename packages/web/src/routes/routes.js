@@ -10,4 +10,5 @@ export const SONG_INFO_MODAL = '/songInfo';
 
 export const MY_PLAYLISTS = '/playlists';
 export const NEW_PLAYLIST = '/newplaylist';
-export const SONGS_LIST = '/:playlistId/addsongs';
+export const PLAYLIST_VIEW = '/playlist/:id';
+export const ADD_SONGS = '/:playlistTitle/addsongs';

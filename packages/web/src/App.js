@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import SongModal from './pages/SongModal';
 import Header from './components/Header';
 import QuickMenu from './components/QuickMenu';
+import QuickPlaylistMenu from './components/QuickPlaylistMenu';
 import MainRouter from './Router';
 import AudioPlayer from './components/AudioPlayer';
 
@@ -24,6 +25,9 @@ function App() {
     useOnAuthStateChanged();
     const currentTheme = useSelector(({ changeTheme }) => changeTheme.theme);
     const { open } = useSelector(({ quickMenu }) => quickMenu);
+    const { openPL } = useSelector(
+        ({ quickPlaylistMenu }) => quickPlaylistMenu,
+    );
 
     return (
         <ThemeProvider theme={currentTheme ? dark : light}>
@@ -39,6 +43,7 @@ function App() {
                         <MainRouter />
                     </div>
                     {open && <QuickMenu />}
+                    {openPL && <QuickPlaylistMenu />}
                 </main>
                 {auth.isAuthenticated && <AudioPlayer />}
             </GlobalStyles>

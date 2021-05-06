@@ -4,6 +4,7 @@ import {
     openModal,
     changeXandY,
 } from '../../redux/quickMenu/quickMenu-actions';
+import { openPlaylistModal } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 
 function UseQuickMenu() {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function UseQuickMenu() {
         } else {
             dispatch(openModal(!open));
         }
+        dispatch(openPlaylistModal(false));
         return dispatch(changeId(cardId));
     };
 

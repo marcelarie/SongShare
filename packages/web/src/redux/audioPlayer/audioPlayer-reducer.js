@@ -61,6 +61,23 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                     index: state.currentlyPlaying.index - 1,
                 },
             };
+        case audioPlayerTypes.DELETE_IN_QUEUE:
+            return {
+                ...state,
+                queue: state.queue.filter(songId => songId !== payload),
+                currentlyPlaying: {
+                    songId: state.currentlyPlaying.songId,
+                    index: state.currentlyPlaying.index - 1,
+                },
+            };
+        case audioPlayerTypes.DELETE_IN_CURRENTLY:
+            return {
+                ...state,
+                queue: state.queue.filter(
+                    songId => songId !== payload.songToDelete,
+                ),
+                currentlyPlaying: payload.newSongToPutInCurrent,
+            };
         default:
             return state;
     }

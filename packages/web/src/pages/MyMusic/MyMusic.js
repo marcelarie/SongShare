@@ -9,6 +9,7 @@ function MyMusic() {
 
     const currentUser = useSelector(store => store.auth.currentUser);
 
+    // MYsongsIds❗❗❗❗❗
     const { meSongsIds } = useSelector(({ songs }) => songs);
 
     const { byID } = useSelector(({ songs }) => songs);
@@ -21,13 +22,10 @@ function MyMusic() {
         <>
             <p>my music</p>
             <UploadSong />
-            {meSongsIds ? (
+            {meSongsIds &&
                 meSongsIds.map(song => {
                     return <SongsCard newsong={byID[song]} key={song} />;
-                })
-            ) : (
-                <p>hola</p>
-            )}
+                })}
         </>
     );
 }

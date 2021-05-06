@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 
-import authReducer from './auth/auth-reducer';
-import userReducer from './user/user-reducer';
-import uploaderReducer from './uploader/uploader-reducer';
-import songsReducer from './songs/songs-reducer';
+import auth from './auth/auth-reducer';
+import user from './user/user-reducer';
+import uploader from './uploader/uploader-reducer';
+import songs from './songs/songs-reducer';
 import quickMenu from './quickMenu/quickMenu-reducer';
+import quickPlaylistMenu from './quickPlaylsitMenu/quickPlaylistMenu-reducer';
 import changeTheme from './theme/theme-reducer';
 import audioPlayer from './audioPlayer/audioPlayer-reducer';
 import songInfoModal from './songInfoModal/songInfoModal-reducer';
 import userSongs from './userSongs/userSongs-reducer';
-import PlaylistsReducer from './Playlists/playlists-reducer';
+import otherUser from './otherUser/otherUser-reducer';
+import playlists from './Playlists/playlists-reducer';
 
 const RESET_STORE_AND_LOG_OUT = 'RESET_STORE_AND_LOG_OUT';
 
@@ -18,17 +20,18 @@ export const resetStoreAndLogOut = () => ({
 });
 
 const appReducer = combineReducers({
-    auth: authReducer,
-    user: userReducer,
-    uploader: uploaderReducer,
-    songs: songsReducer,
+    auth,
+    user,
+    uploader,
+    songs,
     songInfoModal,
     audioPlayer,
     quickMenu,
+    quickPlaylistMenu,
     changeTheme,
     userSongs,
-
-    playlists: PlaylistsReducer,
+    otherUser,
+    playlists,
 });
 
 const rootReducer = (state, action) => {

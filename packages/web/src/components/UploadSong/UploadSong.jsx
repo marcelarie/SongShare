@@ -68,9 +68,7 @@ function UploadSong() {
                     {uploadSongError && <p>Upload error!</p>}
                 </div>
 
-                <Button type="submit" disabled={isUploadingSong}>
-                    Upload
-                </Button>
+                <Button type="submit">Upload</Button>
             </form>
         </div>
     );

@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dialog, Transition } from '@headlessui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
     addLikeToSong,
@@ -13,15 +11,18 @@ import {
 
 import Button from '../../styles/components/Button/GenericButton';
 import Input from '../../styles/components/Input/GenericInput';
+import LikeIcon from '../../components/LikeButton';
 import SongModalStyle from './styled';
 
 import { closeInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
 import './styles.scss';
+import { deleteInAudioplayer } from '../../redux/audioPlayer/audioPlayer-actions';
 
 function SongModal() {
     const { songID, modal } = useSelector(state => state.songInfoModal);
     const songs = useSelector(state => state.songs.byID);
+    const audioPlayer = useSelector(state => state.audioPlayer);
     const song = songs[songID] || '';
 
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function SongModal() {
         setUploader(song.uploadBy);
         setAuthor(song.author);
         setGenre(song.gender);
-    }, [dispatch]);
+    }, [dispatch, songID]);
 
     return modal && songs[songID] ? (
         <Transition.Root show={modal} as={Fragment}>
@@ -76,7 +77,13 @@ function SongModal() {
                                 <div>
                                     <div className="song-modal__likes">
                                         <p>{songs[songID].likes.length}</p>
-                                        <FontAwesomeIcon
+                                        <LikeIcon
+                                            handleLike={() =>
+                                                dispatch(addLikeToSong(songID))
+                                            }
+                                            likes={songs[songID].likes}
+                                        />
+                                        {/* <FontAwesomeIcon
                                             icon={faHeart}
                                             className={
                                                 songs[songID].likes
@@ -86,7 +93,7 @@ function SongModal() {
                                             onClick={() =>
                                                 dispatch(addLikeToSong(songID))
                                             }
-                                        />
+                                        /> */}
                                     </div>
                                     <label htmlFor="author" className="">
                                         Author
@@ -155,7 +162,12 @@ function SongModal() {
                         <Button
                             type="button"
                             width="100px"
-                            onClick={() => dispatch(deleteSongByID(songID))}
+                            onClick={() => {
+                                dispatch(deleteSongByID(songID));
+                                dispatch(
+                                    deleteInAudioplayer(songID, audioPlayer),
+                                );
+                            }}
                         >
                             Delete
                         </Button>

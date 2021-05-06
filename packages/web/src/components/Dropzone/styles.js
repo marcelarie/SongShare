@@ -15,7 +15,7 @@ const handleTextColor = ({ songState }) => {
 
 const DropzoneStyle = styled.div`
     margin: 2rem auto;
-    width: 50vw;
+    width: 100%;
     border-radius: 10px;
     .dropzone_area {
         p {
@@ -24,7 +24,7 @@ const DropzoneStyle = styled.div`
             font-size: 1.1rem;
         }
         div {
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 10px;
             border: 4px solid ${colors.mainBlack};
             background-color: ${handleBackgroundColor};
@@ -36,7 +36,6 @@ const DropzoneStyle = styled.div`
         }
     }
     .dropzone_controls {
-        padding: 1rem;
         text-align: center;
         text-decoration: none;
     }
