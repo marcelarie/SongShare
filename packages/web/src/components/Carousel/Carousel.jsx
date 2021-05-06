@@ -6,8 +6,21 @@ import PlaylistCard from '../PlaylistCard';
 import './styles.scss';
 import CarouselStyle from './styled';
 
-function Carousel({ ids, type }) {
+function Carousel({ ids, type, array }) {
     const ByID = useSelector(store => store[type].byID);
+    if (array) {
+        return (
+            <CarouselStyle className="carousel">
+                {array.map(item => {
+                    return type === 'songs' ? (
+                        <SongsCard song={item} key={item._id} />
+                    ) : (
+                        <PlaylistCard playlist={item} key={item._id} />
+                    );
+                })}
+            </CarouselStyle>
+        );
+    }
     return (
         <CarouselStyle className="carousel">
             {ids.map(id => {

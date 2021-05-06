@@ -1,34 +1,33 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOtherUserInfo } from '../../../redux/otherUser/otherUser-actions';
-// import Carousel from '../../../components/Carousel/index';
+import React from 'react';
+import Carousel from '../../../components/Carousel/index';
 import '../styles.scss';
 
 function UserProfileLanding({ user }) {
-    const dispatch = useDispatch();
-    const currentUser = useSelector(store => store.auth.currentUser);
-
-    const { playlists, songs, likes } = useSelector(
-        ({ otherUser }) => otherUser,
-    );
-
-    useEffect(() => {
-        dispatch(getOtherUserInfo(user.username));
-    }, [dispatch, currentUser]);
-
     return (
         <>
-            <p>USER LANDING</p>
-
             <div className="user__main__content">
                 <div className="user__main__content__playlist">
-                    <h1>Playlist 0</h1>
+                    <div className="user__main__content__playlist__stats">
+                        <p>stats</p>
+                        <p>Likes: {user.likes.length}</p>
+                    </div>
                 </div>
                 <div className="user__main__content__playlist">
-                    <h1>Playlist 1</h1>
+                    <h1>
+                        My playlists <span>({user.playlists.length})</span>
+                    </h1>
+                    <Carousel
+                        type="playlists"
+                        ids={user.playlists}
+                        key="playlist"
+                    />
                 </div>
-                <div className="user__main__content__playlist">
-                    <h1>Playlist 2</h1>
+
+                <div className="user__main__content__music">
+                    <h1>
+                        My Music <span>({user.songs.length})</span>
+                    </h1>
+                    <Carousel type="songs" ids={user.songs} key="songs" />
                 </div>
             </div>
         </>
