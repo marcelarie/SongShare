@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import Button from '../../styles/components/Button/GenericButton';
+import Input from '../../styles/components/Input/GenericInput';
+import LikeIcon from '../../components/LikeButton';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,7 +29,7 @@ function PlaylistEdit() {
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
 
-    // const [name, setName] = useState(song.name);
+    const [title, setTitle] = useState(playlist.title);
     // const [uploader, setUploader] = useState(song.uploadBy);
     // const [author, setAuthor] = useState(song.author);
     // const [genre, setGenre] = useState(song.gender);
@@ -43,25 +47,46 @@ function PlaylistEdit() {
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
                 <div className="PlaylistView__header__container__info">
-                    <h2 className="PlaylistView__header__container__info__title">
-                        {playlist.title}
-                    </h2>
-                    <input type="text" value={playlist.title} />
-                    <p className="PlaylistView__header__container__info__author">
-                        {playlist.author.username}
-                    </p>
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__title"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__author"
+                        value="playlist.author.username"
+                        disabled
+                    />
                     <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
+                        <div className="PlaylistView__header__container__info__container__characteristic">
+                            <input type="text" value={playlist.type} />
+                            <input
+                                type="text"
+                                value={
+                                    playlist.publicAccess ? 'Public' : 'Private'
+                                }
+                            />
+                            <input type="text" value="playlist.description" />
+                        </div>
+                        <div className="PlaylistView__header__container__info__container__options">
+                            <Link to={`/playlist/${playlist._id}`}>
+                                <Button type="button" width="100px">
+                                    Save
+                                </Button>
+                            </Link>
+                            <Button
+                                type="button"
+                                width="100px"
+                                /* onClick={deletepla} */
+                            >
+                                Delete
+                            </Button>
+                        </div>
                     </div>
                 </div>
+
                 <div className="PlaylistView__header__container__img">
                     <p>{playlist.title}</p>
                 </div>

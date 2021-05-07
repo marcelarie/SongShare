@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
+import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import Button from '../../styles/components/Button/GenericButton';
+import Input from '../../styles/components/Input/GenericInput';
+import LikeIcon from '../../components/LikeButton';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
@@ -60,17 +64,13 @@ function Playlist() {
                             playlist.description
                         </p>
                     </div>
-                    <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
-                    </div>
+                </div>
+                <div className="PlaylistView__header__container__options">
+                    <Link to={`/playlist/${playlist._id}/edit`}>
+                        <Button type="button" width="100px">
+                            Edit
+                        </Button>
+                    </Link>
                 </div>
                 <div className="PlaylistView__header__container__img">
                     <p>{playlist.title}</p>
