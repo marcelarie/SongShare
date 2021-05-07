@@ -1,16 +1,14 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-const { config } = require("../config");
+import config from '../config/index.js';
 
 function connect() {
-  return mongoose.connect(config.db.url, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  });
+    return mongoose.connect(config.db.url, {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    });
 }
 
-module.exports = {
-  connect: connect,
-};
+export default connect;

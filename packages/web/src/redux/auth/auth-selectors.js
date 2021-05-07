@@ -1,5 +1,5 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
-export const selectAuthState = (state) => state.auth;
+export const selectAuthState = state => state.auth;
 
-export const authSelector = createSelector([selectAuthState], (auth) => auth);
+export const authSelector = createSelector([selectAuthState], auth => auth);

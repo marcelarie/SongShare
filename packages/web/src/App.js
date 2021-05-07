@@ -1,49 +1,56 @@
-import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
-import "./styles/App.scss";
+import SongModal from './pages/SongModal';
+import Header from './components/Header';
+import QuickMenu from './components/QuickMenu';
+import QuickPlaylistMenu from './components/QuickPlaylistMenu';
+import MainRouter from './Router';
+import AudioPlayer from './components/AudioPlayer';
 
-import * as ROUTES from "./routes";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-import ResetPassword from "./pages/ResetPassword";
+import { dark, light } from './styles/theme';
+import { GlobalStyles } from './styles/theme/root';
+import './styles/fonts.scss';
+import './styles/reset.scss';
 
-import { onAuthStateChanged } from "./services/auth";
-import { syncSignIn, signOut } from "./redux/auth/auth-actions";
+import useOnAuthStateChanged from './custom-hooks/onAuthStateChanged';
+
+// old styles + SideNav still WIP
+// import './styles/main.scss';
+// import SideNav from './components/SideNav';
 
 function App() {
-  const dispatch = useDispatch();
+    const auth = useSelector(store => store.auth);
+    useOnAuthStateChanged();
+    const currentTheme = useSelector(({ changeTheme }) => changeTheme.theme);
+    const { open } = useSelector(({ quickMenu }) => quickMenu);
+    const { openPL } = useSelector(
+        ({ quickPlaylistMenu }) => quickPlaylistMenu,
+    );
 
-  useEffect(() => {
-    let unsubscribeFromAuth = null;
-
-    unsubscribeFromAuth = onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(syncSignIn());
-      } else {
-        dispatch(signOut());
-      }
-    });
-
-    return () => {
-      if (unsubscribeFromAuth) {
-        unsubscribeFromAuth();
-      }
-    };
-  }, [dispatch]);
-
-  return (
-    <div className="App__container">
-      <Switch>
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-        <Route path={ROUTES.LOGIN} component={Login} />
-        <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-        <Route path={ROUTES.HOME} component={Home} exact />
-      </Switch>
-    </div>
-  );
+    return (
+        <ThemeProvider theme={currentTheme ? dark : light}>
+            <GlobalStyles>
+                {auth.isAuthenticated && (
+                    <>
+                        <Header />
+                        <SongModal />
+                    </>
+                )}
+                <main className="main">
+                    <div className="main__content">
+                        <MainRouter />
+                    </div>
+                    {open && <QuickMenu />}
+                    {openPL && <QuickPlaylistMenu />}
+                </main>
+                {auth.isAuthenticated && <AudioPlayer />}
+            </GlobalStyles>
+        </ThemeProvider>
+    );
 }
 
 export default App;
+
+// {auth.isAuthenticated && <SideNav className="main__sideNav" />}

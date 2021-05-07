@@ -1,5 +1,5 @@
-const UserModel = require("./user-model");
+import User from './user-model.js';
+import Song from './song-model.js';
+import Playlist from './playlist-model.js';
 
-module.exports = {
-  User: UserModel,
-};
+export { User, Song, Playlist };

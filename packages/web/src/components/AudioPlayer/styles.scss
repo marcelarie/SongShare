@@ -1,0 +1,25 @@
+.audioPlayer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+}
+
+.rhap_progress-section {
+    justify-content: space-between;
+}
+
+.rhap_progress-container {
+    // margin-left: 0px;
+    max-width: 40%;
+    // margin-right: 0px;
+}
+
+.rhap_volume-controls {
+    display: block;
+    max-width: 110px;
+}
+
+.rhap_additional-controls {
+    flex: none;
+    justify-self: flex-end;
+}

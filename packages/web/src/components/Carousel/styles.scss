@@ -1,0 +1,10 @@
+.carousel {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    overflow-x: scroll;
+    h2 {
+        font-weight: 600;
+    }
+    padding-bottom: 0.5rem;
+}

@@ -1,0 +1,47 @@
+.song-modal {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -60%);
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    margin: 0 auto;
+
+    &__image {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 0.5rem;
+        img {
+            border-radius: 3px;
+        }
+    }
+    &__likes {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 1.5rem;
+        p {
+            margin: 0 0.5rem;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    input {
+        font-size: 1rem;
+        margin: 0.3rem 0;
+    }
+    button {
+        margin: 0.3rem;
+    }
+
+    .disable-input {
+        all: unset;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+}

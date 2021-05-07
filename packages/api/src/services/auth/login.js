@@ -1,4 +1,5 @@
-const { signOut } = require("./sign-out");
+// const { signOut } = require("./sign-out")
+import signOut from './sign-out.js';
 
 /**
  * Adds the user claims to the request object
@@ -10,20 +11,22 @@ const { signOut } = require("./sign-out");
  * req.signOut = auth.signOut
  */
 function login(req = {}, userClaims = {}) {
-  const { email, uid } = userClaims;
+    const { email, uid } = userClaims;
 
-  if (typeof email !== "string" || typeof uid !== "string") {
-    throw new Error("Missing user claims");
-  }
+    if (typeof email !== 'string' || typeof uid !== 'string') {
+        throw new Error('Missing user claims');
+    }
 
-  req.user = {
-    email: email,
-    uid: uid,
-  };
+    req.user = {
+        email: email,
+        uid: uid,
+    };
 
-  req.signOut = signOut;
+    req.signOut = signOut;
 }
 
-module.exports = {
-  login: login,
-};
+// module.exports = {
+//     login: login,
+// }
+
+export default login;

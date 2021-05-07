@@ -1,0 +1,79 @@
+.songListItem {
+    width: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 1px;
+    padding: 1rem;
+    &:hover {
+        opacity: 0.9;
+        transition: 0.3s;
+    }
+    &__img {
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+        img {
+            padding: 0;
+            width: 50px;
+        }
+    }
+    &__content {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__title {
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        &__info {
+            display: flex;
+            align-items: center;
+            &__like {
+                display: flex;
+                align-items: center;
+                margin-right: 1rem;
+                &__text {
+                    color: rgb(82, 82, 82);
+                    margin-right: 0.5rem;
+                }
+                &__icon {
+                    all: unset;
+                    background-image: url('https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-512.png');
+                    background-size: cover;
+                    width: 15px;
+                    height: 15px;
+                    cursor: pointer;
+                }
+            }
+            &__playButton {
+                flex-grow: 1;
+                all: unset;
+                cursor: pointer;
+                opacity: 0.2;
+            }
+            &__playIcon {
+                padding: 0.2rem;
+                border-radius: 50%;
+            }
+
+            &:hover &__playButton {
+                opacity: 0.7;
+                transition: 0.5s;
+            }
+        }
+    }
+
+    &__addSongButton__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #b4b4b4;
+    }
+}
