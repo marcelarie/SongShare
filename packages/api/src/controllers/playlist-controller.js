@@ -32,10 +32,11 @@ async function createPlaylist(req, res, next) {
 
 async function getAllPlaylists(req, res, next) {
     try {
-        const response = await PlaylistRepo.findAndPopulate({}, [
+        const response = await PlaylistRepo.findAndPopulate(
+            {},
             'author',
             'username',
-        ]);
+        );
 
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
@@ -61,18 +62,24 @@ async function addSongsInfo(playlist) {
 
 async function getPlaylistById(req, res, next) {
     const { id } = req.params;
-    const { withSongsInfo } = req.query;
+    /* const { withSongsInfo } = req.query; */
     try {
-        const response = await PlaylistRepo.findOne({ _id: id });
+        const response = await PlaylistRepo.findOneAndPouplate(
+            { _id: id },
+            'author',
+            'username',
+        );
 
+        if (response.data) return res.status(200).send(response);
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
-        if (response.data) {
+
+        /* if (response.data) {
             if (withSongsInfo) {
                 response.data = await addSongsInfo(response.data); // this function make a populate to the data if the req has query param true
             }
             return res.status(200).send(response);
-        }
+        } */
     } catch (error) {
         next(error);
     }

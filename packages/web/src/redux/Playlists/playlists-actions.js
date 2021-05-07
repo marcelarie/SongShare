@@ -174,7 +174,7 @@ export function getPlaylist(playlistID, withSongsInfo) {
                 playlistID,
                 withSongsInfo,
             );
-
+            console.log(res);
             if (res.errorMessage) {
                 return dispatch(
                     getPlaylistsError(`Error: ${res.errorMessage}`),
@@ -211,7 +211,7 @@ export function addSongsToPlaylist(playlistId, songs) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(updatePlaylistSuccess(res.data));
+            return dispatch(updatePlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }
