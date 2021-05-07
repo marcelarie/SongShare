@@ -19,7 +19,12 @@ const QuickMenu = () => {
     );
     const audioPlayer = useSelector(state => state.audioPlayer);
 
+    const { byID } = useSelector(state => state.songs);
+    const { _id } = useSelector(state => state.user);
+
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
+
+    const showPrivateOptions = byID[id].username === _id;
 
     const addSongToQueue = () => {
         dispatch(addToQueue(id));
@@ -58,7 +63,7 @@ const QuickMenu = () => {
                         Add to queue
                     </button>
                 </li>
-                {true && (
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
@@ -69,7 +74,7 @@ const QuickMenu = () => {
                         </button>
                     </li>
                 )}
-                {true && (
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
