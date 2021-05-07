@@ -12,6 +12,7 @@ import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
 import AddSongs from './pages/AddSongs';
 import Playlist from './pages/PlaylistView';
+import Search from './pages/Search';
 
 // import templates from './pages/UserInfo/UserProfileTemplates';
 // import UploadSong from './components/UploadSong';
@@ -40,6 +41,7 @@ function MainRouter() {
                 component={UserProfile}
                 // exact
             />
+            <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}
