@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import colors from '../../color-palette';
 
 const GenericNavButton = styled.button`
     all: unset;
-    color: ${({ theme }) => theme.lightGray};
+    color: ${colors.lightGray};
     font-size: 1.3em;
     margin: 0 2rem;
     &:hover {
-        color: ${({ theme }) => theme.textColor};
+        color: ${({ theme }) => theme.text};
         transition: 0.8ms;
     }
     &:active {

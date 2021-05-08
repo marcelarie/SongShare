@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 const SongCard = styled.div`
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.text};
     .songsCard__container {
         background-image: url(${props => props.image});
     }
     .songsCard__description {
         color: #b4b4b4;
         &:hover {
-            color: ${({ theme }) => theme.textColor};
+            color: ${({ theme }) => theme.text};
             transition: 0.3s;
         }
     }
     .songsCard__playButton {
-        fill: ${({ theme }) => theme.backgroundColor};
+        fill: ${({ theme }) => theme.background};
     }
 `;
 

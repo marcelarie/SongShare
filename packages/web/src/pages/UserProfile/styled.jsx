@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../styles/color-palette';
 
 const UserProfile = styled.div`
     .user__header {
@@ -7,9 +8,8 @@ const UserProfile = styled.div`
         background-size: cover;
     }
     .user__main__aside__offset {
-        box-shadow: ${({ theme }) => theme.mainDarkGrayTransparent} 0px 10px
-                40px 4px,
-            ${({ theme }) => theme.mainDarkGrayTransparent} 0px -10px 40px 4px;
+        box-shadow: ${colors.darkGrayOpacity7} 0px 10px 40px 4px,
+            ${colors.darkGrayOpacity7} 0px -10px 40px 4px;
     }
 `;
 

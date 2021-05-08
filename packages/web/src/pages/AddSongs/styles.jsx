@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const SongListItem = styled.div`
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.text};
     .SongListItem__playButton {
-        fill: ${({ theme }) => theme.backgroundColor};
+        fill: ${({ theme }) => theme.background};
     }
 `;
 

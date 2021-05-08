@@ -4,7 +4,7 @@ const Nav = styled.nav`
     all: unset;
     transition: 0.6s;
     z-index: 2;
-    background-color: ${({ theme }) => theme.backgroundColor};
+    background-color: ${({ theme }) => theme.background};
     display: flex;
     align-items: center;
     position: sticky;
@@ -18,7 +18,7 @@ const Nav = styled.nav`
         font-size: 1.7rem;
         transition: 0.6s;
         &:hover {
-            color: ${({ theme }) => theme.color};
+            color: ${({ theme }) => theme.main};
             transition: 0.5s;
         }
     }

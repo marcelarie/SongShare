@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as colors from '../../styles/color-palette';
+import colors from '../../styles/color-palette';
 
 const handleBackgroundColor = ({ songState }) => {
     return songState.error ? colors.mainDarkGray : colors.greenSuccess;

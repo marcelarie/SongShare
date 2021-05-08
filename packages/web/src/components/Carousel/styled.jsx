@@ -8,17 +8,17 @@ const Carousel = styled.div`
 
     /* Track */
     &::-webkit-scrollbar-track {
-        background: ${({ theme }) => theme.mainDarkGrayTransparent};
+        background: ${({ theme }) => theme.mainDarkOpacity7};
         border-radius: 5px;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.color};
+        background: ${({ theme }) => theme.main};
         border-radius: 2px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: ${({ theme }) => theme.colorDark};
+        background: ${({ theme }) => theme.mainDark};
         transition: 0.5s;
     }
 `;
