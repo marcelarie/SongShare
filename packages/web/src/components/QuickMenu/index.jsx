@@ -107,24 +107,36 @@ const QuickMenu = () => {
                 )}
                 {playlistsByID[id] && (
                     <li>
-                        <button
-                            className="quickmenu"
-                            type="button"
-                            // onClick={???}
-                        >
-                            algo de playlist
-                        </button>
-                    </li>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={() => dispatch(openModal(false))}
+                    >
+                        Reproducir playlist
+                    </button>
+                </li>
                 )}
                 {playlistsByID[id] && showPrivateOptions && (
                     <>
+                    <li>
+                    <Link
+                    to={`/${id}/addsongs`}>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={() => dispatch(openModal(false))}
+                    >
+                        Add songs to playlist
+                    </button>
+                    </Link>
+                </li>
                     <li>
                         <Link
                         to={`/playlist/${id}/edit`}>
                         <button
                             className="quickMenu"
                             type="button"
-                            onClick={openPlaylistInfo}
+                            onClick={() => dispatch(openModal(false))}
                         >
                             Edit
                         </button>

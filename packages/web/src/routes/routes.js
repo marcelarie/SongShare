@@ -12,4 +12,4 @@ export const MY_PLAYLISTS = '/playlists';
 export const NEW_PLAYLIST = '/newplaylist';
 export const PLAYLIST_VIEW = '/playlist/:id';
 export const PLAYLIST_VIEW_EDIT = '/playlist/:id/edit';
-export const ADD_SONGS = '/:playlistTitle/addsongs';
+export const ADD_SONGS = '/:playlistId/addsongs';

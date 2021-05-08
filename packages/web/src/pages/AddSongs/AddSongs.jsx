@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 
 import { Link } from 'react-router-dom';
 
@@ -16,9 +16,9 @@ import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import Button from '../../styles/components/Button/GenericButton';
 
-function AddSongs({ location }) {
-    const { playlistId } = location;
+function AddSongs() {
     const dispatch = useDispatch();
+    const { playlistId } = useParams();
 
     const { ids } = useSelector(({ songs }) => songs);
     const { byID } = useSelector(({ playlists }) => playlists);

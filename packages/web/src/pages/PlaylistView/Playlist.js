@@ -19,6 +19,10 @@ import {
 // import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
+import {
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
 
 import './styles.scss';
 
@@ -28,21 +32,12 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-
-    // const [name, setName] = useState(song.name);
-    // const [uploader, setUploader] = useState(song.uploadBy);
-    // const [author, setAuthor] = useState(song.author);
-    // const [genre, setGenre] = useState(song.gender);
+    const [openMenu] = useQuickMenu();
 
     useEffect(() => {
         dispatch(getPlaylist(id));
-
-        // setName(song.name);
-        // setUploader(song.uploadBy);
-        // setAuthor(song.author);
-        // setGenre(song.gender);
     }, [dispatch, id]);
-
+    useQuickMenuListener();
     return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
@@ -52,13 +47,13 @@ function Playlist() {
                         type="text"
                         className="PlaylistView__header__container__info__title"
                         value={playlist.title}
-                        disabled
+                        readOnly
                     />
                     <input
                         type="text"
                         className="PlaylistView__header__container__info__author"
                         value={playlist.author.username}
-                        disabled
+                        readOnly
                     />
                     <div className="PlaylistView__header__container__info__container">
                         <div className="PlaylistView__header__container__info__container__characteristic">
@@ -67,32 +62,28 @@ function Playlist() {
                                 value={
                                     playlist.publicAccess ? 'Public' : 'Private'
                                 }
-                                disabled
+                                readOnly
                             />
                             <input
                                 type="text"
                                 value="playlist.description"
-                                disabled
+                                readOnly
                             />
                         </div>
                         <div className="PlaylistView__header__container__info__container__options">
-                            <Link to={`/playlist/${playlist._id}/edit`}>
                                 <Button
                                     className="editButton"
                                     type="button"
                                     width="100px"
                                 >
-                                    Edit
+                                    Reproducir
                                 </Button>
-                            </Link>
-                            <Link
-                                to={{
-                                    pathname: `/${playlist._id}/addsongs`,
-                                    playlistId: playlist._id,
-                                }}
-                                className="PlaylistCard__container__3pointButton quickMenu"
-                                type="button"
-                            />
+                            <button
+                            className="PlaylistCard__container__3pointButton
+                        quickMenu"
+                            type="button"
+                            onMouseDown={e => openMenu(e, playlist._id)}
+                        />
                         </div>
                     </div>
                 </div>
