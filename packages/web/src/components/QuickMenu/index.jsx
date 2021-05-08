@@ -14,8 +14,6 @@ import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
-
-
 const QuickMenu = () => {
     const dispatch = useDispatch();
     const { positionX, positionY, id } = useSelector(
@@ -29,7 +27,9 @@ const QuickMenu = () => {
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 
-    const showPrivateOptions = (byID[id] && byID[id].username === _id) || (playlistsByID[id] && playlistsByID[id].author._id === _id)
+    const showPrivateOptions =
+        (byID[id] && byID[id].username === _id) ||
+        (playlistsByID[id] && playlistsByID[id].author._id === _id);
 
     const addSongToQueue = () => {
         dispatch(addToQueue(id));
@@ -47,10 +47,8 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
-    
-
-     const openPlaylistInfo = () => {
-        dispatch(openModal(false))
+    const openPlaylistInfo = () => {
+        dispatch(openModal(false));
         // NO WORKING WHY? --> return <Redirect to={`/playlist/${id}/edit`} />
     };
 
@@ -85,73 +83,71 @@ const QuickMenu = () => {
                 )}
                 {!playlistsByID[id] && showPrivateOptions && (
                     <>
-                    <li>
-                        <button
-                            className="quickMenu"
-                            type="button"
-                            onClick={openSongInfo}
-                        >
-                            Edit
-                        </button>
-                    </li>
-                    <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={deleteSong}
-                    >
-                        Delete
-                    </button>
-                </li>
-                </>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={openSongInfo}
+                            >
+                                Edit
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={deleteSong}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    </>
                 )}
                 {playlistsByID[id] && (
                     <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={() => dispatch(openModal(false))}
-                    >
-                        Reproducir playlist
-                    </button>
-                </li>
-                )}
-                {playlistsByID[id] && showPrivateOptions && (
-                    <>
-                    <li>
-                    <Link
-                    to={`playlist/${id}/addsongs`}>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={() => dispatch(openModal(false))}
-                    >
-                        Add songs to playlist
-                    </button>
-                    </Link>
-                </li>
-                    <li>
-                        <Link
-                        to={`/playlist/${id}/edit`}>
                         <button
                             className="quickMenu"
                             type="button"
                             onClick={() => dispatch(openModal(false))}
                         >
-                            Edit
+                            Reproducir playlist
                         </button>
-                        </Link>
                     </li>
-                    <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={deleteSong}
-                    >
-                        Delete
-                    </button>
-                </li>
-                </>
+                )}
+                {playlistsByID[id] && showPrivateOptions && (
+                    <>
+                        <li>
+                            <Link to={`/playlist/${id}/addsongs`}>
+                                <button
+                                    className="quickMenu"
+                                    type="button"
+                                    onClick={() => dispatch(openModal(false))}
+                                >
+                                    Add songs to playlist
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/playlist/${id}/edit`}>
+                                <button
+                                    className="quickMenu"
+                                    type="button"
+                                    onClick={() => dispatch(openModal(false))}
+                                >
+                                    Edit
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={deleteSong}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    </>
                 )}
             </ul>
         </QuickMenuStyle>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './styles.scss';
 
-function LikeIcon({ likes, handleLike }) {
+function LikeIcon({ likes, handleLike, zoom = false }) {
     const [active, setActive] = useState(false);
     const currentUser = useSelector(({ user }) => user);
 
@@ -18,9 +18,9 @@ function LikeIcon({ likes, handleLike }) {
         <svg
             x="0"
             y="0"
-            width="10px"
-            height="10px"
-            viewBox="0 -15 10 60"
+            width="50px"
+            height="50px"
+            viewBox={zoom ? '0 0 30 35' : '0 -12 10 60'}
             className={
                 active
                     ? 'icon is-hoverable is-transit is-activeable active'

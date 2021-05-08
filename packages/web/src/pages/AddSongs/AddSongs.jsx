@@ -30,7 +30,6 @@ function AddSongs() {
         dispatch(getAllSongs());
     }, [dispatch]);
 
-
     function addSong(id) {
         const index = songsToAdd.findIndex(element => element === id);
         if (index === -1) {
@@ -45,8 +44,8 @@ function AddSongs() {
         }
     }
 
-    if(playlist.author._id !== userId) {
-        console.log("cant go")
+    if (playlist.author._id !== userId) {
+        console.log('cant go');
         return <Redirect to={`/playlist/${playlist._id}`} />;
     }
 

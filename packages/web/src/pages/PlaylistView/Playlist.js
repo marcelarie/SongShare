@@ -2,19 +2,18 @@ import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import Button from '../../styles/components/Button/GenericButton';
-import Input from '../../styles/components/Input/GenericInput';
 import LikeIcon from '../../components/LikeButton';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
-    // addLikeToSong,
+    addLikeToPlaylist,
     // deleteSongByID,
     // editSongByID,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
-
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
@@ -41,8 +40,25 @@ function Playlist() {
     return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
+                <div className="PlaylistView__header__container__img">
+                    <p>{playlist.title}</p>
+                </div>
                 <div className="PlaylistView__header__container__info">
-                    <input type="text" value={playlist.type} disabled />
+                    <div className="PlaylistView__header__container__info__container-info">
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__type"
+                            value={playlist.type}
+                            readOnly
+                        />
+                        <span> · </span>
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__access"
+                            value={playlist.publicAccess ? 'Public' : 'Private'}
+                            readOnly
+                        />
+                    </div>
                     <input
                         type="text"
                         className="PlaylistView__header__container__info__title"
@@ -55,41 +71,41 @@ function Playlist() {
                         value={playlist.author.username}
                         readOnly
                     />
+
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__description"
+                        value="playlist.description"
+                        readOnly
+                    />
                     <div className="PlaylistView__header__container__info__container">
-                        <div className="PlaylistView__header__container__info__container__characteristic">
-                            <input
-                                type="text"
-                                value={
-                                    playlist.publicAccess ? 'Public' : 'Private'
-                                }
-                                readOnly
-                            />
-                            <input
-                                type="text"
-                                value="playlist.description"
-                                readOnly
-                            />
-                        </div>
-                        <div className="PlaylistView__header__container__info__container__options">
-                                <Button
-                                    className="editButton"
-                                    type="button"
-                                    width="100px"
-                                >
+                        <div className="PlaylistView__header__container__info__container__buttons">
+                            <div className="PlaylistView__header__container__info__container__buttons__options">
+                                <Button type="button" width="100px">
                                     Reproducir
                                 </Button>
-                            <button
-                            className="PlaylistCard__container__3pointButton
-                        quickMenu"
-                            type="button"
-                            onMouseDown={e => openMenu(e, playlist._id)}
-                        />
+
+                                <button
+                                    className="PlaylistCard__container__3pointButton
+                        quickMenu PlaylistView__header__container__info__container__buttons__3point"
+                                    type="button"
+                                    onMouseDown={e => openMenu(e, playlist._id)}
+                                />
+                            </div>
+                            <LikeIcon
+                                zoom="true"
+                                handleLike={() =>
+                                    dispatch(addLikeToPlaylist(playlist._id))
+                                }
+                                likes={playlist.likedBy}
+                            />
+                        </div>
+                        <div className="PlaylistView__header__container__info__container__popuInf">
+                            <p className="PlaylistView__header__container__info__container__popuInf__like__text">
+                                {playlist.likedBy.length} likes
+                            </p>
                         </div>
                     </div>
-                </div>
-
-                <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
                 </div>
             </div>
             <SongsList

@@ -39,8 +39,16 @@ function MainRouter() {
                 component={PlaylistEdit}
                 exact
             />
-            <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} exact />
-            <ProtectedRoute path={ROUTES.ADD_SONGS} component={AddSongs} exact />
+            <ProtectedRoute
+                path={ROUTES.PLAYLIST_VIEW}
+                component={Playlist}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.ADD_SONGS}
+                component={AddSongs}
+                exact
+            />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserProfile}

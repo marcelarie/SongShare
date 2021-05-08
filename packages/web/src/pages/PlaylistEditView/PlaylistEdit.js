@@ -24,7 +24,7 @@ function PlaylistEdit() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-    const userId = useSelector(state => state.user._id)
+    const userId = useSelector(state => state.user._id);
 
     const [title, setTitle] = useState(playlist.title);
     // const [uploader, setUploader] = useState(song.uploadBy);
@@ -40,8 +40,8 @@ function PlaylistEdit() {
         // setGenre(song.gender);
     }, [dispatch, id]);
 
-    if(playlist.author._id !== userId) {
-        console.log("cant edir")
+    if (playlist.author._id !== userId) {
+        console.log('cant edir');
         return <Redirect to={`/playlist/${playlist._id}`} />;
     }
 

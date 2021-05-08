@@ -137,7 +137,9 @@ export function getAllPlaylists() {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(getPlaylistsError(`Error: ${res.errorMessage}`));
+                return dispatch(
+                    getPlaylistsError(`Error: ${res.errorMessage}`),
+                );
             }
             const res = await api.AllPlaylists({
                 Authorization: `Bearer ${token}`,

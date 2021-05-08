@@ -52,12 +52,12 @@ function PlaylistCard({ playlist }) {
             <PlaylistCardStyle image={playlist.img} className="PlaylistCard">
                 <div className="PlaylistCard__container">
                     <div className="PlaylistCard__container__header">
-                            <LikeIcon
-                                handleLike={() =>
-                                    dispatch(addLikeToPlaylist(playlist._id))
-                                }
-                                likes={playlist.likedBy}
-                            />
+                        <LikeIcon
+                            handleLike={() =>
+                                dispatch(addLikeToPlaylist(playlist._id))
+                            }
+                            likes={playlist.likedBy}
+                        />
                         {
                             // <Link
                             // to={{
@@ -86,7 +86,7 @@ function PlaylistCard({ playlist }) {
                         playlistId: playlist._id,
                     }}
                 >
-                        <p className="PlaylistCard__title">{playlist.title}</p>
+                    <p className="PlaylistCard__title">{playlist.title}</p>
                 </Link>
                 <div className="PlaylistCard__description">
                     By: {playlist.author.username}
