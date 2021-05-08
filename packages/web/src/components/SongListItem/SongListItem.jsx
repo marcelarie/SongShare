@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './styles.scss';
 
 import { play } from '../../redux/audioPlayer/audioPlayer-actions';
 
+import './styles.scss';
 import SongListItemStyle from './styles';
+import LikeIcon from '../LikeButton';
+
+import { addLikeToSong } from '../../redux/songs/songs-actions';
 
 function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
     const [itemSelected, setItemSelected] = useState(false);
@@ -54,9 +57,11 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                             <p className="songListItem__content__info__like__text">
                                 {song.likes.length} likes
                             </p>
-                            <button
-                                className="songListItem__content__info__like__icon"
-                                type="button"
+                            <LikeIcon
+                                handleLike={() =>
+                                    dispatch(addLikeToSong(song._id))
+                                }
+                                likes={song.likes}
                             />
                         </div>
                         <button

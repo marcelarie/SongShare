@@ -18,9 +18,9 @@ import {
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
-import PlaylistViewStyle from './styled';
+import PlaylistViewStyle from '../PlaylistView/styled';
 
-import './styles.scss';
+import '../PlaylistView/styles.scss';
 
 function PlaylistEdit() {
     const dispatch = useDispatch();
@@ -56,7 +56,7 @@ function PlaylistEdit() {
                     <input
                         type="text"
                         className="PlaylistView__header__container__info__author"
-                        value="playlist.author.username"
+                        value={playlist.author.username}
                         disabled
                     />
                     <div className="PlaylistView__header__container__info__container">

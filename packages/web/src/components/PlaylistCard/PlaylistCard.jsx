@@ -51,17 +51,16 @@ function PlaylistCard({ playlist }) {
             <PlaylistCardStyle image={playlist.img} className="PlaylistCard">
                 <div className="PlaylistCard__container">
                     <div className="PlaylistCard__container__header">
+                        <LikeIcon
+                            handleLike={() =>
+                                dispatch(addLikeToPlaylist(playlist._id))
+                            }
+                            likes={playlist.likedBy}
+                        />
                         <button
                             className="PlaylistCard__container__like"
                             type="button"
-                        >
-                            <LikeIcon
-                                handleLike={() =>
-                                    dispatch(addLikeToPlaylist(playlist._id))
-                                }
-                                likes={playlist.likedBy}
-                            />
-                        </button>
+                        />
                         <Link
                             to={{
                                 pathname: `/${playlist._id}/addsongs`,

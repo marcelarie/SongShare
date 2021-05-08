@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import * as colors from '../../styles/color-palette';
 
 const SongListItem = styled.div`
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.bg};
     .songListItem__content__info__playButton {
-        fill: ${({ theme }) => theme.mainBlack};
+        fill: ${({ theme }) => theme.bgColor};
     }
     .songListItem__content__info__playIcon {
-        background-color: ${({ theme }) => theme.color};
+        background-color: ${({ theme }) => theme.bg};
+        border: 1px solid ${({ theme }) => theme.bgColor};
+        box-shadow: 0 0 5px ${({ theme }) => theme.bgColor};
     }
     .songListItem {
-        border-bottom: 1px solid ${({ theme }) => theme.color};
+        border-bottom: 1px solid ${({ theme }) => theme.pinkColor};
     }
     .selected {
         background-color: ${({ theme }) => theme.colorDarkTransparent};
-        box-shadow: 0px 0px 10px ${({ theme }) => theme.color};
+        box-shadow: 0px 0px 10px ${({ theme }) => theme.pinkColor};
     }
 `;
 

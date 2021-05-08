@@ -12,7 +12,7 @@ import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
-const QuickMenu = () => {
+const QuickMenu = type => {
     const dispatch = useDispatch();
     const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
@@ -45,30 +45,48 @@ const QuickMenu = () => {
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
             <ul>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={openPlaylistMenu}
-                    >
-                        Add to playlist
-                    </button>
-                </li>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={addSongToQueue}
-                    >
-                        Add to queue
-                    </button>
-                </li>
+                {type === 'song' ? (
+                    <>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={openPlaylistMenu}
+                            >
+                                Add to playlist
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={addSongToQueue}
+                            >
+                                Add to queue
+                            </button>
+                        </li>
+                    </>
+                ) : (
+                    <li>
+                        <button
+                            className="quickMenu"
+                            type="button"
+                            /* onClick={reproducePlaylist} */
+                        >
+                            Reproduce playlist
+                        </button>
+                    </li>
+                )}
                 {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
                             type="button"
-                            onClick={openSongInfo}
+                            onClick={
+                                type === 'song'
+                                    ? openSongInfo
+                                    : null /* openPlaylistViewEdit */
+                            }
                         >
                             Edit
                         </button>
@@ -79,12 +97,17 @@ const QuickMenu = () => {
                         <button
                             className="quickMenu"
                             type="button"
-                            onClick={deleteSong}
+                            onClick={
+                                type === 'song'
+                                    ? deleteSong
+                                    : null /* deletePlaylist */
+                            }
                         >
                             Delete
                         </button>
                     </li>
                 )}
+                )
             </ul>
         </QuickMenuStyle>
     );

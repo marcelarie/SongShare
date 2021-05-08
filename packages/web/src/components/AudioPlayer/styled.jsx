@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const DinamicPlayer = styled.div`
     .audioPlayer {
-        color: ${props => props.theme.textColor};
+        color: ${props => props.theme.text};
         background-color: ${props => props.theme.audioplayerBackground};
         box-shadow: ${props => props.theme.boxShadow};
         .rhap_button-clear {
@@ -24,7 +24,7 @@ const DinamicPlayer = styled.div`
             background: ${props => props.theme.audioplayerButtonColor};
         }
         .rhap_time {
-            color: ${props => props.theme.textColor};
+            color: ${props => props.theme.text};
         }
     }
 `;

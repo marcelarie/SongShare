@@ -1,0 +1,101 @@
+.PlaylistView {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+
+    &__header__container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+
+        &__img {
+            width: 30%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p {
+                font-size: 2rem;
+                font-weight: 800;
+            }
+        }
+
+        &__info {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin-top: 1rem;
+            &__title {
+                width: 95%;
+                height: 40%;
+                font-size: 2.5rem;
+                font-weight: 800;
+                border-radius: 5px;
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            &__author {
+                height: 20%;
+                font-weight: 600;
+                padding: 0 0.5rem;
+                margin-bottom: 1rem;
+            }
+            &__container {
+                display: flex;
+                width: 100%;
+                height: 30%;
+                flex-direction: column;
+                align-items: flex-start;
+                &__characteristic {
+                    display: flex;
+                    width: 100%;
+                    input {
+                        width: 33%;
+                        margin-right: 1rem;
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        background-color: rgba(255, 255, 255, 0.453);
+                        padding: 0.3rem;
+                    }
+                }
+                &__options {
+                    display: flex;
+                    width: 100%;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    button {
+                        margin-right: 0.2rem;
+                    }
+                }
+            }
+        }
+
+        &__likes {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 1.5rem;
+            p {
+                margin: 0 0.5rem;
+            }
+        }
+        &__buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        input {
+            outline: none;
+            border: none;
+        }
+        input:focus {
+            box-shadow: 0px 0px 5px rgba(202, 202, 202, 0.398);
+            border: 1px solid rgb(95, 95, 95);
+        }
+    }
+}
