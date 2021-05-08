@@ -5,16 +5,19 @@ const Carousel = styled.div`
     &::-webkit-scrollbar {
         width: 20px;
         height: 6px;
+        transition: 0.6s;
+    }
+    &:hover::-webkit-scrollbar {
+        height: 10px;
     }
 
     /* Track */
     &::-webkit-scrollbar-track {
-        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.7')};
-        border-radius: 5px;
+        background: none;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.main};
+        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.6')};
         border-radius: 2px;
     }
 

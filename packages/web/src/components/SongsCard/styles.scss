@@ -24,14 +24,13 @@
         &__header {
             margin: 0.5rem 0;
             display: flex;
-            align-items: center;
         }
         &__3pointButton {
             all: unset;
             background-image: url('https://cdn3.iconfinder.com/data/icons/user-interface-1-10/24/icon-ui-1-options-512.png');
             background-size: cover;
-            width: 17px;
-            height: 17px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
         }
         &__like {

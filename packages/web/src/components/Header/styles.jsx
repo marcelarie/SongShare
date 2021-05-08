@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import hexToRgba from 'hex-to-rgba';
 
 const Nav = styled.nav`
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-    font-family: 'Bebas Neue', cursive;
     all: unset;
     transition: 0.6s;
     z-index: 2;
@@ -18,28 +16,47 @@ const Nav = styled.nav`
     a {
         text-decoration: none;
     }
-    h1 {
-        font-size: 2rem;
-        transition: 0.6s;
-        &:hover {
-            color: ${({ theme }) => theme.main};
-            transition: 0.5s;
-        }
-    }
     .nav-logo {
-        flex: 0.5;
+        flex: 0.2;
+        padding-bottom: 1rem;
+        h1 {
+            font-size: 2rem;
+            transition: 0.6s;
+            text-align: center;
+            line-height: 1.8rem;
+            &:hover {
+                span {
+                    color: ${({ theme }) => theme.main};
+                    transition: 0.5s;
+                }
+            }
+        }
     }
     .nav-menu {
         display: flex;
         justify-content: center;
+        margin: 0 2rem;
+        flex: 3;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.2')};
         a {
             padding: 0 2rem;
-            font-size: 0.8rem;
-        }
+            font-size: 0.7rem;
+            button {
+                padding: 0.5rem 1rem;
+                &:focus {
+                    border: 1px solid
+                        ${({ theme }) => hexToRgba(theme.text, '0.3')};
 
-        padding-bottom: 2rem;
-        border-bottom: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.2')};
-        flex: 3;
+                    box-shadow: 5px 4px
+                        ${({ theme }) => hexToRgba(theme.text, '0.2')};
+                    font-weight: 600;
+                }
+                &:hover {
+                    color: ${({ theme }) => theme.main};
+                }
+            }
+        }
     }
     .nav-user {
         display: flex;
@@ -49,11 +66,15 @@ const Nav = styled.nav`
         &__username {
             all: unset;
             cursor: pointer;
+            letter-spacing: 0.2rem;
+        }
+        span {
+            font-size: 1.5rem;
         }
         &__image {
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             margin: auto 0.5rem;
             border-radius: 50%;
             &:active {

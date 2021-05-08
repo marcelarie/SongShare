@@ -54,15 +54,15 @@ function SongsCard({ song }) {
                             type="button"
                             onMouseDown={e => openMenu(e, cardId)}
                         />
+                        <button
+                            className="songsCard__playButton"
+                            type="button"
+                            onClick={reproduceSong}
+                        >
+                            {PlayPauseButton(song._id)}
+                        </button>
                     </div>
                 </div>
-                <button
-                    className="songsCard__playButton"
-                    type="button"
-                    onClick={reproduceSong}
-                >
-                    {PlayPauseButton(song._id)}
-                </button>
                 <section onMouseDown={openSongInfo} role="button" tabIndex={0}>
                     <p className="songsCard__title">{song.name}</p>
                 </section>
