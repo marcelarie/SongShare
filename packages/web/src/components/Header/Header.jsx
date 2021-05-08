@@ -33,26 +33,26 @@ function Header() {
     useEffect(() => {}, [currentLocation, imageUrl]);
 
     return (
-        <Nav color="red">
-            <NavLink to="/">
+        <Nav>
+            <NavLink className="nav-logo" to="/">
                 <h1>
-                    Song
+                    the
                     <br />
-                    Share
+                    LOGO
                 </h1>
             </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
-                    <NavButton>Home</NavButton>
+                    <NavButton>HOME</NavButton>
                 </NavLink>
                 <NavLink to="/search">
-                    <NavButton>Search</NavButton>
+                    <NavButton>SEARCH</NavButton>
                 </NavLink>
                 <NavLink to={MY_MUSIC}>
-                    <NavButton>My Music</NavButton>
+                    <NavButton>MY MUSIC</NavButton>
                 </NavLink>
                 <NavLink to={MY_PLAYLISTS}>
-                    <NavButton>My Playlists</NavButton>
+                    <NavButton>MY PLAYLISTS</NavButton>
                 </NavLink>
             </div>
 

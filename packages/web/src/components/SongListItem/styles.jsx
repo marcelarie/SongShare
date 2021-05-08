@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import * as colors from '../../styles/color-palette';
+// import hexToRgba from 'hex-to-rgba';
 
 const SongListItem = styled.div`
     color: ${({ theme }) => theme.text};
     background-color: ${({ theme }) => theme.bg};
+
     .songListItem__content__info__playButton {
         fill: ${({ theme }) => theme.bgColor};
     }

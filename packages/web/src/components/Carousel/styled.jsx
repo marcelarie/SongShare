@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba';
 
 const Carousel = styled.div`
     &::-webkit-scrollbar {
@@ -8,17 +9,17 @@ const Carousel = styled.div`
 
     /* Track */
     &::-webkit-scrollbar-track {
-        background: ${({ theme }) => theme.mainDarkGrayTransparent};
+        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.7')};
         border-radius: 5px;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.color};
+        background: ${({ theme }) => theme.main};
         border-radius: 2px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: ${({ theme }) => theme.colorDark};
+        background: ${({ theme }) => theme.mainDark};
         transition: 0.5s;
     }
 `;
