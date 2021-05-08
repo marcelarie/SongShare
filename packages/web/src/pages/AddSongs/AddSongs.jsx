@@ -24,14 +24,12 @@ function AddSongs() {
     const { byID } = useSelector(({ playlists }) => playlists);
 
     const playlist = byID[playlistId];
-
+    const userId = useSelector(state => state.user._id);
+    const songsToAdd = byID[playlistId].songs;
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
-    if (!playlistId) {
-        return <Redirect to="/playlists" />;
-    }
-    const songsToAdd = byID[playlistId].songs;
+
 
     function addSong(id) {
         const index = songsToAdd.findIndex(element => element === id);
@@ -45,6 +43,11 @@ function AddSongs() {
         if (index >= 0) {
             songsToAdd.splice(index, 1);
         }
+    }
+
+    if(playlist.author._id !== userId) {
+        console.log("cant go")
+        return <Redirect to={`/playlist/${playlist._id}`} />;
     }
 
     return (

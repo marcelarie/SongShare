@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useParams } from 'react-router';
+import { Redirect, useHistory, useLocation, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../../styles/components/Button/GenericButton';
-import Input from '../../styles/components/Input/GenericInput';
-import LikeIcon from '../../components/LikeButton';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
     // addLikeToSong,
@@ -28,6 +24,7 @@ function PlaylistEdit() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
+    const userId = useSelector(state => state.user._id)
 
     const [title, setTitle] = useState(playlist.title);
     // const [uploader, setUploader] = useState(song.uploadBy);
@@ -42,6 +39,11 @@ function PlaylistEdit() {
         // setAuthor(song.author);
         // setGenre(song.gender);
     }, [dispatch, id]);
+
+    if(playlist.author._id !== userId) {
+        console.log("cant edir")
+        return <Redirect to={`/playlist/${playlist._id}`} />;
+    }
 
     return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>

@@ -120,7 +120,7 @@ const QuickMenu = () => {
                     <>
                     <li>
                     <Link
-                    to={`/${id}/addsongs`}>
+                    to={`playlist/${id}/addsongs`}>
                     <button
                         className="quickMenu"
                         type="button"

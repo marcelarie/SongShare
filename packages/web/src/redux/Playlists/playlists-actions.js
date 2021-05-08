@@ -101,7 +101,9 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    createPlaylistError(`Error: ${res.errorMessage}`),
+                );
             }
             const res = await api.createPlaylist(
                 {
@@ -135,7 +137,7 @@ export function getAllPlaylists() {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(getPlaylistsError(`Error: ${res.errorMessage}`));
             }
             const res = await api.AllPlaylists({
                 Authorization: `Bearer ${token}`,
@@ -165,7 +167,9 @@ export function getPlaylist(playlistID, withSongsInfo) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    getPlaylistsError(`Error: ${res.errorMessage}`),
+                );
             }
             const res = await api.getPlaylistById(
                 {
@@ -174,7 +178,6 @@ export function getPlaylist(playlistID, withSongsInfo) {
                 playlistID,
                 withSongsInfo,
             );
-            console.log(res);
             if (res.errorMessage) {
                 return dispatch(
                     getPlaylistsError(`Error: ${res.errorMessage}`),
@@ -194,7 +197,9 @@ export function addSongsToPlaylist(playlistId, songs) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
             }
             const res = await api.updatePlaylist(
                 {
