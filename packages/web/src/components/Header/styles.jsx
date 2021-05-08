@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba';
 
 const Nav = styled.nav`
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    font-family: 'Bebas Neue', cursive;
     all: unset;
     transition: 0.6s;
     z-index: 2;
@@ -16,7 +19,7 @@ const Nav = styled.nav`
         text-decoration: none;
     }
     h1 {
-        font-size: 1.7rem;
+        font-size: 2rem;
         transition: 0.6s;
         &:hover {
             color: ${({ theme }) => theme.main};
@@ -31,10 +34,11 @@ const Nav = styled.nav`
         justify-content: center;
         a {
             padding: 0 2rem;
+            font-size: 0.8rem;
         }
 
         padding-bottom: 2rem;
-        border-bottom: 1px solid ${({ theme }) => theme.text};
+        border-bottom: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.2')};
         flex: 3;
     }
     .nav-user {
