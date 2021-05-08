@@ -34,7 +34,7 @@ const Nav = styled.nav`
         }
 
         padding-bottom: 2rem;
-        border-bottom: 1px solid ${ ({theme}) => theme.text  };
+        border-bottom: 1px solid ${({ theme }) => theme.text};
         flex: 3;
     }
     .nav-user {
