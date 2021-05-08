@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba'
 
 const Carousel = styled.div`
     &::-webkit-scrollbar {
@@ -8,7 +9,7 @@ const Carousel = styled.div`
 
     /* Track */
     &::-webkit-scrollbar-track {
-        background: ${({ theme }) => theme.mainDarkOpacity7};
+        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.7')};
         border-radius: 5px;
     }
     /* Handle */

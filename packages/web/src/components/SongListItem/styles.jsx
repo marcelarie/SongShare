@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba';
 
 const SongListItem = styled.div`
     color: ${({ theme }) => theme.text};
@@ -12,7 +13,7 @@ const SongListItem = styled.div`
         border-bottom: 1px solid ${({ theme }) => theme.main};
     }
     .selected {
-        background-color: ${({ theme }) => theme.mainDarkOpacity7};
+        background-color: ${({ theme }) => hexToRgba(theme.mainDark, '0.7')};
         box-shadow: 0px 0px 10px ${({ theme }) => theme.main};
     }
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba';
 import colors from '../../styles/color-palette';
 
 const UserProfile = styled.div`
@@ -8,8 +9,8 @@ const UserProfile = styled.div`
         background-size: cover;
     }
     .user__main__aside__offset {
-        box-shadow: ${colors.darkGrayOpacity7} 0px 10px 40px 4px,
-            ${colors.darkGrayOpacity7} 0px -10px 40px 4px;
+        box-shadow: ${hexToRgba(colors.darkGray, '0.7')} 0px 10px 40px 4px,
+            ${hexToRgba(colors.darkGray, '0.7')} 0px -10px 40px 4px;
     }
 `;
 

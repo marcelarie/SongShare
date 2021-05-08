@@ -2,13 +2,10 @@ export const dark = {
     // MAIN COLORS
     background: '#000',
     bgSecundary: '#363636',
-    bgOpacity7: 'rgba(0, 0, 0, 0.7)',
     text: '#FFF',
     textColor: '',
     main: '#c3352e',
     mainDark: '#ac362e',
-    mainOpacity7: 'rgba(195, 53, 46, 0.7)',
-    mainDarkOpacity7: 'rgba(172, 54, 46, 0.7)',
 
     // AUDIO PLAYER
     audioplayerBackground: 'rgba(28, 28, 28, .75)',
@@ -26,8 +23,6 @@ export const light = {
     textColor: '',
     main: '#7CBCDC',
     mainDark: '#65a2c2',
-    mainOpacity7: 'rgba( 124,188,220, 0.7 )',
-    mainDarkOpacity7: 'rgba( 86,131,154, 0.7 )',
 
     // AUDIO PLAYER
     audioplayerBackground: 'white',

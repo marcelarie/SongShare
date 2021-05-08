@@ -10,7 +10,8 @@ const Nav = styled.nav`
     position: sticky;
     top: 0;
     justify-content: space-between;
-    padding: 0.8rem 1rem;
+    padding: 0 5rem;
+    padding-top: 3rem;
     a {
         text-decoration: none;
     }
@@ -22,12 +23,23 @@ const Nav = styled.nav`
             transition: 0.5s;
         }
     }
+    .nav-logo {
+        flex: 0.5;
+    }
     .nav-menu {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        a {
+            padding: 0 2rem;
+        }
+
+        padding-bottom: 2rem;
+        border-bottom: 1px solid ${ ({theme}) => theme.text  };
+        flex: 3;
     }
     .nav-user {
         display: flex;
+        flex: 0.5;
         justify-content: center;
         align-items: center;
         &__username {
