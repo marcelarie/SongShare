@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
     addToQueue,
     deleteInAudioplayer,
@@ -11,6 +13,8 @@ import QuickMenuStyle from './styles';
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+
+
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
@@ -25,9 +29,7 @@ const QuickMenu = () => {
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 
-    const showPrivateOptions = !playlistsByID
-        ? byID[id].username === _id
-        : false;
+    const showPrivateOptions = (byID[id] && byID[id].username === _id) || (playlistsByID[id] && playlistsByID[id].author._id === _id)
 
     const addSongToQueue = () => {
         dispatch(addToQueue(id));
@@ -45,10 +47,21 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
+    
+
+     const openPlaylistInfo = () => {
+        dispatch(openModal(false))
+        // NO WORKING WHY? --> return <Redirect to={`/playlist/${id}/edit`} />
+    };
+
+    /* const deletePlaylist = () => {
+        dispatch(deletePlaylistByID(id));
+    }; */
+
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
             <ul>
-                {!playlistsByID && (
+                {!playlistsByID[id] && (
                     <>
                         <li>
                             <button
@@ -70,7 +83,8 @@ const QuickMenu = () => {
                         </li>
                     </>
                 )}
-                {!playlistsByID && showPrivateOptions && (
+                {!playlistsByID[id] && showPrivateOptions && (
+                    <>
                     <li>
                         <button
                             className="quickMenu"
@@ -80,19 +94,18 @@ const QuickMenu = () => {
                             Edit
                         </button>
                     </li>
-                )}
-                {!playlistsByID && showPrivateOptions && (
                     <li>
-                        <button
-                            className="quickMenu"
-                            type="button"
-                            onClick={deleteSong}
-                        >
-                            Delete
-                        </button>
-                    </li>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={deleteSong}
+                    >
+                        Delete
+                    </button>
+                </li>
+                </>
                 )}
-                {playlistsByID && (
+                {playlistsByID[id] && (
                     <li>
                         <button
                             className="quickmenu"
@@ -102,6 +115,31 @@ const QuickMenu = () => {
                             algo de playlist
                         </button>
                     </li>
+                )}
+                {playlistsByID[id] && showPrivateOptions && (
+                    <>
+                    <li>
+                        <Link
+                        to={`/playlist/${id}/edit`}>
+                        <button
+                            className="quickMenu"
+                            type="button"
+                            onClick={openPlaylistInfo}
+                        >
+                            Edit
+                        </button>
+                        </Link>
+                    </li>
+                    <li>
+                    <button
+                        className="quickMenu"
+                        type="button"
+                        onClick={deleteSong}
+                    >
+                        Delete
+                    </button>
+                </li>
+                </>
                 )}
             </ul>
         </QuickMenuStyle>
