@@ -1,9 +1,10 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { useSelector } from 'react-redux';
 import MegaSongCard from '../MegaSongCard';
 
-const MegaCarousel = () => {
+const MegaCarousel = ({ ids, type }) => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -23,25 +24,28 @@ const MegaCarousel = () => {
             items: 1,
         },
     };
+    const ByID = useSelector(store => store[type].byID);
     return (
         <Carousel
+            className="noselect"
             showDots="true"
             responsive={responsive}
             infinite="true"
-            // autoPlay={Carousel.deviceType !== 'mobile' ? 'true' : 'false'}
-            // autoPlaySpeed={9000}
-            // keyBoardControl="true"
-            // customTransition="all .5"
-            transitionDuration={1500}
+            autoPlay={Carousel.deviceType !== 'mobile' ? 'true' : 'false'}
+            autoPlaySpeed={9000}
+            keyBoardControl="true"
             removeArrowOnDeviceType={['tablet', 'mobile']}
-            // deviceType={Carousel.deviceType}
-            // dotListClass="custom-dot-list-style"
-            // itemClass="carousel-item-padding-40-px"
+            deviceType={Carousel.deviceType}
+
+            // CUSTOM
+            // customLeftArrow={<CustomLeftArrow />}
+            // customRightArrow={<CustomRightArrow />}
+            //   customDot={<CustomDot />}
         >
-            <MegaSongCard />
-            <MegaSongCard />
-            <MegaSongCard />
-            <MegaSongCard />
+            {ids.map(id => {
+                const item = ByID[id];
+                return <MegaSongCard song={item} key={item._id} />;
+            })}
         </Carousel>
     );
 };
