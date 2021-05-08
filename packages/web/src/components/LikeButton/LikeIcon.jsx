@@ -20,7 +20,7 @@ function LikeIcon({ likes, handleLike }) {
             y="0"
             width="10px"
             height="10px"
-            viewBox="0 0 60 60"
+            viewBox="0 -15 10 60"
             className={
                 active
                     ? 'icon is-hoverable is-transit is-activeable active'
