@@ -21,11 +21,12 @@ const QuickMenu = () => {
 
     const { byID } = useSelector(state => state.songs);
     const playlistsByID = useSelector(state => state.playlists.byID);
+
     const { _id } = useSelector(state => state.user);
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 
-    const showPrivateOptions = !playlistsByID
+    const showPrivateOptions = !playlistsByID[id]
         ? byID[id].username === _id
         : false;
 
@@ -44,11 +45,13 @@ const QuickMenu = () => {
         dispatch(deleteInAudioplayer(id, audioPlayer));
         dispatch(openModal(false));
     };
+    console.log(showPrivateOptions);
+    console.log(byID[id].username, _id);
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
             <ul>
-                {!playlistsByID && (
+                {!playlistsByID[id] && (
                     <>
                         <li>
                             <button
@@ -70,7 +73,7 @@ const QuickMenu = () => {
                         </li>
                     </>
                 )}
-                {!playlistsByID && showPrivateOptions && (
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
@@ -81,7 +84,7 @@ const QuickMenu = () => {
                         </button>
                     </li>
                 )}
-                {!playlistsByID && showPrivateOptions && (
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
@@ -92,7 +95,7 @@ const QuickMenu = () => {
                         </button>
                     </li>
                 )}
-                {playlistsByID && (
+                {playlistsByID[id] && (
                     <li>
                         <button
                             className="quickmenu"
