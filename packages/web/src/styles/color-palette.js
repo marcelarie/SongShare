@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export default {
     color: '#c3352e',
     black: '#000000',

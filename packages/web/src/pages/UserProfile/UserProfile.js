@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -56,7 +56,7 @@ function CurrentUserProfile() {
                                 );
                             }
                             if (
-                                user.username != currentUser.username &&
+                                user.username !== currentUser.username &&
                                 li === 'Edit'
                             ) {
                                 return false;

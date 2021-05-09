@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useUser from '../../../custom-hooks/userProfile/useUser';
 import { fileTypes } from '../../../services/cloudinary';
@@ -8,7 +8,7 @@ import Dropzone from '../../../components/Dropzone';
 
 function UserProfileEdit() {
     const { pathUsername } = useUser();
-    const otherUser = useSelector(store => store.otherUser);
+    // const otherUser = useSelector(store => store.otherUser);
     const dispatch = useDispatch();
     const currentUser = useSelector(store => store.user);
 

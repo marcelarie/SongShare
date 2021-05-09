@@ -15,7 +15,6 @@ function SongsList({
 }) {
     // const dispatch = useDispatch();
     const { byID } = useSelector(({ songs }) => songs);
-    console.log(songsToList);
 
     return (
         <>
