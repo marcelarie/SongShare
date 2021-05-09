@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import jsmediatags from 'jsmediatags';
 import Dropzone from '../Dropzone';
 
 import {
@@ -37,7 +38,10 @@ function UploadSong() {
         setTitle(e.target.value);
     }
 
-    function handleSetFile(uploadFile) {
+    async function handleSetFile(uploadFile) {
+        jsmediatags.read(uploadFile, {
+            onSuccess: tags => console.log(tags),
+        });
         setFile(uploadFile);
     }
 
