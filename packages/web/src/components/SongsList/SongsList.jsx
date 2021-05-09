@@ -11,8 +11,8 @@ import SongListItem from '../SongListItem';
 function SongsList({
     songsToList,
     handlePlaySong = null,
-    handleAddToPlaylist = null,
-    handleRemoveToPlaylist = null,
+    handleAdd = null,
+    handleRemove = null,
 }) {
     // const dispatch = useDispatch();
     const { byID } = useSelector(({ songs }) => songs);
@@ -28,12 +28,8 @@ function SongsList({
                                 <SongListItem
                                     song={song}
                                     key={song._id}
-                                    handleAddToPlaylist={
-                                        handleAddToPlaylist || null
-                                    }
-                                    handleRemoveToPlaylist={
-                                        handleRemoveToPlaylist || null
-                                    }
+                                    handleAdd={handleAdd || null}
+                                    handleRemove={handleRemove || null}
                                 />
                             );
                         })}

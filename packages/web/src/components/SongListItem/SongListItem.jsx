@@ -9,7 +9,7 @@ import LikeIcon from '../LikeButton';
 
 import { addLikeToSong } from '../../redux/songs/songs-actions';
 
-function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
+function SongListItem({ song, handleAdd, handleRemove }) {
     const [itemSelected, setItemSelected] = useState(false);
     const dispatch = useDispatch();
 
@@ -31,8 +31,8 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                         e.target.parentNode.className === 'songListItem'
                     ) {
                         setItemSelected(!itemSelected);
-                        if (handleAddToPlaylist) {
-                            handleAddToPlaylist(song._id);
+                        if (handleAdd) {
+                            handleAdd(song._id);
                         } else {
                             // reproduce
                             console.log('reproduce');
@@ -43,8 +43,8 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                         'songListItem selected'
                     ) {
                         setItemSelected(!itemSelected);
-                        if (handleRemoveToPlaylist) {
-                            handleRemoveToPlaylist(song._id);
+                        if (handleRemove) {
+                            handleRemove(song._id);
                         } else {
                             // reproduce
                             console.log('reproduce');

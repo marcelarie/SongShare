@@ -27,25 +27,25 @@ function RemoveSongs() {
     const currentSongs = playlist.songs;
     const userId = useSelector(state => state.user._id);
 
-    const songsToRemove = ['95b67a5f307b28980f9d3cb87a4068e0'];
+    const songsToRemove = [];
 
     useEffect(() => {
         dispatch(getPlaylist(playlistId));
     }, [dispatch, playlistId]);
 
-    /* function addSong(id) {
-        const index = currentSongs.findIndex(element => element === id);
+    function addSongToRemove(id) {
+        const index = songsToRemove.findIndex(element => element === id);
         if (index === -1) {
-            songsToAdd.push(id);
+            songsToRemove.push(id);
         }
     }
 
-    function removeSong(id) {
-        const index = songsToAdd.findIndex(element => element === id);
+    function removeSongToRemove(id) {
+        const index = songsToRemove.findIndex(element => element === id);
         if (index >= 0) {
-            songsToAdd.splice(index, 1);
+            songsToRemove.splice(index, 1);
         }
-    } */
+    }
 
     if (playlist.author._id !== userId) {
         return <Redirect to={`/playlist/${playlist._id}`} />;
@@ -119,8 +119,8 @@ function RemoveSongs() {
             <SongsList
                 songsToList={currentSongs}
                 option="removeSongs"
-                /* handleAddToPlaylist={addSong}
-                handleRemoveToPlaylist={removeSong} */
+                handleAdd={addSongToRemove}
+                handleRemove={removeSongToRemove}
             />
         </PlaylistViewStyle>
     );

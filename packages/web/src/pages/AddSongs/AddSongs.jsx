@@ -31,14 +31,14 @@ function AddSongs() {
         dispatch(getAllSongs());
     }, [dispatch]);
 
-    function addSong(id) {
+    function addSongToAdd(id) {
         const index = songsToAdd.findIndex(element => element === id);
         if (index === -1) {
             songsToAdd.push(id);
         }
     }
 
-    function removeSong(id) {
+    function removeSongToAdd(id) {
         const index = songsToAdd.findIndex(element => element === id);
         if (index >= 0) {
             songsToAdd.splice(index, 1);
@@ -117,8 +117,8 @@ function AddSongs() {
             <SongsList
                 songsToList={ids}
                 option="addSongs"
-                handleAddToPlaylist={addSong}
-                handleRemoveToPlaylist={removeSong}
+                handleAdd={addSongToAdd}
+                handleRemove={removeSongToAdd}
             />
         </PlaylistViewStyle>
     );

@@ -131,6 +131,17 @@ const QuickMenu = () => {
                             </Link>
                         </li>
                         <li>
+                            <Link to={`/playlist/${id}/removesongs`}>
+                                <button
+                                    className="quickMenu"
+                                    type="button"
+                                    onClick={() => dispatch(openModal(false))}
+                                >
+                                    Delete songs to playlist
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
                             <Link to={`/playlist/${id}/edit`}>
                                 <button
                                     className="quickMenu"
