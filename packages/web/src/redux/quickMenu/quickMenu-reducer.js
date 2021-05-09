@@ -5,6 +5,7 @@ export const InitialState = {
     positionY: 0,
     open: false,
     id: 0,
+    size: {},
 };
 
 const OptionsModalReducer = (state = InitialState, { type, payload }) => {
@@ -26,6 +27,12 @@ const OptionsModalReducer = (state = InitialState, { type, payload }) => {
             return {
                 ...state,
                 id: payload,
+            };
+        }
+        case Types.SAVE_SIZE: {
+            return {
+                ...state,
+                size: payload,
             };
         }
         default:

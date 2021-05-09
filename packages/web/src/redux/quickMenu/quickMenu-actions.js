@@ -14,3 +14,8 @@ export const openModal = payload => ({
     type: Types.OPEN_MODAL,
     payload,
 });
+
+export const saveSize = payload => ({
+    type: Types.SAVE_SIZE,
+    payload,
+});
