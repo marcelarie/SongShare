@@ -45,8 +45,6 @@ const QuickMenu = () => {
         dispatch(deleteInAudioplayer(id, audioPlayer));
         dispatch(openModal(false));
     };
-    console.log(showPrivateOptions);
-    console.log(byID[id].username, _id);
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>

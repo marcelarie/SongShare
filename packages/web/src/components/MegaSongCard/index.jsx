@@ -36,6 +36,7 @@ const MegaSongCard = ({ song }) => {
             </div>
             <div className="mega-song__info">
                 <p className="mega-song__info__title">{song.name}</p>
+                <p className="mega-song__info__date">date</p>
                 <p className="mega-song__info__author">Author Name </p>
             </div>
         </MSCStyle>

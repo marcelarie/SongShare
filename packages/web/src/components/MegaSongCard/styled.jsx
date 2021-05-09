@@ -10,9 +10,9 @@ const MegaSongCard = styled.div`
             border: 1vw solid ${({ theme }) => hexToRgba(theme.text, '0.9')};
             &__play {
                 fill: ${({ theme }) => theme.background};
-            &:hover {
-                fill: ${({ theme }) => theme.main};
-            }
+                &:hover {
+                    fill: ${({ theme }) => theme.main};
+                }
             }
         }
     }
