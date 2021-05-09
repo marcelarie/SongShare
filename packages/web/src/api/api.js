@@ -143,6 +143,15 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function addSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/addSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     function addLikePlaylist(headers, playlistID) {
         return request({
             url: `/playlist/like/${playlistID}`,
@@ -179,6 +188,7 @@ function makeApi(request = makeRequest()) {
         AllPlaylists,
         getPlaylistById,
         updatePlaylist,
+        addSongs,
         addLikePlaylist,
 
         getOtherUser,

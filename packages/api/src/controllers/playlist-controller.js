@@ -86,7 +86,7 @@ async function getPlaylistById(req, res, next) {
 }
 
 // addSongsToPlaylist on frontend
-async function updatePlaylist(req, res, next) {
+async function addSongs(req, res, next) {
     const { body } = req;
     const { id } = req.params;
     console.log(body);
@@ -94,6 +94,23 @@ async function updatePlaylist(req, res, next) {
         const response = await PlaylistRepo.findByIdAndUpdate(id, {
             $addToSet: { songs: body.songs },
         });
+
+        if (response.error) return res.status(400).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (err) {
+        next(err);
+    }
+}
+
+async function updatePlaylist(req, res, next) {
+    const { newPlaylistChanges } = req.body;
+    const { id } = req.params;
+    console.log(newPlaylistChanges);
+    try {
+        const response = await PlaylistRepo.findByIdAndUpdate(
+            id,
+            newPlaylistChanges,
+        );
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
@@ -159,5 +176,6 @@ export {
     addSongsInfo,
     getAllPlaylists,
     updatePlaylist,
+    addSongs,
     likePlaylist,
 };

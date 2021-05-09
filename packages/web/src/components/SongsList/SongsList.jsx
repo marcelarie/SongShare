@@ -10,8 +10,9 @@ import SongListItem from '../SongListItem';
 
 function SongsList({
     songsToList,
-    handleAddToPlaylist,
-    handleRemoveToPlaylist,
+    handlePlaySong = null,
+    handleAddToPlaylist = null,
+    handleRemoveToPlaylist = null,
 }) {
     // const dispatch = useDispatch();
     const { byID } = useSelector(({ songs }) => songs);

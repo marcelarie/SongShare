@@ -94,6 +94,22 @@ export const updatePlaylistSuccess = playlist => {
 //     },
 // });
 
+export const deletePlaylistRequest = () => ({
+    type: playlistTypes.DELETE_PLAYLIST_REQUEST,
+});
+
+export const deletePlaylistError = errorMessage => ({
+    type: playlistTypes.DELETE_PLAYLIST_ERROR,
+    payload: errorMessage,
+});
+
+export const deletePlaylistSuccess = successMessage => {
+    return {
+        type: playlistTypes.DELETE_PLAYLIST_SUCCESS,
+        payload: successMessage,
+    };
+};
+
 export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
@@ -162,6 +178,7 @@ export function getAllPlaylists() {
         }
     };
 }
+
 export function getPlaylist(playlistID, withSongsInfo) {
     return async function getPlaylistThunk(dispatch) {
         dispatch(getPlaylistRequest());
@@ -203,7 +220,7 @@ export function addSongsToPlaylist(playlistId, songs) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            const res = await api.updatePlaylist(
+            const res = await api.addSongs(
                 {
                     Authorization: `Bearer ${token}`,
                 },
@@ -249,6 +266,7 @@ export function editPlaylist(playlistId, newPlaylistChanges) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
+            console.log(res.data);
             return dispatch(updatePlaylistSuccess(res.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
@@ -282,6 +300,38 @@ export function addLikeToPlaylist(playlistID) {
             );
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function deletePlaylistByID(playlistID) {
+    return async function deletePlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(deletePlaylistRequest());
+
+        if (!token) {
+            return dispatch(deletePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.deletePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(deletePlaylistError(res.errorMessage));
+            }
+            dispatch(
+                deletePlaylistSuccess(
+                    `You have deleted playlist ${playlistID} successfull`,
+                ),
+            );
+            return dispatch(getPlaylist());
+        } catch (error) {
+            return dispatch(deletePlaylistError(error.message));
         }
     };
 }
