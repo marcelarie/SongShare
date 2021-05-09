@@ -14,6 +14,7 @@ import {
 
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
+import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 import {
     useQuickMenu,
     useQuickMenuListener,
@@ -39,93 +40,15 @@ function Playlist() {
         return <Redirect to="/playlists" />;
     }
     return (
-        <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-            <div className="PlaylistView__header__container">
-                <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
-                </div>
-                <div className="PlaylistView__header__container__info">
-                    <div className="PlaylistView__header__container__info__container-info">
-                        <input
-                            type="text"
-                            className="PlaylistView__header__container__info__type"
-                            value={playlist.type}
-                            readOnly
-                        />
-                        <span> · </span>
-                        <input
-                            type="text"
-                            className="PlaylistView__header__container__info__access"
-                            value={playlist.publicAccess ? 'Public' : 'Private'}
-                            readOnly
-                        />
-                    </div>
-                    <input
-                        type="text"
-                        className="PlaylistView__header__container__info__title"
-                        value={playlist.title}
-                        readOnly
-                    />
-                    <input
-                        type="text"
-                        className="PlaylistView__header__container__info__author"
-                        value={playlist.author.username}
-                        readOnly
-                    />
-
-                    <input
-                        type="text"
-                        className="PlaylistView__header__container__info__description"
-                        value="playlist.description"
-                        readOnly
-                    />
-                    <div className="PlaylistView__header__container__info__container">
-                        <div className="PlaylistView__header__container__info__container__buttons">
-                            <div className="PlaylistView__header__container__info__container__buttons__options">
-                                <Button type="button" width="100px">
-                                    Reproducir
-                                </Button>
-
-                                <button
-                                    className="PlaylistCard__container__3pointButton
-                        quickMenu PlaylistView__header__container__info__container__buttons__3point"
-                                    type="button"
-                                    onMouseDown={e => openMenu(e, playlist._id)}
-                                />
-                            </div>
-                            <LikeIcon
-                                zoom="true"
-                                handleLike={() =>
-                                    dispatch(addLikeToPlaylist(playlist._id))
-                                }
-                                likes={playlist.likedBy}
-                            />
-                            <Button
-                                type="button"
-                                width="100px"
-                                onClick={() =>
-                                    dispatch(followPlaylist(playlist._id))
-                                }
-                            >
-                                Follow
-                            </Button>
-                        </div>
-                        <div className="PlaylistView__header__container__info__container__popuInf">
-                            <p className="PlaylistView__header__container__info__container__popuInf__likes">
-                                {playlist.likedBy.length} likes
-                            </p>
-                            <p className="PlaylistView__header__container__info__container__popuInf__followers">
-                                {playlist.followedBy.length} followers
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <SongsList
-                songsToList={playlist.songs}
-                handleClick={() => console.log('play')}
-            />
-        </PlaylistViewStyle>
+        <>
+            <PlaylistViewHeader playlist={playlist} />
+            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
+                <SongsList
+                    songsToList={playlist.songs}
+                    handleClick={() => console.log('play')}
+                />
+            </PlaylistViewStyle>
+        </>
     );
 }
 
