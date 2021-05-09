@@ -1,32 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     addToQueue,
     deleteInAudioplayer,
 } from '../../redux/audioPlayer/audioPlayer-actions';
-import {
-    openModal,
-    saveSize,
-    changeXandY,
-} from '../../redux/quickMenu/quickMenu-actions';
+import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { deleteSongByID } from '../../redux/songs/songs-actions';
 import QuickMenuStyle from './styles';
 
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
-import * as windowSize from '../../custom-hooks/windowSize';
+import { useRecordinateQuickMenu } from '../../custom-hooks/quickMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY, id, size } = useSelector(
+    const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
     const audioPlayer = useSelector(state => state.audioPlayer);
 
     const { byID } = useSelector(state => state.songs);
     const playlistsByID = useSelector(state => state.playlists.byID);
-    const wSize = windowSize.useWindowSize();
 
     const { _id } = useSelector(state => state.user);
 
@@ -52,23 +47,7 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
-    useEffect(() => {
-        const windowXsize = wSize[0];
-        const windowYsize = wSize[1];
-        const savedXsize = size[0];
-        const savedYsize = size[1];
-        const auxPositionX = parseInt(positionX.replace('px', ''), 10);
-        const auxPositionY = parseInt(positionY.replace('px', ''), 10);
-
-        if (windowXsize > savedXsize) {
-            const res = auxPositionX + windowYsize - savedYsize;
-            dispatch(changeXandY({ x: `${res.toString()}px`, y: positionY }));
-        } else if (windowXsize < savedXsize) {
-            const res = auxPositionX + windowYsize - savedYsize;
-            dispatch(changeXandY({ x: `${res.toString()}px`, y: positionY }));
-        }
-        dispatch(saveSize(wSize));
-    }, [wSize]);
+    useRecordinateQuickMenu()
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
