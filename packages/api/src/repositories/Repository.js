@@ -48,15 +48,6 @@ class Repository {
         );
     };
 
-    findOneAndPouplate = (filter, toPopulate) => {
-        return normalizeDBQuery(
-            Models[this.type]
-                .findOne(filter, '-__v')
-                .populate(toPopulate)
-                .lean(),
-        );
-    };
-
     findOneAndUpdate = (filter, body, option = { new: true }) => {
         return normalizeDBQuery(
             Models[this.type].findOneAndUpdate(filter, body, option),

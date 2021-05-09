@@ -12,10 +12,7 @@ import '../PlaylistView/styles.scss';
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import SongsList from '../../components/SongsList';
-import {
-    addSongsToPlaylist,
-    getPlaylist,
-} from '../../redux/Playlists/playlists-actions';
+import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import Button from '../../styles/components/Button/GenericButton';
 
@@ -32,7 +29,6 @@ function AddSongs() {
 
     useEffect(() => {
         dispatch(getAllSongs());
-        dispatch(getPlaylist(playlistId));
     }, [dispatch]);
 
     function addSong(id) {
@@ -48,8 +44,7 @@ function AddSongs() {
             songsToAdd.splice(index, 1);
         }
     }
-    console.log(playlist.author);
-    console.log(userId);
+
     if (playlist.author._id !== userId) {
         return <Redirect to={`/playlist/${playlist._id}`} />;
     }

@@ -24,7 +24,16 @@ async function createPlaylist(req, res, next) {
             },
         );
         if (userResponse.error) return res.status(400).send(userResponse);
-        if (response.data) return res.status(201).send(response);
+        console.log(response);
+        const formattedResponse = {
+            data: {
+                ...response.data._doc,
+                author: { _id: response.data.author },
+            },
+            error: null,
+        };
+        console.log(formattedResponse);
+        if (response.data) return res.status(201).send(formattedResponse);
     } catch (err) {
         next(err);
     }
@@ -69,7 +78,7 @@ async function getPlaylistById(req, res, next) {
             'author',
             'username',
         );
-
+        console.log(response);
         if (response.data) return res.status(200).send(response);
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);

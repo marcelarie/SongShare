@@ -31,13 +31,25 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                         e.target.parentNode.className === 'songListItem'
                     ) {
                         setItemSelected(!itemSelected);
-                        handleAddToPlaylist(song._id);
+                        if (handleAddToPlaylist) {
+                            handleAddToPlaylist(song._id);
+                        } else {
+                            // reproduce
+                            console.log('reproduce');
+                            setItemSelected(false);
+                        }
                     } else if (
                         e.target.parentNode.className ===
                         'songListItem selected'
                     ) {
                         setItemSelected(!itemSelected);
-                        handleRemoveToPlaylist(song._id);
+                        if (handleRemoveToPlaylist) {
+                            handleRemoveToPlaylist(song._id);
+                        } else {
+                            // reproduce
+                            console.log('reproduce');
+                            setItemSelected(false);
+                        }
                     }
                 }}
             >

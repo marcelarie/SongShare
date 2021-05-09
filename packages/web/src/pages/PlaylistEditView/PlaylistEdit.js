@@ -60,7 +60,7 @@ function PlaylistEdit() {
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
                 <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
+                    <p>{title}</p>
                 </div>
                 <div className="PlaylistView__header__container__info">
                     <div className="PlaylistView__header__container__info__container-info">
@@ -73,6 +73,7 @@ function PlaylistEdit() {
                                     type === 'Playlist' ? 'Album' : 'Playlist',
                                 )
                             }
+                            readOnly
                         />
                         <span> · </span>
                         <input
@@ -80,6 +81,7 @@ function PlaylistEdit() {
                             className="PlaylistView__header__container__info__access"
                             value={publicAccess ? 'Public' : 'Private'}
                             onClick={() => setPublicAccess(!publicAccess)}
+                            readOnly
                         />
                     </div>
                     <input
@@ -107,7 +109,6 @@ function PlaylistEdit() {
                                 <Button
                                     type="button"
                                     onClick={() => {
-                                        console.log(publicAccess);
                                         dispatch(
                                             editPlaylist(playlist._id, {
                                                 title,

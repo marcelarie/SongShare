@@ -118,7 +118,7 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
             const token = await auth.getCurrentUserToken();
             if (!token) {
                 return dispatch(
-                    createPlaylistError(`Error: ${res.errorMessage}`),
+                    createPlaylistError(`Error: 'Missing auth token'`),
                 );
             }
             const res = await api.createPlaylist(
@@ -154,7 +154,7 @@ export function getAllPlaylists() {
             const token = await auth.getCurrentUserToken();
             if (!token) {
                 return dispatch(
-                    getPlaylistsError(`Error: ${res.errorMessage}`),
+                    getPlaylistsError(`Error: 'Missing auth token'`),
                 );
             }
             const res = await api.AllPlaylists({
@@ -187,7 +187,7 @@ export function getPlaylist(playlistID, withSongsInfo) {
             const token = await auth.getCurrentUserToken();
             if (!token) {
                 return dispatch(
-                    getPlaylistsError(`Error: ${res.errorMessage}`),
+                    getPlaylistsError(`Error: 'Missing auth token'`),
                 );
             }
             const res = await api.getPlaylistById(
@@ -217,7 +217,7 @@ export function addSongsToPlaylist(playlistId, songs) {
             const token = await auth.getCurrentUserToken();
             if (!token) {
                 return dispatch(
-                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                    updatePlaylistError(`Error: 'Missing auth token'`),
                 );
             }
             const res = await api.addSongs(
@@ -266,7 +266,6 @@ export function editPlaylist(playlistId, newPlaylistChanges) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            console.log(res.data);
             return dispatch(updatePlaylistSuccess(res.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
@@ -293,7 +292,6 @@ export function addLikeToPlaylist(playlistID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-            console.log(res.data.PlaylistResponse.data);
             // update user info and song info (?)
             return dispatch(
                 updatePlaylistSuccess(res.data.PlaylistResponse.data),

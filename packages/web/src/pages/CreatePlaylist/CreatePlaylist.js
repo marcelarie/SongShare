@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Button from '../../styles/components/Button/GenericButton';
-import LikeIcon from '../../components/LikeButton';
 import {
     createPlaylist,
     createPlaylistRequest,
@@ -30,7 +29,7 @@ function CreatePlaylist() {
 
     useEffect(() => {
         dispatch(createPlaylistRequest());
-    }, []);
+    }, [dispatch]);
     return (
         <PlaylistViewStyle className="PlaylistView">
             <div className="PlaylistView__header__container">
@@ -48,6 +47,7 @@ function CreatePlaylist() {
                                     type === 'Playlist' ? 'Album' : 'Playlist',
                                 )
                             }
+                            readOnly
                         />
                         <span> · </span>
                         <input
@@ -55,6 +55,7 @@ function CreatePlaylist() {
                             className="PlaylistView__header__container__info__access"
                             value={publicAccess ? 'Public' : 'Private'}
                             onClick={() => setPublicAccess(!publicAccess)}
+                            readOnly
                         />
                     </div>
                     <input
