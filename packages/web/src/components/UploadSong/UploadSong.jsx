@@ -31,23 +31,25 @@ function UploadSong() {
     const [artist, setArtist] = useState(username);
     const [genre, setGenre] = useState('Generic');
 
-    const tryToSubmit = async e => {
-        e.preventDefault();
-        (await title)
-            ? dispatch(
-                  uploadSong({
-                      file,
-                      title,
-                      artist,
-                      genre,
-                  }),
-              )
-            : alert('inavlid title');
+    const tryToSubmit = e => {
+        // e.preventDefault(); // I think there is no need to preventDefault when using useForm
+        dispatch(
+            uploadSong({
+                file,
+                title,
+                artist,
+                genre,
+            }),
+        );
     };
 
     async function handleSetFile(uploadFile) {
         jsmediatags.read(uploadFile, {
-            onSuccess: tags => console.log(tags),
+            onSuccess: tags => {
+                tags.title && setTitle(tags.title);
+                tags.artist && setTitle(tags.artist);
+                tags.genre && setTitle(tags.genre);
+            },
             onError: error => console.log(error),
         });
         setFile(uploadFile);
@@ -66,7 +68,7 @@ function UploadSong() {
                     type="text"
                     id="title"
                     onChange={e => setTitle(e.target.value)}
-                    placeholder={title ? '' : 'add a title'}
+                    placeholder={title || 'add a title'}
                     hasFeedback
                 />
                 {errors.title && <p>Please, enter a song title</p>}
@@ -75,7 +77,7 @@ function UploadSong() {
                     type="text"
                     id="artist"
                     onChange={e => setArtist(e.target.value)}
-                    placeholder={username}
+                    placeholder={artist}
                 />
 
                 <label htmlFor="genre">Genre</label>
@@ -83,7 +85,7 @@ function UploadSong() {
                     type="text"
                     id="genre"
                     onChange={e => setGenre(e.target.value)}
-                    placeholder="Generic"
+                    placeholder={genre}
                 />
 
                 <Dropzone
