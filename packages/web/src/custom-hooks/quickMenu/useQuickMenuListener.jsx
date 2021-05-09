@@ -27,8 +27,16 @@ function useQuickMenuListener() {
                 }
             }
         };
+        function closeQuickMenu() {
+            dispatch(openModal(false));
+        }
+
         window.addEventListener('mousedown', quickMenuListener);
-        return () => window.removeEventListener('mousedown', quickMenuListener);
+        window.addEventListener('scroll', closeQuickMenu);
+        return () => {
+            window.removeEventListener('mousedown', quickMenuListener);
+            window.removeEventListener('scroll', closeQuickMenu);
+        };
     }, [open, dispatch]);
 }
 

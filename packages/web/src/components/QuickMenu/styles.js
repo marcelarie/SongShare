@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.div`
-    position: absolute;
+    position: fixed;
     background-color: ${({ theme }) => theme.background};
     border: 2px solid ${({ theme }) => theme.text};
     padding: 1rem;

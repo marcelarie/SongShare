@@ -4,7 +4,7 @@ import { saveSize, changeXandY } from '../../redux/quickMenu/quickMenu-actions';
 import * as windowSize from '../windowSize';
 
 function UseRecordinateQuickMenu() {
-    // TODO: Height
+    // TODO: Y
     const dispatch = useDispatch();
     const wSize = windowSize.useWindowSize();
     const { positionX, positionY, id, size } = useSelector(
