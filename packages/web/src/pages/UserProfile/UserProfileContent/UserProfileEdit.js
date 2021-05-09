@@ -108,17 +108,6 @@ function UserProfileEdit() {
                                 </div>
                             </div>
                             <div className="user__main__edit__form__data__dropzone">
-                                {/* <div className="user__main__edit__form__data__dropzone__profile">
-                                    <label htmlFor="user-foto">User profile photo</label>
-                                    <Dropzone
-                                        fileType={fileType}
-                                        onFileSelected={files => {
-                                            handleSetFile(
-                                                files[0],
-                                            );
-                                        }}
-                                    />
-                                </div> */}
                                 <div className="user__main__edit__form__data__dropzone__cover">
                                     <label htmlFor="user-cover">
                                         User profile photo
@@ -142,7 +131,7 @@ function UserProfileEdit() {
                     </form>
                 </div>
             ) : (
-                <div>cant edit opther users info</div>
+                <div>cant edit other users info</div>
             )}
         </>
     );

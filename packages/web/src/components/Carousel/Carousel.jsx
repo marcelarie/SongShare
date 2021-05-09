@@ -25,11 +25,14 @@ function Carousel({ ids, type, array }) {
         <CarouselStyle className="carousel">
             {ids.map(id => {
                 const item = ByID[id];
-                return type === 'songs' ? (
-                    <SongsCard song={item} key={item._id} />
-                ) : (
-                    <PlaylistCard playlist={item} key={item._id} />
-                );
+                if (item !== undefined) {
+                    return type === 'songs' ? (
+                        <SongsCard song={item} key={item._id} />
+                    ) : (
+                        <PlaylistCard playlist={item} key={item._id} />
+                    );
+                }
+                return <p key="nada">nada</p>;
             })}
         </CarouselStyle>
     );
