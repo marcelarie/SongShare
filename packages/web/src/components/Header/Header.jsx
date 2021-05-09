@@ -38,7 +38,7 @@ function Header() {
                 <h1>
                     the
                     <br />
-                    LOGO
+                    <span>LOGO</span>
                 </h1>
             </NavLink>
             <div className="nav-menu">
@@ -49,10 +49,10 @@ function Header() {
                     <NavButton>SEARCH</NavButton>
                 </NavLink>
                 <NavLink to={MY_MUSIC}>
-                    <NavButton>MY MUSIC</NavButton>
+                    <NavButton>MUSIC</NavButton>
                 </NavLink>
                 <NavLink to={MY_PLAYLISTS}>
-                    <NavButton>MY PLAYLISTS</NavButton>
+                    <NavButton>PLAYLISTS</NavButton>
                 </NavLink>
             </div>
 

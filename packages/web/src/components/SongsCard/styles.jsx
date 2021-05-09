@@ -14,6 +14,7 @@ const SongCard = styled.div`
     }
     .songsCard__playButton {
         fill: ${({ theme }) => theme.background};
+        width: 80px;
     }
 `;
 

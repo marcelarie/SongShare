@@ -24,6 +24,7 @@ const QuickMenu = () => {
 
     const { byID } = useSelector(state => state.songs);
     const playlistsByID = useSelector(state => state.playlists.byID);
+
     const { _id } = useSelector(state => state.user);
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
