@@ -242,6 +242,39 @@ export function addSongsToPlaylist(playlistId, songs) {
     };
 }
 
+export function removeSongsFromPlaylist(playlistId, songs) {
+    return async function removeSongsThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(
+                    updatePlaylistError(`Error: 'Missing auth token'`),
+                );
+            }
+            const res = await api.removeSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    songs,
+                },
+                playlistId,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
 // update playlist -> edit playlist info
 export function editPlaylist(playlistId, newPlaylistChanges) {
     return async function editPlaylistThunk(dispatch) {

@@ -128,6 +128,11 @@ function PlaylistEdit() {
                                     type="button"
                                     onMouseDown={e => openMenu(e, playlist._id)}
                                 />
+                                <Link
+                                    to={`/playlist/${playlist._id}/removesongs`}
+                                >
+                                    RemoveSongs
+                                </Link>
                             </div>
                             <LikeIcon
                                 zoom="true"

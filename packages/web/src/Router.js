@@ -11,6 +11,7 @@ import MyMusic from './pages/MyMusic/MyMusic';
 import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
 import AddSongs from './pages/AddSongs';
+import RemoveSongs from './pages/RemoveSongs';
 import Playlist from './pages/PlaylistView';
 import PlaylistEdit from './pages/PlaylistEditView';
 
@@ -37,6 +38,11 @@ function MainRouter() {
             <ProtectedRoute
                 path={ROUTES.ADD_SONGS}
                 component={AddSongs}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.REMOVE_SONGS}
+                component={RemoveSongs}
                 exact
             />
             <ProtectedRoute

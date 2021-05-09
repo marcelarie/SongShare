@@ -109,6 +109,21 @@ async function addSongs(req, res, next) {
     }
 }
 
+async function removeSongs(req, res, next) {
+    const { songs } = req.body;
+    const { id } = req.params;
+    try {
+        const response = await PlaylistRepo.findByIdAndUpdate(id, {
+            $pull: { songs: { $in: songs } },
+        });
+        console.log(response);
+        if (response.error) return res.status(400).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (err) {
+        next(err);
+    }
+}
+
 async function updatePlaylist(req, res, next) {
     const { newPlaylistChanges } = req.body;
     const { id } = req.params;
@@ -250,6 +265,7 @@ export {
     updatePlaylist,
     deletePlaylist,
     addSongs,
+    removeSongs,
     likePlaylist,
     followPlaylist,
 };

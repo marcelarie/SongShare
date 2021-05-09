@@ -160,6 +160,15 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function removeSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/removeSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     function addLikePlaylist(headers, playlistID) {
         return request({
             url: `/playlist/like/${playlistID}`,
@@ -206,6 +215,7 @@ function makeApi(request = makeRequest()) {
         updatePlaylist,
         deletePlaylist,
         addSongs,
+        removeSongs,
         addLikePlaylist,
         followPlaylist,
 

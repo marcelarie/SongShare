@@ -13,3 +13,4 @@ export const NEW_PLAYLIST = '/newplaylist';
 export const PLAYLIST_VIEW = '/playlist/:id';
 export const PLAYLIST_VIEW_EDIT = '/playlist/:id/edit';
 export const ADD_SONGS = '/playlist/:playlistId/addsongs';
+export const REMOVE_SONGS = '/playlist/:playlistId/removesongs';
