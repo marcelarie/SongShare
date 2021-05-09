@@ -48,6 +48,12 @@ class Repository {
         );
     };
 
+    findAndCheckFollowers = (uid, id) => {
+        return normalizeDBQuery(
+            Models[this.type].find({ _id: uid, following: { $in: [id] } }),
+        );
+    };
+
     findOneAndUpdate = (filter, body, option = { new: true }) => {
         return normalizeDBQuery(
             Models[this.type].findOneAndUpdate(filter, body, option),

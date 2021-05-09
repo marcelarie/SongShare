@@ -1,7 +1,7 @@
 import Repo from '../repositories/index.js';
 
 const UserRepo = new Repo('User');
-const SongRepo = new Repo('Song');
+// const SongRepo = new Repo('Song');
 const PlaylistRepo = new Repo('Playlist');
 
 async function createPlaylist(req, res, next) {
@@ -24,7 +24,6 @@ async function createPlaylist(req, res, next) {
             },
         );
         if (userResponse.error) return res.status(400).send(userResponse);
-        console.log(response);
         const formattedResponse = {
             data: {
                 ...response.data._doc,
@@ -32,7 +31,6 @@ async function createPlaylist(req, res, next) {
             },
             error: null,
         };
-        console.log(formattedResponse);
         if (response.data) return res.status(201).send(formattedResponse);
     } catch (err) {
         next(err);
@@ -55,7 +53,7 @@ async function getAllPlaylists(req, res, next) {
     }
 }
 
-async function addSongsInfo(playlist) {
+/* async function addSongsInfo(playlist) {
     const songsInfo = await Promise.all(
         playlist.songs.map(async songID => {
             const fullSongResponse = await SongRepo.findOne(songID);
@@ -67,7 +65,7 @@ async function addSongsInfo(playlist) {
     );
     playlist.songs = songsInfo;
     return playlist;
-}
+} */
 
 async function getPlaylistById(req, res, next) {
     const { id } = req.params;
@@ -193,13 +191,65 @@ async function likePlaylist(req, res, next) {
     }
 }
 
+async function followPlaylist(req, res, next) {
+    const { uid } = req.user;
+    const { id } = req.params;
+
+    try {
+        const checkUserResponse = await UserRepo.findAndCheckFollowers(uid, id);
+
+        if (checkUserResponse.error)
+            return res.status(400).send(checkUserResponse);
+        if (checkUserResponse.data.length === 0) {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $addToSet: { following: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+
+            const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
+                { _id: id },
+                { $addToSet: { followedBy: uid } },
+            );
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (PlaylistResponse.data)
+                return res.status(200).send({ PlaylistResponse, userResponse });
+        } else {
+            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
+                $pull: { following: id },
+            });
+            if (userResponse.error) return res.status(400).send(userResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+
+            const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
+                { _id: id },
+                { $pull: { followedBy: uid } },
+            );
+            if (PlaylistResponse.error)
+                return res.status(400).send(PlaylistResponse);
+            if (!userResponse.data) return res.status(404).send(userResponse);
+            if (userResponse.data.length <= 0)
+                return res.status(204).send(userResponse);
+            if (PlaylistResponse.data)
+                return res.status(200).send({ PlaylistResponse, userResponse });
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     createPlaylist,
     getPlaylistById,
-    addSongsInfo,
+    // addSongsInfo,
     getAllPlaylists,
     updatePlaylist,
     deletePlaylist,
     addSongs,
     likePlaylist,
+    followPlaylist,
 };

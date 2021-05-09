@@ -168,6 +168,14 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function followPlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/follow/${playlistID}`,
+            requestMethod: 'POST',
+            headers,
+        });
+    }
+
     function getOtherUser(headers, username) {
         return request({
             url: `/username/${username}`,
@@ -199,6 +207,7 @@ function makeApi(request = makeRequest()) {
         deletePlaylist,
         addSongs,
         addLikePlaylist,
+        followPlaylist,
 
         getOtherUser,
     };

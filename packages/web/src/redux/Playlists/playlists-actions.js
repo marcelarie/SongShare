@@ -302,6 +302,35 @@ export function addLikeToPlaylist(playlistID) {
     };
 }
 
+export function followPlaylist(playlistID) {
+    return async function followPlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(updatePlaylistRequest());
+
+        if (!token) {
+            return dispatch(updatePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.followPlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+            /* if (res.errorMessage) {
+                return dispatch(songUpdatingError(res.errorMessage));
+            } */
+            // update user info and song info (?)
+            return dispatch(
+                updatePlaylistSuccess(res.data.PlaylistResponse.data),
+            );
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
 export function deletePlaylistByID(playlistID) {
     return async function deletePlaylistThunk(dispatch) {
         const token = await auth.getCurrentUserToken();

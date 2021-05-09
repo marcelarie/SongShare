@@ -47,6 +47,12 @@ const UserSchema = mongoose.Schema(
                 ref: 'song',
             },
         ],
+        following: [
+            {
+                type: String,
+                ref: 'playlist',
+            },
+        ],
     },
     {
         timestamps: true,

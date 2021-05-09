@@ -5,17 +5,13 @@ import { Link } from 'react-router-dom';
 
 import Button from '../../styles/components/Button/GenericButton';
 import LikeIcon from '../../components/LikeButton';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import {
     addLikeToPlaylist,
-    // deleteSongByID,
-    // editSongByID,
+    followPlaylist,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
-// import Button from '../../styles/components/Button/GenericButton';
-// import Input from '../../styles/components/Input/GenericInput';
+
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
 import {
@@ -104,10 +100,22 @@ function Playlist() {
                                 }
                                 likes={playlist.likedBy}
                             />
+                            <Button
+                                type="button"
+                                width="100px"
+                                onClick={() =>
+                                    dispatch(followPlaylist(playlist._id))
+                                }
+                            >
+                                Follow
+                            </Button>
                         </div>
                         <div className="PlaylistView__header__container__info__container__popuInf">
-                            <p className="PlaylistView__header__container__info__container__popuInf__like__text">
+                            <p className="PlaylistView__header__container__info__container__popuInf__likes">
                                 {playlist.likedBy.length} likes
+                            </p>
+                            <p className="PlaylistView__header__container__info__container__popuInf__followers">
+                                {playlist.followedBy.length} followers
                             </p>
                         </div>
                     </div>
