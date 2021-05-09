@@ -329,7 +329,7 @@ export function deletePlaylistByID(playlistID) {
                     `You have deleted playlist ${playlistID} successfull`,
                 ),
             );
-            return dispatch(getPlaylist());
+            return dispatch(getAllPlaylists());
         } catch (error) {
             return dispatch(deletePlaylistError(error.message));
         }

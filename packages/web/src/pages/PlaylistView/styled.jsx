@@ -30,5 +30,7 @@ const PlaylistView = styled.div`
         background-color: ${({ theme }) => theme.bg};
     }
 `;
-
+PlaylistView.defaultProps = {
+    image: 'https://picsum.photos/500',
+};
 export default PlaylistView;

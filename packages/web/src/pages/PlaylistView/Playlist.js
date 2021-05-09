@@ -36,7 +36,12 @@ function Playlist() {
     useEffect(() => {
         dispatch(getPlaylist(id));
     }, [dispatch, id]);
+
     useQuickMenuListener();
+
+    if (!playlist) {
+        return <Redirect to="/playlists" />;
+    }
     return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">

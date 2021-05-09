@@ -119,6 +119,20 @@ async function updatePlaylist(req, res, next) {
     }
 }
 
+async function deletePlaylist(req, res, next) {
+    try {
+        const { id } = req.params;
+
+        const response = await PlaylistRepo.findByIdAndDelete({ _id: id });
+
+        if (response.error) return res.status(400).send(response);
+        if (!response.data) return res.status(404).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function likePlaylist(req, res, next) {
     const { uid } = req.user;
     const { id } = req.params;
@@ -176,6 +190,7 @@ export {
     addSongsInfo,
     getAllPlaylists,
     updatePlaylist,
+    deletePlaylist,
     addSongs,
     likePlaylist,
 };

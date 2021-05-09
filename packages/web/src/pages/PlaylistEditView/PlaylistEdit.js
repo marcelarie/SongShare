@@ -48,6 +48,10 @@ function PlaylistEdit() {
 
     useQuickMenuListener();
 
+    if (!playlist) {
+        return <Redirect to="/playlists" />;
+    }
+
     if (playlist.author._id !== userId) {
         return <Redirect to={`/playlist/${playlist._id}`} />;
     }

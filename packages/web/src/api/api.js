@@ -143,6 +143,14 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function deletePlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/${playlistID}`,
+            requestMethod: 'DELETE',
+            headers,
+        });
+    }
+
     function addSongs(headers, body, playlistID) {
         return request({
             url: `/playlist/addSongs/${playlistID}`,
@@ -188,6 +196,7 @@ function makeApi(request = makeRequest()) {
         AllPlaylists,
         getPlaylistById,
         updatePlaylist,
+        deletePlaylist,
         addSongs,
         addLikePlaylist,
 

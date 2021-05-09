@@ -8,6 +8,7 @@ import {
 } from '../../redux/audioPlayer/audioPlayer-actions';
 import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { deleteSongByID } from '../../redux/songs/songs-actions';
+import { deletePlaylistByID } from '../../redux/Playlists/playlists-actions';
 import QuickMenuStyle from './styles';
 
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
@@ -47,14 +48,15 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
-    const openPlaylistInfo = () => {
+    /* const openPlaylistInfo = () => {
         dispatch(openModal(false));
         // NO WORKING WHY? --> return <Redirect to={`/playlist/${id}/edit`} />
-    };
-
-    /* const deletePlaylist = () => {
-        dispatch(deletePlaylistByID(id));
     }; */
+
+    const deletePlaylist = () => {
+        dispatch(deletePlaylistByID(id));
+        dispatch(openModal(false));
+    };
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
@@ -142,7 +144,7 @@ const QuickMenu = () => {
                             <button
                                 className="quickMenu"
                                 type="button"
-                                onClick={deleteSong}
+                                onClick={deletePlaylist}
                             >
                                 Delete
                             </button>

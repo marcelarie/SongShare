@@ -7,6 +7,7 @@ const PlaylistsInitialState = {
     PlaylistLoadingError: null,
     PlaylistUpdating: false,
     PlaylistUpdatingError: null,
+    PlaylistUpdate: null,
     byID: {},
     ids: [],
 };
@@ -19,6 +20,7 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 ...state,
                 PlaylistUpdating: true,
                 PlaylistUpdatingError: null,
+                PlaylistUpdate: false,
             };
         }
         case PlaylistsTypes.CREATE_PLAYLIST_ERROR: {
@@ -26,14 +28,23 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                 ...state,
                 PlaylistUpdating: false,
                 PlaylistUpdatingError: payload, // payload == error message
+                PlaylistUpdate: false,
             };
         }
         case PlaylistsTypes.CREATE_PLAYLIST_SUCCESS: {
+            const { playlist } = payload;
+            const playlistID = playlist._id;
             return {
                 ...state,
                 PlaylistUpdating: false,
                 PlaylistUpdatingError: false,
-                // add new playlist getting de info by payload
+                PlaylistUpdate: playlistID,
+                byID: {
+                    ...state.byID,
+                    [playlistID]: {
+                        ...playlist,
+                    },
+                },
             };
         }
         case PlaylistsTypes.GET_PLAYLISTS_REQUEST: {
