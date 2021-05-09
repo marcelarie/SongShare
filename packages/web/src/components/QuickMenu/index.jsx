@@ -19,7 +19,16 @@ const QuickMenu = () => {
     );
     const audioPlayer = useSelector(state => state.audioPlayer);
 
+    const { byID } = useSelector(state => state.songs);
+    const playlistsByID = useSelector(state => state.playlists.byID);
+
+    const { _id } = useSelector(state => state.user);
+
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
+
+    const showPrivateOptions = !playlistsByID[id]
+        ? byID[id].username === _id
+        : false;
 
     const addSongToQueue = () => {
         dispatch(addToQueue(id));
@@ -36,29 +45,35 @@ const QuickMenu = () => {
         dispatch(deleteInAudioplayer(id, audioPlayer));
         dispatch(openModal(false));
     };
+    console.log(showPrivateOptions);
+    console.log(byID[id].username, _id);
 
     return (
         <QuickMenuStyle x={positionX} y={positionY}>
             <ul>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={openPlaylistMenu}
-                    >
-                        Add to playlist
-                    </button>
-                </li>
-                <li>
-                    <button
-                        className="quickMenu"
-                        type="button"
-                        onClick={addSongToQueue}
-                    >
-                        Add to queue
-                    </button>
-                </li>
-                {true && (
+                {!playlistsByID[id] && (
+                    <>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={openPlaylistMenu}
+                            >
+                                Add to playlist
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="quickMenu"
+                                type="button"
+                                onClick={addSongToQueue}
+                            >
+                                Add to queue
+                            </button>
+                        </li>
+                    </>
+                )}
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
@@ -69,7 +84,7 @@ const QuickMenu = () => {
                         </button>
                     </li>
                 )}
-                {true && (
+                {showPrivateOptions && (
                     <li>
                         <button
                             className="quickMenu"
@@ -77,6 +92,17 @@ const QuickMenu = () => {
                             onClick={deleteSong}
                         >
                             Delete
+                        </button>
+                    </li>
+                )}
+                {playlistsByID[id] && (
+                    <li>
+                        <button
+                            className="quickmenu"
+                            type="button"
+                            // onClick={???}
+                        >
+                            algo de playlist
                         </button>
                     </li>
                 )}

@@ -60,17 +60,6 @@ function Playlist() {
                             playlist.description
                         </p>
                     </div>
-                    <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
-                    </div>
                 </div>
                 <div className="PlaylistView__header__container__img">
                     <p>{playlist.title}</p>

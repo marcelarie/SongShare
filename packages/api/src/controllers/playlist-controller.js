@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Repo from '../repositories/index.js';
 
 const UserRepo = new Repo('User');
@@ -83,13 +82,12 @@ async function getPlaylistById(req, res, next) {
 async function updatePlaylist(req, res, next) {
     const { body } = req;
     const { id } = req.params;
-    console.log(body.songs[0]);
-    console.log(id);
+    console.log(body);
     try {
-        const response = await PlaylistRepo.findByIdAndUpdate(
-            ({ _id: mongoose.Types.ObjectId(id) },
-            { $addToSet: { songs: body.songs[0] } }),
-        );
+        const response = await PlaylistRepo.findByIdAndUpdate(id, {
+            $addToSet: { songs: body.songs },
+        });
+
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
     } catch (err) {

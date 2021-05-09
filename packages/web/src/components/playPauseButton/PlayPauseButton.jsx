@@ -12,8 +12,8 @@ function PlayPauseButton(id) {
             id="Capa_1"
             x="0px"
             y="0px"
-            width="53.861px"
-            height="53.861px"
+            width="100%"
+            height="auto"
             viewBox="0 0 163.861 163.861"
         >
             <g>
@@ -30,8 +30,8 @@ function PlayPauseButton(id) {
             id="Capa_1"
             x="0px"
             y="0px"
-            width="53.861px"
-            height="53.861px"
+            width="100%"
+            height="auto"
             viewBox="0 0 512 512"
         >
             <g>
