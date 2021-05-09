@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useForm } from 'react-hook-form';
+
 import jsmediatags from 'jsmediatags';
 import Dropzone from '../Dropzone';
 
@@ -12,6 +14,11 @@ import Button from '../../styles/components/Button/GenericButton';
 import Input from '../../styles/components/Input/GenericInput';
 
 function UploadSong() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const dispatch = useDispatch();
     const { isUploadingSong, uploadSongSuccess, uploadSongError } = useSelector(
         store => store.uploader,
@@ -24,9 +31,9 @@ function UploadSong() {
     const [artist, setArtist] = useState(username);
     const [genre, setGenre] = useState('Generic');
 
-    const handleSubmit = e => {
+    const tryToSubmit = async e => {
         e.preventDefault();
-        title
+        (await title)
             ? dispatch(
                   uploadSong({
                       file,
@@ -49,15 +56,20 @@ function UploadSong() {
     return (
         <div className="upload-song">
             <h1>Upload Song</h1>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <form
+                className="form-container"
+                onSubmit={handleSubmit(tryToSubmit)}
+            >
                 <label htmlFor="title">Title</label>
                 <Input
+                    {...register('title', { required: true })}
                     type="text"
                     id="title"
                     onChange={e => setTitle(e.target.value)}
                     placeholder={title ? '' : 'add a title'}
+                    hasFeedback
                 />
-
+                {errors.title && <p>Please, enter a song title</p>}
                 <label htmlFor="artist">Artist</label>
                 <Input
                     type="text"
