@@ -35,6 +35,12 @@ const PlaylistSchema = mongoose.Schema({
             ref: 'user',
         },
     ],
+    followedBy: [
+        {
+            type: String,
+            ref: 'user',
+        },
+    ],
 });
 
 const Playlist = mongoose.model('playlist', PlaylistSchema);

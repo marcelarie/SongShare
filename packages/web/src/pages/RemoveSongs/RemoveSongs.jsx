@@ -9,39 +9,41 @@ import '../../styles/flex.scss';
 
 import '../PlaylistView/styles.scss';
 
-import { getAllSongs } from '../../redux/songs/songs-actions';
-
 import SongsList from '../../components/SongsList';
-import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
+import {
+    removeSongsFromPlaylist,
+    getPlaylist,
+} from '../../redux/Playlists/playlists-actions';
 
 import Button from '../../styles/components/Button/GenericButton';
 
-function AddSongs() {
+function RemoveSongs() {
     const dispatch = useDispatch();
     const { playlistId } = useParams();
 
-    const { ids } = useSelector(({ songs }) => songs);
     const { byID } = useSelector(({ playlists }) => playlists);
 
     const playlist = byID[playlistId];
+    const currentSongs = playlist.songs;
     const userId = useSelector(state => state.user._id);
-    const songsToAdd = byID[playlistId].songs;
+
+    const songsToRemove = [];
 
     useEffect(() => {
-        dispatch(getAllSongs());
-    }, [dispatch]);
+        dispatch(getPlaylist(playlistId));
+    }, [dispatch, playlistId]);
 
-    function addSongToAdd(id) {
-        const index = songsToAdd.findIndex(element => element === id);
+    function addSongToRemove(id) {
+        const index = songsToRemove.findIndex(element => element === id);
         if (index === -1) {
-            songsToAdd.push(id);
+            songsToRemove.push(id);
         }
     }
 
-    function removeSongToAdd(id) {
-        const index = songsToAdd.findIndex(element => element === id);
+    function removeSongToRemove(id) {
+        const index = songsToRemove.findIndex(element => element === id);
         if (index >= 0) {
-            songsToAdd.splice(index, 1);
+            songsToRemove.splice(index, 1);
         }
     }
 
@@ -89,14 +91,14 @@ function AddSongs() {
                                     type="button"
                                     onClick={() =>
                                         dispatch(
-                                            addSongsToPlaylist(
+                                            removeSongsFromPlaylist(
                                                 playlistId,
-                                                songsToAdd,
+                                                songsToRemove,
                                             ),
                                         )
                                     }
                                 >
-                                    Add selected songs
+                                    Remove songs
                                 </Button>
                             </Link>
                         </div>
@@ -115,13 +117,13 @@ function AddSongs() {
                 </button>
             </div>
             <SongsList
-                songsToList={ids}
-                option="addSongs"
-                handleAdd={addSongToAdd}
-                handleRemove={removeSongToAdd}
+                songsToList={currentSongs}
+                option="removeSongs"
+                handleAdd={addSongToRemove}
+                handleRemove={removeSongToRemove}
             />
         </PlaylistViewStyle>
     );
 }
 
-export default AddSongs;
+export default RemoveSongs;

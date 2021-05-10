@@ -20,7 +20,7 @@ function LandingPage() {
 
     return (
         <div className="landingPage">
-            <div style={{ width: '50vw', margin: '0 auto' }}>
+            <div style={{ width: '90vw', margin: '0 auto' }}>
                 <MegaCarousel key="topSongs" ids={allSongsIds} type="songs" />
             </div>
             <h1>All songs</h1>

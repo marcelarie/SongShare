@@ -1,22 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect, useHistory, useLocation, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import Button from '../../styles/components/Button/GenericButton';
+import LikeIcon from '../../components/LikeButton';
 
 import {
-    // addLikeToSong,
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
+
+import {
+    addLikeToPlaylist,
     // deleteSongByID,
-    // editSongByID,
+    editPlaylist,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
-import PlaylistViewStyle from './styled';
+import PlaylistViewStyle from '../PlaylistView/styled';
 
-import './styles.scss';
+import '../PlaylistView/styles.scss';
 
 function PlaylistEdit() {
     const dispatch = useDispatch();
@@ -24,51 +30,124 @@ function PlaylistEdit() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-
-    // const [name, setName] = useState(song.name);
-    // const [uploader, setUploader] = useState(song.uploadBy);
-    // const [author, setAuthor] = useState(song.author);
+    const userId = useSelector(state => state.user._id);
+    const [openMenu] = useQuickMenu();
+    const [title, setTitle] = useState(playlist.title);
+    const [type, setType] = useState(playlist.type);
+    const [publicAccess, setPublicAccess] = useState(playlist.publicAccess);
+    const [description, setDescription] = useState('');
     // const [genre, setGenre] = useState(song.gender);
 
     useEffect(() => {
         dispatch(getPlaylist(id));
-
-        // setName(song.name);
-        // setUploader(song.uploadBy);
-        // setAuthor(song.author);
-        // setGenre(song.gender);
+        setTitle(playlist.title);
+        setType(playlist.type);
+        setPublicAccess(playlist.publicAccess);
+        setDescription(playlist.description);
     }, [dispatch, id]);
+
+    useQuickMenuListener();
+
+    if (!playlist) {
+        return <Redirect to="/playlists" />;
+    }
+
+    if (playlist.author._id !== userId) {
+        return <Redirect to={`/playlist/${playlist._id}`} />;
+    }
 
     return (
         <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
             <div className="PlaylistView__header__container">
-                <div className="PlaylistView__header__container__info">
-                    <h2 className="PlaylistView__header__container__info__title">
-                        {playlist.title}
-                    </h2>
-                    <input type="text" value={playlist.title} />
-                    <p className="PlaylistView__header__container__info__author">
-                        {playlist.author.username}
-                    </p>
-                    <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
-                    </div>
-                </div>
                 <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
+                    <p>{title}</p>
+                </div>
+                <div className="PlaylistView__header__container__info">
+                    <div className="PlaylistView__header__container__info__container-info">
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__type"
+                            value={type === 'Playlist' ? 'Playlist' : 'Album'}
+                            onClick={() =>
+                                setType(
+                                    type === 'Playlist' ? 'Album' : 'Playlist',
+                                )
+                            }
+                            readOnly
+                        />
+                        <span> · </span>
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__access"
+                            value={publicAccess ? 'Public' : 'Private'}
+                            onClick={() => setPublicAccess(!publicAccess)}
+                            readOnly
+                        />
+                    </div>
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__title"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__author"
+                        value={playlist.author.username}
+                        readOnly
+                    />
+
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__description"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                    <div className="PlaylistView__header__container__info__container">
+                        <div className="PlaylistView__header__container__info__container__buttons">
+                            <div className="PlaylistView__header__container__info__container__buttons__options">
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        dispatch(
+                                            editPlaylist(playlist._id, {
+                                                title,
+                                                description,
+                                                publicAccess,
+                                                type,
+                                            }),
+                                        );
+                                    }}
+                                >
+                                    Save
+                                </Button>
+
+                                <button
+                                    className="PlaylistCard__container__3pointButton
+                        quickMenu PlaylistView__header__container__info__container__buttons__3point"
+                                    type="button"
+                                    onMouseDown={e => openMenu(e, playlist._id)}
+                                />
+                            </div>
+                            <LikeIcon
+                                zoom="true"
+                                handleLike={() =>
+                                    dispatch(addLikeToPlaylist(playlist._id))
+                                }
+                                likes={playlist.likedBy}
+                            />
+                        </div>
+                        <div className="PlaylistView__header__container__info__container__popuInf">
+                            <p className="PlaylistView__header__container__info__container__popuInf__like__text">
+                                {playlist.likedBy.length} likes
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <SongsList
                 songsToList={playlist.songs}
-                handleClick={() => console.log('play')}
+                handlePlaySong={() => console.log('play')}
             />
         </PlaylistViewStyle>
     );

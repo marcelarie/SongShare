@@ -14,14 +14,22 @@ class Repository {
         return normalizeDBQuery(Models[this.type].find(filter));
     };
 
-    findAndPopulate = (filter, toPopulate) => {
+    findAndPopulate = (filter, toPopulate, populateFilter = []) => {
         return normalizeDBQuery(
-            Models[this.type].find(filter).populate(toPopulate),
+            Models[this.type].find(filter).populate(toPopulate, populateFilter),
         );
     };
 
     findOne = filter => {
         return normalizeDBQuery(Models[this.type].findOne(filter, '-__v'));
+    };
+
+    findOneAndPouplate = (filter, toPopulate, populateFilter = []) => {
+        return normalizeDBQuery(
+            Models[this.type]
+                .findOne(filter, '-__v')
+                .populate(toPopulate, populateFilter),
+        );
     };
 
     findOneLean = filter => {
@@ -40,12 +48,9 @@ class Repository {
         );
     };
 
-    findOneAndPouplate = (filter, toPopulate) => {
+    findAndCheckFollowers = (uid, id) => {
         return normalizeDBQuery(
-            Models[this.type]
-                .findOne(filter, '-__v')
-                .populate(toPopulate)
-                .lean(),
+            Models[this.type].find({ _id: uid, following: { $in: [id] } }),
         );
     };
 

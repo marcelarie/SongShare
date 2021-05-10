@@ -1,123 +1,124 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { createPlaylist } from '../../redux/Playlists/playlists-actions';
+import Button from '../../styles/components/Button/GenericButton';
+import {
+    createPlaylist,
+    createPlaylistRequest,
+} from '../../redux/Playlists/playlists-actions';
+
+import PlaylistViewStyle from '../PlaylistView/styled';
+import '../PlaylistView/styles.scss';
 
 function CreatePlaylist() {
-    const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
-        store => store.playlists,
-    );
+    const {
+        PlaylistUpdating,
+        PlaylistUpdatingError,
+        PlaylistUpdate,
+    } = useSelector(store => store.playlists);
     const author = useSelector(store => store.user.username);
     const userID = useSelector(store => store.user._id);
     const dispatch = useDispatch();
-    const handleSubmit = e => {
-        e.preventDefault();
-        dispatch(createPlaylist({ title, userID, publicAccess, type, songs }));
-    };
 
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('Playlist title');
     const [type, setType] = useState('Playlist');
     const [songs] = useState([]);
     const [publicAccess, setPublicAccess] = useState(false);
+    const [description, setDescription] = useState('Playlist description');
 
+    useEffect(() => {
+        dispatch(createPlaylistRequest());
+    }, [dispatch]);
     return (
-        <>
-            <div>
-                <h2>CreatePlaylist</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="title" className="form-label text-dark">
-                        Title
-                    </label>
+        <PlaylistViewStyle className="PlaylistView">
+            <div className="PlaylistView__header__container">
+                <div className="PlaylistView__header__container__img">
+                    <p>{title}</p>
+                </div>
+                <div className="PlaylistView__header__container__info">
+                    <div className="PlaylistView__header__container__info__container-info">
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__type"
+                            value={type === 'Playlist' ? 'Playlist' : 'Album'}
+                            onClick={() =>
+                                setType(
+                                    type === 'Playlist' ? 'Album' : 'Playlist',
+                                )
+                            }
+                            readOnly
+                        />
+                        <span> · </span>
+                        <input
+                            type="text"
+                            className="PlaylistView__header__container__info__access"
+                            value={publicAccess ? 'Public' : 'Private'}
+                            onClick={() => setPublicAccess(!publicAccess)}
+                            readOnly
+                        />
+                    </div>
                     <input
                         type="text"
-                        id="title"
-                        className="form-input"
+                        className="PlaylistView__header__container__info__title"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
-                    <label htmlFor="author" className="form-label text-dark">
-                        Author
-                    </label>
                     <input
                         type="text"
-                        id="author"
-                        className="form-input"
+                        className="PlaylistView__header__container__info__author"
                         value={author}
-                        disabled
-                    />
-                    <label
-                        htmlFor="publicAccess"
-                        className="form-label text-dark"
-                    >
-                        Public
-                    </label>
-                    <input
-                        type="radio"
-                        id="playlistAccessPublic"
-                        className="form-input"
-                        name="publicAccess"
-                        value="false"
-                        defaultChecked
-                        onChange={() => setPublicAccess(true)}
-                    />
-                    <label
-                        htmlFor="publicAccess"
-                        className="form-label text-dark"
-                    >
-                        Private
-                    </label>
-                    <input
-                        type="radio"
-                        id="playlistAccessPrivate"
-                        className="form-input"
-                        name="publicAccess"
-                        value="true"
-                        onChange={() => setPublicAccess(false)}
-                    />
-                    <label htmlFor="type" className="form-label text-dark">
-                        Playlist
-                    </label>
-                    <input
-                        type="radio"
-                        id="typePlaylist"
-                        className="form-input"
-                        name="type"
-                        value="Playlist"
-                        defaultChecked
-                        onChange={() => setType('Playlist')}
-                    />
-                    <label htmlFor="type" className="form-label text-dark">
-                        Album
-                    </label>
-                    <input
-                        type="radio"
-                        id="typeAlbum"
-                        className="form-input"
-                        name="type"
-                        value="Album"
-                        onChange={() => setType('Album')}
+                        readOnly
                     />
 
-                    <button className="btn btn-primary w-full" type="submit">
-                        Create
-                    </button>
-                </form>
-
-                {PlaylistUpdating && (
-                    <p className="text-dark">Creating playlist</p>
-                )}
-                {PlaylistUpdatingError && (
-                    <p className="text-dark">
-                        There was an error: {PlaylistUpdatingError}
-                    </p>
-                )}
-                {!PlaylistUpdating && !PlaylistUpdatingError && (
-                    <p className="text-dark">
-                        The playlist has been created successfull
-                    </p>
-                )}
+                    <input
+                        type="text"
+                        className="PlaylistView__header__container__info__description"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                    <div className="PlaylistView__header__container__info__container">
+                        <div className="PlaylistView__header__container__info__container__buttons">
+                            <div className="PlaylistView__header__container__info__container__buttons__options">
+                                {PlaylistUpdate ? (
+                                    <>
+                                        <p>
+                                            You have created the playlist
+                                            successfull
+                                        </p>
+                                        <Link
+                                            to={`/playlist/${PlaylistUpdate}/addsongs`}
+                                        >
+                                            <Button type="button">
+                                                Add songs to playlist
+                                            </Button>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <Button
+                                        type="button"
+                                        onClick={() =>
+                                            dispatch(
+                                                createPlaylist({
+                                                    title,
+                                                    userID,
+                                                    publicAccess,
+                                                    type,
+                                                    songs,
+                                                }),
+                                            )
+                                        }
+                                        disabled={PlaylistUpdate}
+                                    >
+                                        Create playlist
+                                    </Button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </>
+        </PlaylistViewStyle>
     );
 }
 
