@@ -36,12 +36,12 @@ function MainRouter() {
             />
             <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} />
             <ProtectedRoute path={ROUTES.ADD_SONGS} component={AddSongs} />
+            <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserProfile}
                 // exact
             />
-            <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}

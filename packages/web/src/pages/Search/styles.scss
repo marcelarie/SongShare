@@ -1,0 +1,51 @@
+.search {
+    &__header {
+        border: 1px solid white;
+        text-align: center;
+        h3 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        &__input {
+            input {
+                width: 40%;
+                min-width: 200px;
+                max-width: 300px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                border: none;
+                border: 1px solid black;
+            }
+        }
+    }
+    &__content {
+        padding: 30px;
+        h4 {
+            border-bottom: 1px solid white;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        &__music {
+            margin-bottom: 30px;
+            &__content {
+                border: 1px solid white;
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        &__playlists {
+            margin-bottom: 30px;
+            &__content {
+                border: 1px solid white;
+            }
+        }
+        &__users {
+            &__content {
+                border: 1px solid white;
+            }
+        }
+    }
+    &__preview {
+    }
+}

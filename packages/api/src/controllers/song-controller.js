@@ -81,10 +81,17 @@ async function getSongByNameWithLikes(req, res, next) {
 }
 
 async function getSongsByParams(req, res, next) {
-    const { body } = req;
+    const { query } = req.params;
+
+    let querystr = `/${query}/i`;
 
     try {
-        const response = await SongRepo.find(body);
+        const response = await SongRepo.find(
+            { name: eval(querystr) },
+            function (err, docs) {
+                console.log(err, docs);
+            },
+        );
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);

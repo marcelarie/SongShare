@@ -148,6 +148,26 @@ async function likePlaylist(req, res, next) {
     }
 }
 
+async function getPlaylistsByParams(req, res, next) {
+    const { query } = req.params;
+
+    let querystr = `/${query}/i`;
+
+    try {
+        const response = await PlaylistRepo.find(
+            { name: eval(querystr) },
+            function (err, docs) {
+                console.log(err, docs);
+            },
+        );
+
+        if (response.error) return res.status(400).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     createPlaylist,
     getPlaylistById,
@@ -155,4 +175,5 @@ export {
     getAllPlaylists,
     updatePlaylist,
     likePlaylist,
+    getPlaylistsByParams,
 };
