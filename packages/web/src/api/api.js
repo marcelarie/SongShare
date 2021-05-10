@@ -193,6 +193,32 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function getSongByParams(headers, query) {
+        console.log(query);
+        return request({
+            url: `/songs/all-with/${query}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getUserByParams(headers, query) {
+        console.log(query);
+        return request({
+            url: `/user/all-with/${query}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+    function getPlayListByParams(headers, query) {
+        console.log(query);
+        return request({
+            url: `/playlist/all-with/${query}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
     return {
         signUp,
         signOut,
@@ -220,6 +246,11 @@ function makeApi(request = makeRequest()) {
         followPlaylist,
 
         getOtherUser,
+
+        // search methods
+        getSongByParams,
+        getUserByParams,
+        getPlayListByParams,
     };
 }
 

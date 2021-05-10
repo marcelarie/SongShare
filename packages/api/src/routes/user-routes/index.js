@@ -10,6 +10,7 @@ import {
     deleteUser,
     getAllUserLikes,
     getUserInfo,
+    getUsersByParams,
 } from '../../controllers/user-controller.js';
 
 const userRouter = Router();
@@ -25,5 +26,7 @@ userRouter.delete('/user/delete', deleteUser);
 userRouter.get('/user/all-likes/:id', getAllUserLikes);
 
 userRouter.get('/user', getUserInfo);
+
+userRouter.get('/user/all-with/:query', getUsersByParams);
 
 export default userRouter;
