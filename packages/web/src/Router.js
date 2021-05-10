@@ -12,6 +12,7 @@ import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
 import AddSongs from './pages/AddSongs';
 import Playlist from './pages/PlaylistView';
+import Search from './pages/Search';
 
 // import templates from './pages/UserInfo/UserProfileTemplates';
 // import UploadSong from './components/UploadSong';
@@ -35,6 +36,7 @@ function MainRouter() {
             />
             <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} />
             <ProtectedRoute path={ROUTES.ADD_SONGS} component={AddSongs} />
+            <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserProfile}
