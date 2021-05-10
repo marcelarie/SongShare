@@ -22,8 +22,8 @@ export function updateUserInfo(userInfoEdited) {
     };
 }
 
-export function updateUserInfoMidleware(userInfo) {
-    return async function updateUserInfoMidlewareThunk(dispatch) {
+export function updateUserAvatarPhotoMidleware(userInfo) {
+    return async function updateUserAvatarPhotoMidlewareThunk(dispatch) {
         const { username, name, lastname, file, fileType } = userInfo;
         let userInfoEdited = null;
         if (file) {

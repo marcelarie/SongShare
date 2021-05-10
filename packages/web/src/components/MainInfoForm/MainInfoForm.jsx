@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { updateUserInfoMidleware } from '../../redux/user/user-actions';
+import { updateUserInfo } from '../../redux/user/user-actions';
 
 function MainInfoForm() {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function MainInfoForm() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(
-            updateUserInfoMidleware({
+            updateUserInfo({
                 username,
                 name,
                 lastname,

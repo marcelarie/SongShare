@@ -15,7 +15,7 @@ import RemoveSongs from './pages/RemoveSongs';
 import Playlist from './pages/PlaylistView';
 import PlaylistEdit from './pages/PlaylistEditView';
 
-// import templates from './pages/UserInfo/UserProfileTemplates';
+// import templates from './pages/UserProfile/UserProfileContent/UserProfileEdit';
 // import UploadSong from './components/UploadSong';
 // import ChangePassword from './pages/ChangePassword';
 
