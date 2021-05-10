@@ -26,6 +26,9 @@ function Welcome() {
                     <span>Ready to share in?</span>
                     <span>Start your sharing today.</span>
                 </h2>
+                    <div className="welcomePage__theme">
+                        <DarkLightToggle theme={theme} />
+                    </div>
                 <div className="flex-column">
                     <NavLink to={ROUTES.SIGN_UP}>
                         <Button className="form-submit" type="button">
@@ -44,9 +47,6 @@ function Welcome() {
                     >
                         Login with Google
                     </Button>
-                    <div className="welcomePage__theme">
-                            <DarkLightToggle theme={theme} />
-                    </div>
                 </div>
             </div>
         </main>

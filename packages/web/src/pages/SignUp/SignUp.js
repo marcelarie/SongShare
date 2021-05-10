@@ -10,6 +10,7 @@ import * as ROUTES from '../../routes';
 import '../../styles/GenericForm.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import Input from '../../styles/components/Input/GenericInput';
+import DarkLightToggle from '../../components/DarkLightToggle';
 
 function SignUp() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function SignUp() {
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [username, setUsername] = useState('');
+    const { theme } = useSelector(store => store.changeTheme);
 
     useEffect(() => {
         dispatch(resetAuthState());
@@ -49,8 +51,11 @@ function SignUp() {
     }
 
     return (
-        <div className="form-container">
+        <div className="form-container welcomePage">
             <h2 className="header">Create your account </h2>
+            <div className="welcomePage__theme">
+                <DarkLightToggle theme={theme} />
+            </div>
             <form action="#" method="POST" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="Name">First name</label>

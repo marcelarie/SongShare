@@ -1,0 +1,14 @@
+.resetPassword {
+    p {
+        font-weight: 400;
+        margin: 0 1rem;
+    }
+    section form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input {
+            text-align: center;
+        }
+    }
+}
