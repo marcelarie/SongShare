@@ -2,15 +2,17 @@ import * as UserTypes from './user-types';
 import { SIGN_UP_SUCCESS } from '../auth/auth-types';
 
 const userInitialState = {
-    username: '',
+    songs: [],
+    playlist: [],
+    likes: [],
+    _id: null,
     email: '',
     name: '',
     lastname: '',
-    _id: null,
+    username: '',
     imageUrl: '',
-    langKey: 'ES',
-    lastModifiedBy: '',
-    lastModifiedDate: '',
+    createdAt: '',
+    updateAt: '',
     loading: false,
     error: false,
 };
@@ -19,6 +21,7 @@ const userReducer = (state = userInitialState, action) => {
     switch (action.type) {
         case SIGN_UP_SUCCESS:
             return {
+                ...state,
                 ...action.payload,
                 loading: false,
                 error: false,
