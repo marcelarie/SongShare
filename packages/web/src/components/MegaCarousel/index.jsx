@@ -36,16 +36,17 @@ const MegaCarousel = ({ ids, type }) => {
             keyBoardControl="true"
             removeArrowOnDeviceType={['tablet', 'mobile']}
             deviceType={Carousel.deviceType}
+            style={{ margin: 'auto' }}
 
             // CUSTOM
             // customLeftArrow={<CustomLeftArrow />}
             // customRightArrow={<CustomRightArrow />}
             //   customDot={<CustomDot />}
         >
-                {ids.map(id => {
-                    const item = ByID[id];
-                    return <MegaSongCard song={item} key={item._id} />;
-                })}
+            {ids.map(id => {
+                const item = ByID[id];
+                return <MegaSongCard song={item} key={item._id} />;
+            })}
         </Carousel>
     );
 };
