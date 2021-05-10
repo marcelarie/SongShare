@@ -1,0 +1,14 @@
+.userCard {
+    width: 100%;
+    display: flex;
+    &__photo {
+        width: 200px;
+        img {
+            width: 100%;
+        }
+    }
+    &__username {
+        color: white;
+        font-size: 10px;
+    }
+}

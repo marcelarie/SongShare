@@ -26,7 +26,10 @@ songRouter.get('/song/:id', getSong);
 
 songRouter.post('/song', postSong);
 songRouter.post('/song/like/:id', likeSong);
-songRouter.post('/songs/all-with', getSongsByParams);
+songRouter.get('/songs/all-with/:query', getSongsByParams);
+
+//enric url
+// songRouter.get('/songs/:regExp', getSongsByParams);
 
 songRouter.delete('/song/:id', deleteSong);
 songRouter.patch('/song/:id', patchSong);

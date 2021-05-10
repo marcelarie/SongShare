@@ -12,6 +12,7 @@ import {
     followPlaylist,
     updatePlaylist,
     deletePlaylist,
+    getPlaylistsByParams,
 } from '../../controllers/playlist-controller.js';
 
 const playlistRouter = Router();
@@ -25,5 +26,7 @@ playlistRouter.patch('/playlist/addSongs/:id', addSongs);
 playlistRouter.patch('/playlist/removeSongs/:id', removeSongs);
 playlistRouter.patch('/playlist/:id', updatePlaylist);
 playlistRouter.delete('/playlist/:id', deletePlaylist);
+
+playlistRouter.get('/playlist/all-with/:query', getPlaylistsByParams);
 
 export default playlistRouter;
