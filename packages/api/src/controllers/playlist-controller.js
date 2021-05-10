@@ -252,6 +252,10 @@ async function followPlaylist(req, res, next) {
             if (PlaylistResponse.data)
                 return res.status(200).send({ PlaylistResponse, userResponse });
         }
+    } catch (error) {
+        next(error);
+    }
+}
 async function getPlaylistsByParams(req, res, next) {
     const { query } = req.params;
 

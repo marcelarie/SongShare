@@ -13,11 +13,8 @@ import CreatePlaylist from './pages/CreatePlaylist';
 import AddSongs from './pages/AddSongs';
 import RemoveSongs from './pages/RemoveSongs';
 import Playlist from './pages/PlaylistView';
-<<<<<<< HEAD
 import PlaylistEdit from './pages/PlaylistEditView';
-=======
 import Search from './pages/Search';
->>>>>>> 2b457042cf4e95d70245a13ca4c0fffbe7380b61
 
 // import templates from './pages/UserProfile/UserProfileContent/UserProfileEdit';
 // import UploadSong from './components/UploadSong';
