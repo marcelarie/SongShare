@@ -41,7 +41,7 @@ function Playlist() {
     }
     return (
         <>
-            <PlaylistViewHeader playlist={playlist} />
+            <PlaylistViewHeader playlist={playlist} from="mainView"/>
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
                 <SongsList
                     songsToList={playlist.songs}
