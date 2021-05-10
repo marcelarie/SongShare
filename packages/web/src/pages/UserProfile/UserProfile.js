@@ -18,7 +18,12 @@ function CurrentUserProfile() {
     const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
 
     return (
-        <UserProfile cover={user.imageUrl} className="user">
+        <UserProfile
+            cover={user.imageUrl}
+            className="user"
+            image={user.imageUrl}
+        >
+            {' '}
             <div className="user__header">
                 <div className="user__header__title">
                     <p>
@@ -26,7 +31,6 @@ function CurrentUserProfile() {
                     </p>
                 </div>
             </div>
-
             <div className="user__nav">
                 <nav>
                     <ul>
@@ -70,29 +74,33 @@ function CurrentUserProfile() {
                     </ul>
                 </nav>
             </div>
-
             <div className="user__main">
                 <div className="user__main__aside relative">
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <img src={user.imageUrl} alt={user.imageUrl} />
-                                <p>{user.username}</p>
+                                <br />
                             </div>
                         </div>
                         <div className="user__main__aside__content">
-                            <p>Name:</p>
-                            <p>{user.name}</p>
-                            <p>Last name:</p>
-                            <p>{user.lastname}</p>
+                            <h1>@{user.username}</h1>
+                            <div className="user__main__aside__content__info">
+                                <p>
+                                    Followers <span>user.followers</span>
+                                </p>
+                                <p>
+                                    Following <span>user.following</span>
+                                </p>
+                                <p>
+                                    Songs <span>user.songs</span>
+                                </p>
+                            </div>
 
                             {user.username === currentUser.username && (
                                 <Link to={`/${user.username}/Edit`}>
                                     <Button>Edit</Button>
                                 </Link>
                             )}
-
-                            <br />
                             <Link to={`/${user.username}/Info`}>
                                 <Button>Info</Button>
                             </Link>

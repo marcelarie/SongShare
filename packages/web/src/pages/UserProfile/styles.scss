@@ -42,18 +42,38 @@
         &__aside {
             flex: 1;
             padding: 0.25rem;
-            min-width: '200px';
-            max-width: '300px';
+            min-height: 300px;
+            min-width: 300px;
 
             &__header {
                 &__image {
                     img {
+                        border-radius: 5px;
                         width: 100%;
                     }
                 }
             }
             &__content {
                 padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                &__info {
+                    p {
+                        font-size: 1.2rem;
+                        margin: 1rem 0;
+                        span {
+                            align-self: flex-end;
+                        }
+                    }
+                }
+
+                button {
+                    position: absolute;
+                    right: 15px;
+                    bottom: -30px;
+                }
             }
         }
         // CONTENT
@@ -100,7 +120,6 @@
                         padding-right: 50px;
                         flex: 1;
                         input {
-                            float: right;
                             display: inline-block;
                             width: 60%;
                             padding: 2px 5px;
@@ -120,7 +139,8 @@
 
 .user__main__aside__offset {
     position: absolute;
-    top: -120px;
+    border-radius: 5px;
+    top: -220px;
 }
 
 .relative {

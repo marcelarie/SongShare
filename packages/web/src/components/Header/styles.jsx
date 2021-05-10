@@ -96,8 +96,8 @@ const Nav = styled.nav`
         }
         &__image {
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             margin: auto 0.5rem;
             border-radius: 50%;
             &:active {

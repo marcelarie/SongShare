@@ -13,7 +13,7 @@ const GenericButton = styled.button`
         width: ${({ width }) => width};
         border: 1px solid ${({ theme }) => theme.text};
         background-color: ${({ theme }) => theme.background};
-        transition: 0.6s;
+        transition: 0.4s;
         &:hover {
             background-color: ${({ theme }) => theme.mainDark} ;
                 transition: 0.1s;

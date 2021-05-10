@@ -45,8 +45,7 @@ function Header() {
                     </NavButton>
                 </NavLink>
                 <NavLink to="/">
-                    <NavButton
-                        className={
+                    <NavButton className={
                             currentLocation === '/search' ? 'navfocus' : ''
                         }
                     >
@@ -97,8 +96,9 @@ function Header() {
                         <NavLink to={`/${username}/`}>
                             <button
                                 className={
-                                    currentLocation === `/${username}/` &&
-                                    'navfocus'
+                                    currentLocation === `/${username}/`
+                                        ? 'navfocus'
+                                        : ''
                                 }
                                 onClick={() => setOpenMenu(!openMenu)}
                                 type="button"
@@ -109,8 +109,9 @@ function Header() {
                         <NavLink to={`/${username}/Music`}>
                             <button
                                 className={
-                                    currentLocation === `/${username}/Music` &&
-                                    'navfocus'
+                                    currentLocation === `/${username}/Music`
+                                        ? 'navfocus'
+                                        : ''
                                 }
                                 onClick={() => setOpenMenu(!openMenu)}
                                 type="button"
@@ -121,8 +122,9 @@ function Header() {
                         <NavLink to="/">
                             <button
                                 className={
-                                    currentLocation === `/settings` &&
-                                    'navfocus'
+                                    currentLocation === `/settings`
+                                        ? 'navfocus'
+                                        : ''
                                 }
                                 onClick={() => setOpenMenu(!openMenu)}
                                 type="button"
