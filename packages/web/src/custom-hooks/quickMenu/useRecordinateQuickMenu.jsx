@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveSize, changeXandY } from '../../redux/quickMenu/quickMenu-actions';
+import { changeXandYPlaylist } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 import * as windowSize from '../windowSize';
 
 function UseRecordinateQuickMenu() {
@@ -18,12 +19,31 @@ function UseRecordinateQuickMenu() {
         const auxPositionX = parseInt(positionX.replace('px', ''), 10);
         const auxPositionY = parseInt(positionY.replace('px', ''), 10);
 
+        const xPL =
+            wSize[0] - auxPositionX > 230
+                ? auxPositionX + 110
+                : auxPositionX - 150;
+
         if (windowXsize > savedXsize) {
             const res = auxPositionX + windowYsize - savedYsize;
+            const resPlaylist = xPL + windowYsize - savedYsize;
             dispatch(changeXandY({ x: `${res.toString()}px`, y: positionY }));
+            dispatch(
+                changeXandYPlaylist({
+                    xPL: `${resPlaylist.toString()}px`,
+                    yPL: positionY,
+                }),
+            );
         } else if (windowXsize < savedXsize) {
             const res = auxPositionX + windowYsize - savedYsize;
+            const resPlaylist = xPL + windowYsize - savedYsize;
             dispatch(changeXandY({ x: `${res.toString()}px`, y: positionY }));
+            dispatch(
+                changeXandYPlaylist({
+                    xPL: `${resPlaylist.toString()}px`,
+                    yPL: positionY,
+                }),
+            );
         }
         dispatch(saveSize(wSize));
     }, [wSize]);

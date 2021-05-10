@@ -29,6 +29,7 @@ function useQuickMenuListener() {
         };
         function closeQuickMenu() {
             dispatch(openModal(false));
+                    dispatch(openPlaylistModal(false));
         }
 
         window.addEventListener('mousedown', quickMenuListener);
