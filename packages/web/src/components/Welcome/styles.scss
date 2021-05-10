@@ -1,5 +1,6 @@
 .welcomePage {
-    h2 {
-        font-family: 'Bebas Neue', cursive;
+    &__theme {
+        font-size: 2rem;
+        text-align: center;
     }
 }

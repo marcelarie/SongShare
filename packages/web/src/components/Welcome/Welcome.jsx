@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../../styles/GenericForm.scss';
 import '../../styles/flex.scss';
@@ -8,9 +8,11 @@ import './styles.scss';
 import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 import * as ROUTES from '../../routes';
 import Button from '../../styles/components/Button/GenericButton';
+import DarkLightToggle from '../DarkLightToggle';
 
 function Welcome() {
     const dispatch = useDispatch();
+    const { theme } = useSelector(store => store.changeTheme);
 
     function handleLoginWithGoogle(e) {
         e.preventDefault();
@@ -42,6 +44,9 @@ function Welcome() {
                     >
                         Login with Google
                     </Button>
+                    <div className="welcomePage__theme">
+                            <DarkLightToggle theme={theme} />
+                    </div>
                 </div>
             </div>
         </main>

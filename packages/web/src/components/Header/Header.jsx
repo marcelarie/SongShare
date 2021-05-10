@@ -3,7 +3,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
-import { changeTheme } from '../../redux/theme/theme-actions';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
@@ -23,9 +22,6 @@ function Header() {
 
     const handleSignOut = () => {
         dispatch(signOut());
-    };
-    const handleChangeTheme = () => {
-        dispatch(changeTheme());
     };
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -95,13 +91,7 @@ function Header() {
                     image={profilePic}
                     className="nav-user__image"
                 />
-                <button
-                    style={{ all: 'unset' }}
-                    onClick={handleChangeTheme}
-                    type="button"
-                >
-                    <DarkLightToggle theme={theme} />
-                </button>
+                <DarkLightToggle theme={theme} />
                 {openMenu && (
                     <div className="nav-user__menu">
                         <NavLink to={`/${username}/`}>
