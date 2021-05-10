@@ -38,7 +38,6 @@ function MainRouter() {
             <ProtectedRoute
                 path={ROUTES.HOME_USER}
                 component={UserProfile}
-                // exact
             />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}

@@ -268,7 +268,6 @@ export function addLikeToPlaylist(playlistID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-            console.log(res.data.PlaylistResponse.data);
             // update user info and song info (?)
             return dispatch(
                 updatePlaylistSuccess(res.data.PlaylistResponse.data),

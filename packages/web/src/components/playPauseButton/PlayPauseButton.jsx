@@ -13,7 +13,7 @@ function PlayPauseButton(id) {
             x="0px"
             y="0px"
             width="100%"
-            height="auto"
+            height="100%"
             viewBox="0 0 163.861 163.861"
         >
             <g>
@@ -31,7 +31,7 @@ function PlayPauseButton(id) {
             x="0px"
             y="0px"
             width="100%"
-            height="auto"
+            height="100%"
             viewBox="0 0 512 512"
         >
             <g>

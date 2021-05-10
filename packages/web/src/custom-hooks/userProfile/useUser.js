@@ -24,7 +24,7 @@ function useUser() {
                 setIsLoading(false);
             }
         }
-    }, [path, dispatch, currentUser, otherUser.username]);
+    }, [path, dispatch, currentUser, otherUser.username]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return { user, isLoading, pathUsername };
 }

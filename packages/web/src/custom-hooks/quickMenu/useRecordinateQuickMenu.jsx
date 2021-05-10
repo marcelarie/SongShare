@@ -1,4 +1,4 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveSize, changeXandY } from '../../redux/quickMenu/quickMenu-actions';
 import { changeXandYPlaylist } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
@@ -8,7 +8,7 @@ function UseRecordinateQuickMenu() {
     // TODO: Y
     const dispatch = useDispatch();
     const wSize = windowSize.useWindowSize();
-    const { positionX, positionY, id, size } = useSelector(
+    const { positionX, positionY, size } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
     useEffect(() => {
@@ -19,7 +19,7 @@ function UseRecordinateQuickMenu() {
         const savedYsize = size[1];
 
         const auxPositionX = parseInt(positionX.replace('px', ''), 10);
-        const auxPositionY = parseInt(positionY.replace('px', ''), 10);
+        // const auxPositionY = parseInt(positionY.replace('px', ''), 10);
 
         const xPL =
             wSize[0] - auxPositionX > 230
@@ -48,7 +48,7 @@ function UseRecordinateQuickMenu() {
             );
         }
         dispatch(saveSize(wSize));
-    }, [wSize]);
+    }, [wSize]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export default UseRecordinateQuickMenu;

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
 import { changeTheme } from '../../redux/theme/theme-actions';
-import { MY_MUSIC, MY_PLAYLISTS } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
@@ -15,7 +14,6 @@ function Header() {
     const dispatch = useDispatch();
     const { theme } = useSelector(store => store.changeTheme);
     const currentLocation = useLocation().pathname;
-    console.log(currentLocation);
 
     const { imageUrl, username } = useSelector(store => store.user);
 
@@ -45,14 +43,16 @@ function Header() {
             <div className="nav-menu">
                 <NavLink to="/">
                     <NavButton
-                        className={currentLocation === '/' && 'navfocus'}
+                        className={currentLocation === '/' ? 'navfocus' : ''}
                     >
                         HOME
                     </NavButton>
                 </NavLink>
                 <NavLink to="/">
                     <NavButton
-                        className={currentLocation === '/search' && 'navfocus'}
+                        className={
+                            currentLocation === '/search' ? 'navfocus' : ''
+                        }
                     >
                         SEARCH
                     </NavButton>
@@ -60,8 +60,9 @@ function Header() {
                 <NavLink to={`/${username}/Music`}>
                     <NavButton
                         className={
-                            currentLocation === `/${username}/Music` &&
-                            'navfocus'
+                            currentLocation === `/${username}/Music`
+                                ? 'navfocus'
+                                : ''
                         }
                     >
                         MUSIC
@@ -70,8 +71,9 @@ function Header() {
                 <NavLink to={`/${username}/Playlist`}>
                     <NavButton
                         className={
-                            currentLocation === `/${username}/Playlist` &&
-                            'navfocus'
+                            currentLocation === `/${username}/Playlist`
+                                ? 'navfocus'
+                                : ''
                         }
                     >
                         PLAYLISTS

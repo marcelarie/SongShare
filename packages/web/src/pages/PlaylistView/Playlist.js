@@ -67,7 +67,7 @@ function Playlist() {
             </div>
             <SongsList
                 songsToList={playlist.songs}
-                handleClick={() => console.log('play')}
+                // handleClick={() => console.log('play')}
             />
         </PlaylistViewStyle>
     );

@@ -28,8 +28,10 @@ function useQuickMenuListener() {
             }
         };
         function closeQuickMenu() {
+            if (open){
             dispatch(openModal(false));
-                    dispatch(openPlaylistModal(false));
+            dispatch(openPlaylistModal(false));
+            }
         }
 
         window.addEventListener('mousedown', quickMenuListener);
