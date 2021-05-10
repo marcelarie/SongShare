@@ -57,11 +57,7 @@ function MainRouter() {
                 exact
             />
             <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
-            <ProtectedRoute
-                path={ROUTES.HOME_USER}
-                component={UserProfile}
-                exact
-            />
+            <ProtectedRoute path={ROUTES.HOME_USER} component={UserProfile} />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}

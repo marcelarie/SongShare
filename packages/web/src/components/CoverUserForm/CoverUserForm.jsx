@@ -7,9 +7,9 @@ import { updateUserAvatarPhoto } from '../../redux/user/user-actions';
 
 import { fileTypes } from '../../services/cloudinary';
 import Dropzone from '../Dropzone';
-import StyledImg from './StyledImag';
+import StyledCoverImg from './styledCoverPhoto';
 
-function AvatarUserForm() {
+function CoverUserForm() {
     const dispatch = useDispatch();
 
     const currentUser = useSelector(store => store.user);
@@ -26,7 +26,7 @@ function AvatarUserForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(updateUserAvatarPhoto({ file, fileType }));
+        // dispatch(updateUserCoverPhoto({ file, fileType }));
         // history.push(`/${username}/Info`); preguntar a Enric
     };
     const { imageUrl } = useSelector(store => store.user);
@@ -40,13 +40,14 @@ function AvatarUserForm() {
             <div className="user__main__edit__form__data__dropzone">
                 <div className="user__main__edit__form__data__dropzone__cover">
                     <div>
-                        <StyledImg>
-                            <img
-                                className="avatar"
+                        <StyledCoverImg urlImg={profilePic}>
+                            <div className="cover" />
+                            {/* <img
+                                className="cover"
                                 src={profilePic}
                                 alt="altt"
-                            />
-                        </StyledImg>
+                            /> */}
+                        </StyledCoverImg>
                     </div>
                     <label htmlFor="user-cover">User profile photo</label>
                     <Dropzone
@@ -68,4 +69,4 @@ function AvatarUserForm() {
     );
 }
 
-export default AvatarUserForm;
+export default CoverUserForm;
