@@ -13,6 +13,7 @@ const QuickPlaylistMenu = id => {
 
     const myPlaylistsIds = useSelector(store => store.user.playlists);
     const AllPlaylists = useSelector(store => store.playlists.byID);
+    console.log(myPlaylistsIds);
 
     const add = idPlaylist => {
         dispatch(addSongsToPlaylist(idPlaylist, [id]));

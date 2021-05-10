@@ -20,7 +20,7 @@ export const createPlaylistError = errorMessage => ({
 export const createPlaylistSuccess = playlist => ({
     type: playlistTypes.CREATE_PLAYLIST_SUCCESS,
     payload: {
-        playlist: playlist,
+        playlist,
     },
 });
 
@@ -133,7 +133,6 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
                     songs,
                 },
             );
-
             if (res.errorMessage) {
                 return dispatch(
                     createPlaylistError(`Error: ${res.errorMessage}`),

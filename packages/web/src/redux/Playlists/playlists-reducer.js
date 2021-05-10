@@ -45,6 +45,7 @@ function PlaylistsReducer(state = PlaylistsInitialState, action) {
                         ...playlist,
                     },
                 },
+                ids: [...state.ids, playlistID],
             };
         }
         case PlaylistsTypes.GET_PLAYLISTS_REQUEST: {
