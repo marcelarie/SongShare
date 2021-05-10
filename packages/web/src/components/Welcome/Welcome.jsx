@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../../styles/GenericForm.scss';
 import '../../styles/flex.scss';
+import './styles.scss';
 
 import { signUpWithGoogleRequest } from '../../redux/auth/auth-actions';
 import * as ROUTES from '../../routes';
@@ -18,7 +19,7 @@ function Welcome() {
 
     return (
         <main>
-            <div className="form-container">
+            <div className="welcomePage form-container">
                 <h2 className="form-titles">
                     <span>Ready to share in?</span>
                     <span>Start your sharing today.</span>
