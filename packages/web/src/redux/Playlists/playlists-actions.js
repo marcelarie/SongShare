@@ -94,6 +94,22 @@ export const updatePlaylistSuccess = playlist => {
 //     },
 // });
 
+export const deletePlaylistRequest = () => ({
+    type: playlistTypes.DELETE_PLAYLIST_REQUEST,
+});
+
+export const deletePlaylistError = errorMessage => ({
+    type: playlistTypes.DELETE_PLAYLIST_ERROR,
+    payload: errorMessage,
+});
+
+export const deletePlaylistSuccess = successMessage => {
+    return {
+        type: playlistTypes.DELETE_PLAYLIST_SUCCESS,
+        payload: successMessage,
+    };
+};
+
 export function createPlaylist({ title, publicAccess, author, type, songs }) {
     return async function createPlaylistThunk(dispatch) {
         dispatch(createPlaylistRequest());
@@ -101,7 +117,9 @@ export function createPlaylist({ title, publicAccess, author, type, songs }) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    createPlaylistError(`Error: 'Missing auth token'`),
+                );
             }
             const res = await api.createPlaylist(
                 {
@@ -135,7 +153,9 @@ export function getAllPlaylists() {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    getPlaylistsError(`Error: 'Missing auth token'`),
+                );
             }
             const res = await api.AllPlaylists({
                 Authorization: `Bearer ${token}`,
@@ -158,6 +178,7 @@ export function getAllPlaylists() {
         }
     };
 }
+
 export function getPlaylist(playlistID, withSongsInfo) {
     return async function getPlaylistThunk(dispatch) {
         dispatch(getPlaylistRequest());
@@ -165,7 +186,9 @@ export function getPlaylist(playlistID, withSongsInfo) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    getPlaylistsError(`Error: 'Missing auth token'`),
+                );
             }
             const res = await api.getPlaylistById(
                 {
@@ -174,7 +197,6 @@ export function getPlaylist(playlistID, withSongsInfo) {
                 playlistID,
                 withSongsInfo,
             );
-
             if (res.errorMessage) {
                 return dispatch(
                     getPlaylistsError(`Error: ${res.errorMessage}`),
@@ -194,9 +216,11 @@ export function addSongsToPlaylist(playlistId, songs) {
         try {
             const token = await auth.getCurrentUserToken();
             if (!token) {
-                return dispatch(signOutSuccess());
+                return dispatch(
+                    updatePlaylistError(`Error: 'Missing auth token'`),
+                );
             }
-            const res = await api.updatePlaylist(
+            const res = await api.addSongs(
                 {
                     Authorization: `Bearer ${token}`,
                 },
@@ -211,7 +235,40 @@ export function addSongsToPlaylist(playlistId, songs) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(updatePlaylistSuccess(res.data));
+            return dispatch(updatePlaylistSuccess(res.data.data));
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function removeSongsFromPlaylist(playlistId, songs) {
+    return async function removeSongsThunk(dispatch) {
+        dispatch(updatePlaylistRequest());
+
+        try {
+            const token = await auth.getCurrentUserToken();
+            if (!token) {
+                return dispatch(
+                    updatePlaylistError(`Error: 'Missing auth token'`),
+                );
+            }
+            const res = await api.removeSongs(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                {
+                    songs,
+                },
+                playlistId,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(
+                    updatePlaylistError(`Error: ${res.errorMessage}`),
+                );
+            }
+            return dispatch(updatePlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }
@@ -274,6 +331,67 @@ export function addLikeToPlaylist(playlistID) {
             );
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function followPlaylist(playlistID) {
+    return async function followPlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(updatePlaylistRequest());
+
+        if (!token) {
+            return dispatch(updatePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.followPlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+            /* if (res.errorMessage) {
+                return dispatch(songUpdatingError(res.errorMessage));
+            } */
+            // update user info and song info (?)
+            return dispatch(
+                updatePlaylistSuccess(res.data.PlaylistResponse.data),
+            );
+        } catch (error) {
+            return dispatch(updatePlaylistError(error.message));
+        }
+    };
+}
+
+export function deletePlaylistByID(playlistID) {
+    return async function deletePlaylistThunk(dispatch) {
+        const token = await auth.getCurrentUserToken();
+        dispatch(deletePlaylistRequest());
+
+        if (!token) {
+            return dispatch(deletePlaylistError('Missing auth token'));
+        }
+
+        try {
+            const res = await api.deletePlaylist(
+                {
+                    Authorization: `Bearer ${token}`,
+                },
+                playlistID,
+            );
+
+            if (res.errorMessage) {
+                return dispatch(deletePlaylistError(res.errorMessage));
+            }
+            dispatch(
+                deletePlaylistSuccess(
+                    `You have deleted playlist ${playlistID} successfull`,
+                ),
+            );
+            return dispatch(getAllPlaylists());
+        } catch (error) {
+            return dispatch(deletePlaylistError(error.message));
         }
     };
 }

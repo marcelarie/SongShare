@@ -1,6 +1,7 @@
 .mega-song {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     &__card {
         width: 500px;
         min-width: 500px;
@@ -31,7 +32,7 @@
         align-items: center;
         text-align: center;
         padding: 2vw 3vh;
-        flex: 2;
+        flex: 0.5;
         &__title {
             font-size: 6rem;
             font-family: 'Bebas Neue', cursive;
@@ -41,11 +42,12 @@
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }

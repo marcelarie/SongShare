@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import hexToRgba from 'hex-to-rgba';
 
-const MegaSongCard = styled.div`
-    .mega-song {
+const PlaylistViewHeader = styled.div`
+    .mega-playlist {
         &__card {
             background-image: url('${props => props.image}');
             background-size: cover;
@@ -18,8 +18,8 @@ const MegaSongCard = styled.div`
     }
 `;
 
-MegaSongCard.defaultProps = {
+PlaylistViewHeader.defaultProps = {
     image: 'https://picsum.photos/700',
 };
 
-export default MegaSongCard;
+export default PlaylistViewHeader;

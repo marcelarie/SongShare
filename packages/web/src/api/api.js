@@ -143,9 +143,43 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function deletePlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/${playlistID}`,
+            requestMethod: 'DELETE',
+            headers,
+        });
+    }
+
+    function addSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/addSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
+    function removeSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/removeSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     function addLikePlaylist(headers, playlistID) {
         return request({
             url: `/playlist/like/${playlistID}`,
+            requestMethod: 'POST',
+            headers,
+        });
+    }
+
+    function followPlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/follow/${playlistID}`,
             requestMethod: 'POST',
             headers,
         });
@@ -179,7 +213,11 @@ function makeApi(request = makeRequest()) {
         AllPlaylists,
         getPlaylistById,
         updatePlaylist,
+        deletePlaylist,
+        addSongs,
+        removeSongs,
         addLikePlaylist,
+        followPlaylist,
 
         getOtherUser,
     };
