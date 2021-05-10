@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
@@ -15,6 +15,7 @@ function Header() {
     const dispatch = useDispatch();
     const { theme } = useSelector(store => store.changeTheme);
     const currentLocation = useLocation().pathname;
+    console.log(currentLocation);
 
     const { imageUrl, username } = useSelector(store => store.user);
 
@@ -43,16 +44,38 @@ function Header() {
             </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
-                    <NavButton>HOME</NavButton>
+                    <NavButton
+                        className={currentLocation === '/' && 'navfocus'}
+                    >
+                        HOME
+                    </NavButton>
                 </NavLink>
-                <NavLink to="/search">
-                    <NavButton>SEARCH</NavButton>
+                <NavLink to="/">
+                    <NavButton
+                        className={currentLocation === '/search' && 'navfocus'}
+                    >
+                        SEARCH
+                    </NavButton>
                 </NavLink>
-                <NavLink to={MY_MUSIC}>
-                    <NavButton>MUSIC</NavButton>
+                <NavLink to={`/${username}/Music`}>
+                    <NavButton
+                        className={
+                            currentLocation === `/${username}/Music` &&
+                            'navfocus'
+                        }
+                    >
+                        MUSIC
+                    </NavButton>
                 </NavLink>
-                <NavLink to={MY_PLAYLISTS}>
-                    <NavButton>PLAYLISTS</NavButton>
+                <NavLink to={`/${username}/Playlist`}>
+                    <NavButton
+                        className={
+                            currentLocation === `/${username}/Playlist` &&
+                            'navfocus'
+                        }
+                    >
+                        PLAYLISTS
+                    </NavButton>
                 </NavLink>
             </div>
 
@@ -79,10 +102,44 @@ function Header() {
                 </button>
                 {openMenu && (
                     <div className="nav-user__menu">
-                        <NavLink to={`/${username}/`}>Profile</NavLink>
-                        <NavLink to="/search">Settings</NavLink>
+                        <NavLink to={`/${username}/`}>
+                            <button
+                                className={
+                                    currentLocation === `/${username}/` &&
+                                    'navfocus'
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                PROFILE
+                            </button>
+                        </NavLink>
+                        <NavLink to={`/${username}/Music`}>
+                            <button
+                                className={
+                                    currentLocation === `/${username}/Music` &&
+                                    'navfocus'
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                UPLOAD SONG
+                            </button>
+                        </NavLink>
+                        <NavLink to="/">
+                            <button
+                                className={
+                                    currentLocation === `/settings` &&
+                                    'navfocus'
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                SETTINGS
+                            </button>
+                        </NavLink>
                         <button type="button" onClick={handleSignOut}>
-                            Sign Out
+                            SIGN OUT
                         </button>
                     </div>
                 )}

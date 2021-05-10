@@ -40,18 +40,10 @@ const Nav = styled.nav`
         padding-bottom: 0.8rem;
         border-bottom: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.2')};
         a {
-            padding: 0 2rem;
+            padding: 0 1%;
             font-size: 0.7rem;
             button {
                 padding: 0.5rem 1rem;
-                &:focus {
-                    border: 1px solid
-                        ${({ theme }) => hexToRgba(theme.text, '0.3')};
-
-                    box-shadow: 5px 4px
-                        ${({ theme }) => hexToRgba(theme.text, '0.2')};
-                    font-weight: 600;
-                }
                 &:hover {
                     color: ${({ theme }) => theme.main};
                 }
@@ -63,6 +55,37 @@ const Nav = styled.nav`
         flex: 0.5;
         justify-content: center;
         align-items: center;
+
+        &__menu {
+            align-items: flex-end;
+            background-color: ${({ theme }) => theme.background};
+            border: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.4')};
+            transition: 0.6s;
+            &:after {
+                transition: 0.6s;
+                border-color: ${({ theme }) => theme.background} transparent;
+            }
+            &:before {
+                transition: 0.6s;
+                border-color: ${({ theme }) => hexToRgba(theme.text, '0.4')}
+                    transparent;
+            }
+            button {
+                all: unset;
+                text-align: right;
+                font-size: 0.9em;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                transition: 0.6s;
+                padding: 0.2rem 0.2rem;
+                color: ${({ theme }) => theme.text};
+                border-bottom: 1px solid
+                    ${({ theme }) => hexToRgba(theme.text, '0.2')};
+                &:hover {
+                    color: ${({ theme }) => theme.main};
+                }
+            }
+        }
         &__username {
             all: unset;
             cursor: pointer;
@@ -81,6 +104,14 @@ const Nav = styled.nav`
                 opacity: 0.7;
             }
         }
+    }
+    .navfocus {
+        border: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.3')} !important;
+        color: ${({ theme }) => theme.main} !important;
+
+        box-shadow: 5px 4px ${({ theme }) => hexToRgba(theme.text, '0.2')} !important;
+        font-weight: 600 !important;
+        transition: 0.2s !important;
     }
 `;
 

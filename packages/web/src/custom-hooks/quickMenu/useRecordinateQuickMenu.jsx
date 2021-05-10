@@ -14,8 +14,10 @@ function UseRecordinateQuickMenu() {
     useEffect(() => {
         const windowXsize = wSize[0];
         const windowYsize = wSize[1];
+
         const savedXsize = size[0];
         const savedYsize = size[1];
+
         const auxPositionX = parseInt(positionX.replace('px', ''), 10);
         const auxPositionY = parseInt(positionY.replace('px', ''), 10);
 
