@@ -23,7 +23,6 @@ const Search = () => {
         const token = await auth.getCurrentUserToken();
 
         try {
-            console.log(query);
             const response = await api.getSongByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -31,14 +30,12 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setmusic(response.data.data);
         } catch (error) {
             console.log(error);
         }
 
         try {
-            console.log(query);
             const response = await api.getUserByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -46,14 +43,12 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setplaylists(response.data.data);
         } catch (error) {
             console.log(error);
         }
 
         try {
-            console.log(query);
             const response = await api.getPlayListByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -61,7 +56,6 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setusers(response.data.data);
         } catch (error) {
             console.log(error);

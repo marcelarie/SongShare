@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { updateUserAvatarPhoto } from '../../redux/user/user-actions';
 
 // import { nueva function } from '../../redux/user/user-actions';
 
@@ -15,6 +16,7 @@ function AvatarUserForm() {
     const [file, setFile] = useState(currentUser.photoURL || '');
 
     const fileType = fileTypes.IMAGE;
+
     function handleSetFile(uploadFile) {
         setFile(uploadFile);
     }
@@ -23,7 +25,7 @@ function AvatarUserForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // dispatch algo
+        dispatch(updateUserAvatarPhoto({ file, fileType }));
         // history.push(`/${username}/Info`); preguntar a Enric
     };
 
@@ -40,6 +42,13 @@ function AvatarUserForm() {
                     />
                 </div>
             </div>
+            <button
+                type="submit"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => handleSubmit}
+            >
+                Save
+            </button>
         </form>
     );
 }

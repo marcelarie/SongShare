@@ -35,7 +35,6 @@ function SongListItem({ song, handleAdd, handleRemove }) {
                             handleAdd(song._id);
                         } else {
                             // reproduce
-                            console.log('reproduce');
                             setItemSelected(false);
                         }
                     } else if (
@@ -47,7 +46,6 @@ function SongListItem({ song, handleAdd, handleRemove }) {
                             handleRemove(song._id);
                         } else {
                             // reproduce
-                            console.log('reproduce');
                             setItemSelected(false);
                         }
                     }

@@ -22,9 +22,9 @@ export function updateUserInfo(userInfoEdited) {
     };
 }
 
-export function updateUserAvatarPhotoMidleware(userInfo) {
-    return async function updateUserAvatarPhotoMidlewareThunk(dispatch) {
-        const { username, name, lastname, file, fileType } = userInfo;
+export function updateUserAvatarPhoto(userInfo) {
+    return async function updateUserAvatarPhotoThunk(dispatch) {
+        const { file, fileType } = userInfo;
         let userInfoEdited = null;
         if (file) {
             const urlImageResponse = await getFileUrl({
@@ -39,9 +39,7 @@ export function updateUserAvatarPhotoMidleware(userInfo) {
                     ),
                 );
             }
-            userInfoEdited = { username, name, lastname, imageUrl };
-        } else {
-            userInfoEdited = { username, name, lastname };
+            userInfoEdited = { imageUrl };
         }
         dispatch(updateUserInfo(userInfoEdited));
     };

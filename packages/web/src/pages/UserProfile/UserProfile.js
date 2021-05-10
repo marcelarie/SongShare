@@ -17,6 +17,8 @@ function CurrentUserProfile() {
 
     const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
 
+    console.log(pathUsername);
+
     return (
         <UserProfile cover={user.imageUrl} className="user">
             <div className="user__header">
