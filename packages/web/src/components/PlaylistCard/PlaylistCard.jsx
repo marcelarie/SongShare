@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addLikeToPlaylist } from '../../redux/Playlists/playlists-actions';
+import {
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
 
 import LikeIcon from '../LikeButton';
 import './styles.scss';
@@ -22,8 +26,8 @@ import PlaylistCardStyle from './styles';
 
 function PlaylistCard({ playlist }) {
     const dispatch = useDispatch();
-    // const [cardId] = useState(playlist._id);
-    // const [openMenu] = useQuickMenu(); @Marcel --> use same quick menu ?
+    const [cardId] = useState(playlist._id);
+    const [openMenu] = useQuickMenu();
 
     // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
     // const currentPlaylistLikes = useSelector(store => store.playlists.byID[playlist._id].likes);
@@ -45,7 +49,7 @@ function PlaylistCard({ playlist }) {
     // const openPlaylistInfo = () => {
     //     dispatch(openInfoModal(playlist._id));
     // };
-    // useQuickMenuListener();
+    useQuickMenuListener();
     return (
         <>
             <PlaylistCardStyle image={playlist.img} className="PlaylistCard">
@@ -62,14 +66,18 @@ function PlaylistCard({ playlist }) {
                                 likes={playlist.likedBy}
                             />
                         </button>
-                        <Link
+                        {
+                            // <Link
+                        }
+                        <button
                             to={{
                                 pathname: `/${playlist._id}/addsongs`,
                                 playlistId: playlist._id,
                             }}
-                            className="PlaylistCard__container__3pointButton quickMenu"
+                            className="PlaylistCard__container__3pointButton
+                        quickMenu"
                             type="button"
-                            /* onMouseDown={e => openMenu(e, cardId)} */
+                            onMouseDown={e => openMenu(e, cardId)}
                         />
                     </div>
                     {/* <button

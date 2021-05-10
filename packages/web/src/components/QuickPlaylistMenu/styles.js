@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default styled.div`
     position: absolute;
-    background-color: ${({ theme }) => theme.backgroundColor};
+    background-color: ${({ theme }) => theme.background};
     padding: 1rem;
     border-radius: 5px;
     width: '100px';

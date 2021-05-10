@@ -5,7 +5,7 @@ import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { openPlaylistModal } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 import QuickPlaylistMenuStyle from './styles';
 
-const QuickPlaylistMenu = id => {
+const QuickPlaylistMenu = () => {
     const dispatch = useDispatch();
     const { positionXPL, positionYPL } = useSelector(
         ({ quickPlaylistMenu }) => quickPlaylistMenu,
@@ -13,6 +13,8 @@ const QuickPlaylistMenu = id => {
 
     const AllPlaylists = useSelector(store => store.playlists.byID);
     const AllPlaylistsIds = useSelector(store => store.playlists.ids);
+
+    const { id } = useSelector(store => store.quickMenu);
 
     const add = idPlaylist => {
         dispatch(addSongsToPlaylist(idPlaylist, [id]));
