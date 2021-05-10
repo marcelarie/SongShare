@@ -1,6 +1,5 @@
 .search {
     &__header {
-        border: 1px solid white;
         text-align: center;
         h3 {
             font-size: 30px;
@@ -22,30 +21,85 @@
     &__content {
         padding: 30px;
         h4 {
-            border-bottom: 1px solid white;
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-top: 30px;
         }
         &__music {
-            margin-bottom: 30px;
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
             &__content {
-                border: 1px solid white;
                 display: flex;
                 flex-wrap: wrap;
             }
         }
         &__playlists {
-            margin-bottom: 30px;
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
             &__content {
-                border: 1px solid white;
+                display: flex;
+                flex-wrap: wrap;
             }
         }
         &__users {
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
             &__content {
-                border: 1px solid white;
+                display: flex;
+                flex-wrap: wrap;
             }
         }
     }
     &__preview {
     }
+}
+.hidden {
+    display: none;
+}
+.nomatch {
+    margin-bottom: 20px;
 }
