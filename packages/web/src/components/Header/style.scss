@@ -53,7 +53,30 @@
     }
 }
 
-@media (max-width: 1100px) {
-    .nav-menu a {
+@media (max-width: 900px) {
+    .the-nav {
+        padding: 2rem !important ;
+    }
+    .nav-menu {
+        a {
+            padding: 0 !important ;
+            button {
+                padding: 1rem !important;
+                margin: 0 1.5rem !important ;
+            }
+        }
+    }
+    .nav-user {
+        flex-direction: row-reverse;
+        .nav-user__username {
+            display: none !important;
+        }
+    }
+}
+@media (max-width: 700px) {
+    .nav-menu {
+        a button {
+            margin: 0  !important ;
+        }
     }
 }

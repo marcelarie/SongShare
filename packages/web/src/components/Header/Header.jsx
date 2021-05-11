@@ -7,6 +7,8 @@ import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
 import DarkLightToggle from '../DarkLightToggle';
+import NavBarIcons from '../NavBarIcons';
+
 import './style.scss';
 import * as WindowSize from '../../custom-hooks/windowSize';
 
@@ -43,7 +45,7 @@ function Header() {
                     <NavButton
                         className={currentLocation === '/' ? 'navfocus' : ''}
                     >
-                        {size > 1080 ? 'HOME' : 'h'}
+                        {size > 1080 ? 'HOME' : <NavBarIcons icon="home" />}
                     </NavButton>
                 </NavLink>
                 <NavLink to="/">
@@ -52,7 +54,7 @@ function Header() {
                             currentLocation === '/search' ? 'navfocus' : ''
                         }
                     >
-                        {size > 1080 ? 'SEARCH' : 's'}
+                        {size > 1080 ? 'SEARCH' : <NavBarIcons icon="search" />}
                     </NavButton>
                 </NavLink>
                 <NavLink to={`/${username}/Music`}>
@@ -63,7 +65,7 @@ function Header() {
                                 : ''
                         }
                     >
-                        {size > 1080 ? 'MUSIC' : 'm'}
+                        {size > 1080 ? 'MUSIC' : <NavBarIcons icon="music" />}
                     </NavButton>
                 </NavLink>
                 <NavLink to={`/${username}/Playlists`}>
@@ -74,7 +76,7 @@ function Header() {
                                 : ''
                         }
                     >
-                        {size > 1080 ? 'PLAYLISTS' : 'p'}
+                        {size > 1080 ? 'PLAYLISTS' : <NavBarIcons icon="playlists" />}
                     </NavButton>
                 </NavLink>
             </div>
