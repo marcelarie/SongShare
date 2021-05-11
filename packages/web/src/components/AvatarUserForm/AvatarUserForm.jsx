@@ -6,7 +6,6 @@ import { updateUserAvatarPhoto } from '../../redux/user/user-actions';
 // import { nueva function } from '../../redux/user/user-actions';
 
 import { fileTypes } from '../../services/cloudinary';
-import Dropzone from '../Dropzone';
 import StyledImg from './StyledImag';
 import './avatarPhotoStyles.scss';
 
@@ -17,6 +16,8 @@ function AvatarUserForm() {
 
     const [file, setFile] = useState(currentUser.photoURL || '');
 
+    const [imgInput, setImgInput] = useState(null);
+
     const fileType = fileTypes.IMAGE;
 
     function handleSetFile(uploadFile) {
@@ -24,6 +25,17 @@ function AvatarUserForm() {
     }
 
     // const history = useHistory();
+
+    const onChangePicture = e => {
+        if (e.target.files[0]) {
+            setFile(e.target.files[0]);
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                setImgInput(reader.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -33,24 +45,22 @@ function AvatarUserForm() {
     const { imageUrl } = useSelector(store => store.user);
 
     const profilePic =
-        imageUrl ||
+        imgInput ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
     return (
         <form onSubmit={handleSubmit}>
             <div className="flex-column">
                 <div>
-                    <StyledImg>
-                        <img className="avatar" src={profilePic} alt="altt" />
+                    <StyledImg urlImg={profilePic}>
+                        <input
+                            type="file"
+                            className="avatar"
+                            onChange={onChangePicture}
+                        />
                     </StyledImg>
                 </div>
                 <label htmlFor="user-cover">Profile avatar photo</label>
-                {/* <Dropzone
-                        fileType={fileType}
-                        onFileSelected={files => {
-                            handleSetFile(files[0]);
-                        }}
-                    /> */}
                 <button
                     type="submit"
                     className="center"

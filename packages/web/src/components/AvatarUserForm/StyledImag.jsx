@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
 const StyledImg = styled.div`
+    margin-bottom: 14px;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background-image: url(${props => props.urlImg});
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
     .avatar {
-        vertical-align: middle;
         width: 120px;
         height: 120px;
-        border-radius: 50%;
-        margin-bottom: 14px;
+        opacity: 0%;
     }
 `;
 
