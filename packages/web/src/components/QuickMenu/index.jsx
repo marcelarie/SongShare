@@ -6,20 +6,19 @@ import {
     addToQueue,
     deleteInAudioplayer,
 } from '../../redux/audioPlayer/audioPlayer-actions';
-import { openModal, saveSize } from '../../redux/quickMenu/quickMenu-actions';
+import { openModal } from '../../redux/quickMenu/quickMenu-actions';
 import { deleteSongByID } from '../../redux/songs/songs-actions';
 import { deletePlaylistByID } from '../../redux/Playlists/playlists-actions';
 import QuickMenuStyle from './styles';
 
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
-import { useRecordinateQuickMenu } from '../../custom-hooks/quickMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 import { useWindowSize } from '../../custom-hooks/windowSize';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY, id, size } = useSelector(
+    const { positionX, positionY, id} = useSelector(
         ({ quickMenu }) => quickMenu,
     );
     const audioPlayer = useSelector(state => state.audioPlayer);
@@ -52,9 +51,8 @@ const QuickMenu = () => {
         dispatch(openModal(false));
     };
 
-    // esto no se si es 100% necesario ⤵ porsiacaso
-    if (size === {}) dispatch(saveSize(wSize));
-    useRecordinateQuickMenu();
+    // if (size === {}) dispatch(saveSize(wSize));
+    // useRecordinateQuickMenu();
 
     /* const openPlaylistInfo = () => {
         dispatch(openModal(false));
