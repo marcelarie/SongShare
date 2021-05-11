@@ -164,3 +164,12 @@
     display: block;
     margin-bottom: 30px;
 }
+@media (max-width: 1140px) {
+    .user__main__aside {
+        display: none;
+    }
+    .user__main__info {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
