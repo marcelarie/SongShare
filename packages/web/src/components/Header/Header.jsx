@@ -45,7 +45,8 @@ function Header() {
                     </NavButton>
                 </NavLink>
                 <NavLink to="/">
-                    <NavButton className={
+                    <NavButton
+                        className={
                             currentLocation === '/search' ? 'navfocus' : ''
                         }
                     >
@@ -66,7 +67,7 @@ function Header() {
                 <NavLink to={`/${username}/Playlists`}>
                     <NavButton
                         className={
-                            currentLocation === `/${username}/Playlist`
+                            currentLocation === `/${username}/Playlists`
                                 ? 'navfocus'
                                 : ''
                         }

@@ -28,7 +28,6 @@ const MegaCarousel = ({ ids, type }) => {
     return (
         <Carousel
             className="noselect"
-            showDots="true"
             responsive={responsive}
             infinite="true"
             autoPlay={Carousel.deviceType !== 'mobile' ? 'true' : 'false'}
@@ -36,7 +35,6 @@ const MegaCarousel = ({ ids, type }) => {
             keyBoardControl="true"
             removeArrowOnDeviceType={['tablet', 'mobile']}
             deviceType={Carousel.deviceType}
-            style={{ margin: 'auto' }}
 
             // CUSTOM
             // customLeftArrow={<CustomLeftArrow />}

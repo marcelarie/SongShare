@@ -55,6 +55,9 @@ const Nav = styled.nav`
         flex: 0.5;
         justify-content: center;
         align-items: center;
+        button {
+            transition: 0.2s;
+        }
 
         &__menu {
             align-items: flex-end;
@@ -91,6 +94,7 @@ const Nav = styled.nav`
             all: unset;
             cursor: pointer;
             letter-spacing: 0.2rem;
+            transition: 0 ;
         }
         span {
             font-size: 1.7rem;
