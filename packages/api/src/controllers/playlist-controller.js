@@ -252,6 +252,7 @@ async function followPlaylist(req, res, next) {
         next(error);
     }
 }
+
 async function getPlaylistsByParams(req, res, next) {
     const { query } = req.params;
 

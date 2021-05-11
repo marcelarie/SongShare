@@ -1,12 +1,6 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './styles.scss';
-import Button from '../../styles/components/Button/GenericButton';
-import UserProfile from './styled';
-
-import useUser from '../../custom-hooks/userProfile/useUser';
+import { useSelector } from 'react-redux'; import { Link } from 'react-router-dom'; import './styles.scss'; import Button from '../../styles/components/Button/GenericButton'; import UserProfile from './styled'; import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
 
 function CurrentUserProfile() {

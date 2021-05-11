@@ -9,13 +9,10 @@ function UserProfileLanding({ user }) {
                 <div className="user__main__content__playlist">
                     <div className="user__main__content__playlist__stats">
                         <p>stats</p>
-                        <p>Likes: {user.likes.length}</p>
                     </div>
                 </div>
                 <div className="user__main__content__playlist">
-                    <h1>
-                        My playlists <span>({user.playlists.length})</span>
-                    </h1>
+                    <h1>My playlists </h1>
                     <Carousel
                         type="playlists"
                         ids={user.playlists}
@@ -24,9 +21,6 @@ function UserProfileLanding({ user }) {
                 </div>
 
                 <div className="user__main__content__music">
-                    <h1>
-                        My Music <span>({user.songs.length})</span>
-                    </h1>
                     <Carousel type="songs" ids={user.songs} key="songs" />
                 </div>
             </div>
