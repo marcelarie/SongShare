@@ -23,6 +23,39 @@ import Search from './pages/Search';
 function MainRouter() {
     return (
         <Switch>
+            {/*  MUSIC */}
+            <ProtectedRoute path={ROUTES.MY_MUSIC} component={MyMusic} />
+            <ProtectedRoute
+                path={ROUTES.MY_PLAYLISTS}
+                component={MyPlaylists}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.NEW_PLAYLIST}
+                component={CreatePlaylist}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.ADD_SONGS}
+                component={AddSongs}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.PLAYLIST_VIEW_EDIT}
+                component={PlaylistEdit}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.PLAYLIST_VIEW}
+                component={Playlist}
+                exact
+            />
+            <ProtectedRoute
+                path={ROUTES.REMOVE_SONGS}
+                component={RemoveSongs}
+                exact
+            />
+
             {/*  LOGIN & USER */}
             <Route path={ROUTES.SIGN_UP} component={SignUp} />
             <Route path={ROUTES.LOGIN} component={Login} />
@@ -31,30 +64,6 @@ function MainRouter() {
             <ProtectedRoute path={ROUTES.SEARCH} component={Search} />
             <ProtectedRoute path={ROUTES.HOME_USER} component={UserProfile} />
 
-            {/*  MUSIC */}
-            <ProtectedRoute path={ROUTES.MY_MUSIC} component={MyMusic} />
-            <ProtectedRoute
-                path={ROUTES.MY_PLAYLISTS}
-                component={MyPlaylists}
-            />
-            <ProtectedRoute
-                path={ROUTES.NEW_PLAYLIST}
-                component={CreatePlaylist}
-            />
-            <ProtectedRoute
-                path={ROUTES.ADD_SONGS}
-                component={AddSongs}
-                exact
-            />
-            <ProtectedRoute
-                path={ROUTES.REMOVE_SONGS}
-                component={RemoveSongs}
-            />
-            <ProtectedRoute
-                path={ROUTES.PLAYLIST_VIEW_EDIT}
-                component={PlaylistEdit}
-            />
-            <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}
