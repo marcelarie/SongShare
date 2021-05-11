@@ -13,13 +13,13 @@ const GenericButton = styled.button`
         width: ${({ width }) => width};
         border: 1px solid ${({ theme }) => theme.text};
         background-color: ${props => props.theme.background};
-        transition: 0.4s;
+        transition: 0.2s;
         &:hover {
             background-color: ${({ theme }) => theme.mainDark} ;
                 transition: 0.1s;
         color: ${({ theme }) => theme.background};
         box-shadow: 5px 5px 1px ${({ theme }) => theme.main};
-        transition: 0.3s;
+        transition: 0.2s;
         }
         &:active {
             transition: 0.1s;

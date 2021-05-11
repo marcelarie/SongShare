@@ -8,6 +8,7 @@ import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
 import DarkLightToggle from '../DarkLightToggle';
 import './style.scss';
+import * as WindowSize from '../../custom-hooks/windowSize';
 
 function Header() {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function Header() {
     const currentLocation = useLocation().pathname;
 
     const { imageUrl, username } = useSelector(store => store.user);
+    const [size] = WindowSize.useWindowSize();
 
     const profilePic =
         imageUrl ||
@@ -28,7 +30,7 @@ function Header() {
     useEffect(() => {}, [currentLocation, imageUrl]);
 
     return (
-        <Nav>
+        <Nav className="the-nav">
             <NavLink className="nav-logo" to="/">
                 <h1>
                     the
@@ -41,7 +43,7 @@ function Header() {
                     <NavButton
                         className={currentLocation === '/' ? 'navfocus' : ''}
                     >
-                        HOME
+                        {size > 1080 ? 'HOME' : 'h'}
                     </NavButton>
                 </NavLink>
                 <NavLink to="/">
@@ -50,7 +52,7 @@ function Header() {
                             currentLocation === '/search' ? 'navfocus' : ''
                         }
                     >
-                        SEARCH
+                        {size > 1080 ? 'SEARCH' : 's'}
                     </NavButton>
                 </NavLink>
                 <NavLink to={`/${username}/Music`}>
@@ -61,7 +63,7 @@ function Header() {
                                 : ''
                         }
                     >
-                        MUSIC
+                        {size > 1080 ? 'MUSIC' : 'm'}
                     </NavButton>
                 </NavLink>
                 <NavLink to={`/${username}/Playlists`}>
@@ -72,7 +74,7 @@ function Header() {
                                 : ''
                         }
                     >
-                        PLAYLISTS
+                        {size > 1080 ? 'PLAYLISTS' : 'p'}
                     </NavButton>
                 </NavLink>
             </div>

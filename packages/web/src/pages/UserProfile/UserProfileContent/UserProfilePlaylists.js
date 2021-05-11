@@ -3,6 +3,7 @@ import Carousel from '../../../components/Carousel/index';
 
 function UserProfilePlaylists({ user }) {
     const { playlists } = user;
+    const playlistsLength = playlists.length || 0;
     return (
         <>
             <div className="user__main__content">
@@ -11,13 +12,15 @@ function UserProfilePlaylists({ user }) {
                 </div>
                 <div className="user__main__content__playlist">
                     <h2>
-                        My playlists <span>{playlists.length} collections</span>
+                        My playlists <span>{playlistsLength} collections</span>
                     </h2>
-                    <Carousel
-                        type="playlists"
-                        ids={playlists}
-                        key="playlist"
-                    />
+                    {playlistsLength > 0 && (
+                        <Carousel
+                            type="playlists"
+                            ids={playlists}
+                            key="playlist"
+                        />
+                    )}
                 </div>
             </div>
         </>
