@@ -12,6 +12,7 @@ const userInitialState = {
     lastname: '',
     username: '',
     imageUrl: '',
+    coverImageUrl: '',
     createdAt: '',
     updateAt: '',
     loading: false,
@@ -49,6 +50,7 @@ const userReducer = (state = userInitialState, action) => {
                 username: action.payload.userInfo.username,
                 id: action.payload.userInfo.id,
                 imageUrl: action.payload.userInfo.imageUrl,
+                coverImageUrl: action.payload.userInfo.coverImageUrl,
             };
         case UserTypes.USER_INFO_ERROR:
             return {
@@ -63,6 +65,7 @@ const userReducer = (state = userInitialState, action) => {
                 error: false,
             };
         case UserTypes.UPDATE_USER_INFO_SUCCES:
+            console.log(action.payload);
             return {
                 ...state,
                 loading: false,

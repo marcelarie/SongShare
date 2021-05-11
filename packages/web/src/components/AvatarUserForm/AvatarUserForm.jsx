@@ -20,11 +20,7 @@ function AvatarUserForm() {
 
     const fileType = fileTypes.IMAGE;
 
-    function handleSetFile(uploadFile) {
-        setFile(uploadFile);
-    }
-
-    // const history = useHistory();
+    const history = useHistory();
 
     const onChangePicture = e => {
         if (e.target.files[0]) {
@@ -40,9 +36,8 @@ function AvatarUserForm() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(updateUserAvatarPhoto({ file, fileType }));
-        // history.push(`/${username}/Info`); preguntar a Enric
+        history.push(`/${currentUser.username}/Info`);
     };
-    const { imageUrl } = useSelector(store => store.user);
 
     const profilePic =
         imgInput ||

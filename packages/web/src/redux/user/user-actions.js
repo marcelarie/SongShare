@@ -45,6 +45,29 @@ export function updateUserAvatarPhoto(userInfo) {
     };
 }
 
+export function updateUserCoverPhoto(userInfo) {
+    return async function updateUserAvatarPhotoThunk(dispatch) {
+        const { file, fileType } = userInfo;
+        let userInfoEdited = null;
+        if (file) {
+            const urlImageResponse = await getFileUrl({
+                file: file,
+                fileType: fileType,
+            });
+            const coverImageUrl = urlImageResponse.data.url;
+            if (!coverImageUrl) {
+                dispatch(
+                    updateUserInfoError(
+                        'error with the image. Try again with another image',
+                    ),
+                );
+            }
+            userInfoEdited = { coverImageUrl };
+        }
+        dispatch(updateUserInfo(userInfoEdited));
+    };
+}
+
 export const updateUserInfoRequest = () => ({
     type: UserTypes.UPDATE_USER_INFO_REQUEST,
 });
