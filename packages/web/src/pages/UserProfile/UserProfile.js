@@ -1,12 +1,6 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './styles.scss';
-import Button from '../../styles/components/Button/GenericButton';
-import UserProfile from './styled';
-
-import useUser from '../../custom-hooks/userProfile/useUser';
+import { useSelector } from 'react-redux'; import { Link } from 'react-router-dom'; import './styles.scss'; import Button from '../../styles/components/Button/GenericButton'; import UserProfile from './styled'; import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
 
 function CurrentUserProfile() {
@@ -17,8 +11,16 @@ function CurrentUserProfile() {
 
     const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
 
+    const coverPic =
+        user.coverImageUrl ||
+        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
+
+    const avatarPic =
+        user.imageUrl ||
+        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
+
     return (
-        <UserProfile cover={user.imageUrl} className="user">
+        <UserProfile cover={coverPic} className="user">
             <div className="user__header">
                 <div className="user__header__title">
                     <p>
@@ -76,7 +78,7 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <img src={user.imageUrl} alt={user.imageUrl} />
+                                <img src={avatarPic} alt="avatarPic" />
                                 <p>{user.username}</p>
                             </div>
                         </div>

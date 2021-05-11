@@ -29,6 +29,9 @@ const UserSchema = mongoose.Schema(
         imageUrl: {
             type: String,
         },
+        coverImageUrl: {
+            type: String,
+        },
         songs: [
             {
                 type: String,
