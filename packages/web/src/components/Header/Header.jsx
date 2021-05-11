@@ -48,7 +48,7 @@ function Header() {
                         {size > 1080 ? 'HOME' : <NavBarIcons icon="home" />}
                     </NavButton>
                 </NavLink>
-                <NavLink to="/">
+                <NavLink to="/search">
                     <NavButton
                         className={
                             currentLocation === '/search' ? 'navfocus' : ''
@@ -76,7 +76,11 @@ function Header() {
                                 : ''
                         }
                     >
-                        {size > 1080 ? 'PLAYLISTS' : <NavBarIcons icon="playlists" />}
+                        {size > 1080 ? (
+                            'PLAYLISTS'
+                        ) : (
+                            <NavBarIcons icon="playlists" />
+                        )}
                     </NavButton>
                 </NavLink>
             </div>
