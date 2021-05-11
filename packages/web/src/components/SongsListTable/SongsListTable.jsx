@@ -13,6 +13,7 @@ function SongsListTable({
     handleAdd = null,
     handleRemove = null,
 }) {
+    console.log(songsToList);
     const dispatch = useDispatch();
     const { byID } = useSelector(state => state.songs);
     const [songsState, setSongsState] = useState(songsToList);

@@ -19,10 +19,12 @@ import {
 
 import './styles.scss';
 import SongsListTable from '../../components/SongsListTable/SongsListTable';
+import UseSortSongs from '../../custom-hooks/sortSongs';
 
 function Playlist() {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const songsOrder = UseSortSongs(id);
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
@@ -36,10 +38,6 @@ function Playlist() {
         dispatch(getPlaylist(id));
     }, [dispatch, id]);
 
-    const songsOrder = [];
-    for (const [index, value] of playlist.songs.entries()) {
-        songsOrder.push({ id: index + 1, _id: value });
-    }
     useQuickMenuListener();
 
     if (!playlist) {
