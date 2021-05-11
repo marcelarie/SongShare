@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
+import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+
+import Button from '../../styles/components/Button/GenericButton';
+import LikeIcon from '../../components/LikeButton';
 
 import {
-    // addLikeToSong,
-    // deleteSongByID,
-    // editSongByID,
+    addLikeToPlaylist,
+    followPlaylist,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
-// import Button from '../../styles/components/Button/GenericButton';
-// import Input from '../../styles/components/Input/GenericInput';
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
+import PlaylistViewHeader from '../../components/PlaylistViewHeader';
+import {
+    useQuickMenu,
+    useQuickMenuListener,
+} from '../../custom-hooks/quickMenu';
 
 import './styles.scss';
 
@@ -24,52 +28,27 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-
-    // const [name, setName] = useState(song.name);
-    // const [uploader, setUploader] = useState(song.uploadBy);
-    // const [author, setAuthor] = useState(song.author);
-    // const [genre, setGenre] = useState(song.gender);
+    const [openMenu] = useQuickMenu();
 
     useEffect(() => {
         dispatch(getPlaylist(id));
-
-        // setName(song.name);
-        // setUploader(song.uploadBy);
-        // setAuthor(song.author);
-        // setGenre(song.gender);
     }, [dispatch, id]);
 
+    useQuickMenuListener();
+
+    if (!playlist) {
+        return <Redirect to="/playlists" />;
+    }
     return (
-        <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-            <div className="PlaylistView__header__container">
-                <div className="PlaylistView__header__container__info">
-                    <h2 className="PlaylistView__header__container__info__title">
-                        {playlist.title}
-                    </h2>
-                    <p className="PlaylistView__header__container__info__author">
-                        {playlist.author.username}
-                    </p>
-                    <div className="PlaylistView__header__container__info__container">
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.type}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            {playlist.publicAccess ? 'Public' : 'Private'}
-                        </p>
-                        <p className="PlaylistView__header__container__info__container__characteristic">
-                            playlist.description
-                        </p>
-                    </div>
-                </div>
-                <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
-                </div>
-            </div>
-            <SongsList
-                songsToList={playlist.songs}
-                handleClick={() => console.log('play')}
-            />
-        </PlaylistViewStyle>
+        <>
+            <PlaylistViewHeader playlist={playlist} />
+            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
+                <SongsList
+                    songsToList={playlist.songs}
+                    handleClick={() => console.log('play')}
+                />
+            </PlaylistViewStyle>
+        </>
     );
 }
 

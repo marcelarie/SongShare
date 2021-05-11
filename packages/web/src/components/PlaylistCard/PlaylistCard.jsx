@@ -46,34 +46,26 @@ function PlaylistCard({ playlist }) {
         }
     } */
 
-    // const openPlaylistInfo = () => {
-    //     dispatch(openInfoModal(playlist._id));
-    // };
     useQuickMenuListener();
     return (
         <>
             <PlaylistCardStyle image={playlist.img} className="PlaylistCard">
                 <div className="PlaylistCard__container">
                     <div className="PlaylistCard__container__header">
-                        <button
-                            className="PlaylistCard__container__like"
-                            type="button"
-                        >
-                            <LikeIcon
-                                handleLike={() =>
-                                    dispatch(addLikeToPlaylist(playlist._id))
-                                }
-                                likes={playlist.likedBy}
-                            />
-                        </button>
+                        <LikeIcon
+                            handleLike={() =>
+                                dispatch(addLikeToPlaylist(playlist._id))
+                            }
+                            likes={playlist.likedBy}
+                        />
                         {
                             // <Link
+                            // to={{
+                            //     pathname: `/${playlist._id}/addsongs`,
+                            //     playlistId: playlist._id,
+                            // }}
                         }
                         <button
-                            to={{
-                                pathname: `/${playlist._id}/addsongs`,
-                                playlistId: playlist._id,
-                            }}
                             className="PlaylistCard__container__3pointButton
                         quickMenu"
                             type="button"
@@ -94,12 +86,7 @@ function PlaylistCard({ playlist }) {
                         playlistId: playlist._id,
                     }}
                 >
-                    <section
-                        /* onMouseDown={Open playlist} */ role="button"
-                        tabIndex={0}
-                    >
-                        <p className="PlaylistCard__title">{playlist.title}</p>
-                    </section>
+                    <p className="PlaylistCard__title">{playlist.title}</p>
                 </Link>
                 <div className="PlaylistCard__description">
                     By: {playlist.author.username}

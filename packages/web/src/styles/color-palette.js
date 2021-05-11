@@ -9,3 +9,10 @@ export default {
     darkGray: '#3f4042',
     greenSuccess: '#4FCD61',
 };
+
+/* export const blueColor = '#332E4C';
+export const pinkColor = '#DA0562';
+export const darkColor = '#232323';
+export const darkColorTransparent = '#2323237b';
+export const lightColor = 'rgb(255,255,255)';
+export const lightColorTransparent = 'rgb(255,255,255)'; */
