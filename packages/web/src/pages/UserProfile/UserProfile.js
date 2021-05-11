@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
+
+
 /* eslint-disable no-unused-vars */
 import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
