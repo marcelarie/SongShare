@@ -23,7 +23,6 @@ function CurrentUserProfile() {
             className="user"
             image={user.imageUrl}
         >
-            {' '}
             <div className="user__header">
                 <div className="user__header__title">
                     <p>
@@ -34,40 +33,44 @@ function CurrentUserProfile() {
             <div className="user__nav">
                 <nav>
                     <ul>
-                        {navLinks.map(li => {
-                            if (pathUsername[2] === li) {
+                        {navLinks.map(mode => {
+                            if (pathUsername[2] === mode) {
                                 return (
                                     <Link
-                                        key={li}
-                                        to={`/${user.username}/${li}`}
+                                        key={mode}
+                                        to={`/${user.username}/${mode}`}
                                     >
-                                        <li className="selectedNav">{li}</li>
+                                        <li color="red" className="selectedNav">
+                                            {mode.toUpperCase()}
+                                        </li>
                                     </Link>
                                 );
                             }
-                            if (!pathUsername[2] && li === 'Landing') {
+                            if (!pathUsername[2] && mode === 'Landing') {
                                 return (
-                                    <Link to={`/${user.username}`} key={li}>
-                                        <li className="selectedNav">{li}</li>
+                                    <Link to={`/${user.username}`} key={mode}>
+                                        <li className="selectedNav">
+                                            {mode.toUpperCase()}
+                                        </li>
                                     </Link>
                                 );
                             }
-                            if (pathUsername[2] && li === 'Landing') {
+                            if (pathUsername[2] && mode === 'Landing') {
                                 return (
-                                    <Link to={`/${user.username}`} key={li}>
-                                        <li>{li}</li>
+                                    <Link to={`/${user.username}`} key={mode}>
+                                        <li>{mode.toUpperCase()}</li>
                                     </Link>
                                 );
                             }
                             if (
                                 user.username !== currentUser.username &&
-                                li === 'Edit'
+                                mode === 'Edit'
                             ) {
                                 return false;
                             }
                             return (
-                                <Link to={`/${user.username}/${li}`} key={li}>
-                                    <li>{li}</li>
+                                <Link to={`/${user.username}/${mode}`} key={mode}>
+                                    <li>{mode.toUpperCase()}</li>
                                 </Link>
                             );
                         })}

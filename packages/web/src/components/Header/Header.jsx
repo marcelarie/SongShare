@@ -63,7 +63,7 @@ function Header() {
                         MUSIC
                     </NavButton>
                 </NavLink>
-                <NavLink to={`/${username}/Playlist`}>
+                <NavLink to={`/${username}/Playlists`}>
                     <NavButton
                         className={
                             currentLocation === `/${username}/Playlist`

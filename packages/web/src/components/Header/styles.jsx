@@ -84,6 +84,7 @@ const Nav = styled.nav`
                 &:hover {
                     color: ${({ theme }) => theme.main};
                 }
+                transition: 0.2s !important;
             }
         }
         &__username {
@@ -92,17 +93,18 @@ const Nav = styled.nav`
             letter-spacing: 0.2rem;
         }
         span {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
         &__image {
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             margin: auto 0.5rem;
             border-radius: 50%;
             &:active {
                 opacity: 0.7;
             }
+            margin: 0 1rem;
         }
     }
     .navfocus {

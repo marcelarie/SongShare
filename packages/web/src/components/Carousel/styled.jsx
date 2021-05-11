@@ -4,21 +4,25 @@ import hexToRgba from 'hex-to-rgba';
 const Carousel = styled.div`
     &::-webkit-scrollbar {
         width: 20px;
-        height: 6px;
+        height: 8px;
         transition: 0.6s;
-    }
-    &:hover::-webkit-scrollbar {
-        height: 10px;
     }
 
     /* Track */
     &::-webkit-scrollbar-track {
         background: none;
+        margin: 0 1rem;
+        cursor: pointer;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.6')};
+        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.2')};
         border-radius: 2px;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+        height: 8px;
+        background: ${({ theme }) => hexToRgba(theme.mainDark, '0.6')};
+        transition: 0.2s;
     }
 
     &::-webkit-scrollbar-thumb:hover {
