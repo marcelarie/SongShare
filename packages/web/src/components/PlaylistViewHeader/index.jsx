@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import {
     addLikeToPlaylist,
+    addSongsToPlaylist,
     followPlaylist,
     editPlaylist,
     getPlaylist,
@@ -32,10 +33,10 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     const play_pause = document.getElementsByClassName(
         'rhap_play-pause-button',
     );
-
+    /* 
     useEffect(() => {
         dispatch(getPlaylist(playlist._id));
-    }, [dispatch, playlist]);
+    }, [dispatch, playlist]); */
 
     function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
@@ -63,6 +64,8 @@ const PlaylistViewHeader = ({ playlist, from }) => {
             </div>
 
             <div className="mega-playlist__info">
+                {from === 'addSongsView' && <p>Add songs to: </p>}
+                {from === 'removeSongsView' && <p>Remove songs to: </p>}
                 <div className="mega-playlist__info__container-info">
                     <input
                         type="text"
@@ -117,6 +120,11 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                     </p>
                     <p className="mega-playlist__info__container-info__followers">
                         {playlist.followedBy.length} followers
+                    </p>
+                </div>
+                <div className="mega-playlist__info__container-info">
+                    <p className="mega-playlist__info__container-info__songs">
+                        {playlist.songs.length} songs
                     </p>
                 </div>
             </div>

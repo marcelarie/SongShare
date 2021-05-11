@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 import PlaylistViewStyle from '../PlaylistView/styled';
 import '../../styles/flex.scss';
-
 import '../PlaylistView/styles.scss';
+import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
@@ -50,77 +50,36 @@ function AddSongs() {
     }
 
     return (
-        <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-            <div className="PlaylistView__header__container">
-                <div className="PlaylistView__header__container__info">
-                    <p>Add songs to:</p>
-                    <input type="text" value={playlist.type} disabled />
-                    <input
-                        type="text"
-                        className="PlaylistView__header__container__info__title"
-                        value={playlist.title}
-                        disabled
-                    />
-                    <input
-                        type="text"
-                        className="PlaylistView__header__container__info__author"
-                        value={playlist.author.username}
-                        disabled
-                    />
-                    <div className="PlaylistView__header__container__info__container">
-                        <div className="PlaylistView__header__container__info__container__characteristic">
-                            <input
-                                type="text"
-                                value={
-                                    playlist.publicAccess ? 'Public' : 'Private'
-                                }
-                                disabled
-                            />
-                            <input
-                                type="text"
-                                value="playlist.description"
-                                disabled
-                            />
-                        </div>
-                        <div className="PlaylistView__header__container__info__container__options">
-                            <Link to={`/playlist/${playlist._id}`}>
-                                <Button
-                                    className="editButton"
-                                    type="button"
-                                    onClick={() =>
-                                        dispatch(
-                                            addSongsToPlaylist(
-                                                playlistId,
-                                                songsToAdd,
-                                            ),
-                                        )
-                                    }
-                                >
-                                    Add selected songs
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
+        <>
+            <PlaylistViewHeader playlist={playlist} from="addSongsView" />
+            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
+                <div className="flex-between">
+                    <input type="text" value="Search" />
+                    <button type="button" className="">
+                        Filter
+                    </button>
+                    <Link to={`/playlist/${playlist._id}`}>
+                        <Button
+                            className="editButton"
+                            type="button"
+                            onClick={() =>
+                                dispatch(
+                                    addSongsToPlaylist(playlistId, songsToAdd),
+                                )
+                            }
+                        >
+                            Add selected songs
+                        </Button>
+                    </Link>
                 </div>
-
-                <div className="PlaylistView__header__container__img">
-                    <p>{playlist.title}</p>
-                </div>
-            </div>
-
-            <div className="flex-between">
-                <input type="text" value="Search" />
-                <button type="button" className="">
-                    Filter
-                </button>
-            </div>
-            <SongsList
-                songsToList={ids}
-                option="addSongs"
-                handleAdd={addSongToAdd}
-                handleRemove={removeSongToAdd}
-            />
-        </PlaylistViewStyle>
+                <SongsList
+                    songsToList={ids}
+                    option="addSongs"
+                    handleAdd={addSongToAdd}
+                    handleRemove={removeSongToAdd}
+                />
+            </PlaylistViewStyle>
+        </>
     );
 }
 
