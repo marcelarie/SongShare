@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, useLocation, useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Button from '../../styles/components/Button/GenericButton';
 import LikeIcon from '../../components/LikeButton';
 
@@ -44,7 +44,7 @@ function PlaylistEdit() {
         setType(playlist.type);
         setPublicAccess(playlist.publicAccess);
         setDescription(playlist.description);
-    }, [dispatch, id]);
+    }, [dispatch, id]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useQuickMenuListener();
 
@@ -147,7 +147,7 @@ function PlaylistEdit() {
             </div>
             <SongsList
                 songsToList={playlist.songs}
-                handlePlaySong={() => console.log('play')}
+                // handlePlaySong={() => console.log('play')}
             />
         </PlaylistViewStyle>
     );

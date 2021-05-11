@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
     addToQueue,
@@ -12,6 +12,7 @@ import { deletePlaylistByID } from '../../redux/Playlists/playlists-actions';
 import QuickMenuStyle from './styles';
 
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
+import { useRecordinateQuickMenu } from '../../custom-hooks/quickMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
 
@@ -48,6 +49,8 @@ const QuickMenu = () => {
         dispatch(deleteInAudioplayer(id, audioPlayer));
         dispatch(openModal(false));
     };
+
+    useRecordinateQuickMenu();
 
     /* const openPlaylistInfo = () => {
         dispatch(openModal(false));

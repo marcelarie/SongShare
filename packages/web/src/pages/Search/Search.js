@@ -5,7 +5,7 @@ import SongsCard from '../../components/SongsCard/SongsCard';
 import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
 
 import './styles.scss';
-import SongCard from '../../components/SongsCard/styles';
+// import SongCard from '../../components/SongsCard/styles';
 import UserCard from '../../components/UserCard/UserCard';
 
 const Search = () => {
@@ -35,6 +35,7 @@ const Search = () => {
 
             setmusic(response.data.data);
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error);
         }
 
@@ -50,6 +51,7 @@ const Search = () => {
             }
             setplaylists(response.data.data);
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error);
         }
 
@@ -65,6 +67,7 @@ const Search = () => {
             }
             setusers(response.data.data);
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error);
         }
     };
@@ -229,7 +232,6 @@ const Search = () => {
                             <div className="search__content__playlists__content ">
                                 {playlists && playlists.length ? (
                                     playlists.map(playlist => {
-                                        console.log('im here');
                                         return (
                                             <PlaylistCard
                                                 song={playlist}
@@ -245,7 +247,6 @@ const Search = () => {
                             <div className="search__content__playlists__content hidden">
                                 {playlists && playlists.length ? (
                                     playlists.map(playlist => {
-                                        console.log('im here');
                                         return (
                                             <PlaylistCard
                                                 song={playlist}

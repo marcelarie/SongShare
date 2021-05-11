@@ -28,7 +28,6 @@ const MegaCarousel = ({ ids, type }) => {
     return (
         <Carousel
             className="noselect"
-            showDots="true"
             responsive={responsive}
             infinite="true"
             autoPlay={Carousel.deviceType !== 'mobile' ? 'true' : 'false'}

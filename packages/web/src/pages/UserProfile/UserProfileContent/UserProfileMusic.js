@@ -3,6 +3,8 @@ import Carousel from '../../../components/Carousel/index';
 import Uploader from '../../../components/UploadSong';
 
 function UserProfileMusic({ user }) {
+    const { songs } = user;
+    const songsLength = songs.length || 0;
     return (
         <>
             <div className="user__main__content">
@@ -10,12 +12,12 @@ function UserProfileMusic({ user }) {
                     <Uploader />
                 </div>
                 <div className="user__main__content__music">
-                    <h1>My Music</h1>
-                    <Carousel
-                        type="songs"
-                        key="user-profile-songs"
-                        ids={user.songs}
-                    />
+                    <h2>
+                        My Music <span>{songsLength} tracks</span>
+                    </h2>
+                        {songsLength > 0 && (
+                            <Carousel type="songs" ids={songs} key="songs" />
+                        )}
                 </div>
             </div>
         </>
