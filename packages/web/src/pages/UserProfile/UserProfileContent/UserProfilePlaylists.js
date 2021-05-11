@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from '../../../components/Carousel/index';
 
 function UserProfilePlaylists({ user }) {
+    const { playlists } = user;
     return (
         <>
             <div className="user__main__content">
@@ -9,12 +10,12 @@ function UserProfilePlaylists({ user }) {
                     <h1>Stats...</h1>
                 </div>
                 <div className="user__main__content__playlist">
-                    <h1>
-                        My playlists <span>({user.playlists.length})</span>
-                    </h1>
+                    <h2>
+                        My playlists <span>{playlists.length} collections</span>
+                    </h2>
                     <Carousel
                         type="playlists"
-                        ids={user.playlists}
+                        ids={playlists}
                         key="playlist"
                     />
                 </div>

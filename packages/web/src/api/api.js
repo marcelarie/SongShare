@@ -143,6 +143,32 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function deletePlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/${playlistID}`,
+            requestMethod: 'DELETE',
+            headers,
+        });
+    }
+
+    function addSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/addSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
+    function removeSongs(headers, body, playlistID) {
+        return request({
+            url: `/playlist/removeSongs/${playlistID}`,
+            requestMethod: 'PATCH',
+            headers,
+            body,
+        });
+    }
+
     function addLikePlaylist(headers, playlistID) {
         return request({
             url: `/playlist/like/${playlistID}`,
@@ -151,9 +177,40 @@ function makeApi(request = makeRequest()) {
         });
     }
 
+    function followPlaylist(headers, playlistID) {
+        return request({
+            url: `/playlist/follow/${playlistID}`,
+            requestMethod: 'POST',
+            headers,
+        });
+    }
+
     function getOtherUser(headers, username) {
         return request({
             url: `/username/${username}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getSongByParams(headers, query) {
+        return request({
+            url: `/songs/all-with/${query}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+
+    function getUserByParams(headers, query) {
+        return request({
+            url: `/user/all-with/${query}`,
+            requestMethod: 'GET',
+            headers,
+        });
+    }
+    function getPlayListByParams(headers, query) {
+        return request({
+            url: `/playlist/all-with/${query}`,
             requestMethod: 'GET',
             headers,
         });
@@ -179,9 +236,18 @@ function makeApi(request = makeRequest()) {
         AllPlaylists,
         getPlaylistById,
         updatePlaylist,
+        deletePlaylist,
+        addSongs,
+        removeSongs,
         addLikePlaylist,
+        followPlaylist,
 
         getOtherUser,
+
+        // search methods
+        getSongByParams,
+        getUserByParams,
+        getPlayListByParams,
     };
 }
 

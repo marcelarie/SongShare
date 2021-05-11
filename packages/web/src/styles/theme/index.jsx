@@ -12,6 +12,15 @@ export const dark = {
     audioplayerButtonColor: '#F2EAEA',
     audioplayerProgressColor: '#6F6868',
     boxShadow: '0 0 3px 0 #F2EAEA',
+
+    // diferentPaletteColors
+    bgMain: '#232323',
+    bgSecundary2: 'rgb(255,255,255, 0.1)',
+    bgColor: '#DA0562',
+    bgTransparent: '#2323237b',
+    bgColorTransparent: '#DA05627b',
+    text2: 'rgb(255,255,255)',
+    textColor2: '#DA0562',
 };
 
 export const light = {
@@ -30,7 +39,14 @@ export const light = {
     audioplayerProgressColor: '#dddddd',
     boxShadow: '0 0 3px 0 rgb(0 0 0 / 20%)',
 
-    // ...
+    // diferentPaletteColors
+    bgMain: 'rgb(255,255,255)',
+    bgSecundary2: '#332E4C7b',
+    bgColor: '#332E4C',
+    bgTransparent: 'rgb(255,255,255)',
+    bgColorTransparent: '#332E4C7b',
+    text2: '#232323',
+    textColor2: '#332E4C',
 };
 
 // IDEAS :

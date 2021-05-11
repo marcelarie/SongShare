@@ -4,21 +4,21 @@
 }
 
 .icon.is-check {
-    fill: #fe4365;
+    fill: #da0562;
 }
 
 .icon.is-outlined {
-    stroke: #fe4365;
+    stroke: #da0562;
     stroke-width: 2px;
     fill: transparent;
 }
 
 .icon.is-hoverable:hover {
-    fill: #fe4365;
+    fill: #da0562;
     cursor: pointer;
 }
 .active {
-    fill: #fe4365;
+    fill: #da0562;
 }
 .icon.is-activeable:active {
     transform: scale(1.25);

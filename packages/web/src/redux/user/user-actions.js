@@ -22,9 +22,9 @@ export function updateUserInfo(userInfoEdited) {
     };
 }
 
-export function updateUserInfoMidleware(userInfo) {
-    return async function updateUserInfoMidlewareThunk(dispatch) {
-        const { username, name, lastname, file, fileType } = userInfo;
+export function updateUserAvatarPhoto(userInfo) {
+    return async function updateUserAvatarPhotoThunk(dispatch) {
+        const { file, fileType } = userInfo;
         let userInfoEdited = null;
         if (file) {
             const urlImageResponse = await getFileUrl({
@@ -39,9 +39,30 @@ export function updateUserInfoMidleware(userInfo) {
                     ),
                 );
             }
-            userInfoEdited = { username, name, lastname, imageUrl };
-        } else {
-            userInfoEdited = { username, name, lastname };
+            userInfoEdited = { imageUrl };
+        }
+        dispatch(updateUserInfo(userInfoEdited));
+    };
+}
+
+export function updateUserCoverPhoto(userInfo) {
+    return async function updateUserAvatarPhotoThunk(dispatch) {
+        const { file, fileType } = userInfo;
+        let userInfoEdited = null;
+        if (file) {
+            const urlImageResponse = await getFileUrl({
+                file: file,
+                fileType: fileType,
+            });
+            const coverImageUrl = urlImageResponse.data.url;
+            if (!coverImageUrl) {
+                dispatch(
+                    updateUserInfoError(
+                        'error with the image. Try again with another image',
+                    ),
+                );
+            }
+            userInfoEdited = { coverImageUrl };
         }
         dispatch(updateUserInfo(userInfoEdited));
     };

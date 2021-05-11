@@ -5,7 +5,7 @@ const Carousel = styled.div`
     &::-webkit-scrollbar {
         width: 20px;
         height: 8px;
-        transition: 0.6s;
+        transition: 0.3s;
     }
 
     /* Track */
@@ -27,7 +27,7 @@ const Carousel = styled.div`
 
     &::-webkit-scrollbar-thumb:hover {
         background: ${({ theme }) => theme.mainDark};
-        transition: 0.5s;
+        transition: 0.3s;
     }
 `;
 

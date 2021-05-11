@@ -3,7 +3,7 @@ import Carousel from '../../../components/Carousel/index';
 import '../styles.scss';
 
 function UserProfileLanding({ user }) {
-    const { playlists, likes, songs } = user;
+    const { playlists, songs } = user;
     return (
         <>
             <div className="landing-page user__main__content">

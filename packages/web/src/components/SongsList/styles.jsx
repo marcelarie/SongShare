@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const SongList = styled.div`
-    background-color: ${({ theme }) => theme.background};
+    background-color: ${({ theme }) => theme.bg};
     color: ${({ theme }) => theme.text};
 `;
 

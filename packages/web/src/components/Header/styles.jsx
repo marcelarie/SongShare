@@ -3,7 +3,7 @@ import hexToRgba from 'hex-to-rgba';
 
 const Nav = styled.nav`
     all: unset;
-    transition: 0.6s;
+    transition: 0.3s;
     z-index: 2;
     background-color: ${({ theme }) => theme.background};
     display: flex;
@@ -21,7 +21,7 @@ const Nav = styled.nav`
         padding-bottom: 1rem;
         h1 {
             font-size: 2rem;
-            transition: 0.6s;
+            transition: 0.3s;
             text-align: center;
             line-height: 1.8rem;
             &:hover {
@@ -63,13 +63,13 @@ const Nav = styled.nav`
             align-items: flex-end;
             background-color: ${({ theme }) => theme.background};
             border: 1px solid ${({ theme }) => hexToRgba(theme.text, '0.4')};
-            transition: 0.6s;
+            transition: 0.3s;
             &:after {
-                transition: 0.6s;
+                transition: 0.3s;
                 border-color: ${({ theme }) => theme.background} transparent;
             }
             &:before {
-                transition: 0.6s;
+                transition: 0.3s;
                 border-color: ${({ theme }) => hexToRgba(theme.text, '0.4')}
                     transparent;
             }
@@ -79,7 +79,7 @@ const Nav = styled.nav`
                 font-size: 0.9em;
                 cursor: pointer;
                 margin: 0.5rem 0;
-                transition: 0.6s;
+                transition: 0.3s;
                 padding: 0.2rem 0.2rem;
                 color: ${({ theme }) => theme.text};
                 border-bottom: 1px solid
@@ -94,7 +94,7 @@ const Nav = styled.nav`
             all: unset;
             cursor: pointer;
             letter-spacing: 0.2rem;
-            transition: 0 ;
+            transition: 0;
         }
         span {
             font-size: 1.7rem;

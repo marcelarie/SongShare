@@ -2,7 +2,7 @@ import React from 'react';
 import useUser from '../../../custom-hooks/userProfile/useUser';
 
 function UserProfileInfo() {
-    const { user,  } = useUser();
+    const { user } = useUser();
 
     return user ? (
         <div className="user__main__info">
