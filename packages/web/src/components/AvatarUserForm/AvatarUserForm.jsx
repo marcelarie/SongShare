@@ -8,6 +8,7 @@ import { updateUserAvatarPhoto } from '../../redux/user/user-actions';
 import { fileTypes } from '../../services/cloudinary';
 import Dropzone from '../Dropzone';
 import StyledImg from './StyledImag';
+import './avatarPhotoStyles.scss';
 
 function AvatarUserForm() {
     const dispatch = useDispatch();
@@ -37,33 +38,27 @@ function AvatarUserForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="user__main__edit__form__data__dropzone">
-                <div className="user__main__edit__form__data__dropzone__cover">
-                    <div>
-                        <StyledImg>
-                            <img
-                                className="avatar"
-                                src={profilePic}
-                                alt="altt"
-                            />
-                        </StyledImg>
-                    </div>
-                    <label htmlFor="user-cover">User profile photo</label>
-                    <Dropzone
+            <div className="flex-column">
+                <div>
+                    <StyledImg>
+                        <img className="avatar" src={profilePic} alt="altt" />
+                    </StyledImg>
+                </div>
+                <label htmlFor="user-cover">Profile avatar photo</label>
+                {/* <Dropzone
                         fileType={fileType}
                         onFileSelected={files => {
                             handleSetFile(files[0]);
                         }}
-                    />
-                </div>
+                    /> */}
+                <button
+                    type="submit"
+                    className="center"
+                    onClick={() => handleSubmit}
+                >
+                    Save
+                </button>
             </div>
-            <button
-                type="submit"
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => handleSubmit}
-            >
-                Save
-            </button>
         </form>
     );
 }

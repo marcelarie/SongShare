@@ -9,6 +9,8 @@ import { fileTypes } from '../../services/cloudinary';
 import Dropzone from '../Dropzone';
 import StyledCoverImg from './styledCoverPhoto';
 
+import './coverPhotoStyles.scss';
+
 function CoverUserForm() {
     const dispatch = useDispatch();
 
@@ -37,34 +39,17 @@ function CoverUserForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="user__main__edit__form__data__dropzone">
-                <div className="user__main__edit__form__data__dropzone__cover">
-                    <div>
-                        <StyledCoverImg urlImg={profilePic}>
-                            <div className="cover" />
-                            {/* <img
-                                className="cover"
-                                src={profilePic}
-                                alt="altt"
-                            /> */}
-                        </StyledCoverImg>
-                    </div>
-                    <label htmlFor="user-cover">User profile photo</label>
-                    <Dropzone
-                        fileType={fileType}
-                        onFileSelected={files => {
-                            handleSetFile(files[0]);
-                        }}
-                    />
+            <div className="flex-column">
+                <div>
+                    <StyledCoverImg urlImg={profilePic}>
+                        <div className="cover" />
+                    </StyledCoverImg>
                 </div>
+                <label htmlFor="user-cover">User cover photo</label>
+                <button type="submit" onClick={() => handleSubmit}>
+                    Save
+                </button>
             </div>
-            <button
-                type="submit"
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => handleSubmit}
-            >
-                Save
-            </button>
         </form>
     );
 }

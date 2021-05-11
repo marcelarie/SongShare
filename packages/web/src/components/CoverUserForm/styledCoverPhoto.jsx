@@ -7,6 +7,12 @@ const StyledCoverImg = styled.div`
         background-image: url(${props => props.urlImg});
         background-position: center;
         background-size: cover;
+        margin-bottom: 14px;
+    }
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 `;
 
