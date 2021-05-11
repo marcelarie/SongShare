@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { updateUserCoverPhoto } from '../../redux/user/user-actions';
-
-// import { nueva function } from '../../redux/user/user-actions';
 
 import { fileTypes } from '../../services/cloudinary';
-import StyledCoverImg from './styledCoverPhoto';
+import { updateUserCoverPhoto } from '../../redux/user/user-actions';
 
+import StyledCoverImg from './styledCoverPhoto';
 import './coverPhotoStyles.scss';
 
 function CoverUserForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const currentUser = useSelector(store => store.user);
 
@@ -19,8 +18,6 @@ function CoverUserForm() {
     const [imgInput, setImgInput] = useState(null);
 
     const fileType = fileTypes.IMAGE;
-
-    const history = useHistory();
 
     const onChangePicture = e => {
         if (e.target.files[0]) {
@@ -38,7 +35,6 @@ function CoverUserForm() {
         dispatch(updateUserCoverPhoto({ file, fileType }));
         history.push(`/${currentUser.username}/Info`);
     };
-    const { imageUrl } = useSelector(store => store.user);
 
     const profilePic =
         imgInput ||

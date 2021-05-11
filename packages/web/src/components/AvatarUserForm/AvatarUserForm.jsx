@@ -3,24 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateUserAvatarPhoto } from '../../redux/user/user-actions';
 
-// import { nueva function } from '../../redux/user/user-actions';
-
 import { fileTypes } from '../../services/cloudinary';
 import StyledImg from './StyledImag';
 import './avatarPhotoStyles.scss';
 
 function AvatarUserForm() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const currentUser = useSelector(store => store.user);
 
     const [file, setFile] = useState(currentUser.photoURL || '');
-
     const [imgInput, setImgInput] = useState(null);
 
     const fileType = fileTypes.IMAGE;
-
-    const history = useHistory();
 
     const onChangePicture = e => {
         if (e.target.files[0]) {

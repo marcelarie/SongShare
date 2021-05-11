@@ -50,7 +50,6 @@ function UploadSong() {
                 tags.artist && setTitle(tags.artist);
                 tags.genre && setTitle(tags.genre);
             },
-            // onError: error => console.log(error),
         });
         setFile(uploadFile);
     }

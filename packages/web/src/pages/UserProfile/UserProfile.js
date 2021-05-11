@@ -16,7 +16,6 @@ function CurrentUserProfile() {
     if (isLoading) return <h1>Loading...</h1>;
 
     const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
-    console.log(currentUser.coverImageUrl);
 
     const coverPic =
         user.coverImageUrl ||

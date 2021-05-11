@@ -65,7 +65,6 @@ const userReducer = (state = userInitialState, action) => {
                 error: false,
             };
         case UserTypes.UPDATE_USER_INFO_SUCCES:
-            console.log(action.payload);
             return {
                 ...state,
                 loading: false,
