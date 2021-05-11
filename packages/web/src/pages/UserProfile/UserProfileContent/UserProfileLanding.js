@@ -4,8 +4,8 @@ import '../styles.scss';
 
 function UserProfileLanding({ user }) {
     const { playlists, songs } = user;
-    const playlistsLength = playlists.length || 0;
-    const songsLength = songs.length || 0;
+    const playlistsLength = playlists ? playlists.length : 0;
+    const songsLength = songs ? songs.length : 0;
     return (
         <>
             <div className="landing-page user__main__content">

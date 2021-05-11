@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import * as colors from '../../styles/color-palette';
 // import hexToRgba from 'hex-to-rgba';
 
 const SongListItem = styled.div`

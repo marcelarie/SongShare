@@ -49,18 +49,12 @@ function MainRouter() {
             <ProtectedRoute
                 path={ROUTES.REMOVE_SONGS}
                 component={RemoveSongs}
-                exact
             />
             <ProtectedRoute
                 path={ROUTES.PLAYLIST_VIEW_EDIT}
                 component={PlaylistEdit}
-                exact
             />
-            <ProtectedRoute
-                path={ROUTES.PLAYLIST_VIEW}
-                component={Playlist}
-                exact
-            />
+            <ProtectedRoute path={ROUTES.PLAYLIST_VIEW} component={Playlist} />
             {/* <ProtectedRoute
                 path={ROUTES.HOME_USER_EDIT}
                 component={templates.CurrentUserProfileEdit}

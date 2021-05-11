@@ -12,11 +12,7 @@ import PlaylistViewStyle from '../PlaylistView/styled';
 import '../PlaylistView/styles.scss';
 
 function CreatePlaylist() {
-    const {
-        PlaylistUpdating,
-        PlaylistUpdatingError,
-        PlaylistUpdate,
-    } = useSelector(store => store.playlists);
+    const { PlaylistUpdate } = useSelector(store => store.playlists);
     const author = useSelector(store => store.user.username);
     const userID = useSelector(store => store.user._id);
     const dispatch = useDispatch();
