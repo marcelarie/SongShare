@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import hexToRgba from 'hex-to-rgba';
-import colors from '../../styles/color-palette';
+// import colors from '../../styles/color-palette';
 
 const UserProfile = styled.div`
     .user__header {

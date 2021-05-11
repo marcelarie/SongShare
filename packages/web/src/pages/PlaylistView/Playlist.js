@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import Button from '../../styles/components/Button/GenericButton';
-import LikeIcon from '../../components/LikeButton';
+// import { Link } from 'react-router-dom';
+//
+// import Button from '../../styles/components/Button/GenericButton';
+// import LikeIcon from '../../components/LikeButton';
 
 import {
-    addLikeToPlaylist,
-    followPlaylist,
+    // addLikeToPlaylist,
+    // followPlaylist,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
 import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
-import PlaylistViewHeader from '../../components/PlaylistViewHeader';
+// import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 import {
-    useQuickMenu,
+    // useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
 
@@ -28,7 +28,7 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-    const [openMenu] = useQuickMenu();
+    // const [openMenu] = useQuickMenu();
 
     useEffect(() => {
         dispatch(getPlaylist(id));

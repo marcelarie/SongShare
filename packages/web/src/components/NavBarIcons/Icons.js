@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 // Aqui tienen que ir los svg
 const Icons = {
