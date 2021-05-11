@@ -18,6 +18,7 @@ import {
 } from '../../custom-hooks/quickMenu';
 
 import './styles.scss';
+import SongsListTable from '../../components/SongsListTable/SongsListTable';
 
 function Playlist() {
     const dispatch = useDispatch();
@@ -26,11 +27,19 @@ function Playlist() {
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
     const [openMenu] = useQuickMenu();
-
+    /* const byIDSongs = useSelector(state => state.songs.byID);
+     const songsToListOb = [];
+    for (let index = 0; index < playlist.songs.length; index+1) {
+        songsToListOb.push(byIDSongs[index]);
+    } */
     useEffect(() => {
         dispatch(getPlaylist(id));
     }, [dispatch, id]);
 
+    const songsOrder = [];
+    for (const [index, value] of playlist.songs.entries()) {
+        songsOrder.push({ id: index + 1, _id: value });
+    }
     useQuickMenuListener();
 
     if (!playlist) {
@@ -40,8 +49,9 @@ function Playlist() {
         <>
             <PlaylistViewHeader playlist={playlist} from="mainView" />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsList
-                    songsToList={playlist.songs}
+                <SongsListTable
+                    songsToList={songsOrder}
+                    playlistID={playlist._id}
                     handleClick={() => console.log('play')}
                 />
             </PlaylistViewStyle>

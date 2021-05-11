@@ -99,7 +99,7 @@ async function addSongs(req, res, next) {
     console.log(body);
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(id, {
-            $addToSet: { songs: body.songs },
+            $set: { songs: body.songs },
         });
 
         if (response.error) return res.status(400).send(response);

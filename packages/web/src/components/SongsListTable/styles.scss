@@ -1,0 +1,32 @@
+.songsList__container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+    background-color: blueviolet;
+
+    &__header {
+        display: grid;
+        grid-template: 75px / 5% 40% 25% 15% 15%;
+        background-color: aqua;
+        &__item {
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    &__row {
+        display: grid;
+        grid-template: 75px / 5% 40% 25% 15% 15%;
+        background-color: springgreen;
+        &__item {
+            border: 1px solid rgb(14, 0, 65);
+        }
+    }
+    .dropBox {
+        all: unset;
+    }
+    .draggable {
+        width: 100%;
+    }
+}
