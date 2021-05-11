@@ -1,41 +1,52 @@
 export const dark = {
-    color: '#c3352e',
-    colorDark: '#ac362e',
-    mainBlack: '#363636',
-    mainDarkGray: '#3f4042',
-    colorTransparent: 'rgba( 51,59,62, 0.7 )',
-    colorDarkTransparent: 'rgba( 47,53,57, 0.7 )',
-    mainBlackTransparent: 'rgba( 54,54,54, 0.7 )',
-    mainDarkGrayTransparent: 'rgba( 63,64,66, 0.7 )',
-    lightGray: '#7A7A7A',
-    white: '#fff',
-    greenSuccess: '#4FCD61',
-    backgroundColor: '#000',
-    textColor: 'white',
+    // MAIN COLORS
+    background: '#000',
+    bgSecundary: '#363636',
+    text: '#FFF',
+    textColor: '',
+    main: '#c3352e',
+    mainDark: '#ac362e',
+
+    // AUDIO PLAYER
     audioplayerBackground: 'rgba(28, 28, 28, .75)',
     audioplayerButtonColor: '#F2EAEA',
     audioplayerProgressColor: '#6F6868',
     boxShadow: '0 0 3px 0 #F2EAEA',
+
+    // diferentPaletteColors
+    bgMain: '#232323',
+    bgSecundary2: 'rgb(255,255,255, 0.1)',
+    bgColor: '#DA0562',
+    bgTransparent: '#2323237b',
+    bgColorTransparent: '#DA05627b',
+    text2: 'rgb(255,255,255)',
+    textColor2: '#DA0562',
 };
 
 export const light = {
-    color: '#7CBCDC',
-    colorDark: '#65a2c2',
-    mainBlack: '#363636',
-    mainDarkGray: '#3f4042',
-    colorTransparent: 'rgba( 124,188,220, 0.7 )',
-    colorDarkTransparent: 'rgba( 86,131,154, 0.7 )',
-    mainBlackTransparent: 'rgba( 54,54,54, 0.7 )',
-    mainDarkGrayTransparent: 'rgba( 122,122,122, 0.3 )',
-    lightGray: '#7A7A7A',
-    white: '#fff',
-    greenSuccess: '#4FCD61',
-    backgroundColor: 'white',
-    textColor: 'black',
+    // MAIN COLORS
+    background: '#FFF',
+    bgSecundary: '#D6D6D6',
+    bgOpacity7: 'rgba(255, 255, 255, 0.7)',
+    text: '#000',
+    textColor: '',
+    main: '#7CBCDC',
+    mainDark: '#65a2c2',
+
+    // AUDIO PLAYER
     audioplayerBackground: 'white',
     audioplayerButtonColor: '#868686',
     audioplayerProgressColor: '#dddddd',
     boxShadow: '0 0 3px 0 rgb(0 0 0 / 20%)',
+
+    // diferentPaletteColors
+    bgMain: 'rgb(255,255,255)',
+    bgSecundary2: '#332E4C7b',
+    bgColor: '#332E4C',
+    bgTransparent: 'rgb(255,255,255)',
+    bgColorTransparent: '#332E4C7b',
+    text2: '#232323',
+    textColor2: '#332E4C',
 };
 
 // IDEAS :

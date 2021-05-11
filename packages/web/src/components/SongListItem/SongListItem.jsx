@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './styles.scss';
 
 import { play } from '../../redux/audioPlayer/audioPlayer-actions';
 
+import './styles.scss';
 import SongListItemStyle from './styles';
+import LikeIcon from '../LikeButton';
 
-function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
+import { addLikeToSong } from '../../redux/songs/songs-actions';
+
+function SongListItem({ song, handleAdd, handleRemove }) {
     const [itemSelected, setItemSelected] = useState(false);
     const dispatch = useDispatch();
 
@@ -28,13 +31,23 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                         e.target.parentNode.className === 'songListItem'
                     ) {
                         setItemSelected(!itemSelected);
-                        handleAddToPlaylist(song._id);
+                        if (handleAdd) {
+                            handleAdd(song._id);
+                        } else {
+                            // reproduce
+                            setItemSelected(false);
+                        }
                     } else if (
                         e.target.parentNode.className ===
                         'songListItem selected'
                     ) {
                         setItemSelected(!itemSelected);
-                        handleRemoveToPlaylist(song._id);
+                        if (handleRemove) {
+                            handleRemove(song._id);
+                        } else {
+                            // reproduce
+                            setItemSelected(false);
+                        }
                     }
                 }}
             >
@@ -54,9 +67,11 @@ function SongListItem({ song, handleAddToPlaylist, handleRemoveToPlaylist }) {
                             <p className="songListItem__content__info__like__text">
                                 {song.likes.length} likes
                             </p>
-                            <button
-                                className="songListItem__content__info__like__icon"
-                                type="button"
+                            <LikeIcon
+                                handleLike={() =>
+                                    dispatch(addLikeToSong(song._id))
+                                }
+                                likes={song.likes}
                             />
                         </div>
                         <button

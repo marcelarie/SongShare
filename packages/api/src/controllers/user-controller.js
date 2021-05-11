@@ -43,7 +43,6 @@ async function getUserInfoByUsername(req, res, next) {
             },
             ['songs', 'likes', 'playlists'],
         );
-        console.log(response);
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -126,6 +125,26 @@ async function getAllUserLikes(req, res, next) {
     }
 }
 
+async function getUsersByParams(req, res, next) {
+    const { query } = req.params;
+
+    let querystr = `/^${query}/i`;
+
+    try {
+        const response = await UserRepo.find(
+            { username: eval(querystr) },
+            function (err, docs) {
+                console.log(err, docs);
+            },
+        );
+
+        if (response.error) return res.status(400).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     signUp,
     signOut,
@@ -134,4 +153,5 @@ export {
     deleteUser,
     getAllUserLikes,
     getUserInfo,
+    getUsersByParams,
 };

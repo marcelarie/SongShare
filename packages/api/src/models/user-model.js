@@ -29,6 +29,9 @@ const UserSchema = mongoose.Schema(
         imageUrl: {
             type: String,
         },
+        coverImageUrl: {
+            type: String,
+        },
         songs: [
             {
                 type: String,
@@ -45,6 +48,12 @@ const UserSchema = mongoose.Schema(
             {
                 type: String,
                 ref: 'song',
+            },
+        ],
+        following: [
+            {
+                type: String,
+                ref: 'playlist',
             },
         ],
     },

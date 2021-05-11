@@ -1,0 +1,105 @@
+.search {
+    &__header {
+        text-align: center;
+        h3 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        &__input {
+            input {
+                width: 40%;
+                min-width: 200px;
+                max-width: 300px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                border: none;
+                border: 1px solid black;
+            }
+        }
+    }
+    &__content {
+        padding: 30px;
+        h4 {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+        &__music {
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
+            &__content {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        &__playlists {
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
+            &__content {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        &__users {
+            &__header {
+                border-bottom: 1px solid white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                margin-bottom: 30px;
+                color: white;
+                border-bottom: 1px solid white;
+                &__icon {
+                    border: none;
+                    background-color: transparent;
+                    width: 20px;
+                }
+            }
+            &__content {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    &__preview {
+    }
+}
+.hidden {
+    display: none;
+}
+.nomatch {
+    margin-bottom: 20px;
+}

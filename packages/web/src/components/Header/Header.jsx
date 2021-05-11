@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
 import { changeTheme } from '../../redux/theme/theme-actions';
-import { MY_MUSIC, MY_PLAYLISTS } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
@@ -33,26 +32,26 @@ function Header() {
     useEffect(() => {}, [currentLocation, imageUrl]);
 
     return (
-        <Nav color="red">
-            <NavLink to="/">
+        <Nav>
+            <NavLink className="nav-logo" to="/">
                 <h1>
-                    Song
+                    the
                     <br />
-                    Share
+                    <span>LOGO</span>
                 </h1>
             </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
-                    <NavButton>Home</NavButton>
+                    <NavButton>HOME</NavButton>
                 </NavLink>
                 <NavLink to="/search">
-                    <NavButton>Search</NavButton>
+                    <NavButton>SEARCH</NavButton>
                 </NavLink>
-                <NavLink to={MY_MUSIC}>
-                    <NavButton>My Music</NavButton>
+                <NavLink to={`/${username}/Music`}>
+                    <NavButton>MUSIC</NavButton>
                 </NavLink>
-                <NavLink to={MY_PLAYLISTS}>
-                    <NavButton>My Playlists</NavButton>
+                <NavLink to={`/${username}/Playlists`}>
+                    <NavButton>PLAYLISTS</NavButton>
                 </NavLink>
             </div>
 
