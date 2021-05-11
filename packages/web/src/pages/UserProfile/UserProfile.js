@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux'; import { Link } from 'react-router-dom'; import './styles.scss'; import Button from '../../styles/components/Button/GenericButton'; import UserProfile from './styled'; import useUser from '../../custom-hooks/userProfile/useUser';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './styles.scss';
+import Button from '../../styles/components/Button/GenericButton';
+import UserProfile from './styled';
+import useUser from '../../custom-hooks/userProfile/useUser';
 import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileSwitch';
 
 function CurrentUserProfile() {
@@ -20,11 +25,7 @@ function CurrentUserProfile() {
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
     return (
-        <UserProfile
-            cover={user.imageUrl}
-            className="user"
-            image={user.imageUrl}
-        >
+        <UserProfile cover={coverPic} className="user" image={avatarPic}>
             <div className="user__header">
                 <div className="user__header__title">
                     <p>
@@ -71,7 +72,10 @@ function CurrentUserProfile() {
                                 return false;
                             }
                             return (
-                                <Link to={`/${user.username}/${mode}`} key={mode}>
+                                <Link
+                                    to={`/${user.username}/${mode}`}
+                                    key={mode}
+                                >
                                     <li>{mode.toUpperCase()}</li>
                                 </Link>
                             );

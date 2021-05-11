@@ -10,12 +10,6 @@ function UserProfileEdit() {
     const { pathUsername } = useUser();
     const currentUser = useSelector(store => store.user);
     // const otherUser = useSelector(store => store.otherUser);
-    // const history = useHistory();
-    // const [username, setUsername] = useState(currentUser.username);
-    // const [name, setName] = useState(currentUser.name);
-    // const [lastname, setLastName] = useState(currentUser.lastname);
-    // const [email, setEmail] = useState(currentUser.email);
-    // const [file, setFile] = useState(currentUser.photoURL || '');
 
     return (
         <>
