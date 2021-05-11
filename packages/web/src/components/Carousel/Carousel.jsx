@@ -11,13 +11,14 @@ function Carousel({ ids, type, array }) {
     if (array) {
         return (
             <CarouselStyle className="carousel">
-                {array && array.map(item => {
-                    return type === 'songs' ? (
-                        <SongsCard song={item} key={item._id} />
-                    ) : (
-                        <PlaylistCard playlist={item} key={item._id} />
-                    );
-                })}
+                {array &&
+                    array.map(item => {
+                        return type === 'songs' ? (
+                            <SongsCard song={item} key={item._id} />
+                        ) : (
+                            <PlaylistCard playlist={item} key={item._id} />
+                        );
+                    })}
             </CarouselStyle>
         );
     }
