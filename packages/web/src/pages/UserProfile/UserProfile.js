@@ -17,7 +17,7 @@ function CurrentUserProfile() {
     const Component = useUserProfileSwitch(pathUsername);
     if (isLoading) return <h1>Loading...</h1>;
 
-    const navLinks = ['Landing', 'Info', 'Edit', 'Music', 'Playlists'];
+    const navLinks = ['library', 'info', 'edit', 'music', 'playlists'];
 
     const coverPic =
         user.coverImageUrl ||
@@ -52,16 +52,16 @@ function CurrentUserProfile() {
                                     </Link>
                                 );
                             }
-                            if (!pathUsername[2] && mode === 'Landing') {
+                            if (!pathUsername[2] && mode === 'library') {
                                 return (
-                                    <Link to={`/${user.username}`} key={mode}>
+                                    <Link to={`/${user.username}/library`} key={mode}>
                                         <li className="selectedNav">
                                             {mode.toUpperCase()}
                                         </li>
                                     </Link>
                                 );
                             }
-                            if (pathUsername[2] && mode === 'Landing') {
+                            if (pathUsername[2] && mode === 'library') {
                                 return (
                                     <Link to={`/${user.username}`} key={mode}>
                                         <li>{mode.toUpperCase()}</li>
@@ -70,7 +70,7 @@ function CurrentUserProfile() {
                             }
                             if (
                                 user.username !== currentUser.username &&
-                                mode === 'Edit'
+                                mode === 'edit'
                             ) {
                                 return false;
                             }

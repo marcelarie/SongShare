@@ -57,29 +57,19 @@ function Header() {
                         {size > 1080 ? 'SEARCH' : <NavBarIcons icon="search" />}
                     </NavButton>
                 </NavLink>
-                <NavLink to={`/${username}/Music`}>
+                <NavLink to={`/${username}/library`}>
                     <NavButton
                         className={
-                            currentLocation === `/${username}/Music`
-                                ? 'navfocus'
-                                : ''
-                        }
-                    >
-                        {size > 1080 ? 'MUSIC' : <NavBarIcons icon="music" />}
-                    </NavButton>
-                </NavLink>
-                <NavLink to={`/${username}/Playlists`}>
-                    <NavButton
-                        className={
-                            currentLocation === `/${username}/Playlists`
+                            currentLocation === `/${username}/library` ||
+                            currentLocation === `/${username}`
                                 ? 'navfocus'
                                 : ''
                         }
                     >
                         {size > 1080 ? (
-                            'PLAYLISTS'
+                            'LIBRARY'
                         ) : (
-                            <NavBarIcons icon="playlists" />
+                            <NavBarIcons icon="library" />
                         )}
                     </NavButton>
                 </NavLink>
@@ -115,10 +105,10 @@ function Header() {
                                 PROFILE
                             </button>
                         </NavLink>
-                        <NavLink to={`/${username}/Music`}>
+                        <NavLink to={`/${username}/music`}>
                             <button
                                 className={
-                                    currentLocation === `/${username}/Music`
+                                    currentLocation === `/${username}/music`
                                         ? 'navfocus'
                                         : ''
                                 }
