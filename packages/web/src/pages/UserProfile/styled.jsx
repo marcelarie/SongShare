@@ -12,7 +12,8 @@ const UserProfile = styled.div`
         }
         &__stats {
             background-color: ${({ theme }) => hexToRgba(theme.text, '0.2')};
-            p, span {
+            p,
+            span {
                 color: ${({ theme }) => theme.background};
             }
         }

@@ -28,9 +28,9 @@ function useQuickMenuListener() {
             }
         };
         function closeQuickMenu() {
-            if (open){
-            dispatch(openModal(false));
-            dispatch(openPlaylistModal(false));
+            if (open) {
+                dispatch(openModal(false));
+                dispatch(openPlaylistModal(false));
             }
         }
 

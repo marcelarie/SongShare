@@ -64,7 +64,8 @@
         &__info,
         &__edit,
         &__content {
-            margin: auto 2rem;
+            margin: auto;
+            margin-left: 5vw;
         }
 
         // ASIDE
@@ -169,7 +170,6 @@
         &__edit {
             text-align: start;
             width: 75%;
-            margin-left: auto;
             min-height: 90vh;
             h3 {
                 border-bottom: 1px solid white;

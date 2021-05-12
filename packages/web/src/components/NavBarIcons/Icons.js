@@ -6,6 +6,6 @@ const Icons = {
     search: 's',
     music: 'm',
     playlists: 'p',
-    library: 'l'
+    library: 'l',
 };
 export default Icons;

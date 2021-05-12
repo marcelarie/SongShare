@@ -119,7 +119,6 @@ const Nav = styled.nav`
         font-weight: 600 !important;
         transition: 0.2s !important;
     }
-
 `;
 
 export default Nav;

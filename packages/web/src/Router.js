@@ -24,19 +24,15 @@ function MainRouter() {
     return (
         <Switch>
             {/*  LOGIN & USER */}
-            <Route 
-                path={ROUTES.SIGN_UP} component={SignUp}
-                exact
-                />
+            <Route path={ROUTES.SIGN_UP} component={SignUp} exact />
+            <Route path={ROUTES.LOGIN} component={Login} exact />
             <Route
-                path={ROUTES.LOGIN} component={Login} 
+                path={ROUTES.RESET_PASSWORD}
+                component={ResetPassword}
                 exact
-                />
-            <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword}
-                exact />
+            />
             <Route path={ROUTES.HOME} component={Home} exact />
-            <ProtectedRoute path={ROUTES.SEARCH} component={Search}
-                exact />
+            <ProtectedRoute path={ROUTES.SEARCH} component={Search} exact />
 
             {/*  MUSIC */}
             <ProtectedRoute path={ROUTES.MY_MUSIC} component={MyMusic} />
