@@ -179,6 +179,9 @@ async function likePlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $addToSet: { likedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -197,6 +200,9 @@ async function likePlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $pull: { likedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -230,6 +236,9 @@ async function followPlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $addToSet: { followedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -241,7 +250,10 @@ async function followPlaylist(req, res, next) {
         } else {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
                 $pull: { following: id },
-            });
+        },
+            { new: true },
+            'author',
+            'username',);
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
 
