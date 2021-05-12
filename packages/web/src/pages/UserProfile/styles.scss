@@ -74,7 +74,7 @@
             padding: 0.25rem;
             min-height: 300px;
             min-width: 300px;
-            max-width: 400px;
+            max-width: 300px;
 
             &__header {
                 &__image {
@@ -204,6 +204,7 @@
     position: absolute;
     border-radius: 5px;
     top: -220px;
+    max-width: 300px;
 }
 
 .relative {

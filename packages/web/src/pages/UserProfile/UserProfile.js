@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
-import * as Routes from '../../routes';
 
 /* eslint-disable no-unused-vars */
 import useUser from '../../custom-hooks/userProfile/useUser';
@@ -129,7 +128,7 @@ function CurrentUserProfile() {
                             </div>
                         </div>
                         <div className="user__main__aside__content">
-                            <h1>@{user.username}</h1>
+                            <h2>@{user.username}</h2>
                             <div className="user__main__aside__content__info">
                                 <div>
                                     <Link to={`/${user.username}/playlists`}>

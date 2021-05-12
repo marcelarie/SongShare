@@ -9,12 +9,15 @@ function useUser() {
     const currentUser = useSelector(store => store.user);
     const otherUser = useSelector(store => store.otherUser);
     const dispatch = useDispatch();
+    const auth = useSelector(store => store.auth);
 
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
+    console.log(auth.isAuthenticated);
     useEffect(() => {
-        if (currentUser) {
+        if (auth.isAuthenticated) {
+            console.log(auth.isAuthenticated);
             if (currentUser.username === pathUsername[1]) {
                 setUser(currentUser);
                 setIsLoading(false);
@@ -24,7 +27,7 @@ function useUser() {
                 setIsLoading(false);
             }
         }
-    }, [path, dispatch, currentUser, otherUser.username]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return { user, isLoading, pathUsername };
 }

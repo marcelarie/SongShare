@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import uniq from 'uniqid';
 
 import { NEW_PLAYLIST } from '../../../routes';
 import Carousel from '../../../components/Carousel/index';
@@ -19,11 +20,7 @@ function UserProfilePlaylists({ user }) {
                         My playlists <span>{playlistsLength} collections</span>
                     </h2>
                     {playlistsLength > 0 && (
-                        <Carousel
-                            type="playlists"
-                            ids={playlists}
-                            key="playlist"
-                        />
+                        <Carousel type="playlists" ids={playlists} key={uniq()} />
                     )}
                 </div>
             </div>

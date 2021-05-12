@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import uniq from 'uniqid';
 
 import { NEW_PLAYLIST } from '../../../routes';
 import Carousel from '../../../components/Carousel/index';
@@ -14,9 +15,6 @@ function UserProfileLanding({ user }) {
             <div className="landing-page user__main__content">
                 <div className="user__main__content__playlist">
                     <div className="user__main__content__playlist__stats">
-                        {
-                            // <p>Likes: {likes.length}</p>
-                        }
                         <br />
                     </div>
                 </div>
@@ -24,13 +22,15 @@ function UserProfileLanding({ user }) {
                     <h2>
                         My playlists <span>{playlistsLength} collections</span>
                     </h2>
-                    <Link to={NEW_PLAYLIST}>Create new playlist</Link>
+                    <Link key="new-playlists" to={NEW_PLAYLIST}>
+                        Create new playlist
+                    </Link>
                     <div className="user__main__content__playlist__carousel">
                         {playlistsLength > 0 && (
                             <Carousel
                                 type="playlists"
                                 ids={playlists}
-                                key="playlist"
+                                key={uniq()}
                             />
                         )}
                     </div>
@@ -42,7 +42,7 @@ function UserProfileLanding({ user }) {
                     </h2>
                     <div className="user__main__content__music__carousel">
                         {songsLength > 0 && (
-                            <Carousel type="songs" ids={songs} key="songs" />
+                            <Carousel type="songs" ids={songs} key={uniq()} />
                         )}
                     </div>
                 </div>
