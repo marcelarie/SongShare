@@ -10,6 +10,8 @@ import {
 } from '../../redux/auth/auth-actions';
 
 import { authSelector } from '../../redux/auth/auth-selectors';
+import DarkLightToggle from '../../components/DarkLightToggle';
+import ResetPassword from '../ResetPassword';
 import Input from '../../styles/components/Input/GenericInput';
 import Button from '../../styles/components/Button/GenericButton';
 import '../../styles/GenericForm.scss';
@@ -22,6 +24,12 @@ function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [resetPass, setResetPass] = useState(false);
+    const { theme } = useSelector(store => store.changeTheme);
+
+    const handleResetPassword = () => {
+        setResetPass(!resetPass);
+    };
 
     useEffect(() => {
         dispatch(resetAuthState());
@@ -49,10 +57,13 @@ function Login() {
     }
 
     return (
-        <div className="form-container">
+        <div className="form-container welcomePage">
             <h2 className="form-titles">
                 <span>Sign in to your account</span>
             </h2>
+            <div className="welcomePage__theme">
+                <DarkLightToggle theme={theme} />
+            </div>
             <form action="#" method="POST" onSubmit={handleSubmit}>
                 <Input type="hidden" name="remember" value="true" />
                 <div>
@@ -85,21 +96,25 @@ function Login() {
                             id="remember_me"
                             name="remember_me"
                             type="checkbox"
+                            style={{ margin: '1rem' }}
                         />
                         <label htmlFor="remember_me">Remember me</label>
                     </div>
-                    <Link to={ROUTES.RESET_PASSWORD}>
-                        <Button>Reset password</Button>
-                    </Link>
+                    <div className="reset-password">
+                        <Button type="button" onClick={handleResetPassword}>
+                            Reset password
+                        </Button>
+                    </div>
+                    <div hidden={resetPass}>
+                        <ResetPassword />
+                    </div>
                     <Button type="submit">Sign in</Button>
                     <div>
                         <p>You aren´t sharing yet?</p>
                     </div>
-                    <div>
-                        <Link to={ROUTES.SIGN_UP}>
-                            <Button>Sign Up</Button>
-                        </Link>
-                    </div>
+                    <Link to={ROUTES.SIGN_UP}>
+                        <Button>Sign Up</Button>
+                    </Link>
                 </div>
             </form>
         </div>

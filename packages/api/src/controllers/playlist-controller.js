@@ -76,7 +76,6 @@ async function getPlaylistById(req, res, next) {
             'author',
             'username',
         );
-        console.log(response);
         if (response.data) return res.status(200).send(response);
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
@@ -96,7 +95,6 @@ async function getPlaylistById(req, res, next) {
 async function addSongs(req, res, next) {
     const { body } = req;
     const { id } = req.params;
-    console.log(body);
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
             id,
@@ -122,7 +120,6 @@ async function removeSongs(req, res, next) {
         const response = await PlaylistRepo.findByIdAndUpdate(id, {
             $pull: { songs: { $in: songs } },
         });
-        console.log(response);
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
     } catch (err) {
@@ -133,7 +130,6 @@ async function removeSongs(req, res, next) {
 async function updatePlaylist(req, res, next) {
     const { newPlaylistChanges } = req.body;
     const { id } = req.params;
-    console.log(newPlaylistChanges);
     try {
         const response = await PlaylistRepo.findByIdAndUpdate(
             id,
@@ -262,6 +258,10 @@ async function followPlaylist(req, res, next) {
         next(error);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> be07c1f5335c7485d4e81608c69a953acc873788
 async function getPlaylistsByParams(req, res, next) {
     const { query } = req.params;
 

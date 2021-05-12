@@ -3,13 +3,14 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signOut } from '../../redux/auth/auth-actions';
-import { changeTheme } from '../../redux/theme/theme-actions';
-import { MY_MUSIC, MY_PLAYLISTS } from '../../routes';
 import NavButton from '../../styles/components/NavButton/GenericNavButton';
 import ImageButton from '../../styles/components/Button/ImageButton';
 import Nav from './styles';
 import DarkLightToggle from '../DarkLightToggle';
+import NavBarIcons from '../NavBarIcons';
+
 import './style.scss';
+import * as WindowSize from '../../custom-hooks/windowSize';
 
 function Header() {
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Header() {
     const currentLocation = useLocation().pathname;
 
     const { imageUrl, username } = useSelector(store => store.user);
+    const [size] = WindowSize.useWindowSize();
 
     const profilePic =
         imageUrl ||
@@ -25,15 +27,12 @@ function Header() {
     const handleSignOut = () => {
         dispatch(signOut());
     };
-    const handleChangeTheme = () => {
-        dispatch(changeTheme());
-    };
     const [openMenu, setOpenMenu] = useState(false);
 
     useEffect(() => {}, [currentLocation, imageUrl]);
 
     return (
-        <Nav>
+        <Nav className="the-nav">
             <NavLink className="nav-logo" to="/">
                 <h1>
                     the
@@ -43,16 +42,46 @@ function Header() {
             </NavLink>
             <div className="nav-menu">
                 <NavLink to="/">
-                    <NavButton>HOME</NavButton>
+                    <NavButton
+                        className={currentLocation === '/' ? 'navfocus' : ''}
+                    >
+                        {size > 1080 ? 'HOME' : <NavBarIcons icon="home" />}
+                    </NavButton>
                 </NavLink>
                 <NavLink to="/search">
-                    <NavButton>SEARCH</NavButton>
+                    <NavButton
+                        className={
+                            currentLocation === '/search' ? 'navfocus' : ''
+                        }
+                    >
+                        {size > 1080 ? 'SEARCH' : <NavBarIcons icon="search" />}
+                    </NavButton>
                 </NavLink>
-                <NavLink to={MY_MUSIC}>
-                    <NavButton>MUSIC</NavButton>
+                <NavLink to={`/${username}/Music`}>
+                    <NavButton
+                        className={
+                            currentLocation === `/${username}/Music`
+                                ? 'navfocus'
+                                : ''
+                        }
+                    >
+                        {size > 1080 ? 'MUSIC' : <NavBarIcons icon="music" />}
+                    </NavButton>
                 </NavLink>
-                <NavLink to={MY_PLAYLISTS}>
-                    <NavButton>PLAYLISTS</NavButton>
+                <NavLink to={`/${username}/Playlists`}>
+                    <NavButton
+                        className={
+                            currentLocation === `/${username}/Playlists`
+                                ? 'navfocus'
+                                : ''
+                        }
+                    >
+                        {size > 1080 ? (
+                            'PLAYLISTS'
+                        ) : (
+                            <NavBarIcons icon="playlists" />
+                        )}
+                    </NavButton>
                 </NavLink>
             </div>
 
@@ -70,19 +99,50 @@ function Header() {
                     image={profilePic}
                     className="nav-user__image"
                 />
-                <button
-                    style={{ all: 'unset' }}
-                    onClick={handleChangeTheme}
-                    type="button"
-                >
-                    <DarkLightToggle theme={theme} />
-                </button>
+                <DarkLightToggle theme={theme} />
                 {openMenu && (
                     <div className="nav-user__menu">
-                        <NavLink to={`/${username}/`}>Profile</NavLink>
-                        <NavLink to="/search">Settings</NavLink>
+                        <NavLink to={`/${username}/`}>
+                            <button
+                                className={
+                                    currentLocation === `/${username}/`
+                                        ? 'navfocus'
+                                        : ''
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                PROFILE
+                            </button>
+                        </NavLink>
+                        <NavLink to={`/${username}/Music`}>
+                            <button
+                                className={
+                                    currentLocation === `/${username}/Music`
+                                        ? 'navfocus'
+                                        : ''
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                UPLOAD SONG
+                            </button>
+                        </NavLink>
+                        <NavLink to="/">
+                            <button
+                                className={
+                                    currentLocation === `/settings`
+                                        ? 'navfocus'
+                                        : ''
+                                }
+                                onClick={() => setOpenMenu(!openMenu)}
+                                type="button"
+                            >
+                                SETTINGS
+                            </button>
+                        </NavLink>
                         <button type="button" onClick={handleSignOut}>
-                            Sign Out
+                            SIGN OUT
                         </button>
                     </div>
                 )}

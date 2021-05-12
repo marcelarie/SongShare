@@ -11,26 +11,28 @@ function Carousel({ ids, type, array }) {
     if (array) {
         return (
             <CarouselStyle className="carousel">
-                {array.map(item => {
+                {array &&
+                    array.map(item => {
+                        return type === 'songs' ? (
+                            <SongsCard song={item} key={item._id} />
+                        ) : (
+                            <PlaylistCard playlist={item} key={item._id} />
+                        );
+                    })}
+            </CarouselStyle>
+        );
+    }
+    return (
+        <CarouselStyle className="carousel">
+            {ids &&
+                ids.map(id => {
+                    const item = ByID[id];
                     return type === 'songs' ? (
                         <SongsCard song={item} key={item._id} />
                     ) : (
                         <PlaylistCard playlist={item} key={item._id} />
                     );
                 })}
-            </CarouselStyle>
-        );
-    }
-    return (
-        <CarouselStyle className="carousel">
-            {ids.map(id => {
-                const item = ByID[id];
-                return type === 'songs' ? (
-                    <SongsCard song={item} key={item._id} />
-                ) : (
-                    <PlaylistCard playlist={item} key={item._id} />
-                );
-            })}
         </CarouselStyle>
     );
 }

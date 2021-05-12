@@ -1,16 +1,20 @@
 import * as UserTypes from './user-types';
 import { SIGN_UP_SUCCESS } from '../auth/auth-types';
+import { CREATE_PLAYLIST_SUCCESS } from '../Playlists/playlists-types';
 
 const userInitialState = {
-    username: '',
+    songs: [],
+    playlists: [],
+    likes: [],
+    _id: null,
     email: '',
     name: '',
     lastname: '',
-    _id: null,
+    username: '',
     imageUrl: '',
-    langKey: 'ES',
-    lastModifiedBy: '',
-    lastModifiedDate: '',
+    coverImageUrl: '',
+    createdAt: '',
+    updateAt: '',
     loading: false,
     error: false,
 };
@@ -19,9 +23,15 @@ const userReducer = (state = userInitialState, action) => {
     switch (action.type) {
         case SIGN_UP_SUCCESS:
             return {
+                ...state,
                 ...action.payload,
                 loading: false,
                 error: false,
+            };
+        case CREATE_PLAYLIST_SUCCESS:
+            return {
+                ...state,
+                playlists: [...state.playlists, action.payload.playlist._id],
             };
         case UserTypes.USER_INFO_REQUEST:
             return {
@@ -40,6 +50,7 @@ const userReducer = (state = userInitialState, action) => {
                 username: action.payload.userInfo.username,
                 id: action.payload.userInfo.id,
                 imageUrl: action.payload.userInfo.imageUrl,
+                coverImageUrl: action.payload.userInfo.coverImageUrl,
             };
         case UserTypes.USER_INFO_ERROR:
             return {

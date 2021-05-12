@@ -1,4 +1,4 @@
-export default {
+ const colors = {
     color: '#c3352e',
     black: '#000000',
     mainBlack: '#363636',
@@ -8,6 +8,7 @@ export default {
     darkGray: '#3f4042',
     greenSuccess: '#4FCD61',
 };
+export default colors
 
 /* export const blueColor = '#332E4C';
 export const pinkColor = '#DA0562';

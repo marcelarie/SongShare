@@ -43,7 +43,6 @@ async function getUserInfoByUsername(req, res, next) {
             },
             ['songs', 'likes', 'playlists'],
         );
-        console.log(response);
 
         if (response.error) return res.status(400).send(response);
         if (!response.data) return res.status(404).send(response);
