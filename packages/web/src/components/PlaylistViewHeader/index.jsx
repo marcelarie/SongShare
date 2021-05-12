@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 
 import {
     addLikeToPlaylist,
-    addSongsToPlaylist,
     followPlaylist,
     editPlaylist,
-    getPlaylist,
     createPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
@@ -25,8 +23,8 @@ import PlaylistViewHeaderStyle from './styled';
 const PlaylistViewHeader = ({ playlist, from }) => {
     const dispatch = useDispatch();
     const {
-        PlaylistUpdating,
-        PlaylistUpdatingError,
+        // PlaylistUpdating,
+        // PlaylistUpdatingError,
         PlaylistUpdate,
     } = useSelector(store => store.playlists);
     const author = useSelector(store => store.user.username);
@@ -46,10 +44,10 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         from === 'createView' ? 'description' : playlist.description,
     );
 
-    const { currentlyPlaying } = useSelector(store => store.audioPlayer);
-    const play_pause = document.getElementsByClassName(
+    // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+    /* const play_pause = document.getElementsByClassName(
         'rhap_play-pause-button',
-    );
+    ); */
 
     useEffect(() => {
         if (from === 'editableView') {
@@ -61,9 +59,9 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         /* if(from === 'createView') {
             dispatch(createPlaylistRequest());
         } */
-    }, [dispatch, playlist]);
+    }, [dispatch, playlist, from]);
 
-    function reproduceplaylist() {
+    /* function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
             const simulateClick = new MouseEvent('click', {
                 view: window,
@@ -74,7 +72,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         } else {
             // dispatch(startplaylist(playlist._id));
         }
-    }
+    } */
     useQuickMenuListener();
     return (
         <PlaylistViewHeaderStyle
@@ -99,7 +97,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__type"
                         readOnly={from === 'mainView'}
-                        value={type === 'Playlist' ? 'Playlist' : 'Album'}
+                        defaultValue={type === 'Playlist' ? 'Playlist' : 'Album'}
                         onClick={() => {
                             if (from === 'editableView') {
                                 setType(
@@ -112,7 +110,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                     <input
                         type="text"
                         className="mega-playlist__info__access"
-                        value={publicAccess ? 'Public' : 'Private'}
+                        defaultValue={publicAccess ? 'Public' : 'Private'}
                         readOnly={from === 'mainView'}
                         onClick={() => {
                             if (from === 'editableView') {
@@ -124,14 +122,14 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <input
                     type="text"
                     className="mega-playlist__info__title"
-                    value={title}
+                    defaultValue={title}
                     readOnly={from === 'mainView'}
                     onChange={e => setTitle(e.target.value)}
                 />
                 <input
                     type="text"
                     className="mega-playlist__info__author"
-                    value={
+                    defaultValue={
                         from === 'createView'
                             ? author
                             : playlist.author.username
@@ -142,7 +140,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <input
                     type="text"
                     className="mega-playlist__info__description"
-                    value={description}
+                    defaultValue={description}
                     readOnly={from === 'mainView'}
                     onChange={e => setDescription(e.target.value)}
                 />

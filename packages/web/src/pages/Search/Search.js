@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
 import * as auth from '../../services/auth';
-import SongsCard from '../../components/SongsCard/SongsCard';
-import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
+// import SongsCard from '../../components/SongsCard/SongsCard';
+// import PlaylistCard from '../../components/PlaylistCard/PlaylistCard';
 
 import './styles.scss';
 import SongCard from '../../components/SongsCard/styles';
@@ -10,9 +10,9 @@ import UserCard from '../../components/UserCard/UserCard';
 
 const Search = () => {
     const [query, setQuery] = useState('');
-    const [musicView, setMusicView] = useState(true);
-    const [playlistView, setPlaylistView] = useState(true);
-    const [usersView, setUsersView] = useState(true);
+    // const [musicView, setMusicView] = useState(true);
+    // const [playlistView, setPlaylistView] = useState(true);
+    // const [usersView, setUsersView] = useState(true);
     const [music, setmusic] = useState(null);
     const [playlists, setplaylists] = useState(null);
     const [users, setusers] = useState(null);
@@ -23,7 +23,6 @@ const Search = () => {
         const token = await auth.getCurrentUserToken();
 
         try {
-            console.log(query);
             const response = await api.getSongByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -31,14 +30,12 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setmusic(response.data.data);
         } catch (error) {
             console.log(error);
         }
 
         try {
-            console.log(query);
             const response = await api.getUserByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -46,14 +43,12 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setplaylists(response.data.data);
         } catch (error) {
             console.log(error);
         }
 
         try {
-            console.log(query);
             const response = await api.getPlayListByParams(
                 {
                     Authorization: `Bearer ${token}`,
@@ -61,10 +56,9 @@ const Search = () => {
                 query,
             );
 
-            console.log(response.data.data);
             setusers(response.data.data);
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     };
 

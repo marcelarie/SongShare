@@ -1,19 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory, useLocation, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import {
-    useQuickMenu,
-    useQuickMenuListener,
-} from '../../custom-hooks/quickMenu';
-
-import {
-    addLikeToPlaylist,
-    // deleteSongByID,
-    editPlaylist,
-    getPlaylist,
-} from '../../redux/Playlists/playlists-actions';
+import React from 'react';
+import { Redirect, useParams } from 'react-router';
+import { useSelector } from 'react-redux';
 
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
@@ -24,7 +11,6 @@ import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 import '../PlaylistView/styles.scss';
 
 function PlaylistEdit() {
-    const dispatch = useDispatch();
     const { id } = useParams();
 
     const { byID } = useSelector(state => state.playlists);

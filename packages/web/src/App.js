@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import jsmediatags from 'jsmediatags';
+// import jsmediatags from 'jsmediatags';
 
 import SongModal from './pages/SongModal';
 import Header from './components/Header';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { play } from '../../redux/audioPlayer/audioPlayer-actions';
+// import { play } from '../../redux/audioPlayer/audioPlayer-actions';
 
 import './styles.scss';
 import './styles';
@@ -13,9 +13,9 @@ function SongListItem({ song, index, handleAdd, handleRemove }) {
     const [itemSelected, setItemSelected] = useState(false);
     const dispatch = useDispatch();
 
-    function reproduceSong(s) {
+    /* function reproduceSong(s) {
         dispatch(play(s.url));
-    }
+    } */
     function handleSelected(e) {
         if (
             !e.target.parentNode.className.includes('selected') &&
@@ -26,7 +26,6 @@ function SongListItem({ song, index, handleAdd, handleRemove }) {
                 handleAdd(song._id);
             } else {
                 // reproduce
-                console.log('reproduce');
                 setItemSelected(false);
             }
         } else if (
@@ -38,7 +37,6 @@ function SongListItem({ song, index, handleAdd, handleRemove }) {
                 handleRemove(song._id);
             } else {
                 // reproduce
-                console.log('reproduce');
                 setItemSelected(false);
             }
         }
