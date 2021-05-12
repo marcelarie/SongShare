@@ -36,6 +36,9 @@ const SongSchema = mongoose.Schema({
         type: String,
         require: true,
     },
+    songPicUrl: {
+        type: String,
+    },
     bytes: {
         type: String,
         require: true,
