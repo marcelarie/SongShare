@@ -17,7 +17,7 @@ import {
 
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
-import SongsListTable from '../../components/SongsList';
+import SongsListTable from '../../components/SongsListTable';
 import PlaylistViewStyle from '../PlaylistView/styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 

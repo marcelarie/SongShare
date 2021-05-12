@@ -33,10 +33,13 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     const play_pause = document.getElementsByClassName(
         'rhap_play-pause-button',
     );
-    /* 
+
     useEffect(() => {
-        dispatch(getPlaylist(playlist._id));
-    }, [dispatch, playlist]); */
+        setTitle(playlist.title);
+        setType(playlist.type);
+        setPublicAccess(playlist.publicAccess);
+        setDescription(playlist.description);
+    }, [dispatch, playlist]); 
 
     function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
