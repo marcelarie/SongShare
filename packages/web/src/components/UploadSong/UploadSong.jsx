@@ -30,6 +30,7 @@ function UploadSong() {
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState(username);
     const [genre, setGenre] = useState('Generic');
+    const [songPic, setSongPic] = useState('');
 
     const tryToSubmit = e => {
         // e.preventDefault(); // I think there is no need to preventDefault when using useForm
@@ -39,6 +40,7 @@ function UploadSong() {
                 title,
                 artist,
                 genre,
+                songPic,
             }),
         );
     };
@@ -47,8 +49,9 @@ function UploadSong() {
         jsmediatags.read(uploadFile, {
             onSuccess: tags => {
                 tags.title && setTitle(tags.title);
-                tags.artist && setTitle(tags.artist);
-                tags.genre && setTitle(tags.genre);
+                tags.artist && setArtist(tags.artist);
+                tags.genre && setGenre(tags.genre);
+                tags.picture && setSongPic(tags.genre);
             },
         });
         setFile(uploadFile);
