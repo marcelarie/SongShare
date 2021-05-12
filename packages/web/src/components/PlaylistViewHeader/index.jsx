@@ -8,6 +8,7 @@ import {
     followPlaylist,
     editPlaylist,
     createPlaylist,
+    updatePlaylistSuccess,
 } from '../../redux/Playlists/playlists-actions';
 
 import {

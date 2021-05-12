@@ -12,13 +12,10 @@ import './styles.scss';
 import SongsListTable from '../../components/SongsListTable/SongsListTable';
 
 function Playlist() {
-    const dispatch = useDispatch();
     const { id } = useParams();
     const playlist = useSelector(state => state.playlists.byID[id]);
     const currentUser = useSelector(state => state.user);
-    useEffect(() => {
-        dispatch(getPlaylist(id));
-    }, [id, dispatch]);
+
     useQuickMenuListener();
 
     if (!playlist) {

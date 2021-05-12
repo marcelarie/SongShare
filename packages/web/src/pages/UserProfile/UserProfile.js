@@ -54,7 +54,10 @@ function CurrentUserProfile() {
                             }
                             if (!pathUsername[2] && mode === 'library') {
                                 return (
-                                    <Link to={`/${user.username}/library`} key={mode}>
+                                    <Link
+                                        to={`/${user.username}/library`}
+                                        key={mode}
+                                    >
                                         <li className="selectedNav">
                                             {mode.toUpperCase()}
                                         </li>

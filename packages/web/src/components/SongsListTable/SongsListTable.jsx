@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortableItem, swapArrayPositions } from 'react-sort-list';
@@ -21,6 +21,10 @@ function SongsListTable({
     const { byID } = useSelector(state => state.songs);
     const [songsState, setSongsState] = useState(songsOrder);
 
+    useEffect(() => {
+        dispatch(addSongsToPlaylist(playlistID, songsState));
+    }, [dispatch, songsState, playlistID]);
+
     function swap(dragIndex, dropIndex) {
         const swappedsong = swapArrayPositions(
             songsOrder,
@@ -28,7 +32,6 @@ function SongsListTable({
             dropIndex,
         );
         setSongsState([...swappedsong]);
-        dispatch(addSongsToPlaylist(playlistID, songsState));
     }
     return (
         <div className="songsList__container">
