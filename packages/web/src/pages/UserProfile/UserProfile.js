@@ -55,7 +55,7 @@ function CurrentUserProfile() {
                         <Link to={`/${user.username}/music`}>
                             <p>
                                 <span role="img" aria-label>
-                                 🎵
+                                    🎵
                                 </span>
                                 <span>{user ? user.songs.length : '0'}</span>
                             </p>
