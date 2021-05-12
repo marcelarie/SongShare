@@ -82,7 +82,7 @@ function PlaylistCard({ playlist }) {
                 </div>
                 <Link
                     to={{
-                        pathname: `playlist/${playlist._id}`,
+                        pathname: `/playlist/${playlist._id}`,
                         playlistId: playlist._id,
                     }}
                 >

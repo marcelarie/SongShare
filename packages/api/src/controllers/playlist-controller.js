@@ -96,9 +96,15 @@ async function addSongs(req, res, next) {
     const { body } = req;
     const { id } = req.params;
     try {
-        const response = await PlaylistRepo.findByIdAndUpdate(id, {
-            $addToSet: { songs: body.songs },
-        });
+        const response = await PlaylistRepo.findByIdAndUpdate(
+            id,
+            {
+                $set: { songs: body.songs },
+            },
+            { new: true },
+            'author',
+            'username',
+        );
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);
@@ -128,6 +134,9 @@ async function updatePlaylist(req, res, next) {
         const response = await PlaylistRepo.findByIdAndUpdate(
             id,
             newPlaylistChanges,
+            { new: true },
+            'author',
+            'username',
         );
 
         if (response.error) return res.status(400).send(response);
@@ -252,7 +261,6 @@ async function followPlaylist(req, res, next) {
         next(error);
     }
 }
-
 async function getPlaylistsByParams(req, res, next) {
     const { query } = req.params;
 

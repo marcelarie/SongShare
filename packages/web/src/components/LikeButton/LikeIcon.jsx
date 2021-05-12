@@ -18,8 +18,6 @@ function LikeIcon({ likes, handleLike, zoom = false }) {
         <svg
             x="0"
             y="0"
-            width="50px"
-            height="50px"
             viewBox={zoom ? '0 0 30 35' : '0 -12 10 60'}
             className={
                 active

@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { NEW_PLAYLIST } from '../../../routes';
 import Carousel from '../../../components/Carousel/index';
 
 function UserProfilePlaylists({ user }) {
@@ -10,6 +13,7 @@ function UserProfilePlaylists({ user }) {
                 <div className="user__main__content__playlist">
                     <h1>Stats...</h1>
                 </div>
+                <Link to={NEW_PLAYLIST}>Create new playlist</Link>
                 <div className="user__main__content__playlist">
                     <h2>
                         My playlists <span>{playlistsLength} collections</span>

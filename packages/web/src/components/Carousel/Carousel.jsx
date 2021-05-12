@@ -27,11 +27,14 @@ function Carousel({ ids, type, array }) {
             {ids &&
                 ids.map(id => {
                     const item = ByID[id];
-                    return type === 'songs' ? (
-                        <SongsCard song={item} key={item._id} />
-                    ) : (
-                        <PlaylistCard playlist={item} key={item._id} />
-                    );
+                    if (item) {
+                        return type === 'songs' ? (
+                            <SongsCard song={item} key={item._id} />
+                        ) : (
+                            <PlaylistCard playlist={item} key={item._id} />
+                        );
+                    }
+                    return <></>;
                 })}
         </CarouselStyle>
     );

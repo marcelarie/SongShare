@@ -10,9 +10,9 @@ import UserCard from '../../components/UserCard/UserCard';
 
 const Search = () => {
     const [query, setQuery] = useState('');
-    const [musicView, setMusicView] = useState(false);
-    const [playlistView, setPlaylistView] = useState(false);
-    const [usersView, setUsersView] = useState(false);
+    const [musicView, setMusicView] = useState(true);
+    const [playlistView, setPlaylistView] = useState(true);
+    const [usersView, setUsersView] = useState(true);
     const [music, setmusic] = useState(null);
     const [playlists, setplaylists] = useState(null);
     const [users, setusers] = useState(null);

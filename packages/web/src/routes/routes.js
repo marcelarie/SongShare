@@ -9,7 +9,7 @@ export const MY_MUSIC = '/my-music';
 export const SONG_INFO_MODAL = '/songInfo';
 export const SEARCH = '/search';
 
-export const MY_PLAYLISTS = '/playlists';
+export const MY_PLAYLISTS = '/:username';
 export const NEW_PLAYLIST = '/newplaylist';
 export const PLAYLIST_VIEW = '/playlist/:id';
 export const PLAYLIST_VIEW_EDIT = '/playlist/:id/edit';

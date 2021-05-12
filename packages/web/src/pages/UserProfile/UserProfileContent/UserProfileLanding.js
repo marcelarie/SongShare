@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { NEW_PLAYLIST } from '../../../routes';
 import Carousel from '../../../components/Carousel/index';
 import '../styles.scss';
 
@@ -21,6 +24,7 @@ function UserProfileLanding({ user }) {
                     <h2>
                         My playlists <span>{playlistsLength} collections</span>
                     </h2>
+                    <Link to={NEW_PLAYLIST}>Create new playlist</Link>
                     <div className="user__main__content__playlist__carousel">
                         {playlistsLength > 0 && (
                             <Carousel
