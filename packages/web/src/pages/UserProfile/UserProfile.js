@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { Link, } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
@@ -41,7 +41,7 @@ function CurrentUserProfile() {
                     <div>
                         <Link to={`/${user.username}/playlists`}>
                             <p>
-                                <span role="img" aria-label>
+                                <span role="img" aria-label="star">
                                     ⭐
                                 </span>
                                 <span>
@@ -55,7 +55,7 @@ function CurrentUserProfile() {
                     <div>
                         <Link to={`/${user.username}/music`}>
                             <p>
-                                <span role="img" aria-label>
+                                <span role="img" aria-label="song">
                                     🎵
                                 </span>
                                 <span>

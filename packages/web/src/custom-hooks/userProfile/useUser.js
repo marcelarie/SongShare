@@ -15,7 +15,6 @@ function useUser() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log( auth)
         if (auth.isAuthenticated) {
             if (currentUser.username === pathUsername[1]) {
                 setUser(currentUser);
