@@ -60,8 +60,6 @@ function UploadSong() {
         setFile(uploadFile);
     }
 
-    const fileType = fileTypes.IMAGE;
-
     const onChangePicture = e => {
         if (e.target.files[0]) {
             setSongPic(e.target.files[0]);
