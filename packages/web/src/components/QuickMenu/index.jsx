@@ -14,11 +14,11 @@ import QuickMenuStyle from './styles';
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
-import { useWindowSize } from '../../custom-hooks/windowSize';
+// import { useWindowSize } from '../../custom-hooks/windowSize';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY, id} = useSelector(
+    const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
     const audioPlayer = useSelector(state => state.audioPlayer);
@@ -27,7 +27,7 @@ const QuickMenu = () => {
     const playlistsByID = useSelector(state => state.playlists.byID);
 
     const { _id } = useSelector(state => state.user);
-    const wSize = useWindowSize();
+    // const wSize = useWindowSize();
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 

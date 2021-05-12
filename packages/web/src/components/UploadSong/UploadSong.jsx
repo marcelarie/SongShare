@@ -13,6 +13,8 @@ import '../../styles/GenericForm.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import Input from '../../styles/components/Input/GenericInput';
 
+import StyledImg from './StyledImag';
+
 function UploadSong() {
     const {
         register,
@@ -30,6 +32,8 @@ function UploadSong() {
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState(username);
     const [genre, setGenre] = useState('Generic');
+    const [songPic, setSongPic] = useState('');
+    const [imgInput, setImgInput] = useState(null);
 
     const tryToSubmit = e => {
         // e.preventDefault(); // I think there is no need to preventDefault when using useForm
@@ -39,6 +43,7 @@ function UploadSong() {
                 title,
                 artist,
                 genre,
+                songPic,
             }),
         );
     };
@@ -47,12 +52,28 @@ function UploadSong() {
         jsmediatags.read(uploadFile, {
             onSuccess: tags => {
                 tags.title && setTitle(tags.title);
-                tags.artist && setTitle(tags.artist);
-                tags.genre && setTitle(tags.genre);
+                tags.artist && setArtist(tags.artist);
+                tags.genre && setGenre(tags.genre);
+                tags.picture && setSongPic(tags.songPic);
             },
         });
         setFile(uploadFile);
     }
+
+    const onChangePicture = e => {
+        if (e.target.files[0]) {
+            setSongPic(e.target.files[0]);
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                setImgInput(reader.result);
+            });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
+    const profilePic =
+        imgInput ||
+        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
     return (
         <div className="upload-song">
@@ -86,6 +107,16 @@ function UploadSong() {
                     onChange={e => setGenre(e.target.value)}
                     placeholder={genre}
                 />
+
+                <div>
+                    <StyledImg urlImg={profilePic}>
+                        <input
+                            type="file"
+                            className="songpic"
+                            onChange={onChangePicture}
+                        />
+                    </StyledImg>
+                </div>
 
                 <Dropzone
                     fileType={fileTypes.AUDIO}
