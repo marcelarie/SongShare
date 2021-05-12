@@ -5,7 +5,6 @@ import { SortableItem, swapArrayPositions } from 'react-sort-list';
 import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import UseSortSongs from '../../custom-hooks/sortSongs';
-import SongListTableStyle from './styles';
 import './styles.scss';
 import SongListItem from '../SongListItem';
 
@@ -32,7 +31,6 @@ function SongsListTable({
         );
         setSongsState([...swappedsong]);
     }
-    console.log(songsState);
     return (
         <div className="songsList__container">
             <div className="songsList__container__header">
@@ -41,53 +39,50 @@ function SongsListTable({
                 <div className="songsList__container__header__item">Author</div>
                 <div className="songsList__container__header__item">Likes</div>
             </div>
-            {sortable &&
-                songsState.map((song, index) => {
-                    const songInfo = byID[song._id];
-                    return (
-                        <SortableItem
-                            items={songsState}
-                            id={song.id}
+            {sortable && songsState.map((song, index) => {
+                const songInfo = byID[song._id];
+                return (
+                    <SortableItem
+                        items={songsState}
+                        id={song.id}
+                        key={song._id}
+                        swap={swap}
+                    >
+                        <div
+                            className="songsList__container__row"
                             key={song._id}
-                            swap={swap}
                         >
-                            <div
-                                className="songsList__container__row"
-                                key={song._id}
-                            >
-                                <div className="songsList__container__row__item id">
-                                    {index + 1}
-                                </div>
-                                <div className="songsList__container__row__item name">
-                                    {songInfo.name}
-                                </div>
-                                <div className="songsList__container__row__item user">
-                                    {songInfo.username}
-                                </div>
-                                <div className="songsList__container__row__item likes">
-                                    {songInfo.likes.length}
-                                </div>
-                                <div className="songsList__container__row__item image">
-                                    {songInfo.imageURL}
-                                </div>
+                            <div className="songsList__container__row__item id">
+                                {index + 1}
                             </div>
-                        </SortableItem>
-                    );
-                })}
-            {!sortable &&
-                songsToList.map((songID, index) => {
-                    const songInfo = byID[songID];
-                    console.log('hola');
-                    return (
-                        <SongListItem
-                            index={index + 1}
-                            key={songID}
-                            song={songInfo}
-                            handleRemove={handleRemove}
-                            handleAdd={handleAdd}
-                        />
-                    );
-                })}
+                            <div className="songsList__container__row__item name">
+                                {songInfo.name}
+                            </div>
+                            <div className="songsList__container__row__item user">
+                                {songInfo.username}
+                            </div>
+                            <div className="songsList__container__row__item likes">
+                                {songInfo.likes.length}
+                            </div>
+                            <div className="songsList__container__row__item image">
+                                {songInfo.imageURL}
+                            </div>
+                        </div>
+                    </SortableItem>
+                );
+            })}
+            {!sortable && songsToList.map((songID, index) => {
+                const songInfo = byID[songID];
+                return (
+                    <SongListItem
+                    index={index + 1}
+                    key={songID}
+                    song = {songInfo}
+                    handleRemove = {handleRemove}
+                    handleAdd = {handleAdd}
+                    />
+                );
+            })}
         </div>
     );
 }
