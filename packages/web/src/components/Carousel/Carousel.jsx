@@ -7,9 +7,7 @@ import './styles.scss';
 import CarouselStyle from './styled';
 
 function Carousel({ ids, type, array }) {
-    console.log(ids, type);
     const ByID = useSelector(store => store[type].byID);
-    console.log(ByID);
     if (array) {
         return (
             <CarouselStyle className="carousel">

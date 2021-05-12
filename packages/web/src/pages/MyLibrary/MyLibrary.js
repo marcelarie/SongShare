@@ -19,7 +19,8 @@ function MyLibrary() {
     const dispatch = useDispatch();
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
-    const userLikes = useSelector(store => store.user.likes);
+    // const userLikes = useSelector(store => store.user.likes);
+    // TODO: separate songs likes and playlist like on backend and integrate here
     const userFollow = useSelector(store => store.user.following);
 
     // get user info from redux
@@ -30,7 +31,6 @@ function MyLibrary() {
         dispatch(getAllPlaylists());
         // dispatch(getUserPlaylists(userID));
     }, [dispatch]);
-    console.log(userPlaylists, userLikes, userFollow, userSongs);
 
     if (!userPlaylists) return <p>loading...</p>;
 

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { getPlaylist } from '../../redux/Playlists/playlists-actions';
+// import { getPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import PlaylistViewStyle from './styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
