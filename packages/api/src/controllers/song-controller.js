@@ -105,13 +105,13 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikes(uid, id);
+        const checkUserResponse = await UserRepo.findAndCheckLikesSongs(uid, id);
 
         if (checkUserResponse.error)
             return res.status(400).send(checkUserResponse);
         if (checkUserResponse.data.length === 0) {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $addToSet: { likes: id },
+                $addToSet: { songsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
@@ -128,7 +128,7 @@ async function likeSong(req, res, next) {
                 return res.status(200).send({ songResponse, userResponse });
         } else {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $pull: { likes: id },
+                $pull: { songsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
