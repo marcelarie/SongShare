@@ -1,7 +1,7 @@
 import * as ThemeTypes from './theme-types';
 
 const InitialState = {
-    theme: true,
+    theme: false,
 };
 
 function ThemeReducer(state = InitialState, { type }) {

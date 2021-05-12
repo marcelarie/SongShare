@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import * as colors from '../../styles/color-palette';
 
 const PlaylistView = styled.div`
     color: ${({ theme }) => theme.text};

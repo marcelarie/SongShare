@@ -11,7 +11,7 @@ function UseQuickMenu() {
 
     const { id, open } = useSelector(({ quickMenu }) => quickMenu);
 
-    const openMenu = (event, cardId) => {
+    const openMenu = (event, cardId, noClose = false) => {
         const x =
             window.innerWidth > event.clientX + 100
                 ? `${event.clientX}px`
@@ -22,7 +22,7 @@ function UseQuickMenu() {
                 : `${event.clientY - 50}px`;
 
         dispatch(changeXandY({ x, y }));
-        if (cardId !== id) {
+        if (cardId !== id || noClose) {
             !open && dispatch(openModal(true));
         } else {
             dispatch(openModal(!open));

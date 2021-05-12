@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
     addToQueue,
@@ -14,6 +14,7 @@ import QuickMenuStyle from './styles';
 import { UseQuickPlaylistMenu } from '../../custom-hooks/quickPlaylistMenu';
 
 import { openInfoModal } from '../../redux/songInfoModal/songInfoModal-actions';
+import { useWindowSize } from '../../custom-hooks/windowSize';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const QuickMenu = () => {
     const playlistsByID = useSelector(state => state.playlists.byID);
 
     const { _id } = useSelector(state => state.user);
+    const wSize = useWindowSize();
 
     const [openPlaylistMenu] = UseQuickPlaylistMenu();
 
@@ -48,6 +50,9 @@ const QuickMenu = () => {
         dispatch(deleteInAudioplayer(id, audioPlayer));
         dispatch(openModal(false));
     };
+
+    // if (size === {}) dispatch(saveSize(wSize));
+    // useRecordinateQuickMenu();
 
     /* const openPlaylistInfo = () => {
         dispatch(openModal(false));

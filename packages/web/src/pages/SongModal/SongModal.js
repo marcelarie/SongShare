@@ -41,7 +41,7 @@ function SongModal() {
         setUploader(song.uploadBy);
         setAuthor(song.author);
         setGenre(song.gender);
-    }, [dispatch, songID]);
+    }, [dispatch, songID]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return modal && songs[songID] ? (
         <Transition.Root show={modal} as={Fragment}>

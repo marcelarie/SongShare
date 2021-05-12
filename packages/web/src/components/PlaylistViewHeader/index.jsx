@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { startplaylist } from '../../redux/audioPlayer/audioPlayer-actions';
 
 import {
@@ -19,22 +19,24 @@ import PlaylistViewHeaderStyle from './styled';
 const PlaylistViewHeader = ({ playlist }) => {
     const dispatch = useDispatch();
     const [openMenu] = useQuickMenu();
-    const { currentlyPlaying } = useSelector(store => store.audioPlayer);
-    const play_pause = document.getElementsByClassName(
-        'rhap_play-pause-button',
-    );
-    function reproduceplaylist() {
-        if (playlist._id === currentlyPlaying.playlistId) {
-            const simulateClick = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true,
-            });
-            play_pause[0].dispatchEvent(simulateClick);
-        } else {
-            // dispatch(startplaylist(playlist._id));
-        }
-    }
+    // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
+    // const play_pause = document.getElementsByClassName(
+    //     'rhap_play-pause-button',
+    // );
+
+    // function reproduceplaylist() { // <<< lo comento prq no se usa
+    //     if (playlist._id === currentlyPlaying.playlistId) {
+    //         const simulateClick = new MouseEvent('click', {
+    //             view: window,
+    //             bubbles: true,
+    //             cancelable: true,
+    //         });
+    //         play_pause[0].dispatchEvent(simulateClick);
+    //     } else {
+    //         // dispatch(startplaylist(playlist._id));
+    //     }
+    // }
+
     useQuickMenuListener();
     return (
         <PlaylistViewHeaderStyle image={playlist.img} className="mega-playlist">

@@ -1,41 +1,82 @@
 .nav-user {
     position: relative;
     &__menu {
-        padding: 0.5rem;
-        overflow: hidden;
         position: absolute;
-        top: 2.5rem;
+        top: 3rem;
         display: flex;
         flex-direction: column;
-        animation: myMenu 0.5s linear;
+
+        width: 140px;
+        height: auto;
+        padding: 0.2rem 1rem;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        animation: myMenu 0.2s linear;
+
+        // bubble speech
+        &:after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 0 10px 9px;
+            display: block;
+            width: 0;
+            z-index: 1;
+            top: -9px;
+            left: 80px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 0 10px 9px;
+            display: block;
+            width: 0;
+            z-index: 0;
+            top: -10px;
+            left: 80px;
+        }
     }
 }
 
 @keyframes myMenu {
-    0% {
-        transform: scaleY(0);
-        top: 0;
-        opacity: 0;
-    }
-    25% {
-        transform: scaleY(0.25);
-        top: 0.5rem;
-        opacity: 0.2;
-    }
-    70% {
-        transform: scaleY(0.75);
-        top: 1.8rem;
-        opacity: 0.5;
-    }
-    80% {
-        transform: scaleY(1.1);
-        top: 2rem;
-        opacity: 1;
+    from {
         opacity: 0.8;
+        visibility: hidden;
+        transform: translateY(10px);
     }
-    100% {
-        transform: scaleY(1);
-        top: 2.5rem;
+    to {
         opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .the-nav {
+        padding: 2rem !important ;
+    }
+    .nav-menu {
+        a {
+            padding: 0 !important ;
+            button {
+                padding: 1rem !important;
+                margin: 0 1.5rem !important ;
+            }
+        }
+    }
+    .nav-user {
+        flex-direction: row-reverse;
+        .nav-user__username {
+            display: none !important;
+        }
+    }
+}
+@media (max-width: 700px) {
+    .nav-menu {
+        a button {
+            margin: 0 !important ;
+        }
     }
 }

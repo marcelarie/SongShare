@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const GlobalStyles = styled.div`
-    transition: 0.6s;
+    transition: 0.3s;
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
     body {

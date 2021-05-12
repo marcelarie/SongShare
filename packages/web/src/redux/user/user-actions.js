@@ -12,7 +12,6 @@ export function updateUserInfo(userInfoEdited) {
                 {
                     Authorization: `Bearer ${token}`,
                 },
-
                 userInfoEdited,
             );
             return dispatch(updateUserInfoSucces(response.data.data));

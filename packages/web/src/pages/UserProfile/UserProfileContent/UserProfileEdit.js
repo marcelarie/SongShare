@@ -1,16 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import useUser from '../../../custom-hooks/userProfile/useUser';
-
 import MainInfoForm from '../../../components/MainInfoForm';
 import AvatarUserForm from '../../../components/AvatarUserForm';
 import CoverUserForm from '../../../components/CoverUserForm';
-
 import './userProfileEditStyles.scss';
 
 function UserProfileEdit() {
-    const currentUser = useSelector(store => store.user);
     const { pathUsername } = useUser();
+    const currentUser = useSelector(store => store.user);
     // const otherUser = useSelector(store => store.otherUser);
 
     return (

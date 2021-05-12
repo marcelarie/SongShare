@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import Button from '../../styles/components/Button/GenericButton';
-import LikeIcon from '../../components/LikeButton';
+// import { Link } from 'react-router-dom';
+//
+// import Button from '../../styles/components/Button/GenericButton';
+// import LikeIcon from '../../components/LikeButton';
 
 import {
-    addLikeToPlaylist,
-    followPlaylist,
+    // addLikeToPlaylist,
+    // followPlaylist,
     getPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
@@ -16,7 +16,7 @@ import SongsList from '../../components/SongsList';
 import PlaylistViewStyle from './styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 import {
-    useQuickMenu,
+    // useQuickMenu,
     useQuickMenuListener,
 } from '../../custom-hooks/quickMenu';
 
@@ -28,7 +28,7 @@ function Playlist() {
 
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
-    const [openMenu] = useQuickMenu();
+    // const [openMenu] = useQuickMenu();
 
     useEffect(() => {
         dispatch(getPlaylist(id));
@@ -43,9 +43,33 @@ function Playlist() {
         <>
             <PlaylistViewHeader playlist={playlist} />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
+                <div className="PlaylistView__header__container">
+                    <div className="PlaylistView__header__container__info">
+                        <h2 className="PlaylistView__header__container__info__title">
+                            {playlist.title}
+                        </h2>
+                        <p className="PlaylistView__header__container__info__author">
+                            {playlist.author.username}
+                        </p>
+                        <div className="PlaylistView__header__container__info__container">
+                            <p className="PlaylistView__header__container__info__container__characteristic">
+                                {playlist.type}
+                            </p>
+                            <p className="PlaylistView__header__container__info__container__characteristic">
+                                {playlist.publicAccess ? 'Public' : 'Private'}
+                            </p>
+                            <p className="PlaylistView__header__container__info__container__characteristic">
+                                playlist.description
+                            </p>
+                        </div>
+                    </div>
+                    <div className="PlaylistView__header__container__img">
+                        <p>{playlist.title}</p>
+                    </div>
+                </div>
                 <SongsList
                     songsToList={playlist.songs}
-                    handleClick={() => console.log('play')}
+                    // handleClick={() => console.log('play')}
                 />
             </PlaylistViewStyle>
         </>
