@@ -27,7 +27,7 @@ async function createPlaylist(req, res, next) {
         const formattedResponse = {
             data: {
                 ...response.data._doc,
-                author: { _id: response.data.author },
+                author: { _id: response.data.author, username: userResponse.data.username },
             },
             error: null,
         };
