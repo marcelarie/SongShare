@@ -19,7 +19,9 @@ function MyLibrary() {
     const dispatch = useDispatch();
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
-    // const userLikes = useSelector(store => store.user.likes);
+    const userLikesSongs = useSelector(store => store.user.songsLikes);
+    const userLikesPlaylists = useSelector(store => store.user.playlistsLikes);
+    const publicPlaylists = useSelector(store => store.playlists.ids);
     // TODO: separate songs likes and playlist like on backend and integrate here
     const userFollow = useSelector(store => store.user.following);
 
@@ -41,14 +43,22 @@ function MyLibrary() {
             <Carousel key="myPlaylist" ids={userPlaylists} type="playlists" />
             <h1>My songs</h1>
             <Carousel key="allPlaylist" ids={userSongs} type="songs" />
-            <h1>My likes</h1>
-            {/* <Carousel
+            <h1>My liked songs</h1>
+            <Carousel
                 key="allPlaylist"
-                ids={userLikes}
+                ids={userLikesSongs}
                 type="playlists"
-            /> */}
+            />
+            <h1>My liked playlists</h1>
+            <Carousel
+                key="allPlaylist"
+                ids={userLikesPlaylists}
+                type="playlists"
+            />
             <h1>My follows</h1>
             <Carousel key="PlaylistFollow" ids={userFollow} type="playlists" />
+            <h1>Public playlists</h1>
+            <Carousel key="PlaylistFollow" ids={publicPlaylists} type="playlists" />
         </div>
     );
 }
