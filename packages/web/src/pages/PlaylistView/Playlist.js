@@ -19,7 +19,7 @@ function Playlist() {
     useQuickMenuListener();
 
     if (!playlist) {
-        return <Redirect to="/playlists" />;
+        return <Redirect to={`/${currentUser.username}/`} />;
     }
     return (
         <>

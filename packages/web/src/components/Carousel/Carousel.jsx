@@ -7,7 +7,9 @@ import './styles.scss';
 import CarouselStyle from './styled';
 
 function Carousel({ ids, type, array }) {
+    console.log(ids, type);
     const ByID = useSelector(store => store[type].byID);
+    console.log(ByID);
     if (array) {
         return (
             <CarouselStyle className="carousel">
@@ -27,11 +29,14 @@ function Carousel({ ids, type, array }) {
             {ids &&
                 ids.map(id => {
                     const item = ByID[id];
-                    return type === 'songs' ? (
-                        <SongsCard song={item} key={item._id} />
-                    ) : (
-                        <PlaylistCard playlist={item} key={item._id} />
-                    );
+                    if (item) {
+                        return type === 'songs' ? (
+                            <SongsCard song={item} key={item._id} />
+                        ) : (
+                            <PlaylistCard playlist={item} key={item._id} />
+                        );
+                    }
+                    return <></>;
                 })}
         </CarouselStyle>
     );

@@ -8,13 +8,13 @@ import SignUp from './pages/SignUp';
 import UserProfile from './pages/UserProfile';
 import ProtectedRoute from './routes/protectedRoutes';
 import MyMusic from './pages/MyMusic/MyMusic';
-import MyPlaylists from './pages/MyPlaylists';
 import CreatePlaylist from './pages/CreatePlaylist';
 import AddSongs from './pages/AddSongs';
 import RemoveSongs from './pages/RemoveSongs';
 import Playlist from './pages/PlaylistView';
 import PlaylistEdit from './pages/PlaylistEditView';
 import Search from './pages/Search';
+import MyLibrary from './pages/MyLibrary';
 
 // import templates from './pages/UserProfile/UserProfileContent/UserProfileEdit';
 // import UploadSong from './components/UploadSong';
@@ -37,11 +37,11 @@ function MainRouter() {
             {/*  MUSIC */}
             <ProtectedRoute path={ROUTES.MY_MUSIC} component={MyMusic} />
 
-            <ProtectedRoute
+            {/* <ProtectedRoute
                 path={ROUTES.MY_PLAYLISTS}
-                component={MyPlaylists}
+                component={MyLibrary}
                 exact
-            />
+            /> */}
             <ProtectedRoute
                 path={ROUTES.NEW_PLAYLIST}
                 component={CreatePlaylist}

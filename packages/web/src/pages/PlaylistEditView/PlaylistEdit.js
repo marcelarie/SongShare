@@ -15,9 +15,10 @@ function PlaylistEdit() {
 
     const playlist = useSelector(state => state.playlists.byID[id]);
     const userId = useSelector(state => state.user._id);
+    const username = useSelector(state => state.user.username);
 
     if (!playlist) {
-        return <Redirect to="/playlists" />;
+        return <Redirect to={`/${username}/`} />;
     }
 
     if (playlist.author._id !== userId) {

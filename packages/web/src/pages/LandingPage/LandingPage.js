@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel';
 import MegaCarousel from '../../components/MegaCarousel';
 import { getAllSongs } from '../../redux/songs/songs-actions';
+import { getAllPlaylists } from '../../redux/Playlists/playlists-actions';
 
 import './styles.scss';
 
@@ -14,6 +15,7 @@ function LandingPage() {
 
     useEffect(() => {
         dispatch(getAllSongs());
+        dispatch(getAllPlaylists());
     }, [dispatch, currentUser]);
 
     if (!allSongsIds) return <p>loading...</p>;
