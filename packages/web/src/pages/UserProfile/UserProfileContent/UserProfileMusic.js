@@ -15,9 +15,9 @@ function UserProfileMusic({ user }) {
                     <h2>
                         My Music <span>{songsLength} tracks</span>
                     </h2>
-                        {songsLength > 0 && (
-                            <Carousel type="songs" ids={songs} key="songs" />
-                        )}
+                    {songsLength > 0 && (
+                        <Carousel type="songs" ids={songs} key="songs" />
+                    )}
                 </div>
             </div>
         </>

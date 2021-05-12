@@ -186,7 +186,7 @@ export function getPlaylist(playlistID) {
             const token = await auth.getCurrentUserToken();
             if (!token) {
                 return dispatch(
-                    getPlaylistsError(`Error: 'Missing auth token'`),
+                    getPlaylistError(`Error: 'Missing auth token'`),
                 );
             }
             const res = await api.getPlaylistById(
@@ -196,9 +196,7 @@ export function getPlaylist(playlistID) {
                 playlistID,
             );
             if (res.errorMessage) {
-                return dispatch(
-                    getPlaylistsError(`Error: ${res.errorMessage}`),
-                );
+                return dispatch(getPlaylistError(`Error: ${res.errorMessage}`));
             }
             return dispatch(getPlaylistSuccess(res.data.data));
         } catch (error) {
@@ -297,7 +295,7 @@ export function editPlaylist(playlistId, newPlaylistChanges) {
                     updatePlaylistError(`Error: ${res.errorMessage}`),
                 );
             }
-            return dispatch(updatePlaylistSuccess(res.data));
+            return dispatch(updatePlaylistSuccess(res.data.data));
         } catch (error) {
             return dispatch(updatePlaylistError(error.message));
         }

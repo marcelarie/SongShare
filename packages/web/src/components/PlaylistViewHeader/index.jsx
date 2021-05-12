@@ -27,6 +27,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         // PlaylistUpdatingError,
         PlaylistUpdate,
     } = useSelector(store => store.playlists);
+
     const author = useSelector(store => store.user.username);
     const userID = useSelector(store => store.user._id);
     const [openMenu] = useQuickMenu();
@@ -50,15 +51,12 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     ); */
 
     useEffect(() => {
-        if (from === 'editableView') {
+        if (from === 'editableView' || from === 'mainView') {
             setTitle(playlist.title);
             setType(playlist.type);
             setPublicAccess(playlist.publicAccess);
             setDescription(playlist.description);
         }
-        /* if(from === 'createView') {
-            dispatch(createPlaylistRequest());
-        } */
     }, [dispatch, playlist, from]);
 
     /* function reproduceplaylist() {
@@ -97,7 +95,9 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__type"
                         readOnly={from === 'mainView'}
-                        defaultValue={type === 'Playlist' ? 'Playlist' : 'Album'}
+                        defaultValue={
+                            type === 'Playlist' ? 'Playlist' : 'Album'
+                        }
                         onClick={() => {
                             if (from === 'editableView') {
                                 setType(

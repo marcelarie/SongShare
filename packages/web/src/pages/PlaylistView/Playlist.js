@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 import { Redirect, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-    getPlaylist,
-} from '../../redux/Playlists/playlists-actions';
+import { getPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import PlaylistViewStyle from './styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
-import {
-    useQuickMenuListener,
-} from '../../custom-hooks/quickMenu';
+import { useQuickMenuListener } from '../../custom-hooks/quickMenu';
 
 import './styles.scss';
 import SongsListTable from '../../components/SongsListTable/SongsListTable';
@@ -18,13 +14,11 @@ import SongsListTable from '../../components/SongsListTable/SongsListTable';
 function Playlist() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { byID } = useSelector(state => state.playlists);
-    const playlist = byID[id] || '';
+    const playlist = useSelector(state => state.playlists.byID[id]);
     const currentUser = useSelector(state => state.user);
     useEffect(() => {
         dispatch(getPlaylist(id));
-    }, [dispatch, id]);
-
+    }, [id, dispatch]);
     useQuickMenuListener();
 
     if (!playlist) {

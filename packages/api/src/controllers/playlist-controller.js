@@ -134,6 +134,9 @@ async function updatePlaylist(req, res, next) {
         const response = await PlaylistRepo.findByIdAndUpdate(
             id,
             newPlaylistChanges,
+            { new: true },
+            'author',
+            'username',
         );
 
         if (response.error) return res.status(400).send(response);
@@ -258,10 +261,6 @@ async function followPlaylist(req, res, next) {
         next(error);
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> be07c1f5335c7485d4e81608c69a953acc873788
 async function getPlaylistsByParams(req, res, next) {
     const { query } = req.params;
 

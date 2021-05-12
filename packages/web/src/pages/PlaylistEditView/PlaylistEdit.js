@@ -13,8 +13,7 @@ import '../PlaylistView/styles.scss';
 function PlaylistEdit() {
     const { id } = useParams();
 
-    const { byID } = useSelector(state => state.playlists);
-    const playlist = byID[id] || '';
+    const playlist = useSelector(state => state.playlists.byID[id]);
     const userId = useSelector(state => state.user._id);
 
     if (!playlist) {

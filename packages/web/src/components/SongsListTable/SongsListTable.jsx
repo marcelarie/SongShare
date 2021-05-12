@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortableItem, swapArrayPositions } from 'react-sort-list';
@@ -20,9 +20,7 @@ function SongsListTable({
     const songsOrder = UseSortSongs(songsToList);
     const { byID } = useSelector(state => state.songs);
     const [songsState, setSongsState] = useState(songsOrder);
-    useEffect(() => {
-        dispatch(addSongsToPlaylist(playlistID, songsState));
-    }, [dispatch, playlistID, songsState]);
+
     function swap(dragIndex, dropIndex) {
         const swappedsong = swapArrayPositions(
             songsOrder,
@@ -30,6 +28,7 @@ function SongsListTable({
             dropIndex,
         );
         setSongsState([...swappedsong]);
+        dispatch(addSongsToPlaylist(playlistID, songsState));
     }
     return (
         <div className="songsList__container">
@@ -39,50 +38,52 @@ function SongsListTable({
                 <div className="songsList__container__header__item">Author</div>
                 <div className="songsList__container__header__item">Likes</div>
             </div>
-            {sortable && songsState.map((song, index) => {
-                const songInfo = byID[song._id];
-                return (
-                    <SortableItem
-                        items={songsState}
-                        id={song.id}
-                        key={song._id}
-                        swap={swap}
-                    >
-                        <div
-                            className="songsList__container__row"
+            {sortable &&
+                songsState.map((song, index) => {
+                    const songInfo = byID[song._id];
+                    return (
+                        <SortableItem
+                            items={songsState}
+                            id={song.id}
                             key={song._id}
+                            swap={swap}
                         >
-                            <div className="songsList__container__row__item id">
-                                {index + 1}
+                            <div
+                                className="songsList__container__row"
+                                key={song._id}
+                            >
+                                <div className="songsList__container__row__item id">
+                                    {index + 1}
+                                </div>
+                                <div className="songsList__container__row__item name">
+                                    {songInfo.name}
+                                </div>
+                                <div className="songsList__container__row__item user">
+                                    {songInfo.username}
+                                </div>
+                                <div className="songsList__container__row__item likes">
+                                    {songInfo.likes.length}
+                                </div>
+                                <div className="songsList__container__row__item image">
+                                    {songInfo.imageURL}
+                                </div>
                             </div>
-                            <div className="songsList__container__row__item name">
-                                {songInfo.name}
-                            </div>
-                            <div className="songsList__container__row__item user">
-                                {songInfo.username}
-                            </div>
-                            <div className="songsList__container__row__item likes">
-                                {songInfo.likes.length}
-                            </div>
-                            <div className="songsList__container__row__item image">
-                                {songInfo.imageURL}
-                            </div>
-                        </div>
-                    </SortableItem>
-                );
-            })}
-            {!sortable && songsToList.map((songID, index) => {
-                const songInfo = byID[songID];
-                return (
-                    <SongListItem
-                    index={index + 1}
-                    key={songID}
-                    song = {songInfo}
-                    handleRemove = {handleRemove}
-                    handleAdd = {handleAdd}
-                    />
-                );
-            })}
+                        </SortableItem>
+                    );
+                })}
+            {!sortable &&
+                songsToList.map((songID, index) => {
+                    const songInfo = byID[songID];
+                    return (
+                        <SongListItem
+                            index={index + 1}
+                            key={songID}
+                            song={songInfo}
+                            handleRemove={handleRemove}
+                            handleAdd={handleAdd}
+                        />
+                    );
+                })}
         </div>
     );
 }
