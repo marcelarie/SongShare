@@ -53,6 +53,24 @@ async function getAllPlaylists(req, res, next) {
     }
 }
 
+async function getAllPublicPlaylists(req, res, next) {
+    const {
+        user: { uid },
+    } = req;
+    try {
+        const response = await PlaylistRepo.findAndPopulate(
+            { $or: [{ publicAccess: true }, { author: uid }] },
+            'author',
+            'username',
+        );
+        if (response.error) return res.status(400).send(response);
+        if (response.data.length <= 0) return res.status(204).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
 /* async function addSongsInfo(playlist) {
     const songsInfo = await Promise.all(
         playlist.songs.map(async songID => {
@@ -298,6 +316,7 @@ export {
     getPlaylistById,
     // addSongsInfo,
     getAllPlaylists,
+    getAllPublicPlaylists,
     updatePlaylist,
     deletePlaylist,
     addSongs,

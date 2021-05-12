@@ -6,7 +6,8 @@ import {
     addSongs,
     removeSongs,
     createPlaylist,
-    getAllPlaylists,
+    // getAllPlaylists,
+    getAllPublicPlaylists,
     getPlaylistById,
     likePlaylist,
     followPlaylist,
@@ -17,7 +18,7 @@ import {
 
 const playlistRouter = Router();
 
-playlistRouter.get('/playlists/all', getAllPlaylists);
+playlistRouter.get('/playlists/all', getAllPublicPlaylists);
 playlistRouter.get('/playlist/:id', getPlaylistById);
 playlistRouter.post('/newplaylist', createPlaylist);
 playlistRouter.post('/playlist/like/:id', likePlaylist);
