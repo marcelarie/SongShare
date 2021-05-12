@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
+import * as Routes from '../../routes';
 
 /* eslint-disable no-unused-vars */
 import useUser from '../../custom-hooks/userProfile/useUser';
@@ -27,6 +28,8 @@ function CurrentUserProfile() {
         user.imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
+    if (!user._id) return <Redirect to={Routes.HOME} />;
+
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
             <div className="user__header">
@@ -34,6 +37,30 @@ function CurrentUserProfile() {
                     <p>
                         {user.name} {user.lastname}
                     </p>
+                </div>
+                <div className="user__header__stats">
+                    <div>
+                        <Link to={`/${user.username}/playlists`}>
+                            <p>
+                                <span role="img" aria-label>
+                                    ⭐
+                                </span>
+                                <span>
+                                    {user ? user.following.length : '0'}
+                                </span>
+                            </p>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={`/${user.username}/music`}>
+                            <p>
+                                <span role="img" aria-label>
+                                 🎵
+                                </span>
+                                <span>{user ? user.songs.length : '0'}</span>
+                            </p>
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="user__nav">
@@ -54,7 +81,10 @@ function CurrentUserProfile() {
                             }
                             if (!pathUsername[2] && mode === 'library') {
                                 return (
-                                    <Link to={`/${user.username}/library`} key={mode}>
+                                    <Link
+                                        to={`/${user.username}/library`}
+                                        key={mode}
+                                    >
                                         <li className="selectedNav">
                                             {mode.toUpperCase()}
                                         </li>
@@ -91,31 +121,45 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <br />
+                                <br />{' '}
                             </div>
                         </div>
                         <div className="user__main__aside__content">
                             <h1>@{user.username}</h1>
                             <div className="user__main__aside__content__info">
-                                <p>
-                                    Followers <span>user.followers</span>
-                                </p>
-                                <p>
-                                    Following <span>user.following</span>
-                                </p>
-                                <p>
-                                    Songs <span>user.songs</span>
-                                </p>
+                                <div>
+                                    <Link to={`/${user.username}/playlists`}>
+                                        <p>
+                                            Following
+                                            <span>
+                                                {user
+                                                    ? user.following.length
+                                                    : '0'}
+                                            </span>
+                                        </p>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link to={`/${user.username}/music`}>
+                                        <p>
+                                            Songs
+                                            <span>
+                                                {user ? user.songs.length : '0'}
+                                            </span>
+                                        </p>
+                                    </Link>
+                                </div>
                             </div>
 
-                            {user.username === currentUser.username && (
-                                <Link to={`/${user.username}/Edit`}>
+                            {user.username === currentUser.username ? (
+                                <Link to={`/${user.username}/edit`}>
                                     <Button>Edit</Button>
                                 </Link>
+                            ) : (
+                                <Link to={`/${user.username}/info`}>
+                                    <Button>Info</Button>
+                                </Link>
                             )}
-                            <Link to={`/${user.username}/Info`}>
-                                <Button>Info</Button>
-                            </Link>
                         </div>
                     </div>
                 </div>
