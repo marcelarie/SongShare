@@ -61,9 +61,17 @@ class Repository {
         );
     };
 
-    findByIdAndUpdate = (filter, body, option = { new: true }) => {
+    findByIdAndUpdate = (
+        filter,
+        body,
+        option = { new: true },
+        toPopulate,
+        populateFilter,
+    ) => {
         return normalizeDBQuery(
-            Models[this.type].findByIdAndUpdate(filter, body, option),
+            Models[this.type]
+                .findByIdAndUpdate(filter, body, option)
+                .populate(toPopulate, populateFilter),
             /* .populate('likes') */
         );
     };

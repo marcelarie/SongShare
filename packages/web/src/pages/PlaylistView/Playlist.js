@@ -19,21 +19,20 @@ import {
 
 import './styles.scss';
 import SongsListTable from '../../components/SongsListTable/SongsListTable';
-import UseSortSongs from '../../custom-hooks/sortSongs';
 
 function Playlist() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const songsOrder = UseSortSongs(id);
-
     const { byID } = useSelector(state => state.playlists);
     const playlist = byID[id] || '';
+    const currentUser = useSelector(state => state.user);
     const [openMenu] = useQuickMenu();
     /* const byIDSongs = useSelector(state => state.songs.byID);
      const songsToListOb = [];
     for (let index = 0; index < playlist.songs.length; index+1) {
         songsToListOb.push(byIDSongs[index]);
     } */
+    console.log(playlist);
     useEffect(() => {
         dispatch(getPlaylist(id));
     }, [dispatch, id]);
@@ -48,9 +47,10 @@ function Playlist() {
             <PlaylistViewHeader playlist={playlist} from="mainView" />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
                 <SongsListTable
-                    songsToList={songsOrder}
+                    songsToList={playlist.songs}
                     playlistID={playlist._id}
-                    handleClick={() => console.log('play')}
+                    handlePlaySong={() => console.log('play')}
+                    sortable={currentUser._id === playlist.author._id}
                 />
             </PlaylistViewStyle>
         </>

@@ -6,8 +6,8 @@ import {
 } from '../../redux/quickMenu/quickMenu-actions';
 import { openPlaylistModal } from '../../redux/quickPlaylsitMenu/quickPlaylistMenu-actions';
 
-function UseSortSongs(playlistID) {
-    const { songs } = useSelector(state => state.playlists.byID[playlistID]);
+function UseSortSongs(songs) {
+    // const { songs } = useSelector(state => state.playlists.byID[playlistID]);
 
     const songsOrder = [];
     for (const [index, value] of songs.entries()) {

@@ -17,7 +17,7 @@ import {
 
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
-import SongsList from '../../components/SongsList';
+import SongsListTable from '../../components/SongsList';
 import PlaylistViewStyle from '../PlaylistView/styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 
@@ -43,9 +43,11 @@ function PlaylistEdit() {
         <>
             <PlaylistViewHeader playlist={playlist} from="editableView" />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsList
+                <SongsListTable
                     songsToList={playlist.songs}
+                    playlistID={playlist._id}
                     handlePlaySong={() => console.log('play')}
+                    sortable
                 />
             </PlaylistViewStyle>
         </>

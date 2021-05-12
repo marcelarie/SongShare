@@ -11,7 +11,7 @@ import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 
 import { getAllSongs } from '../../redux/songs/songs-actions';
 
-import SongsList from '../../components/SongsList';
+import SongsListTable from '../../components/SongsListTable';
 import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import Button from '../../styles/components/Button/GenericButton';
@@ -72,7 +72,7 @@ function AddSongs() {
                         </Button>
                     </Link>
                 </div>
-                <SongsList
+                <SongsListTable
                     songsToList={ids}
                     option="addSongs"
                     handleAdd={addSongToAdd}

@@ -179,7 +179,7 @@ export function getAllPlaylists() {
     };
 }
 
-export function getPlaylist(playlistID, withSongsInfo) {
+export function getPlaylist(playlistID) {
     return async function getPlaylistThunk(dispatch) {
         dispatch(getPlaylistRequest());
 
@@ -195,7 +195,6 @@ export function getPlaylist(playlistID, withSongsInfo) {
                     Authorization: `Bearer ${token}`,
                 },
                 playlistID,
-                withSongsInfo,
             );
             if (res.errorMessage) {
                 return dispatch(

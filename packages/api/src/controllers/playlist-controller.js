@@ -98,9 +98,15 @@ async function addSongs(req, res, next) {
     const { id } = req.params;
     console.log(body);
     try {
-        const response = await PlaylistRepo.findByIdAndUpdate(id, {
-            $set: { songs: body.songs },
-        });
+        const response = await PlaylistRepo.findByIdAndUpdate(
+            id,
+            {
+                $set: { songs: body.songs },
+            },
+            { new: true },
+            'author',
+            'username',
+        );
 
         if (response.error) return res.status(400).send(response);
         if (response.data) return res.status(200).send(response);

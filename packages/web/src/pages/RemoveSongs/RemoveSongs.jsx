@@ -11,7 +11,7 @@ import PlaylistViewHeader from '../../components/PlaylistViewHeader';
 
 import '../PlaylistView/styles.scss';
 
-import SongsList from '../../components/SongsList';
+import SongsListTable from '../../components/SongsListTable';
 import {
     removeSongsFromPlaylist,
     getPlaylist,
@@ -79,7 +79,7 @@ function RemoveSongs() {
                         </Button>
                     </Link>
                 </div>
-                <SongsList
+                <SongsListTable
                     songsToList={currentSongs}
                     option="removeSongs"
                     handleAdd={addSongToRemove}
