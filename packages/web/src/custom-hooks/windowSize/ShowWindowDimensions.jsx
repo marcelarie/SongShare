@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import useWindowSize from './useWindowSize';
 
 function ShowWindowDimensions(props) {

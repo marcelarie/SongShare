@@ -18,7 +18,7 @@ import { useWindowSize } from '../../custom-hooks/windowSize';
 
 const QuickMenu = () => {
     const dispatch = useDispatch();
-    const { positionX, positionY, id} = useSelector(
+    const { positionX, positionY, id } = useSelector(
         ({ quickMenu }) => quickMenu,
     );
     const audioPlayer = useSelector(state => state.audioPlayer);

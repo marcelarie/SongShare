@@ -19,7 +19,7 @@ export const DarkLightToggle = ({ theme }) => {
             </div>
         );
     return (
-            <div className="darkLightToggle">
+        <div className="darkLightToggle">
             <button onClick={handleChangeTheme} type="button">
                 <span aria-label="light" value="sun" role="img">
                     🌞

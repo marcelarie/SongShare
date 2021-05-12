@@ -28,7 +28,7 @@ function CurrentUserProfile() {
         user.imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
-    if (!user._id) return <Redirect to={Routes.HOME} />;
+    // if (!user._id) return <Redirect to={Routes.HOME} />;
 
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
@@ -46,7 +46,9 @@ function CurrentUserProfile() {
                                     ⭐
                                 </span>
                                 <span>
-                                    {user ? user.following.length : '0'}
+                                    {user.following
+                                        ? user.following.length
+                                        : '0'}
                                 </span>
                             </p>
                         </Link>
@@ -57,7 +59,9 @@ function CurrentUserProfile() {
                                 <span role="img" aria-label>
                                     🎵
                                 </span>
-                                <span>{user ? user.songs.length : '0'}</span>
+                                <span>
+                                    {user.songs ? user.songs.length : '0'}
+                                </span>
                             </p>
                         </Link>
                     </div>
@@ -132,7 +136,7 @@ function CurrentUserProfile() {
                                         <p>
                                             Following
                                             <span>
-                                                {user
+                                                {user.following
                                                     ? user.following.length
                                                     : '0'}
                                             </span>
@@ -144,7 +148,9 @@ function CurrentUserProfile() {
                                         <p>
                                             Songs
                                             <span>
-                                                {user ? user.songs.length : '0'}
+                                                {user.songs
+                                                    ? user.songs.length
+                                                    : '0'}
                                             </span>
                                         </p>
                                     </Link>

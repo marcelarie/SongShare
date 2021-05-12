@@ -4,7 +4,6 @@ import useUser from '../../../custom-hooks/userProfile/useUser';
 function UserProfileInfo() {
     const { user } = useUser();
 
-
     return user ? (
         <div className="user__main__info">
             <h3>Profile Info</h3>
