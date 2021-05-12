@@ -9,6 +9,7 @@ import {
     followPlaylist,
     editPlaylist,
     getPlaylist,
+    createPlaylist,
 } from '../../redux/Playlists/playlists-actions';
 
 import {
@@ -23,11 +24,27 @@ import PlaylistViewHeaderStyle from './styled';
 
 const PlaylistViewHeader = ({ playlist, from }) => {
     const dispatch = useDispatch();
+    const {
+        PlaylistUpdating,
+        PlaylistUpdatingError,
+        PlaylistUpdate,
+    } = useSelector(store => store.playlists);
+    const author = useSelector(store => store.user.username);
+    const userID = useSelector(store => store.user._id);
     const [openMenu] = useQuickMenu();
-    const [title, setTitle] = useState(playlist.title);
-    const [type, setType] = useState(playlist.type);
-    const [publicAccess, setPublicAccess] = useState(playlist.publicAccess);
-    const [description, setDescription] = useState('');
+    const [title, setTitle] = useState(
+        from === 'createView' ? 'Playlist title' : playlist.title,
+    );
+    const [type, setType] = useState(
+        from === 'createView' ? 'Playlist' : playlist.type,
+    );
+    const [songs] = useState([]);
+    const [publicAccess, setPublicAccess] = useState(
+        from === 'createView' ? true : playlist.publicAccess,
+    );
+    const [description, setDescription] = useState(
+        from === 'createView' ? 'description' : playlist.description,
+    );
 
     const { currentlyPlaying } = useSelector(store => store.audioPlayer);
     const play_pause = document.getElementsByClassName(
@@ -35,11 +52,16 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     );
 
     useEffect(() => {
-        setTitle(playlist.title);
-        setType(playlist.type);
-        setPublicAccess(playlist.publicAccess);
-        setDescription(playlist.description);
-    }, [dispatch, playlist]); 
+        if (from === 'editableView') {
+            setTitle(playlist.title);
+            setType(playlist.type);
+            setPublicAccess(playlist.publicAccess);
+            setDescription(playlist.description);
+        }
+        /* if(from === 'createView') {
+            dispatch(createPlaylistRequest());
+        } */
+    }, [dispatch, playlist]);
 
     function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
@@ -55,14 +77,17 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     }
     useQuickMenuListener();
     return (
-        <PlaylistViewHeaderStyle image={playlist.img} className="mega-playlist">
+        <PlaylistViewHeaderStyle
+            image={from !== 'createView' && playlist.img}
+            className="mega-playlist"
+        >
             <div className="mega-playlist__card">
                 <button
                     className="mega-playlist__card__play"
                     type="button"
                     /* onClick={reproduceplaylist} */
                 >
-                    {PlayPauseButton(playlist._id)}
+                    {PlayPauseButton(from !== 'createView' && playlist._id)}
                 </button>
             </div>
 
@@ -106,7 +131,11 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <input
                     type="text"
                     className="mega-playlist__info__author"
-                    value={playlist.author.username}
+                    value={
+                        from === 'createView'
+                            ? author
+                            : playlist.author.username
+                    }
                     readOnly
                 />
 
@@ -119,15 +148,18 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 />
                 <div className="mega-playlist__info__container-info">
                     <p className="mega-playlist__info__container-info__likes">
-                        {playlist.likedBy.length} likes
+                        {from === 'createView' ? 0 : playlist.likedBy.length}{' '}
+                        likes
                     </p>
                     <p className="mega-playlist__info__container-info__followers">
-                        {playlist.followedBy.length} followers
+                        {from === 'createView' ? 0 : playlist.followedBy.length}{' '}
+                        followers
                     </p>
                 </div>
                 <div className="mega-playlist__info__container-info">
                     <p className="mega-playlist__info__container-info__songs">
-                        {playlist.songs.length} songs
+                        {from === 'createView' ? 0 : playlist.songs.length}{' '}
+                        songs
                     </p>
                 </div>
             </div>
@@ -176,6 +208,40 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                                 Save
                             </Button>
                         </Link>
+                    </div>
+                )}
+                {from === 'createView' && (
+                    <div className="mega-playlist__card__buttons">
+                        {PlaylistUpdate ? (
+                            <>
+                                <p>You have created the playlist successfull</p>
+                                <Link
+                                    to={`/playlist/${PlaylistUpdate}/addsongs`}
+                                >
+                                    <Button type="button">
+                                        Add songs to playlist
+                                    </Button>
+                                </Link>
+                            </>
+                        ) : (
+                            <Button
+                                type="button"
+                                onClick={() =>
+                                    dispatch(
+                                        createPlaylist({
+                                            title,
+                                            userID,
+                                            publicAccess,
+                                            type,
+                                            songs,
+                                        }),
+                                    )
+                                }
+                                disabled={PlaylistUpdate}
+                            >
+                                Create playlist
+                            </Button>
+                        )}
                     </div>
                 )}
             </div>
