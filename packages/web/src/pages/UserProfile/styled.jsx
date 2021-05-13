@@ -13,8 +13,12 @@ const UserProfile = styled.div`
         &__stats {
             background-color: ${({ theme }) => hexToRgba(theme.text, '0.2')};
             p,
-            span {
+            svg {
                 color: ${({ theme }) => theme.background};
+                fill: ${({ theme }) => theme.background};
+                &:hover {
+                    fill: ${({ theme }) => hexToRgba(theme.background, '0.7')};
+                }
             }
         }
     }
