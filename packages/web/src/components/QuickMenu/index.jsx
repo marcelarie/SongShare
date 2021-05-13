@@ -43,7 +43,6 @@ const QuickMenu = () => {
 
     const listenThisPlaylist = () => {
         dispatch(listenPlaylist(Object.values(playlistsByID[id].songs)));
-
         dispatch(openModal(false));
     };
 

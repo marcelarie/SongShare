@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { startplaylist } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -11,6 +11,8 @@ import {
     // updatePlaylistSuccess,
 } from '../../redux/Playlists/playlists-actions';
 
+import { listenPlaylist } from '../../redux/audioPlayer/audioPlayer-actions';
+
 import {
     useQuickMenu,
     useQuickMenuListener,
@@ -22,6 +24,7 @@ import './styles.scss';
 import PlaylistViewHeaderStyle from './styled';
 
 const PlaylistViewHeader = ({ playlist, from }) => {
+    console.log(playlist);
     const dispatch = useDispatch();
     const {
         // PlaylistUpdating,
@@ -60,6 +63,10 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         }
     }, [dispatch, playlist, from]); */
 
+    const listenThisPlaylist = () => {
+        dispatch(listenPlaylist(Object.values(playlist.songs)));
+    };
+
     /* function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
             const simulateClick = new MouseEvent('click', {
@@ -82,7 +89,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <button
                     className="mega-playlist__card__play"
                     type="button"
-                    /* onClick={reproduceplaylist} TODO */
+                    onClick={listenThisPlaylist}
                 >
                     {PlayPauseButton(from !== 'createView' && playlist._id)}
                 </button>
