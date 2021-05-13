@@ -96,11 +96,12 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__type"
                         readOnly={from === 'mainView'}
-                        value={
-                            type === 'Playlist' ? 'Playlist' : 'Album'
-                        }
+                        value={type === 'Playlist' ? 'Playlist' : 'Album'}
                         onClick={() => {
-                            if (from === 'editableView' || from === 'createView') {
+                            if (
+                                from === 'editableView' ||
+                                from === 'createView'
+                            ) {
                                 setType(
                                     type === 'Playlist' ? 'Album' : 'Playlist',
                                 );
@@ -115,8 +116,11 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         value={publicAccess ? 'Public' : 'Private'}
                         readOnly={from === 'mainView'}
                         onClick={() => {
-                            if (from === 'editableView' || from === 'createView') {
-                                console.log("click")
+                            if (
+                                from === 'editableView' ||
+                                from === 'createView'
+                            ) {
+                                console.log('click');
                                 setPublicAccess(!publicAccess);
                             }
                         }}

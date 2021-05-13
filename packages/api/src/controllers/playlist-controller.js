@@ -27,7 +27,10 @@ async function createPlaylist(req, res, next) {
         const formattedResponse = {
             data: {
                 ...response.data._doc,
-                author: { _id: response.data.author, username: userResponse.data.username },
+                author: {
+                    _id: response.data.author,
+                    username: userResponse.data.username,
+                },
             },
             error: null,
         };
@@ -183,7 +186,10 @@ async function likePlaylist(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikesPlaylist(uid, id);
+        const checkUserResponse = await UserRepo.findAndCheckLikesPlaylist(
+            uid,
+            id,
+        );
 
         if (checkUserResponse.error)
             return res.status(400).send(checkUserResponse);
@@ -266,12 +272,15 @@ async function followPlaylist(req, res, next) {
             if (PlaylistResponse.data)
                 return res.status(200).send({ PlaylistResponse, userResponse });
         } else {
-            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $pull: { following: id },
-        },
-            { new: true },
-            'author',
-            'username',);
+            const userResponse = await UserRepo.findByIdAndUpdate(
+                uid,
+                {
+                    $pull: { following: id },
+                },
+                { new: true },
+                'author',
+                'username',
+            );
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
 

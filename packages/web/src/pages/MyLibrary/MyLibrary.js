@@ -59,7 +59,11 @@ function MyLibrary() {
             <h1>My follows</h1>
             <Carousel key="PlaylistFollow" ids={userFollow} type="playlists" />
             <h1>Public playlists</h1>
-            <Carousel key="PlaylistFollow" ids={publicPlaylists} type="playlists" />
+            <Carousel
+                key="PlaylistFollow"
+                ids={publicPlaylists}
+                type="playlists"
+            />
             <h1>Songs</h1>
             <Carousel key="AllSongs" ids={allSongs} type="songs" />
         </div>

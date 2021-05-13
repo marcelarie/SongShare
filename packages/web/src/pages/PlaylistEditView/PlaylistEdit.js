@@ -5,10 +5,7 @@ import { useSelector } from 'react-redux';
 // import Button from '../../styles/components/Button/GenericButton';
 // import Input from '../../styles/components/Input/GenericInput';
 import SongsListTable from '../../components/SongsListTable';
-import PlaylistViewStyle from '../PlaylistView/styled';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
-
-import '../PlaylistView/styles.scss';
 
 function PlaylistEdit() {
     const { id } = useParams();
@@ -28,14 +25,12 @@ function PlaylistEdit() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="editableView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsListTable
-                    songsToList={playlist.songs}
-                    playlistID={playlist._id}
-                    handlePlaySong={() => console.log('play')} 
-                    sortable
-                />
-            </PlaylistViewStyle>
+            <SongsListTable
+                songsToList={playlist.songs}
+                playlistID={playlist._id}
+                handlePlaySong={() => console.log('play')}
+                sortable
+            />
         </>
     );
 }

@@ -13,11 +13,10 @@ import '../PlaylistView/styles.scss';
 
 import SongsListTable from '../../components/SongsListTable';
 import {
-    removeSongsFromPlaylist,
     getPlaylist,
+    removeSongsFromPlaylist,
 } from '../../redux/Playlists/playlists-actions';
-
-import Button from '../../styles/components/Button/GenericButton';
+import SongsListHeader from '../../components/SongsListHeader';
 
 function RemoveSongs() {
     const dispatch = useDispatch();
@@ -34,6 +33,10 @@ function RemoveSongs() {
     useEffect(() => {
         dispatch(getPlaylist(playlistId));
     }, [dispatch, playlistId]);
+
+    function handleRemoveSongs() {
+        dispatch(removeSongsFromPlaylist(playlistId, songsToRemove));
+    }
 
     function addSongToRemove(id) {
         const index = songsToRemove.findIndex(element => element === id);
@@ -57,33 +60,13 @@ function RemoveSongs() {
         <>
             <PlaylistViewHeader playlist={playlist} from="removeSongsView" />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <div className="flex-between">
-                    <input type="text" value="Search" />
-                    <button type="button" className="">
-                        Filter
-                    </button>
-                    <Link>
-                        <Button
-                            className="editButton"
-                            type="button"
-                            onClick={() =>
-                                dispatch(
-                                    removeSongsFromPlaylist(
-                                        playlistId,
-                                        songsToRemove,
-                                    ),
-                                )
-                            }
-                        >
-                            Remove songs
-                        </Button>
-                    </Link>
-                </div>
+                <SongsListHeader handleRemoveSongs={handleRemoveSongs} />
                 <SongsListTable
                     songsToList={currentSongs}
                     option="removeSongs"
                     handleAdd={addSongToRemove}
                     handleRemove={removeSongToRemove}
+                    songsToChange={songsToRemove}
                 />
             </PlaylistViewStyle>
         </>

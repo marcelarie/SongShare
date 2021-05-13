@@ -105,7 +105,10 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikesSongs(uid, id);
+        const checkUserResponse = await UserRepo.findAndCheckLikesSongs(
+            uid,
+            id,
+        );
 
         if (checkUserResponse.error)
             return res.status(400).send(checkUserResponse);
