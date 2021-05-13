@@ -153,7 +153,6 @@ export function addLikeToSong(songID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
-            console.log(res);
             dispatch(updateUserInfoSucces(res.data.userResponse.data));
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {

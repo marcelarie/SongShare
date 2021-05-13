@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { startplaylist } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -129,7 +129,6 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                                 from === 'editableView' ||
                                 from === 'createView'
                             ) {
-                                console.log('click');
                                 setPublicAccess(!publicAccess);
                             }
                         }}
