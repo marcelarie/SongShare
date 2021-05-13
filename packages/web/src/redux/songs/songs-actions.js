@@ -3,6 +3,7 @@ import api from '../../api';
 import * as auth from '../../services/auth';
 
 import { normalizeSongs } from '../../schema/songs-schema';
+import { updateUserInfoSucces } from '../user/user-actions';
 
 export const getAllSongsRequest = () => ({
     type: SongsTypes.GET_SONGS_REQUEST,
@@ -152,6 +153,8 @@ export function addLikeToSong(songID) {
             /* if (res.errorMessage) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
+            console.log(res)
+            dispatch(updateUserInfoSucces(res.data.userResponse.data));
             return dispatch(addLikeToSongSuccess(res.data.songResponse.data));
         } catch (error) {
             return dispatch(songEditError(error.message));
