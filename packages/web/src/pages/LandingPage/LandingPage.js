@@ -16,7 +16,8 @@ function LandingPage() {
     useEffect(() => {
         dispatch(getAllSongs());
         dispatch(getAllPlaylists());
-    }, [dispatch, currentUser]);
+        // }, [dispatch, currentUser, allSongsIds]);
+    }, [dispatch]);
 
     if (!allSongsIds) return <p>loading...</p>;
 

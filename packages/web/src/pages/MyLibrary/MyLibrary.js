@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { NEW_PLAYLIST } from '../../routes';
-import {
-    getAllPlaylists,
-    // getPlaylist,
-} from '../../redux/Playlists/playlists-actions';
 import Carousel from '../../components/Carousel';
 // import PlaylistCard from '../../components/PlaylistCard';
 
@@ -16,7 +12,6 @@ function MyLibrary() {
     //     store => store.playlists,
     // );
 
-    // const dispatch = useDispatch();
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
     const userLikesSongs = useSelector(store => store.user.songsLikes);
@@ -29,12 +24,10 @@ function MyLibrary() {
     // get user info from redux
     // const AllPlaylists = useSelector(store => store.playlists.byID);
     // const AllPlaylistsIds = useSelector(store => store.playlists.ids);
+    const user = useSelector(store => store.user);
 
-    /* useEffect(() => {
-        dispatch(getAllPlaylists());
-        // dispatch(getUserPlaylists(userID));
-    }, [dispatch]);
- */
+    useEffect(() => {}, [user, allSongs, publicPlaylists]);
+
     if (!userPlaylists) return <p>loading...</p>;
 
     return (

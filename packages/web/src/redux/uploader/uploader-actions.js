@@ -34,7 +34,6 @@ export const uploadImageSuccess = imageUrl => ({
 export function uploadSong({ file, title, artist, genre, songPic }) {
     return async function uploadThunk(dispatch) {
         dispatch(uploadSongRequest());
-
         try {
             const userToken = await getCurrentUserToken();
 
@@ -49,11 +48,14 @@ export function uploadSong({ file, title, artist, genre, songPic }) {
 
             const { url, duration, bytes, format, asset_id } = urlRes.data;
 
-            const urlSongRes = await getFileUrl({
-                file: songPic,
-                fileType: fileTypes.IMAGE,
-            });
-            const songPicUrl = urlSongRes.data.url;
+            let songPicUrl = null;
+            if (songPic) {
+                const urlImgRes = await getFileUrl({
+                    file: songPic,
+                    fileType: fileTypes.IMAGE,
+                });
+                songPicUrl = urlImgRes.data.url;
+            }
 
             if (urlRes.status >= 400) {
                 return dispatch(uploadSongError(urlRes.statusText));

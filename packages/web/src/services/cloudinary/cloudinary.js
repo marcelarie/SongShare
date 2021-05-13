@@ -13,7 +13,6 @@ export const getFileUrl = ({
     const songUploadPreset = process.env.REACT_APP_CLOUDINARY_SONG_UPLOAD;
     const imageUploadPreset = process.env.REACT_APP_CLOUDINARY_IMAGE_UPLOAD;
     const unsignedCloudName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
-
     const url = `https://api.cloudinary.com/v1_1/${unsignedCloudName}/upload`;
 
     const formData = new FormData();
