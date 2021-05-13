@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { startplaylist } from '../../redux/audioPlayer/audioPlayer-actions';
@@ -24,13 +24,12 @@ import PlaylistViewHeaderStyled from './styled';
 const PlaylistViewHeader = ({ playlist, from }) => {
     const dispatch = useDispatch();
     const {
-        // PlaylistUpdating,
-        // PlaylistUpdatingError,
         PlaylistUpdate,
     } = useSelector(store => store.playlists);
 
     const author = useSelector(store => store.user.username);
     const userID = useSelector(store => store.user._id);
+    // const playlist = useSelector(store => store.playlists.byID[playlistId]);
     const [openMenu] = useQuickMenu();
     const [title, setTitle] = useState(
         from === 'createView' ? 'Playlist title' : playlist.title,
@@ -46,32 +45,8 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         from === 'createView' ? 'description' : playlist.description,
     );
 
-    // const { currentlyPlaying } = useSelector(store => store.audioPlayer);
-    /* const play_pause = document.getElementsByClassName(
-        'rhap_play-pause-button',
-    ); */
+    // useEffect(() => {}, [playlist]);
 
-    /* useEffect(() => {
-        if (from === 'editableView' || from === 'mainView') {
-            setTitle(playlist.title);
-            setType(playlist.type);
-            setPublicAccess(playlist.publicAccess);
-            setDescription(playlist.description);
-        }
-    }, [dispatch, playlist, from]); */
-
-    /* function reproduceplaylist() {
-        if (playlist._id === currentlyPlaying.playlistId) {
-            const simulateClick = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true,
-            });
-            play_pause[0].dispatchEvent(simulateClick);
-        } else {
-            // dispatch(startplaylist(playlist._id));
-        }
-    } */
     useQuickMenuListener();
     return (
         <PlaylistViewHeaderStyled
@@ -105,7 +80,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__item type"
                         readOnly={from === 'mainView'}
-                        value={type === 'Playlist' ? 'Playlist' : 'Album'}
+                        value={(from === 'mainView' && playlist.type === 'Playlist') || (from === 'editableView' && type === 'Playlist') ? 'Playlist' : 'Album'}
                         onClick={() => {
                             if (
                                 from === 'editableView' ||
@@ -122,7 +97,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                     <input
                         type="text"
                         className="mega-playlist__info__item access"
-                        value={publicAccess ? 'Public' : 'Private'}
+                        value={((from === 'mainView' && playlist.publicAccess) || (from === 'editableView' && publicAccess) ? 'Public' : 'Private')}
                         readOnly={from === 'mainView'}
                         onClick={() => {
                             if (
@@ -138,7 +113,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <input
                     type="text"
                     className="mega-playlist__info__item title"
-                    value={title}
+                    value={from === 'mainView'? playlist.title : title}
                     readOnly={from === 'mainView'}
                     onChange={e => setTitle(e.target.value)}
                 />
