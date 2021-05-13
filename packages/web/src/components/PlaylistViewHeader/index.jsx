@@ -82,7 +82,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <button
                     className="mega-playlist__card__play"
                     type="button"
-                    /* onClick={reproduceplaylist} */
+                    /* onClick={reproduceplaylist} TODO */
                 >
                     {PlayPauseButton(from !== 'createView' && playlist._id)}
                 </button>
