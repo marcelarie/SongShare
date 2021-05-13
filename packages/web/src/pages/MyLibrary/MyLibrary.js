@@ -7,27 +7,24 @@ import Carousel from '../../components/Carousel';
 // import PlaylistCard from '../../components/PlaylistCard';
 
 function MyLibrary() {
+<<<<<<< HEAD
     // rename to playlistsToShow or playlistLandingPage (?)
     // const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
     //     store => store.playlists,
     // );
 
+=======
+    const currentUser = useSelector(store => store.user);
+>>>>>>> 2bc07572ef2501cc5b11dc92a5b3b5d7668b0c84
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
     const userLikesSongs = useSelector(store => store.user.songsLikes);
     const userLikesPlaylists = useSelector(store => store.user.playlistsLikes);
     const publicPlaylists = useSelector(store => store.playlists.ids);
     const allSongs = useSelector(store => store.songs.ids);
-    // TODO: separate songs likes and playlist like on backend and integrate here
     const userFollow = useSelector(store => store.user.following);
 
-    // get user info from redux
-    // const AllPlaylists = useSelector(store => store.playlists.byID);
-    // const AllPlaylistsIds = useSelector(store => store.playlists.ids);
-    const user = useSelector(store => store.user);
-
-    useEffect(() => {}, [user, allSongs, publicPlaylists]);
-
+    useEffect(() => {}, [currentUser]);
     if (!userPlaylists) return <p>loading...</p>;
 
     return (
@@ -38,11 +35,7 @@ function MyLibrary() {
             <h1>My songs</h1>
             <Carousel key="userSongs" ids={userSongs} type="songs" />
             <h1>My liked songs</h1>
-            <Carousel
-                key="userLikedSongs"
-                ids={userLikesSongs}
-                type="playlists"
-            />
+            <Carousel key="userLikedSongs" ids={userLikesSongs} type="songs" />
             <h1>My liked playlists</h1>
             <Carousel
                 key="userLikedPlaylist"
@@ -53,7 +46,7 @@ function MyLibrary() {
             <Carousel key="PlaylistFollow" ids={userFollow} type="playlists" />
             <h1>Public playlists</h1>
             <Carousel
-                key="PlaylistFollow"
+                key="PlaylistPublic"
                 ids={publicPlaylists}
                 type="playlists"
             />

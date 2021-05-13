@@ -1,15 +1,16 @@
 .songsList__container {
-    width: 100%;
+    width: 80vw;
+    min-width: 600px;
+    margin: 0 auto;
     display: grid;
     grid-template-rows: auto auto;
-    background-color: blueviolet;
 
     &__header {
         display: grid;
-        grid-template: 75px / 5% 15% 40% 25% 15%;
-        background-color: aqua;
+        width: 100%;
+        grid-template: 75px / 5% 50% 15% 10% 20%;
+        text-transform: uppercase;
         &__item {
-            border: 1px solid red;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -17,18 +18,24 @@
     }
     &__row {
         display: grid;
-        grid-template: 75px / 5% 15% 40% 25% 15%;
-        background-color: springgreen;
+        width: 100%;
+        grid-template: 75px / 5% 50% 15% 10% 20%;
         &__item {
             width: 100%;
             display: flex;
             align-items: center;
-            padding-left: 1rem;
-            border: 1px solid rgb(14, 0, 65);
-        }
-        &__item:first-child {
             justify-content: center;
-            padding-left: 0;
+            img {
+                width: 50px;
+                margin-right: 1rem;
+                border-radius: 50%;
+            }
+        }
+        .name {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 1.5rem;
+            align-items: center;
         }
     }
     .dropBox {

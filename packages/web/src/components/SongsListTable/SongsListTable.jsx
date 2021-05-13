@@ -6,8 +6,13 @@ import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import UseSortSongs from '../../custom-hooks/sortSongs';
 import './styles.scss';
+import SongListTableStyled from './styles';
 import SongListItem from '../SongListItem';
 import { listenPlaylistWithBegin } from '../../redux/audioPlayer/audioPlayer-actions';
+
+import LikeIcon from '../LikeButton';
+
+import { addLikeToSong } from '../../redux/songs/songs-actions';
 
 function SongsListTable({
     songsToList,
@@ -37,7 +42,7 @@ function SongsListTable({
         setSongsState([...swappedsong]);
     }
     return (
-        <>
+        <SongListTableStyled>
             <div className="songsList__container">
                 <div className="songsList__container__header">
                     <div className="songsList__container__header__item">#</div>
@@ -48,6 +53,9 @@ function SongsListTable({
                         Author
                     </div>
                     <div className="songsList__container__header__item">
+                        Upload by
+                    </div>
+                    <div className="songsList__container__header__item">
                         Likes
                     </div>
                 </div>
@@ -55,47 +63,68 @@ function SongsListTable({
                     songsState.map((song, index) => {
                         const songInfo = byID[song._id];
                         return (
-                            <SortableItem
-                                items={songsState}
-                                id={song.id}
-                                key={song._id}
-                                swap={swap}
+                            <SongListTableStyled
+                                key={songInfo._id}
+                                image={songInfo.imageUrl}
                             >
-                                <div
-                                    className="songsList__container__row"
+                                <SortableItem
+                                    items={songsState}
+                                    id={song.id}
                                     key={song._id}
+                                    swap={swap}
                                 >
-                                    <div className="songsList__container__row__item id">
-                                        {index + 1}
-                                    </div>
                                     <div
-                                        className="songsList__container__row__item img"
-                                        role="button"
-                                        tabIndex={index}
-                                        onMouseDown={() =>
-                                            playWithBegin(index, songInfo.name)
-                                        }
+                                        className="songsList__container__row"
+                                        key={song._id}
                                     >
-                                        <p>{song._id}</p>
-                                        <img
-                                            src={songInfo.imageURL}
-                                            alt="songImg"
-                                        />
+                                        <div className="songsList__container__row__item id">
+                                            {index + 1}
+                                        </div>
+                                        <div
+                                            className="songsList__container__row__item name"
+                                            role="button"
+                                            tabIndex={index}
+                                            onMouseDown={() =>
+                                                playWithBegin(
+                                                    index,
+                                                    songInfo.name,
+                                                )
+                                            }
+                                        >
+                                            <img
+                                                src={
+                                                    songInfo.imageURL ||
+                                                    'https://picsum.photos/500'
+                                                }
+                                                alt="songImg"
+                                            />
+                                            {songInfo.name}
+                                        </div>
+                                        <div className="songsList__container__row__item author">
+                                            {songInfo.author}
+                                        </div>
+                                        <div className="songsList__container__row__item uploader">
+                                            {songInfo.username &&
+                                                songInfo.username.username}
+                                        </div>
+                                        <div className="songsList__container__row__item likes">
+                                            <p className="songListItem__content__info__like__text">
+                                                {songInfo.likes.length} likes
+                                            </p>
+                                            <LikeIcon
+                                                handleLike={() =>
+                                                    dispatch(
+                                                        addLikeToSong(
+                                                            songInfo._id,
+                                                        ),
+                                                    )
+                                                }
+                                                likes={songInfo.likes}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="songsList__container__row__item name">
-                                        {songInfo.name}
-                                    </div>
-                                    <div className="songsList__container__row__item user">
-                                        {songInfo.username}
-                                    </div>
-                                    <div className="songsList__container__row__item likes">
-                                        {songInfo.likes.length}
-                                    </div>
-                                    <div className="songsList__container__row__item image">
-                                        {songInfo.imageURL}
-                                    </div>
-                                </div>
-                            </SortableItem>
+                                </SortableItem>
+                            </SongListTableStyled>
                         );
                     })}
                 {!sortable &&
@@ -112,7 +141,7 @@ function SongsListTable({
                         );
                     })}
             </div>
-        </>
+        </SongListTableStyled>
     );
 }
 

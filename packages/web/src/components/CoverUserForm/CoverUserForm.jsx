@@ -33,7 +33,7 @@ function CoverUserForm() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(updateUserCoverPhoto({ file, fileType }));
-        history.push(`/${currentUser.username}/Info`);
+        history.push(`/${currentUser.username}/info`);
     };
 
     const profilePic =

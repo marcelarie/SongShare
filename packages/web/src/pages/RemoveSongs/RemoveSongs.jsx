@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router';
 
-import PlaylistViewStyle from '../PlaylistView/styled';
 import '../../styles/flex.scss';
 
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
@@ -57,16 +56,17 @@ function RemoveSongs() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="removeSongsView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsListHeader handleRemoveSongs={handleRemoveSongs} />
-                <SongsListTable
-                    songsToList={currentSongs}
-                    option="removeSongs"
-                    handleAdd={addSongToRemove}
-                    handleRemove={removeSongToRemove}
-                    songsToChange={songsToRemove}
-                />
-            </PlaylistViewStyle>
+            <SongsListHeader
+                handleRemoveSongs={handleRemoveSongs}
+                playlistId={playlistId}
+            />
+            <SongsListTable
+                songsToList={currentSongs}
+                option="removeSongs"
+                handleAdd={addSongToRemove}
+                handleRemove={removeSongToRemove}
+                songsToChange={songsToRemove}
+            />
         </>
     );
 }

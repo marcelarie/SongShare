@@ -4,7 +4,11 @@ const SongRepo = new Repo('Song');
 
 async function getAllSongs(req, res, next) {
     try {
-        const response = await SongRepo.find({});
+        const response = await SongRepo.findAndPopulate(
+            {},
+            'username',
+            'username',
+        );
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);

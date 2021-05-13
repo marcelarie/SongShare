@@ -1,24 +1,19 @@
 import styled from 'styled-components';
-// import hexToRgba from 'hex-to-rgba';
+import hexToRgba from 'hex-to-rgba';
 
 const SongListItem = styled.div`
-    color: ${({ theme }) => theme.text};
-    background-color: ${({ theme }) => theme.bg};
-
-    .songListItem__content__info__playButton {
-        fill: ${({ theme }) => theme.bgColor};
-    }
-    .songListItem__content__info__playIcon {
-        background-color: ${({ theme }) => theme.bg};
-        border: 1px solid ${({ theme }) => theme.bgColor};
-        box-shadow: 0 0 5px ${({ theme }) => theme.bgColor};
-    }
-    .songListItem {
-        border-bottom: 1px solid ${({ theme }) => theme.pinkColor};
-    }
     .selected {
-        background-color: ${({ theme }) => theme.colorDarkTransparent};
-        box-shadow: 0px 0px 10px ${({ theme }) => theme.pinkColor};
+        background-color: ${({ theme }) => hexToRgba(theme.text, '0.3')};
+    }
+    .songsList__container {
+        &__header {
+            border-bottom: 2px solid
+                ${({ theme }) => hexToRgba(theme.text, '0.9')};
+        }
+        &__row {
+            border-bottom: 1px solid
+                ${({ theme }) => hexToRgba(theme.text, '0.6')};
+        }
     }
 `;
 

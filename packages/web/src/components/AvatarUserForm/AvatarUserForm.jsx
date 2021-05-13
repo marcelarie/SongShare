@@ -32,7 +32,7 @@ function AvatarUserForm() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(updateUserAvatarPhoto({ file, fileType }));
-        history.push(`/${currentUser.username}/Info`);
+        history.push(`/${currentUser.username}/info`);
     };
 
     const profilePic =

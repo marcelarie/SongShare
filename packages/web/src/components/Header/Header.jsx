@@ -88,54 +88,55 @@ function Header() {
                     type="button"
                     image={profilePic}
                     className="nav-user__image"
-                />
+                >
+                    {openMenu && (
+                        <div className="nav-user__menu">
+                            <NavLink to={`/${username}/`}>
+                                <button
+                                    className={
+                                        currentLocation === `/${username}/`
+                                            ? 'navfocus'
+                                            : ''
+                                    }
+                                    onClick={() => setOpenMenu(!openMenu)}
+                                    type="button"
+                                >
+                                    PROFILE
+                                </button>
+                            </NavLink>
+                            <NavLink to={`/${username}/music`}>
+                                <button
+                                    className={
+                                        currentLocation === `/${username}/music`
+                                            ? 'navfocus'
+                                            : ''
+                                    }
+                                    onClick={() => setOpenMenu(!openMenu)}
+                                    type="button"
+                                >
+                                    UPLOAD SONG
+                                </button>
+                            </NavLink>
+                            <NavLink to="/">
+                                <button
+                                    className={
+                                        currentLocation === `/settings`
+                                            ? 'navfocus'
+                                            : ''
+                                    }
+                                    onClick={() => setOpenMenu(!openMenu)}
+                                    type="button"
+                                >
+                                    SETTINGS
+                                </button>
+                            </NavLink>
+                            <button type="button" onClick={handleSignOut}>
+                                SIGN OUT
+                            </button>
+                        </div>
+                    )}
+                </ImageButton>
                 <DarkLightToggle theme={theme} />
-                {openMenu && (
-                    <div className="nav-user__menu">
-                        <NavLink to={`/${username}/`}>
-                            <button
-                                className={
-                                    currentLocation === `/${username}/`
-                                        ? 'navfocus'
-                                        : ''
-                                }
-                                onClick={() => setOpenMenu(!openMenu)}
-                                type="button"
-                            >
-                                PROFILE
-                            </button>
-                        </NavLink>
-                        <NavLink to={`/${username}/music`}>
-                            <button
-                                className={
-                                    currentLocation === `/${username}/music`
-                                        ? 'navfocus'
-                                        : ''
-                                }
-                                onClick={() => setOpenMenu(!openMenu)}
-                                type="button"
-                            >
-                                UPLOAD SONG
-                            </button>
-                        </NavLink>
-                        <NavLink to="/">
-                            <button
-                                className={
-                                    currentLocation === `/settings`
-                                        ? 'navfocus'
-                                        : ''
-                                }
-                                onClick={() => setOpenMenu(!openMenu)}
-                                type="button"
-                            >
-                                SETTINGS
-                            </button>
-                        </NavLink>
-                        <button type="button" onClick={handleSignOut}>
-                            SIGN OUT
-                        </button>
-                    </div>
-                )}
             </div>
         </Nav>
     );
