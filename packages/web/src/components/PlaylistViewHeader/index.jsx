@@ -24,7 +24,6 @@ import './styles.scss';
 import PlaylistViewHeaderStyle from './styled';
 
 const PlaylistViewHeader = ({ playlist, from }) => {
-    console.log(playlist);
     const dispatch = useDispatch();
     const {
         // PlaylistUpdating,

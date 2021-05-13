@@ -41,6 +41,7 @@ const UserProfile = styled.div`
     }
     .user__main__aside__header {
         &__image {
+            border-radius: 5px;
             background-image: url(${props => props.image});
             min-height: 300px;
             min-width: 300px;

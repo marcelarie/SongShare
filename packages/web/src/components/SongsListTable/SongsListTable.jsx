@@ -7,12 +7,12 @@ import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 import UseSortSongs from '../../custom-hooks/sortSongs';
 import './styles.scss';
 import SongListItem from '../SongListItem';
+import { listenPlaylistWithBegin } from '../../redux/audioPlayer/audioPlayer-actions';
 
 function SongsListTable({
     songsToList,
     playlistID,
     sortable,
-    handlePlaySong = null,
     handleAdd = null,
     handleRemove = null,
 }) {
@@ -20,10 +20,15 @@ function SongsListTable({
     const songsOrder = UseSortSongs(songsToList);
     const { byID } = useSelector(state => state.songs);
     const [songsState, setSongsState] = useState(songsOrder);
-
     useEffect(() => {
         dispatch(addSongsToPlaylist(playlistID, songsState));
     }, [dispatch, songsState, playlistID]);
+
+    const sortedIDs = songsOrder.map(song => song._id);
+
+    const playWithBegin = index => {
+        dispatch(listenPlaylistWithBegin({ index, sortedIDs }));
+    };
 
     function swap(dragIndex, dropIndex) {
         const swappedsong = swapArrayPositions(
@@ -65,7 +70,12 @@ function SongsListTable({
                                     <div className="songsList__container__row__item id">
                                         {index + 1}
                                     </div>
-                                    <div className="songsList__container__row__item img">
+                                    <div
+                                        className="songsList__container__row__item img"
+                                        role="button"
+                                        tabIndex={index}
+                                        onMouseDown={() => playWithBegin(index)}
+                                    >
                                         <img
                                             src={songInfo.imageURL}
                                             alt="songImg"

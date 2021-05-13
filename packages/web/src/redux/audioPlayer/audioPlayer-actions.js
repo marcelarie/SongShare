@@ -45,6 +45,13 @@ export const listenPlaylist = songs => {
     };
 };
 
+export const listenPlaylistWithBegin = payload => {
+    return {
+        type: audioPlayerTypes.LISTEN_PLAYLIST_WITH_BEGIN,
+        payload,
+    };
+};
+
 export const deleteInCurrent = (songToDelete, newSongToPutInCurrent) => {
     return {
         type: audioPlayerTypes.DELETE_IN_CURRENTLY,

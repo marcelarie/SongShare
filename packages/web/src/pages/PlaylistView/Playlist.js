@@ -25,7 +25,6 @@ function Playlist() {
             <SongsListTable
                 songsToList={playlist.songs}
                 playlistID={playlist._id}
-                handlePlaySong={() => console.log('play')}
                 sortable={currentUser._id === playlist.author._id}
             />
         </>
