@@ -2,6 +2,7 @@ import * as UploaderTypes from './uploader-types';
 import { getFileUrl, fileTypes } from '../../services/cloudinary';
 import api from '../../api';
 import { getCurrentUserToken } from '../../services/auth';
+import { updateUserInfoSucces } from '../user/user-actions';
 
 export const uploadSongRequest = () => ({
     type: UploaderTypes.UPLOAD_SONG_REQUEST,
@@ -61,7 +62,7 @@ export function uploadSong({ file, title, artist, genre, songPic }) {
                 return dispatch(uploadSongError(urlRes.statusText));
             }
 
-            const songRes = await api.createTrack({
+            const res = await api.createTrack({
                 body: {
                     _id: asset_id,
                     name: title,
@@ -77,11 +78,12 @@ export function uploadSong({ file, title, artist, genre, songPic }) {
                     Authorization: `Bearer ${userToken}`,
                 },
             });
-
-            if (songRes.errorMessage) {
-                return dispatch(uploadSongError(songRes.errorMessage));
+            console.log(res);
+            if (res.data.song.errorMessage) {
+                return dispatch(uploadSongError(res.data.song.errorMessage));
             }
 
+            dispatch(updateUserInfoSucces(res.data.userResponse.data));
             return dispatch(uploadSongSuccess(url));
         } catch (err) {
             return dispatch(uploadSongError(err.message));
