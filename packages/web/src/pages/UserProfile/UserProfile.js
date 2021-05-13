@@ -1,10 +1,11 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import './styles.scss';
+import { Link } from 'react-router-dom';
+
 import Button from '../../styles/components/Button/GenericButton';
+import useChangePictures from '../../custom-hooks/changePictures';
 import UserProfile from './styled';
+import './styles.scss';
 
 /* eslint-disable no-unused-vars */
 import useUser from '../../custom-hooks/userProfile/useUser';
@@ -14,19 +15,17 @@ import useUserProfileSwitch from '../../custom-hooks/userProfile/useUserProfileS
 function CurrentUserProfile() {
     const currentUser = useSelector(store => store.user);
     const { user, isLoading, pathUsername } = useUser();
+    const {
+        pictureSubmits,
+        onPictureChange,
+        coverPic,
+        avatarPic,
+    } = useChangePictures();
+
     const Component = useUserProfileSwitch(pathUsername);
     if (isLoading) return <h1>Loading...</h1>;
 
     const navLinks = ['library', 'info', 'edit', 'music', 'playlists'];
-
-    const coverPic =
-        user.coverImageUrl ||
-        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
-
-    const avatarPic =
-        user.imageUrl ||
-        'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
-
 
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
@@ -35,6 +34,18 @@ function CurrentUserProfile() {
                     <p>
                         {user.name} {user.lastname}
                     </p>
+                    <input
+                        type="file"
+                        className="cover"
+                        onChange={ e => onPictureChange(e, 'cover')}
+                    />
+                    <button
+                        type="submit"
+                        className="center"
+                        onClick={pictureSubmits.handleCoverSubmit}
+                    >
+                        Submit
+                    </button>
                 </div>
                 <div className="user__header__stats">
                     <div>
@@ -123,7 +134,18 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <br />{' '}
+                                <input
+                                    type="file"
+                                    className="avatar"
+                                    onChange={ e => onPictureChange(e, 'avatar')}
+                                />
+                                <button
+                                    type="submit"
+                                    className="center"
+                                    onClick={pictureSubmits.handleAvatarSubmit}
+                                >
+                                    Submit
+                                </button>
                             </div>
                         </div>
                         <div className="user__main__aside__content">
