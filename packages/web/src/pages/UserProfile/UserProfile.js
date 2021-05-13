@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './styles.scss';
 import Button from '../../styles/components/Button/GenericButton';
 import UserProfile from './styled';
@@ -27,7 +27,6 @@ function CurrentUserProfile() {
         user.imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
-    // if (!user._id) return <Redirect to={Routes.HOME} />;
 
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
