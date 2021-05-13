@@ -61,7 +61,7 @@ function SongListItem({ song, index, handleAdd, handleRemove }) {
                 {song.name}
             </div>
             <div className="songsList__container__row__item user">
-                {song.username}
+                {song.username && song.username.username}
             </div>
             <div className="songsList__container__row__item likes">
                 <p className="songListItem__content__info__like__text">

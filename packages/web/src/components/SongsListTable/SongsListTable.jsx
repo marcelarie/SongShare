@@ -6,6 +6,7 @@ import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import UseSortSongs from '../../custom-hooks/sortSongs';
 import './styles.scss';
+import SongListTableStyled from './styles';
 import SongListItem from '../SongListItem';
 
 function SongsListTable({
@@ -52,39 +53,42 @@ function SongsListTable({
                     songsState.map((song, index) => {
                         const songInfo = byID[song._id];
                         return (
-                            <SortableItem
-                                items={songsState}
-                                id={song.id}
-                                key={song._id}
-                                swap={swap}
+                            <SongListTableStyled
+                                key={songInfo._id}
+                                image={songInfo.imageUrl}
                             >
-                                <div
-                                    className="songsList__container__row"
+                                <SortableItem
+                                    items={songsState}
+                                    id={song.id}
                                     key={song._id}
+                                    swap={swap}
                                 >
-                                    <div className="songsList__container__row__item id">
-                                        {index + 1}
+                                    <div
+                                        className="songsList__container__row"
+                                        key={song._id}
+                                    >
+                                        <div className="songsList__container__row__item id">
+                                            {index + 1}
+                                        </div>
+                                        <div className="songsList__container__row__item name">
+                                            <img
+                                                src={
+                                                    songInfo.imageURL ||
+                                                    'https://picsum.photos/500'
+                                                }
+                                                alt="songImg"
+                                            />
+                                            {songInfo.name}
+                                        </div>
+                                        <div className="songsList__container__row__item user">
+                                            {songInfo.username && songInfo.username.username}
+                                        </div>
+                                        <div className="songsList__container__row__item likes">
+                                            {songInfo.likes.length}
+                                        </div>
                                     </div>
-                                    <div className="songsList__container__row__item img">
-                                        <img
-                                            src={songInfo.imageURL}
-                                            alt="songImg"
-                                        />
-                                    </div>
-                                    <div className="songsList__container__row__item name">
-                                        {songInfo.name}
-                                    </div>
-                                    <div className="songsList__container__row__item user">
-                                        {songInfo.username}
-                                    </div>
-                                    <div className="songsList__container__row__item likes">
-                                        {songInfo.likes.length}
-                                    </div>
-                                    <div className="songsList__container__row__item image">
-                                        {songInfo.imageURL}
-                                    </div>
-                                </div>
-                            </SortableItem>
+                                </SortableItem>
+                            </SongListTableStyled>
                         );
                     })}
                 {!sortable &&
