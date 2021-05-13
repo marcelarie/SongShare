@@ -126,7 +126,6 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                                 from === 'editableView' ||
                                 from === 'createView'
                             ) {
-                                console.log('click');
                                 setPublicAccess(!publicAccess);
                             }
                         }}

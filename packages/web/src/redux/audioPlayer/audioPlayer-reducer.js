@@ -90,15 +90,12 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
             };
 
         case audioPlayerTypes.LISTEN_PLAYLIST_WITH_BEGIN:
-            console.log(payload.index);
-            console.log(payload.sortedIDs[payload.index]);
-            console.log(payload.sortedIDs);
             return {
                 ...state,
-                queue: payload.sortedIDs,
+                queue: payload.songsToList,
                 isPlaying: true,
                 currentlyPlaying: {
-                    songId: payload.sortedIDs[payload.index],
+                    songId: payload.songsToList[payload.index],
                     index: payload.index + 1,
                 },
             };

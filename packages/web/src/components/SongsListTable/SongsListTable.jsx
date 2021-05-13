@@ -24,10 +24,8 @@ function SongsListTable({
         dispatch(addSongsToPlaylist(playlistID, songsState));
     }, [dispatch, songsState, playlistID]);
 
-    const sortedIDs = songsOrder.map(song => song._id);
-
-    const playWithBegin = (index, name) => {
-        dispatch(listenPlaylistWithBegin({ index, sortedIDs, name }));
+    const playWithBegin = index => {
+        dispatch(listenPlaylistWithBegin({ index, songsToList }));
     };
 
     function swap(dragIndex, dropIndex) {
