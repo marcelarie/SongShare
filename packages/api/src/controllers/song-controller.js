@@ -4,7 +4,11 @@ const SongRepo = new Repo('Song');
 
 async function getAllSongs(req, res, next) {
     try {
-        const response = await SongRepo.find({});
+        const response = await SongRepo.findAndPopulate(
+            {},
+            'username',
+            'username',
+        );
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);
@@ -105,13 +109,16 @@ async function likeSong(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikes(uid, id);
+        const checkUserResponse = await UserRepo.findAndCheckLikesSongs(
+            uid,
+            id,
+        );
 
         if (checkUserResponse.error)
             return res.status(400).send(checkUserResponse);
         if (checkUserResponse.data.length === 0) {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $addToSet: { likes: id },
+                $addToSet: { songsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
@@ -128,7 +135,7 @@ async function likeSong(req, res, next) {
                 return res.status(200).send({ songResponse, userResponse });
         } else {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $pull: { likes: id },
+                $pull: { songsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
@@ -168,11 +175,10 @@ async function postSong(req, res, next) {
                 $addToSet: { songs: body._id },
             },
         );
-
         if (userResponse.error) return res.status(400).send(userResponse);
         if (song.error) return res.status(400).send(song);
 
-        if (song.data) return res.status(202).send(song);
+        if (song.data) return res.status(202).send({ song, userResponse });
     } catch (error) {
         next(error);
     }

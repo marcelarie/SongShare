@@ -44,10 +44,16 @@ const UserSchema = mongoose.Schema(
                 ref: 'playlist',
             },
         ],
-        likes: [
+        songsLikes: [
             {
                 type: String,
                 ref: 'song',
+            },
+        ],
+        playlistsLikes: [
+            {
+                type: String,
+                ref: 'playlist',
             },
         ],
         following: [

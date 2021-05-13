@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-// import { play } from '../../redux/audioPlayer/audioPlayer-actions';
-
 import './styles.scss';
-import './styles';
 import LikeIcon from '../LikeButton';
-
+import SongListItemStyled from './styles';
 import { addLikeToSong } from '../../redux/songs/songs-actions';
 
 function SongListItem({ song, index, handleAdd, handleRemove }) {
@@ -42,46 +39,61 @@ function SongListItem({ song, index, handleAdd, handleRemove }) {
         }
     }
     return (
-        <section
-            className={
-                itemSelected
-                    ? 'songsList__container__row selected'
-                    : 'songsList__container__row'
-            }
-        >
-            <div
-                className="songsList__container__row__item id"
-                onMouseDown={handleSelected}
-                role="button"
-                tabIndex={0}
+        <SongListItemStyled>
+            <section
+                className={
+                    itemSelected
+                        ? 'songsList__container__row selected'
+                        : 'songsList__container__row'
+                }
             >
-                {index}
-            </div>
-            <div className="songsList__container__row__item name">
-                {song.name}
-            </div>
-            <div className="songsList__container__row__item user">
-                {song.username}
-            </div>
-            <div className="songsList__container__row__item likes">
-                <p className="songListItem__content__info__like__text">
-                    {song.likes.length} likes
-                </p>
-                <LikeIcon
-                    handleLike={() => dispatch(addLikeToSong(song._id))}
-                    likes={song.likes}
-                />
-            </div>
-            <div className="songsList__container__row__item image">
-                {/* <img
-                        src={
-                            song.imageUrl ||
-                            'https://picsum.photos/seed/picsum/500'
-                        }
-                        alt="songimg"
-                    /> */}
-            </div>
-        </section>
+                <div
+                    className="songsList__container__row__item id"
+                    onMouseDown={handleSelected}
+                    role="button"
+                    tabIndex={0}
+                >
+                    {index}
+                </div>
+                <div
+                    className="songsList__container__row__item name"
+                    onMouseDown={handleSelected}
+                    role="button"
+                    tabIndex={0}
+                >
+                    <img
+                        src={song.imageURL || 'https://picsum.photos/500'}
+                        alt="songImg"
+                    />
+                    {song.name}
+                </div>
+                <div
+                    className="songsList__container__row__item uploader"
+                    onMouseDown={handleSelected}
+                    role="button"
+                    tabIndex={0}
+                >
+                    {song.author}
+                </div>
+                <div
+                    className="songsList__container__row__item uploader"
+                    onMouseDown={handleSelected}
+                    role="button"
+                    tabIndex={0}
+                >
+                    {song.username && song.username.username}
+                </div>
+                <div className="songsList__container__row__item likes">
+                    <p className="songListItem__content__info__like__text">
+                        {song.likes.length} likes
+                    </p>
+                    <LikeIcon
+                        handleLike={() => dispatch(addLikeToSong(song._id))}
+                        likes={song.likes}
+                    />
+                </div>
+            </section>
+        </SongListItemStyled>
     );
 }
 

@@ -5,8 +5,8 @@ const GenericButton = styled.button`
         font-weight: 600;
         font-size: 1em;
         color: ${({ theme }) => theme.text};
-        padding: 0.4rem 0;
-        margin: 1rem 0;
+        padding: 0.4rem 0.4rem;
+        margin: 1rem 0.5rem;
         border: none;
         cursor: pointer;
         border-radius: 3px;

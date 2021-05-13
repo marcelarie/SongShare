@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router';
-
-import { Link } from 'react-router-dom';
-
-import PlaylistViewStyle from '../PlaylistView/styled';
 import '../../styles/flex.scss';
 import '../PlaylistView/styles.scss';
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
@@ -13,8 +9,7 @@ import { getAllSongs } from '../../redux/songs/songs-actions';
 
 import SongsListTable from '../../components/SongsListTable';
 import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
-
-import Button from '../../styles/components/Button/GenericButton';
+import SongsListHeader from '../../components/SongsListHeader';
 
 function AddSongs() {
     const dispatch = useDispatch();
@@ -30,6 +25,10 @@ function AddSongs() {
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
+
+    function handleAddSongs() {
+        dispatch(addSongsToPlaylist(playlistId, songsToAdd));
+    }
 
     function addSongToAdd(id) {
         const index = songsToAdd.findIndex(element => element === id);
@@ -52,33 +51,16 @@ function AddSongs() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="addSongsView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <div className="flex-between">
-                    <input type="text" value="Search" />
-                    <button type="button" className="">
-                        Filter
-                    </button>
-                    <Link to={`/playlist/${playlist._id}`}>
-                        <Button
-                            className="editButton"
-                            type="button"
-                            onClick={() =>
-                                dispatch(
-                                    addSongsToPlaylist(playlistId, songsToAdd),
-                                )
-                            }
-                        >
-                            Add selected songs
-                        </Button>
-                    </Link>
-                </div>
-                <SongsListTable
-                    songsToList={ids}
-                    option="addSongs"
-                    handleAdd={addSongToAdd}
-                    handleRemove={removeSongToAdd}
-                />
-            </PlaylistViewStyle>
+            <SongsListHeader
+                handleAddSongs={handleAddSongs}
+                playlistId={playlistId}
+            />
+            <SongsListTable
+                songsToList={ids}
+                option="addSongs"
+                handleAdd={addSongToAdd}
+                handleRemove={removeSongToAdd}
+            />
         </>
     );
 }

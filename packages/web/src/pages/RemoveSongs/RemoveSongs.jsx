@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router';
 
-import { Link } from 'react-router-dom';
-
-import PlaylistViewStyle from '../PlaylistView/styled';
 import '../../styles/flex.scss';
 
 import PlaylistViewHeader from '../../components/PlaylistViewHeader';
@@ -13,11 +10,10 @@ import '../PlaylistView/styles.scss';
 
 import SongsListTable from '../../components/SongsListTable';
 import {
-    removeSongsFromPlaylist,
     getPlaylist,
+    removeSongsFromPlaylist,
 } from '../../redux/Playlists/playlists-actions';
-
-import Button from '../../styles/components/Button/GenericButton';
+import SongsListHeader from '../../components/SongsListHeader';
 
 function RemoveSongs() {
     const dispatch = useDispatch();
@@ -34,6 +30,10 @@ function RemoveSongs() {
     useEffect(() => {
         dispatch(getPlaylist(playlistId));
     }, [dispatch, playlistId]);
+
+    function handleRemoveSongs() {
+        dispatch(removeSongsFromPlaylist(playlistId, songsToRemove));
+    }
 
     function addSongToRemove(id) {
         const index = songsToRemove.findIndex(element => element === id);
@@ -56,36 +56,17 @@ function RemoveSongs() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="removeSongsView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <div className="flex-between">
-                    <input type="text" value="Search" />
-                    <button type="button" className="">
-                        Filter
-                    </button>
-                    <Link>
-                        <Button
-                            className="editButton"
-                            type="button"
-                            onClick={() =>
-                                dispatch(
-                                    removeSongsFromPlaylist(
-                                        playlistId,
-                                        songsToRemove,
-                                    ),
-                                )
-                            }
-                        >
-                            Remove songs
-                        </Button>
-                    </Link>
-                </div>
-                <SongsListTable
-                    songsToList={currentSongs}
-                    option="removeSongs"
-                    handleAdd={addSongToRemove}
-                    handleRemove={removeSongToRemove}
-                />
-            </PlaylistViewStyle>
+            <SongsListHeader
+                handleRemoveSongs={handleRemoveSongs}
+                playlistId={playlistId}
+            />
+            <SongsListTable
+                songsToList={currentSongs}
+                option="removeSongs"
+                handleAdd={addSongToRemove}
+                handleRemove={removeSongToRemove}
+                songsToChange={songsToRemove}
+            />
         </>
     );
 }
