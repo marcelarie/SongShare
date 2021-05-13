@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { NEW_PLAYLIST } from '../../routes';
 import Carousel from '../../components/Carousel';
-// import PlaylistCard from '../../components/PlaylistCard';
 
 function MyLibrary() {
     const currentUser = useSelector(store => store.user);

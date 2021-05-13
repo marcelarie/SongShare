@@ -11,6 +11,8 @@ import {
     // updatePlaylistSuccess,
 } from '../../redux/Playlists/playlists-actions';
 
+import { listenPlaylist } from '../../redux/audioPlayer/audioPlayer-actions';
+
 import {
     useQuickMenu,
     useQuickMenuListener,
@@ -43,7 +45,9 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         from === 'createView' ? 'description' : playlist.description,
     );
 
-    // useEffect(() => {}, [playlist]);
+    const listenThisPlaylist = () => {
+        dispatch(listenPlaylist(Object.values(playlist.songs)));
+    };
 
     useQuickMenuListener();
     return (
@@ -55,7 +59,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <button
                     className="mega-playlist__card__play"
                     type="button"
-                    /* onClick={reproduceplaylist} */
+                    onClick={listenThisPlaylist}
                 >
                     {PlayPauseButton(from !== 'createView' && playlist._id)}
                 </button>

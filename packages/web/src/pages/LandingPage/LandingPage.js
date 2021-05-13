@@ -11,12 +11,12 @@ function LandingPage() {
     const dispatch = useDispatch();
 
     const allSongsIds = useSelector(store => store.songs.ids);
-    const currentUser = useSelector(store => store.auth.currentUser);
 
     useEffect(() => {
         dispatch(getAllSongs());
         dispatch(getAllPlaylists());
-    }, [dispatch, currentUser]);
+        // }, [dispatch, currentUser, allSongsIds]);
+    }, [dispatch]);
 
     if (!allSongsIds) return <p>loading...</p>;
 

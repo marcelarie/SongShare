@@ -78,6 +78,27 @@ const listPlayerReducer = (state = audioPlayerIntialState, action) => {
                 ),
                 currentlyPlaying: payload.newSongToPutInCurrent,
             };
+        case audioPlayerTypes.LISTEN_PLAYLIST:
+            return {
+                ...state,
+                queue: payload,
+                isPlaying: true,
+                currentlyPlaying: {
+                    songId: payload[0],
+                    index: 1,
+                },
+            };
+
+        case audioPlayerTypes.LISTEN_PLAYLIST_WITH_BEGIN:
+            return {
+                ...state,
+                queue: payload.songsToList,
+                isPlaying: true,
+                currentlyPlaying: {
+                    songId: payload.songsToList[payload.index],
+                    index: payload.index + 1,
+                },
+            };
         default:
             return state;
     }

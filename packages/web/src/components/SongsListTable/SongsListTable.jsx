@@ -8,6 +8,7 @@ import UseSortSongs from '../../custom-hooks/sortSongs';
 import './styles.scss';
 import SongListTableStyled from './styles';
 import SongListItem from '../SongListItem';
+import { listenPlaylistWithBegin } from '../../redux/audioPlayer/audioPlayer-actions';
 
 import LikeIcon from '../LikeButton';
 
@@ -17,7 +18,6 @@ function SongsListTable({
     songsToList,
     playlistID,
     sortable,
-    handlePlaySong = null,
     handleAdd = null,
     handleRemove = null,
 }) {
@@ -25,10 +25,13 @@ function SongsListTable({
     const songsOrder = UseSortSongs(songsToList);
     const { byID } = useSelector(state => state.songs);
     const [songsState, setSongsState] = useState(songsOrder);
-
     useEffect(() => {
         dispatch(addSongsToPlaylist(playlistID, songsState));
     }, [dispatch, songsState, playlistID]);
+
+    const playWithBegin = index => {
+        dispatch(listenPlaylistWithBegin({ index, songsToList }));
+    };
 
     function swap(dragIndex, dropIndex) {
         const swappedsong = swapArrayPositions(
@@ -77,7 +80,17 @@ function SongsListTable({
                                         <div className="songsList__container__row__item id">
                                             {index + 1}
                                         </div>
-                                        <div className="songsList__container__row__item name">
+                                        <div
+                                            className="songsList__container__row__item name"
+                                            role="button"
+                                            tabIndex={index}
+                                            onMouseDown={() =>
+                                                playWithBegin(
+                                                    index,
+                                                    songInfo.name,
+                                                )
+                                            }
+                                        >
                                             <img
                                                 src={
                                                     songInfo.imageURL ||

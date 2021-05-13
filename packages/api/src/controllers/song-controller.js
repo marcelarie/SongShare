@@ -162,11 +162,11 @@ async function postSong(req, res, next) {
     try {
         const response = await SongRepo.findOne({ name: body.name });
         if (response.error) return res.status(400).send(response);
-        if (response.data)
-            return res.status(409).send({
-                data: response.data,
-                error: 'This song name is already in use.',
-            });
+        // if (response.data)
+        //     return res.status(409).send({
+        //         data: response.data,
+        //         error: 'This song name is already in use.',
+        //     });
 
         const song = await SongRepo.create({ ...body, username: uid });
         const userResponse = await UserRepo.findByIdAndUpdate(

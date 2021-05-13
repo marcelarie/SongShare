@@ -38,6 +38,20 @@ export const playPrevSong = () => {
     };
 };
 
+export const listenPlaylist = songs => {
+    return {
+        type: audioPlayerTypes.LISTEN_PLAYLIST,
+        payload: songs,
+    };
+};
+
+export const listenPlaylistWithBegin = payload => {
+    return {
+        type: audioPlayerTypes.LISTEN_PLAYLIST_WITH_BEGIN,
+        payload,
+    };
+};
+
 export const deleteInCurrent = (songToDelete, newSongToPutInCurrent) => {
     return {
         type: audioPlayerTypes.DELETE_IN_CURRENTLY,
