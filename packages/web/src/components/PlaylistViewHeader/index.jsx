@@ -23,9 +23,7 @@ import PlaylistViewHeaderStyled from './styled';
 
 const PlaylistViewHeader = ({ playlist, from }) => {
     const dispatch = useDispatch();
-    const {
-        PlaylistUpdate,
-    } = useSelector(store => store.playlists);
+    const { PlaylistUpdate } = useSelector(store => store.playlists);
 
     const author = useSelector(store => store.user.username);
     const userID = useSelector(store => store.user._id);
@@ -80,7 +78,13 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__item type"
                         readOnly={from === 'mainView'}
-                        value={(from === 'mainView' && playlist.type === 'Playlist') || (from === 'editableView' && type === 'Playlist') ? 'Playlist' : 'Album'}
+                        value={
+                            (from === 'mainView' &&
+                                playlist.type === 'Playlist') ||
+                            (from === 'editableView' && type === 'Playlist')
+                                ? 'Playlist'
+                                : 'Album'
+                        }
                         onClick={() => {
                             if (
                                 from === 'editableView' ||
@@ -97,7 +101,12 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                     <input
                         type="text"
                         className="mega-playlist__info__item access"
-                        value={((from === 'mainView' && playlist.publicAccess) || (from === 'editableView' && publicAccess) ? 'Public' : 'Private')}
+                        value={
+                            (from === 'mainView' && playlist.publicAccess) ||
+                            (from === 'editableView' && publicAccess)
+                                ? 'Public'
+                                : 'Private'
+                        }
                         readOnly={from === 'mainView'}
                         onClick={() => {
                             if (
@@ -113,7 +122,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 <input
                     type="text"
                     className="mega-playlist__info__item title"
-                    value={from === 'mainView'? playlist.title : title}
+                    value={from === 'mainView' ? playlist.title : title}
                     readOnly={from === 'mainView'}
                     onChange={e => setTitle(e.target.value)}
                 />
