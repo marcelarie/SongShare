@@ -32,7 +32,7 @@ function PlaylistEdit() {
                 <SongsListTable
                     songsToList={playlist.songs}
                     playlistID={playlist._id}
-                    handlePlaySong={() => console.log('play')}
+                    handlePlaySong={() => console.log('play')} 
                     sortable
                 />
             </PlaylistViewStyle>
