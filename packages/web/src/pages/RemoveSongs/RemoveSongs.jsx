@@ -59,16 +59,17 @@ function RemoveSongs() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="removeSongsView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsListHeader handleRemoveSongs={handleRemoveSongs} />
-                <SongsListTable
-                    songsToList={currentSongs}
-                    option="removeSongs"
-                    handleAdd={addSongToRemove}
-                    handleRemove={removeSongToRemove}
-                    songsToChange={songsToRemove}
-                />
-            </PlaylistViewStyle>
+            <SongsListHeader
+                handleRemoveSongs={handleRemoveSongs}
+                playlistId={playlistId}
+            />
+            <SongsListTable
+                songsToList={currentSongs}
+                option="removeSongs"
+                handleAdd={addSongToRemove}
+                handleRemove={removeSongToRemove}
+                songsToChange={songsToRemove}
+            />
         </>
     );
 }

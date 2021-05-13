@@ -19,7 +19,7 @@ import PlayPauseButton from '../playPauseButton';
 import Button from '../../styles/components/Button/GenericButton';
 import LikeIcon from '../LikeButton';
 import './styles.scss';
-import PlaylistViewHeaderStyle from './styled';
+import PlaylistViewHeaderStyled from './styled';
 
 const PlaylistViewHeader = ({ playlist, from }) => {
     const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
     } */
     useQuickMenuListener();
     return (
-        <PlaylistViewHeaderStyle
+        <PlaylistViewHeaderStyled
             image={from !== 'createView' && playlist.img}
             className="mega-playlist"
         >
@@ -89,12 +89,21 @@ const PlaylistViewHeader = ({ playlist, from }) => {
             </div>
 
             <div className="mega-playlist__info">
+                <div className="mega-playlist__info__3pointButton-container">
+                    <button
+                        className="PlaylistView__header__buttons__3point"
+                        type="button"
+                        onMouseDown={e => openMenu(e, playlist._id)}
+                    >
+                        ···
+                    </button>
+                </div>
                 {from === 'addSongsView' && <p>Add songs to: </p>}
                 {from === 'removeSongsView' && <p>Remove songs to: </p>}
                 <div className="mega-playlist__info__container-info">
                     <input
                         type="text"
-                        className="mega-playlist__info__type"
+                        className="mega-playlist__info__item type"
                         readOnly={from === 'mainView'}
                         value={type === 'Playlist' ? 'Playlist' : 'Album'}
                         onClick={() => {
@@ -112,7 +121,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                     <span> · </span>
                     <input
                         type="text"
-                        className="mega-playlist__info__access"
+                        className="mega-playlist__info__item access"
                         value={publicAccess ? 'Public' : 'Private'}
                         readOnly={from === 'mainView'}
                         onClick={() => {
@@ -129,14 +138,14 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                 </div>
                 <input
                     type="text"
-                    className="mega-playlist__info__title"
+                    className="mega-playlist__info__item title"
                     value={title}
                     readOnly={from === 'mainView'}
                     onChange={e => setTitle(e.target.value)}
                 />
                 <input
                     type="text"
-                    className="mega-playlist__info__author"
+                    className="mega-playlist__info__item author"
                     defaultValue={
                         from === 'createView'
                             ? author
@@ -147,7 +156,7 @@ const PlaylistViewHeader = ({ playlist, from }) => {
 
                 <input
                     type="text"
-                    className="mega-playlist__info__description"
+                    className="mega-playlist__info__item description"
                     defaultValue={description}
                     readOnly={from === 'mainView'}
                     onChange={e => setDescription(e.target.value)}
@@ -168,90 +177,89 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         songs
                     </p>
                 </div>
-            </div>
-            <div className="mega-playlist__card__options">
-                <button
-                    className="PlaylistCard__container__3pointButton
-                        quickMenu PlaylistView__header__container__info__container__buttons__3point"
-                    type="button"
-                    onMouseDown={e => openMenu(e, playlist._id)}
-                />
-                {from === 'mainView' && (
-                    <div className="mega-playlist__card__buttons">
-                        <LikeIcon
-                            zoom="true"
-                            handleLike={() =>
-                                dispatch(addLikeToPlaylist(playlist._id))
-                            }
-                            likes={playlist.likedBy}
-                        />
-                        <Button
-                            type="button"
-                            onClick={() =>
-                                dispatch(followPlaylist(playlist._id))
-                            }
-                        >
-                            Follow
-                        </Button>
-                    </div>
-                )}
-                {from === 'editableView' && (
-                    <div className="mega-playlist__card__buttons">
-                        <Link to={`/playlist/${playlist._id}`}>
+                <div className="mega-playlist__card__options">
+                    {from === 'mainView' && (
+                        <div className="mega-playlist__card__buttons">
                             <Button
                                 type="button"
-                                onClick={() => {
-                                    dispatch(
-                                        editPlaylist(playlist._id, {
-                                            title,
-                                            description,
-                                            publicAccess,
-                                            type,
-                                        }),
-                                    );
-                                }}
-                            >
-                                Save
-                            </Button>
-                        </Link>
-                    </div>
-                )}
-                {from === 'createView' && (
-                    <div className="mega-playlist__card__buttons">
-                        {PlaylistUpdate ? (
-                            <>
-                                <p>You have created the playlist successfull</p>
-                                <Link
-                                    to={`/playlist/${PlaylistUpdate}/addsongs`}
-                                >
-                                    <Button type="button">
-                                        Add songs to playlist
-                                    </Button>
-                                </Link>
-                            </>
-                        ) : (
-                            <Button
-                                type="button"
+                                width="auto"
+                                padding="1rem"
                                 onClick={() =>
-                                    dispatch(
-                                        createPlaylist({
-                                            title,
-                                            userID,
-                                            publicAccess,
-                                            type,
-                                            songs,
-                                        }),
-                                    )
+                                    dispatch(followPlaylist(playlist._id))
                                 }
-                                disabled={PlaylistUpdate}
                             >
-                                Create playlist
+                                Follow
                             </Button>
-                        )}
-                    </div>
-                )}
+                            <LikeIcon
+                                zoom="true"
+                                handleLike={() =>
+                                    dispatch(addLikeToPlaylist(playlist._id))
+                                }
+                                likes={playlist.likedBy}
+                            />
+                        </div>
+                    )}
+                    {from === 'editableView' && (
+                        <div className="mega-playlist__card__buttons">
+                            <Link to={`/playlist/${playlist._id}`}>
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        dispatch(
+                                            editPlaylist(playlist._id, {
+                                                title,
+                                                description,
+                                                publicAccess,
+                                                type,
+                                            }),
+                                        );
+                                    }}
+                                >
+                                    Save
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
+                    {from === 'createView' && (
+                        <div className="mega-playlist__card__buttons">
+                            {PlaylistUpdate ? (
+                                <>
+                                    <p>
+                                        You have created the playlist
+                                        successfull
+                                    </p>
+                                    <Link
+                                        to={`/playlist/${PlaylistUpdate}/addsongs`}
+                                    >
+                                        <Button type="button">
+                                            Add songs to playlist
+                                        </Button>
+                                    </Link>
+                                </>
+                            ) : (
+                                <Button
+                                    type="button"
+                                    onClick={() =>
+                                        dispatch(
+                                            createPlaylist({
+                                                title,
+                                                userID,
+                                                publicAccess,
+                                                type,
+                                                songs,
+                                            }),
+                                        )
+                                    }
+                                    disabled={PlaylistUpdate}
+                                >
+                                    Create playlist
+                                </Button>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
-        </PlaylistViewHeaderStyle>
+        </PlaylistViewHeaderStyled>
     );
 };
 

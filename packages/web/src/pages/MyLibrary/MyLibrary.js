@@ -17,7 +17,7 @@ function MyLibrary() {
     // );
 
     // const dispatch = useDispatch();
-    const currentUser = useSelector(store => store.user)
+    const currentUser = useSelector(store => store.user);
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
     const userLikesSongs = useSelector(store => store.user.songsLikes);
@@ -31,8 +31,7 @@ function MyLibrary() {
     // const AllPlaylists = useSelector(store => store.playlists.byID);
     // const AllPlaylistsIds = useSelector(store => store.playlists.ids);
 
-    useEffect(() => {
-    }, [currentUser]);
+    useEffect(() => {}, [currentUser]);
     if (!userPlaylists) return <p>loading...</p>;
 
     return (
@@ -43,11 +42,7 @@ function MyLibrary() {
             <h1>My songs</h1>
             <Carousel key="userSongs" ids={userSongs} type="songs" />
             <h1>My liked songs</h1>
-            <Carousel
-                key="userLikedSongs"
-                ids={userLikesSongs}
-                type="songs"
-            />
+            <Carousel key="userLikedSongs" ids={userLikesSongs} type="songs" />
             <h1>My liked playlists</h1>
             <Carousel
                 key="userLikedPlaylist"

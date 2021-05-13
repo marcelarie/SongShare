@@ -57,15 +57,16 @@ function AddSongs() {
     return (
         <>
             <PlaylistViewHeader playlist={playlist} from="addSongsView" />
-            <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <SongsListHeader handleAddSongs={handleAddSongs} />
-                <SongsListTable
-                    songsToList={ids}
-                    option="addSongs"
-                    handleAdd={addSongToAdd}
-                    handleRemove={removeSongToAdd}
-                />
-            </PlaylistViewStyle>
+            <SongsListHeader
+                handleAddSongs={handleAddSongs}
+                playlistId={playlistId}
+            />
+            <SongsListTable
+                songsToList={ids}
+                option="addSongs"
+                handleAdd={addSongToAdd}
+                handleRemove={removeSongToAdd}
+            />
         </>
     );
 }

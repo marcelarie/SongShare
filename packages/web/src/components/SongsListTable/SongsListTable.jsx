@@ -9,6 +9,10 @@ import './styles.scss';
 import SongListTableStyled from './styles';
 import SongListItem from '../SongListItem';
 
+import LikeIcon from '../LikeButton';
+
+import { addLikeToSong } from '../../redux/songs/songs-actions';
+
 function SongsListTable({
     songsToList,
     playlistID,
@@ -35,7 +39,7 @@ function SongsListTable({
         setSongsState([...swappedsong]);
     }
     return (
-        <>
+        <SongListTableStyled>
             <div className="songsList__container">
                 <div className="songsList__container__header">
                     <div className="songsList__container__header__item">#</div>
@@ -44,6 +48,9 @@ function SongsListTable({
                     </div>
                     <div className="songsList__container__header__item">
                         Author
+                    </div>
+                    <div className="songsList__container__header__item">
+                        Upload by
                     </div>
                     <div className="songsList__container__header__item">
                         Likes
@@ -80,11 +87,27 @@ function SongsListTable({
                                             />
                                             {songInfo.name}
                                         </div>
-                                        <div className="songsList__container__row__item user">
-                                            {songInfo.username && songInfo.username.username}
+                                        <div className="songsList__container__row__item author">
+                                            {songInfo.author}
+                                        </div>
+                                        <div className="songsList__container__row__item uploader">
+                                            {songInfo.username &&
+                                                songInfo.username.username}
                                         </div>
                                         <div className="songsList__container__row__item likes">
-                                            {songInfo.likes.length}
+                                            <p className="songListItem__content__info__like__text">
+                                                {songInfo.likes.length} likes
+                                            </p>
+                                            <LikeIcon
+                                                handleLike={() =>
+                                                    dispatch(
+                                                        addLikeToSong(
+                                                            songInfo._id,
+                                                        ),
+                                                    )
+                                                }
+                                                likes={songInfo.likes}
+                                            />
                                         </div>
                                     </div>
                                 </SortableItem>
@@ -105,7 +128,7 @@ function SongsListTable({
                         );
                     })}
             </div>
-        </>
+        </SongListTableStyled>
     );
 }
 

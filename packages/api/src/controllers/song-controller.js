@@ -8,7 +8,7 @@ async function getAllSongs(req, res, next) {
             {},
             'username',
             'username',
-            );
+        );
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);

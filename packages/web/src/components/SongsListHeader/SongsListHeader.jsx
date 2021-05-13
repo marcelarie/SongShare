@@ -3,16 +3,22 @@ import { Link } from 'react-router-dom';
 
 import Button from '../../styles/components/Button/GenericButton';
 import './styles.scss';
+import SongListHeaderStyled from './styles';
 
-function SongsListHeader({ handleAddSongs = null, handleRemoveSongs = null }) {
+function SongsListHeader({
+    handleAddSongs = null,
+    handleRemoveSongs = null,
+    playlistId,
+}) {
     return (
         <>
-            <div className="flex-between">
-                <input type="text" value="Search" />
-                <button type="button" className="">
-                    Filter
-                </button>
-                <Link>
+            <SongListHeaderStyled className="songListHeader__container">
+                <input
+                    type="text"
+                    className="songListHeader__container__input"
+                    placeholder="Search"
+                />
+                <Link to={`/playlist/${playlistId}`}>
                     <Button
                         className="editButton"
                         type="button"
@@ -23,7 +29,7 @@ function SongsListHeader({ handleAddSongs = null, handleRemoveSongs = null }) {
                             : 'Add selected songs'}
                     </Button>
                 </Link>
-            </div>
+            </SongListHeaderStyled>
         </>
     );
 }
