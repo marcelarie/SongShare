@@ -15,6 +15,7 @@ import SongsListTable from '../../components/SongsListTable';
 import { addSongsToPlaylist } from '../../redux/Playlists/playlists-actions';
 
 import Button from '../../styles/components/Button/GenericButton';
+import SongsListHeader from '../../components/SongsListHeader';
 
 function AddSongs() {
     const dispatch = useDispatch();
@@ -30,6 +31,10 @@ function AddSongs() {
     useEffect(() => {
         dispatch(getAllSongs());
     }, [dispatch]);
+
+    function handleAddSongs() {
+        dispatch(addSongsToPlaylist(playlistId, songsToAdd));
+    }
 
     function addSongToAdd(id) {
         const index = songsToAdd.findIndex(element => element === id);
@@ -53,25 +58,7 @@ function AddSongs() {
         <>
             <PlaylistViewHeader playlist={playlist} from="addSongsView" />
             <PlaylistViewStyle className="PlaylistView" image={playlist.img}>
-                <div className="flex-between">
-                    <input type="text" value="Search" />
-                    <button type="button" className="">
-                        Filter
-                    </button>
-                    <Link to={`/playlist/${playlist._id}`}>
-                        <Button
-                            className="editButton"
-                            type="button"
-                            onClick={() =>
-                                dispatch(
-                                    addSongsToPlaylist(playlistId, songsToAdd),
-                                )
-                            }
-                        >
-                            Add selected songs
-                        </Button>
-                    </Link>
-                </div>
+                <SongsListHeader handleAddSongs={handleAddSongs} />
                 <SongsListTable
                     songsToList={ids}
                     option="addSongs"

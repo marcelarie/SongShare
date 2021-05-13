@@ -20,7 +20,11 @@ function UserProfilePlaylists({ user }) {
                         My playlists <span>{playlistsLength} collections</span>
                     </h2>
                     {playlistsLength > 0 && (
-                        <Carousel type="playlists" ids={playlists} key={uniq()} />
+                        <Carousel
+                            type="playlists"
+                            ids={playlists}
+                            key={uniq()}
+                        />
                     )}
                 </div>
             </div>

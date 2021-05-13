@@ -27,7 +27,10 @@ async function createPlaylist(req, res, next) {
         const formattedResponse = {
             data: {
                 ...response.data._doc,
-                author: { _id: response.data.author },
+                author: {
+                    _id: response.data.author,
+                    username: userResponse.data.username,
+                },
             },
             error: null,
         };
@@ -45,6 +48,24 @@ async function getAllPlaylists(req, res, next) {
             'username',
         );
 
+        if (response.error) return res.status(400).send(response);
+        if (response.data.length <= 0) return res.status(204).send(response);
+        if (response.data) return res.status(200).send(response);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getAllPublicPlaylists(req, res, next) {
+    const {
+        user: { uid },
+    } = req;
+    try {
+        const response = await PlaylistRepo.findAndPopulate(
+            { $or: [{ publicAccess: true }, { author: uid }] },
+            'author',
+            'username',
+        );
         if (response.error) return res.status(400).send(response);
         if (response.data.length <= 0) return res.status(204).send(response);
         if (response.data) return res.status(200).send(response);
@@ -165,13 +186,16 @@ async function likePlaylist(req, res, next) {
     const { id } = req.params;
 
     try {
-        const checkUserResponse = await UserRepo.findAndCheckLikes(uid, id);
+        const checkUserResponse = await UserRepo.findAndCheckLikesPlaylist(
+            uid,
+            id,
+        );
 
         if (checkUserResponse.error)
             return res.status(400).send(checkUserResponse);
         if (checkUserResponse.data.length === 0) {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $addToSet: { likes: id },
+                $addToSet: { playlistsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
@@ -179,6 +203,9 @@ async function likePlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $addToSet: { likedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -189,7 +216,7 @@ async function likePlaylist(req, res, next) {
                 return res.status(200).send({ PlaylistResponse, userResponse });
         } else {
             const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $pull: { likes: id },
+                $pull: { playlistsLikes: id },
             });
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
@@ -197,6 +224,9 @@ async function likePlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $pull: { likedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -230,6 +260,9 @@ async function followPlaylist(req, res, next) {
             const PlaylistResponse = await PlaylistRepo.findByIdAndUpdate(
                 { _id: id },
                 { $addToSet: { followedBy: uid } },
+                { new: true },
+                'author',
+                'username',
             );
             if (PlaylistResponse.error)
                 return res.status(400).send(PlaylistResponse);
@@ -239,9 +272,15 @@ async function followPlaylist(req, res, next) {
             if (PlaylistResponse.data)
                 return res.status(200).send({ PlaylistResponse, userResponse });
         } else {
-            const userResponse = await UserRepo.findByIdAndUpdate(uid, {
-                $pull: { following: id },
-            });
+            const userResponse = await UserRepo.findByIdAndUpdate(
+                uid,
+                {
+                    $pull: { following: id },
+                },
+                { new: true },
+                'author',
+                'username',
+            );
             if (userResponse.error) return res.status(400).send(userResponse);
             if (!userResponse.data) return res.status(404).send(userResponse);
 
@@ -286,6 +325,7 @@ export {
     getPlaylistById,
     // addSongsInfo,
     getAllPlaylists,
+    getAllPublicPlaylists,
     updatePlaylist,
     deletePlaylist,
     addSongs,

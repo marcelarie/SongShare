@@ -51,14 +51,14 @@ const PlaylistViewHeader = ({ playlist, from }) => {
         'rhap_play-pause-button',
     ); */
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (from === 'editableView' || from === 'mainView') {
             setTitle(playlist.title);
             setType(playlist.type);
             setPublicAccess(playlist.publicAccess);
             setDescription(playlist.description);
         }
-    }, [dispatch, playlist, from]);
+    }, [dispatch, playlist, from]); */
 
     /* function reproduceplaylist() {
         if (playlist._id === currentlyPlaying.playlistId) {
@@ -96,34 +96,41 @@ const PlaylistViewHeader = ({ playlist, from }) => {
                         type="text"
                         className="mega-playlist__info__type"
                         readOnly={from === 'mainView'}
-                        defaultValue={
-                            type === 'Playlist' ? 'Playlist' : 'Album'
-                        }
+                        value={type === 'Playlist' ? 'Playlist' : 'Album'}
                         onClick={() => {
-                            if (from === 'editableView') {
+                            if (
+                                from === 'editableView' ||
+                                from === 'createView'
+                            ) {
                                 setType(
                                     type === 'Playlist' ? 'Album' : 'Playlist',
                                 );
                             }
                         }}
+                        onChange={e => setType(e.target.value)}
                     />
                     <span> · </span>
                     <input
                         type="text"
                         className="mega-playlist__info__access"
-                        defaultValue={publicAccess ? 'Public' : 'Private'}
+                        value={publicAccess ? 'Public' : 'Private'}
                         readOnly={from === 'mainView'}
                         onClick={() => {
-                            if (from === 'editableView') {
+                            if (
+                                from === 'editableView' ||
+                                from === 'createView'
+                            ) {
+                                console.log('click');
                                 setPublicAccess(!publicAccess);
                             }
                         }}
+                        onChange={e => setPublicAccess(e.target.value)}
                     />
                 </div>
                 <input
                     type="text"
                     className="mega-playlist__info__title"
-                    defaultValue={title}
+                    value={title}
                     readOnly={from === 'mainView'}
                     onChange={e => setTitle(e.target.value)}
                 />

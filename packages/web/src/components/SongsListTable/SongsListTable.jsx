@@ -34,60 +34,74 @@ function SongsListTable({
         setSongsState([...swappedsong]);
     }
     return (
-        <div className="songsList__container">
-            <div className="songsList__container__header">
-                <div className="songsList__container__header__item">#</div>
-                <div className="songsList__container__header__item">title</div>
-                <div className="songsList__container__header__item">Author</div>
-                <div className="songsList__container__header__item">Likes</div>
-            </div>
-            {sortable &&
-                songsState.map((song, index) => {
-                    const songInfo = byID[song._id];
-                    return (
-                        <SortableItem
-                            items={songsState}
-                            id={song.id}
-                            key={song._id}
-                            swap={swap}
-                        >
-                            <div
-                                className="songsList__container__row"
+        <>
+            <div className="songsList__container">
+                <div className="songsList__container__header">
+                    <div className="songsList__container__header__item">#</div>
+                    <div className="songsList__container__header__item">
+                        title
+                    </div>
+                    <div className="songsList__container__header__item">
+                        Author
+                    </div>
+                    <div className="songsList__container__header__item">
+                        Likes
+                    </div>
+                </div>
+                {sortable &&
+                    songsState.map((song, index) => {
+                        const songInfo = byID[song._id];
+                        return (
+                            <SortableItem
+                                items={songsState}
+                                id={song.id}
                                 key={song._id}
+                                swap={swap}
                             >
-                                <div className="songsList__container__row__item id">
-                                    {index + 1}
+                                <div
+                                    className="songsList__container__row"
+                                    key={song._id}
+                                >
+                                    <div className="songsList__container__row__item id">
+                                        {index + 1}
+                                    </div>
+                                    <div className="songsList__container__row__item img">
+                                        <img
+                                            src={songInfo.imageURL}
+                                            alt="songImg"
+                                        />
+                                    </div>
+                                    <div className="songsList__container__row__item name">
+                                        {songInfo.name}
+                                    </div>
+                                    <div className="songsList__container__row__item user">
+                                        {songInfo.username}
+                                    </div>
+                                    <div className="songsList__container__row__item likes">
+                                        {songInfo.likes.length}
+                                    </div>
+                                    <div className="songsList__container__row__item image">
+                                        {songInfo.imageURL}
+                                    </div>
                                 </div>
-                                <div className="songsList__container__row__item name">
-                                    {songInfo.name}
-                                </div>
-                                <div className="songsList__container__row__item user">
-                                    {songInfo.username}
-                                </div>
-                                <div className="songsList__container__row__item likes">
-                                    {songInfo.likes.length}
-                                </div>
-                                <div className="songsList__container__row__item image">
-                                    {songInfo.imageURL}
-                                </div>
-                            </div>
-                        </SortableItem>
-                    );
-                })}
-            {!sortable &&
-                songsToList.map((songID, index) => {
-                    const songInfo = byID[songID];
-                    return (
-                        <SongListItem
-                            index={index + 1}
-                            key={songID}
-                            song={songInfo}
-                            handleRemove={handleRemove}
-                            handleAdd={handleAdd}
-                        />
-                    );
-                })}
-        </div>
+                            </SortableItem>
+                        );
+                    })}
+                {!sortable &&
+                    songsToList.map((songID, index) => {
+                        const songInfo = byID[songID];
+                        return (
+                            <SongListItem
+                                index={index + 1}
+                                key={songID}
+                                song={songInfo}
+                                handleRemove={handleRemove}
+                                handleAdd={handleAdd}
+                            />
+                        );
+                    })}
+            </div>
+        </>
     );
 }
 

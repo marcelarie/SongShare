@@ -6,7 +6,7 @@
 
     &__header {
         display: grid;
-        grid-template: 75px / 5% 15% 40% 25% 15%;
+        grid-template: 75px / 5% 40% 25% 15% 15%;
         background-color: aqua;
         &__item {
             border: 1px solid red;
@@ -17,18 +17,10 @@
     }
     &__row {
         display: grid;
-        grid-template: 75px / 5% 15% 40% 25% 15%;
+        grid-template: 75px / 5% 40% 25% 15% 15%;
         background-color: springgreen;
         &__item {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding-left: 1rem;
             border: 1px solid rgb(14, 0, 65);
-        }
-        &__item:first-child {
-            justify-content: center;
-            padding-left: 0;
         }
     }
     .dropBox {
