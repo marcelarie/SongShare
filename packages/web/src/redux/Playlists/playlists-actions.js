@@ -6,6 +6,7 @@ import {
     normalizePlaylists,
     // normalizeFullPlaylists,
 } from '../../schema/playlists-schema';
+import { updateUserInfoSucces } from '../user/user-actions'
 import { signOutSuccess } from '../auth/auth-actions';
 
 export const createPlaylistRequest = () => ({
@@ -322,6 +323,7 @@ export function addLikeToPlaylist(playlistID) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
             // update user info and song info (?)
+            dispatch(updateUserInfoSucces(res.data.userResponse.data))
             return dispatch(
                 updatePlaylistSuccess(res.data.PlaylistResponse.data),
             );
@@ -351,6 +353,7 @@ export function followPlaylist(playlistID) {
                 return dispatch(songUpdatingError(res.errorMessage));
             } */
             // update user info and song info (?)
+            dispatch(updateUserInfoSucces(res.data.userResponse.data))
             return dispatch(
                 updatePlaylistSuccess(res.data.PlaylistResponse.data),
             );
