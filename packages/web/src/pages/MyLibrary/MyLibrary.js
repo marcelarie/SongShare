@@ -4,18 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { NEW_PLAYLIST } from '../../routes';
 import Carousel from '../../components/Carousel';
-// import PlaylistCard from '../../components/PlaylistCard';
 
 function MyLibrary() {
-<<<<<<< HEAD
-    // rename to playlistsToShow or playlistLandingPage (?)
-    // const { PlaylistUpdating, PlaylistUpdatingError } = useSelector(
-    //     store => store.playlists,
-    // );
-
-=======
     const currentUser = useSelector(store => store.user);
->>>>>>> 2bc07572ef2501cc5b11dc92a5b3b5d7668b0c84
     const userPlaylists = useSelector(store => store.user.playlists);
     const userSongs = useSelector(store => store.user.songs);
     const userLikesSongs = useSelector(store => store.user.songsLikes);
