@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Button from '../../styles/components/Button/GenericButton';
 import useChangePictures from '../../custom-hooks/changePictures';
 import UserProfile from './styled';
+import Icons from '../../components/NavBarIcons/Icons';
 import './styles.scss';
 
 /* eslint-disable no-unused-vars */
@@ -30,48 +31,51 @@ function CurrentUserProfile() {
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
             <div className="user__header">
+                <div className="user__header__coverPicker">
+                    <input
+                        type="file"
+                        className="cover"
+                        id="filePickerCover"
+                        onChange={e => onPictureChange(e, 'cover')}
+                    />
+                    <label htmlFor="filePickerCover">{Icons.edit}</label>
+                    <div className="user__main__aside__header__image__coverPicker__controls">
+                        <button
+                            type="submit"
+                            className="center"
+                            onClick={pictureSubmits.handleCoverSubmit}
+                        >
+                            {Icons.ok}
+                        </button>
+                        <button
+                            type="submit"
+                            className="center"
+                            onClick={e =>
+                                pictureSubmits.handleCancelSubmit(e, 'cover')
+                            }
+                        >
+                            {Icons.cancel}
+                        </button>
+                    </div>
+                </div>
                 <div className="user__header__title">
                     <p>
                         {user.name} {user.lastname}
                     </p>
-                    <input
-                        type="file"
-                        className="cover"
-                        onChange={ e => onPictureChange(e, 'cover')}
-                    />
-                    <button
-                        type="submit"
-                        className="center"
-                        onClick={pictureSubmits.handleCoverSubmit}
-                    >
-                        Submit
-                    </button>
                 </div>
                 <div className="user__header__stats">
                     <div>
                         <Link to={`/${user.username}/playlists`}>
+                            {Icons.favorites}
                             <p>
-                                <span role="img" aria-label="star">
-                                    ⭐
-                                </span>
-                                <span>
-                                    {user.following
-                                        ? user.following.length
-                                        : '0'}
-                                </span>
+                                {user.following ? user.following.length : '0'}
                             </p>
                         </Link>
                     </div>
                     <div>
                         <Link to={`/${user.username}/music`}>
-                            <p>
-                                <span role="img" aria-label="song">
-                                    🎵
-                                </span>
-                                <span>
-                                    {user.songs ? user.songs.length : '0'}
-                                </span>
-                            </p>
+                            {Icons.music}
+                            <p>{user.songs ? user.songs.length : '0'}</p>
                         </Link>
                     </div>
                 </div>
@@ -134,18 +138,42 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <input
-                                    type="file"
-                                    className="avatar"
-                                    onChange={ e => onPictureChange(e, 'avatar')}
-                                />
-                                <button
-                                    type="submit"
-                                    className="center"
-                                    onClick={pictureSubmits.handleAvatarSubmit}
-                                >
-                                    Submit
-                                </button>
+                                <div className="user__main__aside__header__image__avatarPicker">
+                                    <input
+                                        type="file"
+                                        className="avatar"
+                                        id="filePickerAvatar"
+                                        onChange={e =>
+                                            onPictureChange(e, 'avatar')
+                                        }
+                                    />
+                                    <label htmlFor="filePickerAvatar">
+                                        {Icons.edit}
+                                    </label>
+                                    <div className="user__main__aside__header__image__avatarPicker__controls">
+                                        <button
+                                            type="submit"
+                                            className="center"
+                                            onClick={
+                                                pictureSubmits.handleAvatarSubmit
+                                            }
+                                        >
+                                            {Icons.ok}
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="center"
+                                            onClick={e =>
+                                                pictureSubmits.handleCancelSubmit(
+                                                    e,
+                                                    'avatar',
+                                                )
+                                            }
+                                        >
+                                            {Icons.cancel}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="user__main__aside__content">
