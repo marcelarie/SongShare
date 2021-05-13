@@ -174,7 +174,7 @@ async function postSong(req, res, next) {
         if (userResponse.error) return res.status(400).send(userResponse);
         if (song.error) return res.status(400).send(song);
 
-        if (song.data) return res.status(202).send({song, userResponse});
+        if (song.data) return res.status(202).send({ song, userResponse });
     } catch (error) {
         next(error);
     }

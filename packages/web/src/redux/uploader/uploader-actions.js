@@ -76,12 +76,12 @@ export function uploadSong({ file, title, artist, genre, songPic }) {
                     Authorization: `Bearer ${userToken}`,
                 },
             });
-            console.log(res)
+            console.log(res);
             if (res.data.song.errorMessage) {
                 return dispatch(uploadSongError(res.data.song.errorMessage));
             }
-            
-            dispatch(updateUserInfoSucces(res.data.userResponse.data))
+
+            dispatch(updateUserInfoSucces(res.data.userResponse.data));
             return dispatch(uploadSongSuccess(url));
         } catch (err) {
             return dispatch(uploadSongError(err.message));
