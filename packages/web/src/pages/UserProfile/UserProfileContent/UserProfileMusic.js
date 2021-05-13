@@ -1,3 +1,4 @@
+import uniq from 'uniqid';
 import React from 'react';
 import Carousel from '../../../components/Carousel/index';
 import Uploader from '../../../components/UploadSong';
@@ -16,7 +17,7 @@ function UserProfileMusic({ user }) {
                         My Music <span>{songsLength} tracks</span>
                     </h2>
                     {songsLength > 0 && (
-                        <Carousel type="songs" ids={songs} key="songs" />
+                        <Carousel type="songs" ids={songs} key={uniq()} />
                     )}
                 </div>
             </div>

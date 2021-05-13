@@ -13,6 +13,31 @@
             padding: 0.5rem 1rem;
             color: white;
         }
+        &__stats {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            display: flex;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            div {
+                p {
+                    display: flex;
+                    justify-content: space-evenly;
+                    font-size: 1.2rem;
+                    flex: 2;
+                    cursor: pointer;
+                    font-size: 1.3rem;
+                    &:hover {
+                        filter: saturate(4);
+                    }
+                    span {
+                        align-self: flex-end;
+                        margin: 0 0.5rem;
+                    }
+                }
+            }
+        }
     }
 
     &__nav {
@@ -36,12 +61,20 @@
         width: 90vw;
         margin: auto;
 
+        &__info,
+        &__edit,
+        &__content {
+            margin: auto;
+            margin-left: 5vw;
+        }
+
         // ASIDE
         &__aside {
             flex: 1;
             padding: 0.25rem;
             min-height: 300px;
             min-width: 300px;
+            max-width: 300px;
 
             &__header {
                 &__image {
@@ -51,19 +84,36 @@
                     }
                 }
             }
+
             &__content {
                 padding: 1.5rem;
                 padding-top: 0.5rem;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 justify-content: space-between;
                 &__info {
-                    p {
-                        font-size: 1.2rem;
-                        margin: 1rem 0;
-                        span {
-                            align-self: flex-end;
+                    margin: 1rem auto;
+                    padding: 0 1.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    div {
+                        p {
+                            display: flex;
+                            justify-content: space-between;
+                            font-size: 1.2rem;
+                            flex: 2;
+                            cursor: pointer;
+                            &:hover {
+                                font-weight: 600;
+                                transition: 0.2s;
+                                span {
+                                    text-decoration: none;
+                                }
+                            }
+                            span {
+                                align-self: flex-end;
+                            }
                         }
                     }
                 }
@@ -72,6 +122,10 @@
                     position: absolute;
                     right: 15px;
                     bottom: -30px;
+                }
+
+                h1 {
+                    text-align: right;
                 }
             }
         }
@@ -102,9 +156,7 @@
         //INFO COMPONENT
         &__info {
             text-align: start;
-            border: 1px solid red;
             width: 70%;
-            margin-left: auto;
             min-height: 70vh;
             h3 {
                 border-bottom: 1px solid white;
@@ -117,9 +169,7 @@
         }
         &__edit {
             text-align: start;
-            border: 1px solid red;
             width: 75%;
-            margin-left: auto;
             min-height: 90vh;
             h3 {
                 border-bottom: 1px solid white;
@@ -154,6 +204,7 @@
     position: absolute;
     border-radius: 5px;
     top: -220px;
+    max-width: 300px;
 }
 
 .relative {
@@ -164,12 +215,19 @@
     display: block;
     margin-bottom: 30px;
 }
+
 @media (max-width: 1140px) {
     .user__main__aside {
         display: none;
     }
-    .user__main__info {
-        width: 90%;
+    .user__main__info,
+    .user__main__edit {
+        width: 90% !important;
         margin: 0 auto;
+    }
+}
+@media (min-width: 1140px) {
+    .user__header__stats {
+        display: none;
     }
 }

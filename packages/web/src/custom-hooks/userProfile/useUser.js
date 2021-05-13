@@ -9,12 +9,13 @@ function useUser() {
     const currentUser = useSelector(store => store.user);
     const otherUser = useSelector(store => store.otherUser);
     const dispatch = useDispatch();
+    const auth = useSelector(store => store.auth);
 
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (currentUser) {
+        if (auth.isAuthenticated) {
             if (currentUser.username === pathUsername[1]) {
                 setUser(currentUser);
                 setIsLoading(false);

@@ -34,14 +34,12 @@ async function signOut(req, res) {
 }
 
 async function getUserInfoByUsername(req, res, next) {
-    const username = req.params.username.toLowerCase();
+    const { username } = req.params;
 
     try {
         const response = await UserRepo.findOneAndPouplate(
-            {
-                username: username,
-            },
-            ['songs', 'likes', 'playlists'],
+            { username },
+            'songs likes playlists',
         );
 
         if (response.error) return res.status(400).send(response);

@@ -10,6 +10,13 @@ const UserProfile = styled.div`
             background-color: ${({ theme }) => hexToRgba(theme.text, '0.2')};
             color: ${({ theme }) => theme.background};
         }
+        &__stats {
+            background-color: ${({ theme }) => hexToRgba(theme.text, '0.2')};
+            p,
+            span {
+                color: ${({ theme }) => theme.background};
+            }
+        }
     }
     .user__nav {
         ul {

@@ -27,6 +27,8 @@ function CurrentUserProfile() {
         user.imageUrl ||
         'https://res.cloudinary.com/apollofymusicproject/image/upload/v1619558703/uploadedImages/profile.png.png';
 
+    // if (!user._id) return <Redirect to={Routes.HOME} />;
+
     return (
         <UserProfile cover={coverPic} className="user" image={avatarPic}>
             <div className="user__header">
@@ -34,6 +36,34 @@ function CurrentUserProfile() {
                     <p>
                         {user.name} {user.lastname}
                     </p>
+                </div>
+                <div className="user__header__stats">
+                    <div>
+                        <Link to={`/${user.username}/playlists`}>
+                            <p>
+                                <span role="img" aria-label="star">
+                                    ⭐
+                                </span>
+                                <span>
+                                    {user.following
+                                        ? user.following.length
+                                        : '0'}
+                                </span>
+                            </p>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={`/${user.username}/music`}>
+                            <p>
+                                <span role="img" aria-label="song">
+                                    🎵
+                                </span>
+                                <span>
+                                    {user.songs ? user.songs.length : '0'}
+                                </span>
+                            </p>
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="user__nav">
@@ -94,31 +124,47 @@ function CurrentUserProfile() {
                     <div className="user__main__aside__offset">
                         <div className="user__main__aside__header">
                             <div className="user__main__aside__header__image">
-                                <br />
+                                <br />{' '}
                             </div>
                         </div>
                         <div className="user__main__aside__content">
-                            <h1>@{user.username}</h1>
+                            <h2>@{user.username}</h2>
                             <div className="user__main__aside__content__info">
-                                <p>
-                                    Followers <span>user.followers</span>
-                                </p>
-                                <p>
-                                    Following <span>user.following</span>
-                                </p>
-                                <p>
-                                    Songs <span>user.songs</span>
-                                </p>
+                                <div>
+                                    <Link to={`/${user.username}/playlists`}>
+                                        <p>
+                                            Following
+                                            <span>
+                                                {user.following
+                                                    ? user.following.length
+                                                    : '0'}
+                                            </span>
+                                        </p>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link to={`/${user.username}/music`}>
+                                        <p>
+                                            Songs
+                                            <span>
+                                                {user.songs
+                                                    ? user.songs.length
+                                                    : '0'}
+                                            </span>
+                                        </p>
+                                    </Link>
+                                </div>
                             </div>
 
-                            {user.username === currentUser.username && (
-                                <Link to={`/${user.username}/Edit`}>
+                            {user.username === currentUser.username ? (
+                                <Link to={`/${user.username}/edit`}>
                                     <Button>Edit</Button>
                                 </Link>
+                            ) : (
+                                <Link to={`/${user.username}/info`}>
+                                    <Button>Info</Button>
+                                </Link>
                             )}
-                            <Link to={`/${user.username}/Info`}>
-                                <Button>Info</Button>
-                            </Link>
                         </div>
                     </div>
                 </div>
