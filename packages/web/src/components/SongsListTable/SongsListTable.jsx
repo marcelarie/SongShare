@@ -26,8 +26,8 @@ function SongsListTable({
 
     const sortedIDs = songsOrder.map(song => song._id);
 
-    const playWithBegin = index => {
-        dispatch(listenPlaylistWithBegin({ index, sortedIDs }));
+    const playWithBegin = (index, name) => {
+        dispatch(listenPlaylistWithBegin({ index, sortedIDs, name }));
     };
 
     function swap(dragIndex, dropIndex) {
@@ -74,8 +74,11 @@ function SongsListTable({
                                         className="songsList__container__row__item img"
                                         role="button"
                                         tabIndex={index}
-                                        onMouseDown={() => playWithBegin(index)}
+                                        onMouseDown={() =>
+                                            playWithBegin(index, songInfo.name)
+                                        }
                                     >
+                                        <p>{song._id}</p>
                                         <img
                                             src={songInfo.imageURL}
                                             alt="songImg"
