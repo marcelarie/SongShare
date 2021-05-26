@@ -4,7 +4,7 @@ import colors from '../../color-palette';
 const GenericNavButton = styled.button`
     all: unset;
     color: ${colors.lightGray};
-        fill: ${({ theme }) => theme.text};
+    fill: ${({ theme }) => theme.text};
     svg {
         min-width: 1.3rem;
         max-width: 1.3rem;

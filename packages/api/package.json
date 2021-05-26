@@ -7,6 +7,7 @@
     "scripts": {
         "dev": "nodemon --inspect --trace-warnings ./src/index.js",
         "test": "jest --env=node",
+        "start": "node src/index.js",
         "test:ci:all": "jest --env=node",
         "test:watch": "jest --watch",
         "test:related": "jest --bail --findRelatedTests",
@@ -33,9 +34,7 @@
         "url": "https://github.com/assembler-school/apollofy-music-project.git"
     },
     "type": "module",
-    "keywords": [
-        "node.js"
-    ],
+    "keywords": ["node.js"],
     "engines": {
         "node": ">=14.0.0"
     },
