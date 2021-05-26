@@ -2756,7 +2756,7 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@tailwindcss/postcss7-compat@^2.0.2", "tailwindcss@npm:@tailwindcss/postcss7-compat":
+"@tailwindcss/postcss7-compat@^2.1.2", "tailwindcss@npm:@tailwindcss/postcss7-compat":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/postcss7-compat/-/postcss7-compat-2.1.2.tgz#4ae2a3a3c05622ee04307997b0f8bea5c8dbc2b6"
   integrity sha512-bH2kw6uyqLnDMP8wzDUsis5ovrsRzfHEyiL1McADvqlW54g6y0KVHX1xzO7PH8Fl5s0Sq8vDOAp4+3V8MEcZ9g==
